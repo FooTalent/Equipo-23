@@ -1,6 +1,6 @@
 # MI NEGOCIO
 
-**miNegocio** es una plataforma web diseñada para que los propietarios de negocios puedan gestionar eficientemente diversos aspectos de su emprendimiento desde un solo lugar. La plataforma ofrece una solución integral que incluye:
+**Mi negocio** es una plataforma web diseñada para que los propietarios de negocios puedan gestionar eficientemente diversos aspectos de su emprendimiento desde un solo lugar. La plataforma ofrece una solución integral que incluye:
 
 - **Gestión de redes sociales**: Administra todas las cuentas de redes sociales de tu negocio en un solo espacio.
 - **Inventario**: Lleva un control completo de tu inventario de productos, actualizando el stock en tiempo real.
