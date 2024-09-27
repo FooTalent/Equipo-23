@@ -1,0 +1,234 @@
+paths:
+  /api/products/:
+    get:
+      summary: Obtiene todos los productos
+      tags:
+        - Products
+      responses:
+        "200":
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Product"
+    post:
+      summary: Crear un producto
+      tags:
+      - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/createProduct"
+      responses:
+        "201":
+          description: Producto creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Product"
+        "400":
+          description: Error de validación
+        "500":
+          description: Error interno del servidor
+  /api/products/{pid}:
+    get:
+      summary: Obtiene el producto con el id solicitado
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true,
+          description: id del producto que se desea solicitar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Product"
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Actualiza un product a partir de su id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: id del producto que se desea actualizar
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateProduct"
+      responses:
+        "200":
+          description: Producto actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Product"
+        "400":
+          description: Error de validación
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+    delete:
+      summary: Elimina un producto a partir de su id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: id del producto que se desea eliminar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto eliminado exitosamente
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de mongo
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripcion del producto
+        code:
+          type: number
+          description: codigo del producto, este campo es unico
+        price:
+          type: number
+          description: Precio del producto
+        status:
+          type: boolean
+          description: Estado del producto
+        stock:
+          type: number
+          description: Stock del producto
+        category:
+          type: string
+          description: Categoria del producto
+        thumbnails:
+          type: array
+          items:
+            type: string
+          description: Imagen/es del producto
+        owner:
+          type: string
+          description: Owner del producto
+      example:
+        title: "producto swagger"
+        description: "descripcion del producto swagger"
+        code: "100"
+        price: 5250
+        status: true
+        stock: 9
+        category: "test"
+        thumbnails: []
+        owner: "admin"
+        _id: "6684112515f00de9bf77cee9"
+  requestBodies:
+    updateProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripcion del producto
+        code:
+          type: number
+          description: codigo del producto, este campo es unico
+        price:
+          type: number
+          description: Precio del producto
+        status:
+          type: boolean
+          description: Estado del producto
+        stock:
+          type: number
+          description: Stock del producto
+        category:
+          type: string
+          description: Categoria del producto
+        thumbnails:
+          type: array
+          items:
+            type: string
+          description: Imagen/es del producto
+      example:
+        title: "producto swagger"
+        description: "descripcion del producto swagger"
+        code: "100"
+        price: 5250
+        status: true
+        stock: 9
+        category: "test"
+        thumbnails: ["imagen.png"]
+    createProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripcion del producto
+        code:
+          type: number
+          description: Codigo del producto, este campo es unico
+        price:
+          type: number
+          description: Precio del producto
+        status:
+          type: boolean
+          description: Estado del producto
+        stock:
+          type: number
+          description: Stock del producto
+        category:
+          type: string
+          description: Categoria del producto
+        thumbnails:
+          type: array
+          items:
+            type: string
+          description: Imagen/es del producto
+      example:
+        title: "producto nuevo"
+        description: "descripcion del producto nuevo"
+        code: 101
+        price: 6000
+        status: true
+        stock: 15
+        category: "nuevo"
+        thumbnails: ["imagen1.png"]
+  
