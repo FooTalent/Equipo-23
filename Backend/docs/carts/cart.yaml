@@ -1,0 +1,187 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Obtiene todos los carritos
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: A list of carts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Cart"
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene el carrito con el id solicitado
+      tags:
+      - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea solicitar
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Cart"
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+    put: 
+      summary: Actualiza el carrito a partir de su id
+      tags:
+      - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito que se desea actualizar
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json: 
+            schema:
+              $ref: "#components/requestBodies/updateCart"
+      responses:
+        "200":
+          description: Carrito actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Cart"
+        "400":
+          description: Error de validación
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+  /api/carts/{cid}/product/{pid}: 
+    delete:
+      summary: Elimina el producto del carrito a partir de sus ID.
+      tags: 
+      - Carts
+      parameters: 
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito donde se encuentra el producto a eliminar
+        schema:
+          type: string
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea eliminar
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Producto eliminado del carrito exitosamente
+        "404":
+          description: Producto o carrito no encontrado
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Actualiza la cantidad del producto de un carrito a partir de sus IDs.
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: id del carrito donde se encuentra el producto a actualizar
+        schema:
+          type: string
+      - name: pid
+        in: path
+        required: true
+        description: id del producto que se desea actualizar la cantidad
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/updateProductCart"
+      responses:
+        "200":
+          description: Producto actualizado del carrito exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Cart"
+        "400":
+          description: Error de validación
+        "404":
+          description: Producto o carrito no encontrado
+        "500":
+          description: Error interno del servidor
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de mongo
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              prodId:
+                type: string
+                description: Id del producto, referencia a la colección de productos
+              quantity:
+                type: number
+                description: Cantidad del producto en el carrito
+      example:
+        _id: "60d9f9f1f0d3f3b9c0e8b9b1"
+        products:
+          - prodId: "60d9f9f1f0d3f3b9c0e8b9b2"
+            quantity: 2
+          - prodId: "60d9f9f1f0d3f3b9c0e8b9b3"
+            quantity: 1
+  requestBodies:
+    updateCart:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              prodId:
+                type: string
+                description: Id del producto, referencia a la colección de productos
+              quantity:
+                type: number
+                description: Cantidad del producto en el carrito
+      example:
+        products:
+          - prodId: "60d9f9f1f0d3f3b9c0e8b9c2"
+            quantity: 3
+          - prodId: "60d9f9f1f0d3f3b9c0e8b9c3"
+            quantity: 5
+    updateProductCart:
+      type: object
+      properties:
+        quantity:
+          type: number
+          description: Nueva cantidad del producto en el carrito
+      example:
+        quantity: 5
+       
+
+
