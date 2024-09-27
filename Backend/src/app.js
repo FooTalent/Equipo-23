@@ -15,7 +15,7 @@ const app = express();
 const __dirname = path.resolve();
 const PORT = config.port;
 
-const allowedOrigins = config.environment == 'production' ? 'RUTA PERMITIDA PARA PRODUCCION' : 'http://localhost:8080';
+const allowedOrigins = config.environment == 'production' ? '*' : 'http://localhost:8080';
 
 const corsOptions = {
   origin: allowedOrigins,
