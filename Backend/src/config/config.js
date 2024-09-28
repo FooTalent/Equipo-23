@@ -13,5 +13,8 @@ export default {
     passwordGmail: process.env.PASSWORD_APP_GMAIL,
     correoGmail: process.env.CORREO_GMAIL,
     AppUrl: process.env.APP_URL,
-    tokenCookie: process.env.TOKEN_COOKIE
+    tokenCookie: process.env.TOKEN_COOKIE,
+    googleClient: process.env.GOOGLE_CLIENT,
+    googleSecret: process.env.GOOGLE_SECRET,
+    googleCallBacUrl: process.env.GOOGLE_CALLBACK_URL
 }
