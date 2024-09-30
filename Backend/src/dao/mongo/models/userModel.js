@@ -4,12 +4,7 @@ const userCollection = "users";
 
 const userSchema = new mongoose.Schema(
   {
-    first_name: {
-      type: String,
-      minLength: 3,
-      required: true,
-    },
-    last_name: {
+    name: {
       type: String,
       minLength: 3,
       required: true,
@@ -37,35 +32,9 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["user", "admin", "premium"],
+      enum: ["user", "vendor"],
       default: "user",
       required: true,
-    },
-    profilePhoto: {
-      name: {
-        type: String,
-        default: "Sin foto de perfil",
-      },
-      reference: {
-        type: String,
-        default: "Sin foto de perfil",
-      },
-    },
-    documents: {
-      type: [
-        {
-          name: {
-            type: String,
-            default: "name",
-          },
-          reference: {
-            type: String,
-            default: "reference",
-          },
-          _id: false,
-        },
-      ],
-      default: [],
     },
     last_connection: {
       type: Date,

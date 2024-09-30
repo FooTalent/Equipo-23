@@ -6,32 +6,42 @@ import { cartsRepository, usersRepository } from "../repositories/index.js";
 import userModel from "../dao/mongo/models/userModel.js";
 import { transport } from "../utils/nodemailer.js";
 import verificationRegisterUserModel from "../dao/mongo/models/verificationRegisterUserModel.js";
+import '../utils/passport.js'
+import passport from "passport";
 
 async function sendCodeConfirmationRegister(userData) {
   const verificationCode = Math.floor(
     100000 + Math.random() * 900000
   ).toString();
 
+  console.log(verificationCode)
+
   const checkVerifyIfExists = await verificationRegisterUserModel.findOne({
     email: userData.email,
   });
 
+  console.log(checkVerifyIfExists);
+
   if (checkVerifyIfExists) {
+    console.log("entra al if data -", userData);
     await verificationRegisterUserModel.deleteOne({ email: userData.email });
   }
 
   const passwordHash = createHash(userData.password);
 
+  console.log('passwordHash ', passwordHash);
+
   //create check user in db
-  await verificationRegisterUserModel.create({
+  const data = await verificationRegisterUserModel.create({
     email: userData.email,
     code: verificationCode,
-    first_name: userData.first_name,
-    last_name: userData.last_name,
+    name: userData.name,
     age: userData.age,
     password: passwordHash,
     createdAt: new Date(),
   });
+
+  console.log('data   ', data)
 
   //send email to user
   const result = await transport.sendMail({
@@ -46,14 +56,18 @@ async function sendCodeConfirmationRegister(userData) {
           `,
     attachments: [],
   });
+
+  console.log('result ', result);
   return result;
 }
 
 export async function register(req, res) {
-  const { first_name, last_name, age, email, password } = req.body;
+  const { name, age, email, password } = req.body;
+  console.log(req.body);
 
   // Verify if exists user with email by body
   let user = await usersRepository.getUserBy({ email: email });
+  console.log(user);
   if (user) {
     return res
       .status(404)
@@ -61,8 +75,7 @@ export async function register(req, res) {
   }
 
   await sendCodeConfirmationRegister({
-    first_name,
-    last_name,
+    name,
     age,
     email,
     password,
@@ -85,6 +98,8 @@ export async function checkCodeRegister(req, res) {
     code: code,
   });
 
+  console.log(document);
+
   if (!document) {
     return res
       .status(400)
@@ -105,8 +120,7 @@ export async function checkCodeRegister(req, res) {
   const cartId = cartObject[0]._id;
 
   const newUser = {
-    first_name: document.first_name,
-    last_name: document.last_name,
+    name: document.name,
     age: document.age,
     email: document.email,
     password: document.password,
@@ -175,6 +189,12 @@ export async function logout(req, res) {
 
   res.clearCookie(config.tokenCookie);
   res.status(200).json({ success: true, message: "Logout correct" });
+}
+
+export async function loginGoogle(req, res) {
+  const user = await passport.authenticate("google", { scope: ["profile", "email"] })
+  console.log(user());
+  res.status(200).json({ success: true, message: "Login correct" });
 }
 
 // --- RESPONSE USER'S DATA
