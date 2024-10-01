@@ -33,10 +33,12 @@ export const createProduct = async (req, res) => {
    * */
 
   // Verificación si el código ya existe
-  const query = { code };
-  const exists = await productsRepository.getProductBy(query);
+  const query = { code, owner: email };
+  const existingProduct = await productsRepository.getProductBy(query);
+  
+  
 
-  if (exists) {
+  if (existingProduct && existingProduct.owner == req.user.data.email) {
     return res
       .status(404)
       .json({ success: false, message: "Product with code already exists" });
@@ -68,7 +70,7 @@ export const getProducts = async (req, res) => {
   const role = req.user?.data?.role;
   const email = req.user?.data?.email;
 
-  let result = await productsRepository.getProducts(limit, page, sort, query);
+  let result = await productsRepository.getProducts(email,limit, page, sort, query);
   const products = result.data.map((prod) =>
     ProductDTO.getProductResponseForRole(prod, role, email)
   );
@@ -212,6 +214,7 @@ export const updateProductById = async (req, res) => {
    * */
   const query = { code, _id: { $ne: id } };
   const exists = await productsRepository.getProductBy(query);
+  
 
   if (exists) {
     return res
