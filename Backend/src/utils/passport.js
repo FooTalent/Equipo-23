@@ -49,11 +49,6 @@ const initializatePassport = () => {
           console.log(profile);
           const userExist = await usersRepository.getUserByEmail({ email: profile.emails[0].value });
           if (userExist) {
-            const token = generateAuthToken(userExist);
-            res.cookie(config.tokenCookie, token, {
-              maxAge: 60 * 60 * 1000,
-              httpOnly: true,
-            });
             return done(null, userExist);
           }
 

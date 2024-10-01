@@ -5,7 +5,10 @@ import { sessions } from "../../controllers/index.js";
 import { authorization } from "../../middlewares/authMiddleware.js";
 import { validateCreateLogin } from "../../utils/validator/login.js";
 import { validateCreateRegister } from "../../utils/validator/register.js";
-import * as passport from 'passport';
+import passport from "passport";
+
+import '../../utils/passport.js'
+import { generateAuthToken } from "../../utils/jwt.js";
 
 const sessionRouter = Router();
 
@@ -17,13 +20,18 @@ sessionRouter.get("/current", passportCall("jwt"), sessions.current);
 sessionRouter.delete("/inactives", passportCall('jwt'), authorization('admin'), sessions.deleteInactives);
 
 sessionRouter.get("/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  passport.authenticate("google", { scope: ["profile"] })
 )
 
 sessionRouter.get("/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    res.cookie("token", req.user.token, { httpOnly: true });
+    const token = generateAuthToken(userExist);
+
+    res.cookie(config.tokenCookie, token, {
+      maxAge: 60 * 60 * 1000,
+      httpOnly: true,
+    });
     res.redirect("/");
   }
 )
