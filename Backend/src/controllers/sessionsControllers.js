@@ -135,7 +135,7 @@ export async function login(req, res) {
   if (!user) {
     return res
       .status(404)
-      .json({ succes: false, message: "Credentials invalids" });
+      .json({ succes: false, message: "Invalid mail " });
   }
 
   if (!isValidPassword(user, password)) {
