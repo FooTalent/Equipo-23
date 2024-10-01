@@ -1,12 +1,9 @@
 import axios from "axios";
 import config from "../config/config.js";
 
-// export const createInstance = (req, res) => {
-//   res.send("Instancia creada");
-// };
 
 const API_KEY = config.apikey;
-const BASE_URL = config.baseUrl;
+const BASE_URL = config.baseurl;
 
 export const createInstance = async (req, res) => {
   const options = {
@@ -23,11 +20,13 @@ export const createInstance = async (req, res) => {
   };
 
   try {
-    const response = await axios( `${BASE_URL}/instances/create`, options);
-    res.json(response.data);
+    const response = await axios( `${BASE_URL}/instance/create`, options);
+   
+    res.status(201).json(response.data);
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error al crear la instancia");
+
+    res.status(500).send(error.response.data);
+
   }
 };
 
