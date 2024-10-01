@@ -47,14 +47,24 @@ const initializatePassport = () => {
       async (accessToken, refreshToken, profile, done) => {
         try {
           console.log(profile);
+          const userExist = await usersRepository.getUserByEmail({ email: profile.emails[0].value });
+          if (userExist) {
+            const token = generateAuthToken(userExist);
+            res.cookie(config.tokenCookie, token, {
+              maxAge: 60 * 60 * 1000,
+              httpOnly: true,
+            });
+            return done(null, userExist);
+          }
 
           const user = {
             name: profile.displayName,
             email: profile.emails[0].value,
             profile,
           };
-          const newUser = await usersRepository.createUser(user);
-          const token = generateAuthToken(user);
+          usersRepository.createUser(user);
+          const findUser = await usersRepository.getUserBy({ email: user.email });
+          const token = generateAuthToken(findUser);
           res.cookie(config.tokenCookie, token, {
             maxAge: 60 * 60 * 1000,
             httpOnly: true,
