@@ -27,7 +27,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.listen(PORT, () => {
-  console.log(`listening to the server on ${config.AppUrl}:${PORT}`);
+  console.log(`listening to the server on localhost:${PORT}`);
 });
 
 const swaggerOptions = {

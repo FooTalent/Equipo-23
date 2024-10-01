@@ -42,7 +42,7 @@ export default class UserDTO {
           created_data: formatDate(user.createdAt),
           updated_data: formatDate(user.updatedAt),
         };
-      case "premium":
+      case "vendor":
         return {
           id: user._id,
           name: `${user.first_name} ${user.last_name}`,

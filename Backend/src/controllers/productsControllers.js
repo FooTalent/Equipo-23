@@ -8,7 +8,7 @@ import { removeEmptyObjectFields } from "../utils/removeEmptyObjectFields.js";
  *
  * PERMISSIONS endpoint ¡¡create!!:
  *  admin
- *  premium
+ *  vendor
  */
 export const createProduct = async (req, res) => {
   const { title, description, code, price, stock, category } = req.body;
@@ -33,10 +33,12 @@ export const createProduct = async (req, res) => {
    * */
 
   // Verificación si el código ya existe
-  const query = { code };
-  const exists = await productsRepository.getProductBy(query);
+  const query = { code, owner: email };
+  const existingProduct = await productsRepository.getProductBy(query);
+  
+  
 
-  if (exists) {
+  if (existingProduct && existingProduct.owner == req.user.data.email) {
     return res
       .status(404)
       .json({ success: false, message: "Product with code already exists" });
@@ -44,7 +46,7 @@ export const createProduct = async (req, res) => {
 
   // IF CODE NOT EXISTS
   let owner = "admin";
-  if (role == "premium") owner = email;
+  if (role == "vendor") owner = email;
 
   const result = await productsRepository.createProduct({
     title,
@@ -65,10 +67,10 @@ export const getProducts = async (req, res) => {
   let { limit, page, sort, query } = req.query;
 
   // Optional chaining is used because the user may not be authenticated !!
-  const role = req.user?.data?.role; 
+  const role = req.user?.data?.role;
   const email = req.user?.data?.email;
 
-  let result = await productsRepository.getProducts(limit, page, sort, query);
+  let result = await productsRepository.getProducts(email,limit, page, sort, query);
   const products = result.data.map((prod) =>
     ProductDTO.getProductResponseForRole(prod, role, email)
   );
@@ -86,7 +88,9 @@ export const getProductById = async (req, res) => {
 
   const product = await productsRepository.getProductBy({ _id: id });
   if (!product) {
-    return res.status(404).json({ succes: false, message: "Product not found" });
+    return res
+      .status(404)
+      .json({ succes: false, message: "Product not found" });
   }
 
   const productDto = ProductDTO.getProductResponseForRole(product, role, email);
@@ -106,7 +110,7 @@ export const deleteProductById = async (req, res) => {
   }
 
   //verified permission
-  if (role == "premium" && email != product.owner) {
+  if (role == "vendor" && email != product.owner) {
     return res.status(200).json({
       succes: false,
       message: "You do not have permission to delete the product",
@@ -121,7 +125,7 @@ export const deleteProductById = async (req, res) => {
    *  Product removed by the -- OWNER --
    *  Send email notification about product removal to the owner
    */
-  if (role == "premium" && email == product.owner) {
+  if (role == "vendor" && email == product.owner) {
     const result = await productsRepository.deleteProductBy({ _id: id });
     await transport.sendMail({
       from: `E-commerce Coder <${config.correoGmail}>`,
@@ -179,6 +183,12 @@ export const updateProductById = async (req, res) => {
   const { title, description, code, price, stock, category, thumbnail } =
     req.body;
 
+  if (req.body._id || req.body.owner) {
+    return res
+      .status(400)
+      .json({ succes: false, message: "Cannot edit id field" });
+  }
+
   const product = await productsRepository.getProductBy({ _id: id });
   if (!product) {
     return res
@@ -191,7 +201,7 @@ export const updateProductById = async (req, res) => {
    * Only the creator of the product can update it
    *
    */
-  if (role === "premium" && product.owner !== email) {
+  if (role === "vendor" && product.owner !== email) {
     return res.status(403).json({
       success: false,
       message: "You do not have permission to update this product",
@@ -204,6 +214,7 @@ export const updateProductById = async (req, res) => {
    * */
   const query = { code, _id: { $ne: id } };
   const exists = await productsRepository.getProductBy(query);
+  
 
   if (exists) {
     return res

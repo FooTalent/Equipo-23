@@ -6,7 +6,9 @@ const environment = config.environment;
 export default class Product {
   constructor() {}
 
-  async get(limit, page, sort, query) {
+  async get(owner,limit, page, sort, query) {
+    console.log(owner);
+    
     const appUrl =
       environment === "development"
         ? `${config.AppUrl}:${config.port}`
@@ -14,7 +16,8 @@ export default class Product {
 
     limit = !limit ? 10 : parseInt(limit);
     page = !page ? 1 : parseInt(page);
-    query = !query ? {} : { title: query };
+    query = !query ? {owner: owner} : { title: query, owner: owner };
+
 
     const options = {
       limit: limit,

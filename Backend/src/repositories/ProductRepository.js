@@ -3,8 +3,8 @@ export default class ProductRepository {
     this.dao = dao;
   }
 
-  async getProducts(limit, page, sort, query) {
-    let result = await this.dao.get(limit, page, sort, query);
+  async getProducts(owner,limit, page, sort, query) {
+    let result = await this.dao.get(owner,limit, page, sort, query);
     return result;
   }
 
