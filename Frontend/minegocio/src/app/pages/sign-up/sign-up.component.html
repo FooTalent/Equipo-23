@@ -26,24 +26,48 @@
                     quibusdam aperiam voluptatum.
                 </p>
 
-                <form action="#" class="mt-8 grid grid-cols-6 gap-6" (ngSubmit)="onSubmit($event)" [formGroup]="registerForm">
+                <form action="#" class="mt-8 grid grid-cols-6 gap-6" (ngSubmit)="onRegisterSubmit($event)" [formGroup]="registerForm">
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="FirstName" class="block text-sm font-medium text-gray-700">
-                            First Name
+                        <label for="firstName" class="block text-sm font-medium text-gray-700">
+                            FirstName
                         </label>
 
-                        <input type="text" id="FirstName" name="first_name" formControlName="firstName"
+                        <input type="text" id="firstName" name="firstName" formControlName="firstName"
                             class="mt-1 w-full rounded-md border-gray-600 border-2 py-1 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
 
+                    <small *ngIf= "registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+                        <span *ngIf="registerForm.get('firstName')?.hasError('required')">This field is required</span>
+                        <span *ngIf="registerForm.get('firstName')?.hasError('pattern')">This field must not contain special characters</span>
+                    </small>
+
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="LastName" class="block text-sm font-medium text-gray-700">
+                        <label for="lastName" class="block text-sm font-medium text-gray-700">
                             Last Name
                         </label>
 
-                        <input type="text" id="LastName" name="last_name" formControlName="lastName"
+                        <input type="text" id="lastName" name="lastName" formControlName="lastName"
                             class="mt-1 w-full rounded-md border-gray-600 border-2 py-1 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
+
+                    <small *ngIf= "registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+                        <span *ngIf="registerForm.get('lastName')?.hasError('required')">This field is required</span>
+                        <span *ngIf="registerForm.get('lastName')?.hasError('pattern')">This field must not contain special characters</span>
+                    </small>
+
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="age" class="block text-sm font-medium text-gray-700">
+                            age
+                        </label>
+
+                        <input type="number" id="age" name="age" formControlName="age"
+                            class="mt-1 w-full rounded-md border-gray-600 border-2 py-1 bg-white text-sm text-gray-700 shadow-sm" />
+                    </div>
+
+                    <small *ngIf= "registerForm.get('age')?.invalid && registerForm.get('age')?.touched" class="text-black">
+                        <span *ngIf="registerForm.get('age')?.hasError('required')">This field is required</span>
+                        <span *ngIf="registerForm.get('age')?.hasError('min')">You have to be at least 19 years old</span>
+                    </small>
 
                     <div class="col-span-6">
                         <label for="Email" class="block text-sm font-medium text-gray-700"> Email </label>
@@ -51,6 +75,11 @@
                         <input type="email" id="Email" name="email" formControlName="email"
                             class="mt-1 w-full rounded-md border-gray-600 border-2 py-1 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
+
+                    <small *ngIf= "registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                        <span *ngIf="registerForm.get('email')?.hasError('required')">This field is required</span>
+                        <span *ngIf="registerForm.get('email')?.hasError('email')">This field must be a valid email address</span>
+                    </small>
 
                     <div class="col-span-6 sm:col-span-3">
                         <label for="Password" class="block text-sm font-medium text-gray-700"> Password </label>
@@ -68,6 +97,11 @@
                             class="mt-1 w-full rounded-md border-gray-600 border-2 py-1 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
 
+                    <small *ngIf= "registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                        <span *ngIf="registerForm.get('password')?.hasError('required')">This field is required</span>
+                        <span *ngIf="registerForm.get('password')?.hasError('minlength')">This field must be at least 6 characters long</span>
+                    </small>
+
                     <div class="col-span-6">
                         <label for="MarketingAccept" class="flex gap-4">
                             <input type="checkbox" id="MarketingAccept" name="marketing_accept"
@@ -77,6 +111,10 @@
                                 I want to receive emails about events, product updates and company announcements.
                             </span>
                         </label>
+                    </div>
+
+                    <div *ngIf="errorMessage" class="text-center text-red-500 text-sm">
+                        {{ errorMessage }}
                     </div>
 
                     <div class="col-span-6">

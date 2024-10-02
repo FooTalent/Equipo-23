@@ -10,19 +10,26 @@ export class UserService {
 
   private http = inject(HttpClient);
 
-  registerUser(formValues: RegisterValues) {
+  registerUser(registerValues: RegisterValues) {
     return this.http.post('http://localhost:3000/register', {
-      firstName: formValues.firstName,
-      lastName: formValues.lastName,
-      email: formValues.email,
-      password: formValues.password
+      first_name: registerValues.firstName,
+      last_name: registerValues.lastName,
+      age: registerValues.age,
+      email: registerValues.email,
+      password: registerValues.password
     });
   }
 
-  loginUser(formValues: LoginValues) {
+  verifyRegisterCode(code: string) {
+    return this.http.post('http://localhost:3000/verify-code', { code });
+  }
+
+  loginUser(loginValues: LoginValues) {
     return this.http.post('http://localhost:3000/login', {
-      email: formValues.email,
-      password: formValues.password
+      email: loginValues.email,
+      password: loginValues.password
+    },{
+      withCredentials: true
     });
   }
 
