@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
     age: {
       type: Number,
       min: 18,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       minLength: 4,
-      required: true,
+      required: false,
     },
     cartId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema(
     isOnline: {
       type: Boolean,
       default: false,
-    },
+    }
   },
   {
     timestamps: true,
