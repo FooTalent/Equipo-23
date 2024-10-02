@@ -59,6 +59,10 @@
                 class="mt-1 w-full rounded-md border-gray-600 border-2 py-1 bg-white text-sm text-gray-700 shadow-sm"
               />
             </div>
+
+            <div *ngIf="errorMessage" class="text-center text-red-500 text-sm">
+              {{ errorMessage }}
+            </div>
   
             <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
               <button type="submit"
