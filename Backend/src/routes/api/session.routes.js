@@ -20,10 +20,10 @@ sessionRouter.get("/current", passportCall("jwt"), sessions.current);
 sessionRouter.delete("/inactives", passportCall('jwt'), authorization('admin'), sessions.deleteInactives);
 
 sessionRouter.get("/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
+  passport.authenticate("google", { scope: ["profile", "email", "https://www.googleapis.com/auth/user.birthday.read"] })
 )
 
-sessionRouter.get("/auth/google/callback",
+sessionRouter.get("/auth/google/redirect",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
     const token = generateAuthToken(userExist);
