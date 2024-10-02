@@ -26,12 +26,6 @@ sessionRouter.get("/auth/google",
 sessionRouter.get("/auth/google/redirect",
   passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
-    const token = generateAuthToken(userExist);
-
-    res.cookie(config.tokenCookie, token, {
-      maxAge: 60 * 60 * 1000,
-      httpOnly: true,
-    });
     res.redirect("/");
   }
 )
