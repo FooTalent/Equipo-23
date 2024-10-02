@@ -4,7 +4,7 @@ import config from "../config/config.js";
 
 // passport google
 import GoogleStrategy from "passport-google-oauth20";
-import { usersRepository } from "../repositories/index.js";
+import { cartsRepository, usersRepository } from "../repositories/index.js";
 
 const JWTStrategy = jwt.Strategy;
 const ExtractJWT = jwt.ExtractJwt;
@@ -51,11 +51,12 @@ const initializatePassport = () => {
           if (userExist) {
             return done(null, userExist);
           }
-          const age = calculateAge(profile.birthday);
+          const cartObject = await cartsRepository.createCart()
+          const cartId = cartObject[0]._id;
           const user = {
             name: profile.displayName,
             email: profile.emails[0].value,
-            age: age,
+            cartId
           };
           usersRepository.createUser(user);
           const findUser = await usersRepository.getUserBy({ email: user.email });
@@ -67,5 +68,13 @@ const initializatePassport = () => {
       }
     )
   );
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+  passport.deserializeUser(async (id, done) => {
+    const user = await usersRepository.getUserBy({ id });
+    done(null, user);
+  });
 };
 export default initializatePassport;
