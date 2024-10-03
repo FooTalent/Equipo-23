@@ -16,4 +16,16 @@ evolutionRouter.get(
   evolution.connectionState
 );
 
+evolutionRouter.get(
+  "/instance/connect/:instanceName",
+  passportCall("jwt"),
+  evolution.instanceConnect
+);
+
+evolutionRouter.delete(
+  "/instance/logout/:instanceName",
+  passportCall("jwt"),
+  evolution.logoutInstance
+)
+
 export default evolutionRouter;
