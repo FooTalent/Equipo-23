@@ -10,4 +10,10 @@ evolutionRouter.post(
   evolution.createInstance
 );
 
+evolutionRouter.get(
+  "/instance/connectionState/:instanceName",
+  passportCall("jwt"),
+  evolution.connectionState
+);
+
 export default evolutionRouter;
