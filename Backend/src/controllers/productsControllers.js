@@ -127,17 +127,6 @@ export const deleteProductById = async (req, res) => {
    */
   if (role == "vendor" && email == product.owner) {
     const result = await productsRepository.deleteProductBy({ _id: id });
-    await transport.sendMail({
-      from: `E-commerce Coder <${config.correoGmail}>`,
-      to: product.owner,
-      subject: "producto eliminado",
-      html: `
-          <div>
-              <p>Tu producto fue eliminado.</p>
-          </div>
-          `,
-      attachments: [],
-    });
     return res.status(200).json({
       succes: true,
       data: result,
