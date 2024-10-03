@@ -1,0 +1,30 @@
+<h2>Send Message to Seller</h2>
+<form (ngSubmit)="sendMessage()">
+	<div>
+		<label for="name">Your Name:</label>
+		<input type="text" id="name" [(ngModel)]="messageData.name" name="name" required />
+	</div>
+
+	<div>
+		<label for="phone">Your Number Phone:</label>
+		<input type="tel" id="phone" [(ngModel)]="messageData.phone" name="phone" required />
+	</div>
+
+	<div>
+		<label for="country">Your Country</label>
+		<select id="country" [(ngModel)]="messageData.country" name="country" required>
+			<option value="Colombia">Colombia</option>
+			<option value="México">México</option>
+			<option value="Argentina">Argentina</option>
+			<option value="Chile">Chile</option>
+			<!-- Agrega más países según necesites -->
+		</select>
+	</div>
+
+	<div>
+		<label for="message">Message</label>
+		<textarea id="message" [(ngModel)]="messageData.message" name="message" required></textarea>
+	</div>
+
+	<button type="submit">Submit</button>
+</form>
