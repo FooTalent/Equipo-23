@@ -26,6 +26,20 @@ evolutionRouter.delete(
   "/instance/logout/:instanceName",
   passportCall("jwt"),
   evolution.logoutInstance
+);
+
+evolutionRouter.delete(
+  "/instance/delete/:instanceName",
+  passportCall("jwt"),
+  evolution.deleteInstance
+);
+
+//Arrancamos con el websocker
+
+evolutionRouter.post(
+  "/integrations/setWebSocket/:instanceName",
+  passportCall("jwt"),
+  evolution.setWebSocket
 )
 
 export default evolutionRouter;
