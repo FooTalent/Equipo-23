@@ -20,10 +20,10 @@ userRouter.delete(
 );
 userRouter.put("/:uid", passportCall("jwt"), users.updateUser);
 userRouter.get(
-  "/premium/:uid",
+  "/vendor/:uid",
   passportCall("jwt"),
   authorization("user"),
-  users.changePremium
+  users.changeVendor
 );
 userRouter.post(
   "/:uid/photo",

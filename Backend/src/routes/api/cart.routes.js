@@ -9,7 +9,7 @@ const cartRouter = Router();
 cartRouter.get("/",passportCall('jwt'),authorization('admin'),carts.getCarts); 
 
 // The user can only get his cart and the admin ALL
-cartRouter.get("/:cid", passportCall('jwt'),authorization('user','premium','admin'),carts.getCartById);
+cartRouter.get("/:cid", passportCall('jwt'),authorization('user','vendor','admin'),carts.getCartById);
 
 // Product operations in cart
 cartRouter.post("/:cid/product/:pid", passportCall('jwt'),carts.addProductFromCart);

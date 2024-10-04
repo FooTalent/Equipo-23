@@ -114,8 +114,8 @@ export const updateUser = async (req, res) => {
   res.status(200).json({ success: true, data: result });
 };
 
-// Change role 'user' to 'premium' !!!
-export const changePremium = async (req, res) => {
+// Change role 'user' to 'vendor' !!!
+export const changeVendor = async (req, res) => {
   const id = req.params.uid;
   const email = req.user.data.email;
   const role = req.user.data.role;
@@ -150,7 +150,7 @@ export const changePremium = async (req, res) => {
   }
   const result = await usersRepository.updateUserBy(
     { _id: id },
-    { role: "premium" }
+    { role: "vendor" }
   );
   const userDto = await UserDTO.getUserResponseForRole(result, role, email);
   res.status(200).json({ success: true, data: userDto });
