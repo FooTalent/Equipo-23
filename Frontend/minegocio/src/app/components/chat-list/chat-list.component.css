@@ -1,0 +1,22 @@
+.chat-list-container {
+	padding: 20px;
+	background-color: #218838;
+}
+
+.chat-item {
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+button {
+	background-color: #28a745;
+	color: black;
+	padding: 5px 10px;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #218838;
+}
