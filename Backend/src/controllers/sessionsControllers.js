@@ -194,10 +194,10 @@ export async function logout(req, res) {
 }
 
 export async function loginGoogle(req, res) {
-  const token = req.body.token
+  const tokenGoogle = req.body.token
   const client = new OAuth2Client(config.clientIdGoogle);
   const ticket = await client.verifyIdToken({
-    idToken: token,
+    idToken: tokenGoogle,
     audience: config.clientIdGoogle,
   });
   const payload = ticket.getPayload();
@@ -205,6 +205,26 @@ export async function loginGoogle(req, res) {
 
   console.log('payload ', payload);
   console.log('userid ', userid);
+
+  const cartObject = await cartsRepository.createCart();
+  const cartId = cartObject[0]._id;
+
+  const newUser = {
+    name: payload.name,
+    email: payload.email,
+    cartId: cartId,
+    isGoogle: true,
+  };
+
+  await usersRepository.createUser(newUser);
+  const user = await usersRepository.getUserBy({ email: payload.email });
+  await usersRepository.updateUserBy({ _id: user._id }, { isOnline: true });
+
+  const token = generateAuthToken(user);
+  res.cookie(config.tokenCookie, token, {
+    maxAge: 60 * 60 * 1000,
+    httpOnly: true,
+  });
 
   return res.status(200).json({ success: true, message: "Login correct" });
 }
