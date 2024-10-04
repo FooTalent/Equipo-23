@@ -200,11 +200,31 @@ export async function loginGoogle(req, res) {
     idToken: tokenGoogle,
     audience: config.clientIdGoogle,
   });
-  const payload = ticket.getPayload();
-  const userid = payload["sub"];
 
-  console.log('payload ', payload);
-  console.log('userid ', userid);
+  const payload = ticket.getPayload();
+
+  const userExist = await usersRepository.getUserBy({ email: payload.email });
+
+  if (userExist && userExist.isGoogle) {
+    await usersRepository.updateUserBy(
+      { _id: userExist._id },
+      { isOnline: true }
+    );
+
+    const token = generateAuthToken(userExist);
+    res.cookie(config.tokenCookie, token, {
+      maxAge: 60 * 60 * 1000,
+      httpOnly: true,
+    });
+
+    return res.status(200).json({ success: true, message: "Login correct" });
+  }
+
+  if (userExist && !userExist.isGoogle) {
+    return res
+      .status(404)
+      .json({ succes: false, message: "User already exists" });
+  }
 
   const cartObject = await cartsRepository.createCart();
   const cartId = cartObject[0]._id;
