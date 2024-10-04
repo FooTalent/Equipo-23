@@ -9,6 +9,8 @@ import verificationRegisterUserModel from "../dao/mongo/models/verificationRegis
 import '../utils/passport.js'
 import passport from "passport";
 
+import { OAuth2Client } from "google-auth-library";
+
 async function sendCodeConfirmationRegister(userData) {
   const verificationCode = Math.floor(
     100000 + Math.random() * 900000
@@ -192,9 +194,19 @@ export async function logout(req, res) {
 }
 
 export async function loginGoogle(req, res) {
-  const user = await passport.authenticate("google", { scope: ["profile", "email"] })
-  console.log(user());
-  res.status(200).json({ success: true, message: "Login correct" });
+  const token = req.body.token
+  const client = new OAuth2Client(config.clientIdGoogle);
+  const ticket = await client.verifyIdToken({
+    idToken: token,
+    audience: config.clientIdGoogle,
+  });
+  const payload = ticket.getPayload();
+  const userid = payload["sub"];
+
+  console.log('payload ', payload);
+  console.log('userid ', userid);
+
+  return res.status(200).json({ success: true, message: "Login correct" });
 }
 
 // --- RESPONSE USER'S DATA
