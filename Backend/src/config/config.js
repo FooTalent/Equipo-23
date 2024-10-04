@@ -16,4 +16,5 @@ export default{
     tokenCookie:process.env.TOKEN_COOKIE,
     apikey: process.env.API_KEY,
     baseurl: process.env.BASE_URL,
+    basewss: process.env.BASE_WSS,
 }
