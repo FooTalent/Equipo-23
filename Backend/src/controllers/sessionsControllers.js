@@ -64,7 +64,7 @@ async function sendCodeConfirmationRegister(userData) {
 }
 
 export async function register(req, res) {
-  const { name, age, email, password } = req.body;
+  const { name, age, email, password, rol = '' } = req.body;
   console.log(req.body);
 
   // Verify if exists user with email by body
@@ -81,6 +81,7 @@ export async function register(req, res) {
     age,
     email,
     password,
+    rol,
   });
 
   res.status(200).json({
@@ -195,6 +196,8 @@ export async function logout(req, res) {
 
 export async function loginGoogle(req, res) {
   const tokenGoogle = req.body.token
+  const rol = req.body.rol
+
   const client = new OAuth2Client(config.clientIdGoogle);
   const ticket = await client.verifyIdToken({
     idToken: tokenGoogle,
@@ -234,6 +237,7 @@ export async function loginGoogle(req, res) {
     email: payload.email,
     cartId: cartId,
     isGoogle: true,
+    rol: rol
   };
 
   await usersRepository.createUser(newUser);
