@@ -29,4 +29,6 @@ sessionRouter.get("/auth/google/redirect",
     res.redirect("/");
   }
 )
+
+sessionRouter.post("/auth/google", sessions.loginGoogle)
 export default sessionRouter;
