@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema(
       ref: "carts",
       required: true,
     },
+    isGoogle: {
+      type: Boolean,
+      default: false,
+    },
     role: {
       type: String,
       enum: ["user", "admin", "vendor"],
