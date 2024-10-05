@@ -8,6 +8,8 @@ import messageRouter from "./message.routes.js";
 import ticketRouter from './tickets.routes.js';
 import evolutionRouter from './evolution.routes.js'
 import socketRouter from './socket.routes.js'
+import chatRouter from './chat.routes.js';
+
 
 const router = Router();
 
@@ -19,6 +21,7 @@ router.use("/messages/",messageRouter);
 router.use("/tickets/",ticketRouter);
 router.use('/evolution', evolutionRouter);
 router.use("/socket", socketRouter);
+router.use('/evolution/chat', chatRouter);
 
 
 export default router;

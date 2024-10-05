@@ -1,5 +1,5 @@
 import { passportCall } from "../../middlewares/passportMiddleware.js";
-import { connectionSocket } from "../../controllers/socketControllers.js";
+import { socket } from "../../controllers/index.js";
 import { Router } from "express";
 
 const socketRouter = Router();
@@ -7,7 +7,7 @@ const socketRouter = Router();
 socketRouter.get(
   "/connect/:instanceName",
   passportCall("jwt"),
-  connectionSocket
+  socket.connectionSocket,
 );
 
 export default socketRouter;
