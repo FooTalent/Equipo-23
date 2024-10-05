@@ -18,7 +18,8 @@ export class UserService {
       last_name: registerValues.lastName,
       age: registerValues.age,
       email: registerValues.email,
-      password: registerValues.password
+      password: registerValues.password,
+      rol: registerValues.role
     });
   }
 

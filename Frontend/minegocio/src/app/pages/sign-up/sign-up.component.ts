@@ -22,7 +22,8 @@ export class SignUpComponent {
     lastName: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
     age: new FormControl(0, [Validators.required, Validators.min(19)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    role: new FormControl('', [Validators.required])
   });
 
 
@@ -38,7 +39,8 @@ export class SignUpComponent {
         lastName: this.registerForm.value.lastName ?? '',
         age: this.registerForm.value.age ?? 0,
         email: this.registerForm.value.email ?? '',
-        password: this.registerForm.value.password ?? ''
+        password: this.registerForm.value.password ?? '',
+        role: this.registerForm.value.role ?? ''
       };
 
       this.userService.registerUser(registerValues).subscribe({

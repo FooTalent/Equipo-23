@@ -103,6 +103,19 @@
                     </small>
 
                     <div class="col-span-6">
+                        <label for="Role" class="block text-sm font-medium text-gray-700"> Role </label>
+                      
+                        <select formControlName="role" id="Role" name="role" class="mt-1 w-full rounded-md border-gray-600 border-2 py-1 bg-white text-sm text-gray-700 shadow-sm">
+                          <option value="vendedor">Vendor</option>
+                          <option value="cliente">Client</option>
+                        </select>
+                    </div>
+
+                    <small *ngIf= "registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
+                        <span *ngIf="registerForm.get('password')?.hasError('required')">This field is required</span>
+                    </small>
+
+                    <div class="col-span-6">
                         <label for="MarketingAccept" class="flex gap-4">
                             <input type="checkbox" id="MarketingAccept" name="marketing_accept"
                                 class="size-5 rounded-md border-gray-200 bg-white shadow-sm" />
