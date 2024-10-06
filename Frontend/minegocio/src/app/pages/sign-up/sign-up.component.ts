@@ -5,6 +5,7 @@ import { Router, RouterLinkWithHref } from '@angular/router';
 import { RegisterValues } from '../../models/registerValues.model';
 import { CommonModule } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,6 +17,7 @@ import { Meta } from '@angular/platform-browser';
 export class SignUpComponent {
 
   private userService = inject(UserService);
+  private authService = inject(AuthService);
   private Router = inject(Router);
   private meta = inject(Meta);
 
@@ -60,6 +62,10 @@ export class SignUpComponent {
     } else {
       this.errorMessage = 'Por favor, rellena todos los campos';
     }
+  }
+
+  loginWithGoogle() {
+    this.authService.loginWithGoogle();
   }
 
   // Function to toggle password visibility

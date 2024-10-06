@@ -34,7 +34,10 @@
           <img *ngIf="viewPassword()" src="/icons/show-password.svg" class="absolute top-[70%] right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
           <img *ngIf="!viewPassword()" src="/icons/hide-password.svg" class="absolute top-[70%] right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
         </div>
-        <a href="#" class="text-purple-600 text-xs mt-1 block text-right">¿Olvidaste tu contraseña?</a>
+
+        <div class="flex justify-end">
+          <a href="#" class="text-purple-600 text-xs text-right">¿Olvidaste tu contraseña?</a>
+        </div>
 
         <button type="submit" class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded-2xl transition duration-300 ease-in-out hover:bg-purple-500">
           Iniciar sesión
@@ -54,7 +57,7 @@
         </div>
       </div>
 
-      <button class="mt-4 w-full bg-white text-black font-bold py-2 px-4 rounded-2xl flex justify-center items-center">
+      <button (click)="loginWithGoogle()" class="mt-4 w-full bg-white text-black font-bold py-2 px-4 rounded-2xl flex justify-center items-center cursor-pointer">
         <img src="/icons/google.svg" class="w-6 h-6 mr-2" alt="Google">
         Continuar con Google
       </button>

@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { Router, RouterLinkWithHref } from '@angular/router';
 import { LoginValues } from '../../models/loginValues.model';
 import { CommonModule } from '@angular/common';
@@ -15,7 +14,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  private userService = inject(UserService);
   private authService = inject(AuthService);
   private Router = inject(Router);
 
@@ -34,7 +32,7 @@ export class LoginComponent {
         password: this.userForm.value.password ?? ''
       };
 
-      this.userService.loginUser(loginValues).subscribe({
+      this.authService.loginUser(loginValues).subscribe({
 
         next: (response: any) => {
           this.Router.navigate([ "" ])
@@ -51,6 +49,10 @@ export class LoginComponent {
     } else {
       this.errorMessage = 'Por favor, rellena todos los campos requeridos.';
     }
+  }
+
+  loginWithGoogle() {
+    this.authService.loginWithGoogle();
   }
   
   // Function to toggle password visibility
