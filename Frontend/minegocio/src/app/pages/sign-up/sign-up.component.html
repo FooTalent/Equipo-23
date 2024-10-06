@@ -48,8 +48,6 @@
                 <span *ngIf="registerForm.get('role')?.hasError('required')">Este campo es obligatorio</span>
             </small>
           </div>
-
-          <p>{{registerForm.value.role}}</p>
   
           <div class="relative">
             <label for="email" class="block text-base font-medium text-gray-100">Email</label>
@@ -70,7 +68,7 @@
           </div>
           <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
             <span *ngIf="registerForm.get('password')?.hasError('required')">Este campo es obligatorio</span>
-            <span *ngIf="registerForm.get('password')?.hasError('minLength')">La contraseña debe tener al menos 8 caracteres</span>
+            <span *ngIf="registerForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 8 caracteres</span>
           </small>
   
           <div class="flex items-center">
