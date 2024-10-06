@@ -1,20 +1,22 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterLinkWithHref } from '@angular/router';
 import { LoginValues } from '../../models/loginValues.model';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterLinkWithHref],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
   private userService = inject(UserService);
+  private authService = inject(AuthService);
   private Router = inject(Router);
 
   userForm = new FormGroup({
@@ -36,6 +38,7 @@ export class LoginComponent {
 
         next: (response: any) => {
           this.Router.navigate([ "" ])
+          console.log(response);
         },
         error: (error) => {
           if (error.status === 404) {
@@ -45,7 +48,17 @@ export class LoginComponent {
           }
         }
       })
+    } else {
+      this.errorMessage = 'Por favor, rellena todos los campos requeridos.';
     }
+  }
+  
+  // Function to toggle password visibility
+
+  viewPassword = signal(false);
+
+  togglePassword() {
+    this.viewPassword.update(value => !value);
   }
 
 }

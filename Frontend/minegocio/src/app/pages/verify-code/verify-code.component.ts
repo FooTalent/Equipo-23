@@ -30,7 +30,7 @@ export class VerifyCodeComponent {
 
       this.userService.verifyRegisterCode(verificationCode).subscribe({
         next: (response: any) => {
-          this.Router.navigate(['/login']);
+          this.Router.navigate(['/']);
         },
         error: (error) => {
           if (error.status === 400) {

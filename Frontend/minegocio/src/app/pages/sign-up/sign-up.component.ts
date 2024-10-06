@@ -1,14 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { Router, RouterLinkWithHref } from '@angular/router';
 import { RegisterValues } from '../../models/registerValues.model';
 import { CommonModule } from '@angular/common';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterLinkWithHref],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
@@ -16,14 +17,15 @@ export class SignUpComponent {
 
   private userService = inject(UserService);
   private Router = inject(Router);
+  private meta = inject(Meta);
 
   registerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
     lastName: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
-    age: new FormControl(0, [Validators.required, Validators.min(19)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    role: new FormControl('', [Validators.required])
+    role: new FormControl('', [Validators.required]),
+    terms: new FormControl(false, [Validators.required])
   });
 
 
@@ -37,7 +39,6 @@ export class SignUpComponent {
       const registerValues: RegisterValues = {
         firstName: this.registerForm.value.firstName ?? '',
         lastName: this.registerForm.value.lastName ?? '',
-        age: this.registerForm.value.age ?? 0,
         email: this.registerForm.value.email ?? '',
         password: this.registerForm.value.password ?? '',
         role: this.registerForm.value.role ?? ''
@@ -49,17 +50,34 @@ export class SignUpComponent {
           this.Router.navigate([ "/verify-code" ])
         },
         error: (error) => {
-          console.log(error);
           if (error.status === 404) {
-            this.errorMessage = 'Email is already in use';
-          } else if (error.status === 400) {
-            this.errorMessage = error.error.errors;
+            this.errorMessage = 'El email ya está en uso';
           } else {
-            this.errorMessage = 'An unexpected error occurred. Please try again later.';
+            this.errorMessage = 'Un error inesperado ha ocurrido. Por favor, inténtalo de nuevo más tarde.';
           }
         }
       })
+    } else {
+      this.errorMessage = 'Por favor, rellena todos los campos';
     }
+  }
+
+  // Function to toggle password visibility
+
+  viewPassword = signal(false);
+
+  togglePassword() {
+    this.viewPassword.update(value => !value);
+  }
+
+  // Function to change the theme color
+
+  ngOnInit(): void {
+    this.meta.updateTag({ name: 'theme-color', content: '#5d3cba' });
+  }
+
+  ngOnDestroy(): void {
+    this.meta.updateTag({ name: 'theme-color', content: '#ffffff' });
   }
 
 }
