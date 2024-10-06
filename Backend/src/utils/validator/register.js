@@ -10,14 +10,6 @@ export const validateCreateRegister = [
     .withMessage("First_name cannot be empty")
     .matches(/^[A-Za-z]+$/)
     .withMessage("First_name cannot contain numbers or special characters"),
-  check("age")
-    .exists()
-    .withMessage("Age is required")
-    .not()
-    .isEmpty()
-    .withMessage("Age cannot be empty")
-    .isInt({ min: 19 })
-    .withMessage("Age must be greater than or equal to 18"),
   check("email")
     .exists()
     .withMessage("Email is required")

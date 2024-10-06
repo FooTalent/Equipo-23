@@ -85,7 +85,7 @@ export const deleteUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const id = req.params.uid;
-  const { first_name, last_name, age, email } = req.body;
+  const { first_name, last_name,  email } = req.body;
   const role = req.user.data.role;
   const eCurrent = req.user.data.email;
 
