@@ -1,0 +1,21 @@
+<div>
+	<h2>Inventario de Productos</h2>
+	<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+		<input formControlName="title" placeholder="Título" />
+		<input formControlName="description" placeholder="Descripción" />
+		<input formControlName="code" placeholder="Código" />
+		<input formControlName="price" placeholder="Precio" type="number" />
+		<input formControlName="stock" placeholder="Stock" type="number" />
+		<input formControlName="category" placeholder="Categoría" />
+		<input type="file" (change)="onFileChange($event)" />
+		<input formControlName="status" type="checkbox" /> Activo
+		<button type="submit">Agregar Producto</button>
+	</form>
+
+	<div *ngFor="let product of products">
+		<h3>{{ product.title }}</h3>
+		<p>{{ product.description }}</p>
+		<button (click)="updateProduct(product.id!)">Editar</button>
+		<button (click)="deleteProduct(product.id!)">Eliminar</button>
+	</div>
+</div>
