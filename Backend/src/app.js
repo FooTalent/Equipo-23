@@ -11,7 +11,13 @@ import { addLogger } from "./utils/logger.js";
 import routes from "./routes/index.js";
 import tokenExpirationMiddleware from "./middlewares/tokenExpirationMiddleware.js";
 
+import { Server } from "socket.io";
+import { createServer } from "node:http";
+
 const app = express();
+const server = createServer(app);
+export const io = new Server(server);
+
 
 const __dirname = path.resolve();
 const PORT = config.port;
@@ -29,7 +35,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`listening to the server on ${config.AppUrl}:${PORT}`);
 });
 
@@ -60,4 +66,3 @@ app.use(passport.initialize());
 app.use(tokenExpirationMiddleware);
 
 app.use(routes);
-

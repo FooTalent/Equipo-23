@@ -1,83 +1,89 @@
-import axios from "axios";
-import config from "../config/config.js";
-
-const API_KEY = config.apikey;
-const BASE_URL = config.baseurl;
+import {
+  allContacts,
+  messages,
+  oneContact,
+  sendText,
+} from "../services/chat.services.js";
 
 // Trae todos los contactos
 export const findAllContacts = async (req, res) => {
   const instanceName = req.params.instanceName;
 
-  const options = {
-    method: "POST",
-    headers: {
-      apikey: API_KEY,
-      "Content-Type": "application/json",
-    },
-  };
-
   try {
-    const response = await axios(
-      `${BASE_URL}/chat/findContacts/${instanceName}`,
-      options
-    );
-    res.status(200).json(response.data);
+    const data = await allContacts(instanceName);
+
+    const contacts = data.map((contact) => {
+      return {
+        remoteJid: contact.remoteJid,
+        pushName: contact.pushName,
+        profilePicUrl: contact.profilePicUrl,
+      };
+    });
+
+    res.status(200).json(contacts);
   } catch (error) {
     res.status(404).send(error.response.data);
   }
 };
 
+// Trae un contacto existente
 export const findOneContact = async (req, res) => {
   const { instanceName, remoteJid } = req.params;
 
-  const options = {
-    method: "POST",
-    headers: {
-      apikey: API_KEY,
-      "Content-Type": "application/json",
-    },
-    data: {
-      where: {
-        remoteJid,
-      },
-    },
-  };
-
   try {
-    const response = await axios(
-      `${BASE_URL}/chat/findContacts/${instanceName}`,
-      options
-    );
-    res.status(200).json(response.data);
+    const data = await oneContact(instanceName, remoteJid);
+
+    const contact = data.map((contact) => {
+      return {
+        remoteJid: contact.remoteJid,
+        pushName: contact.pushName,
+        profilePicUrl: contact.profilePicUrl,
+      };
+    });
+    res.status(200).json(contact);
   } catch (error) {
     res.status(404).send(error.response.data);
   }
 };
+
+//Trae los mensajes de un chat
 
 export const findMessages = async (req, res) => {
   const { instanceName, remoteJid } = req.params;
 
-  const options = {
-    method: "POST",
-    headers: {
-      apikey: API_KEY,
-      "Content-Type": "application/json",
-    },
-    data: {
-      where: {
-        key: {
-          remoteJid
-        }
-      }
-    },
-  };
+  try {
+    const response = await messages(instanceName, remoteJid);
+
+    const chat = {
+      total: response.messages.total,
+      pages: response.messages.pages,
+      currentPage: response.messages.currentPage,
+      records: response.messages.records
+        .filter((record) => record.pushName !== "")
+        .map((record) => {
+          return {
+            remoteJid: record.key.remoteJid,
+            pushName: record.pushName,
+            message: record.message.conversation,
+            messageTimestamp: record.messageTimestamp,
+          };
+        }),
+    };
+
+    res.status(200).json(chat);
+  } catch (error) {
+    res.status(404).send(error.response.data);
+  }
+};
+
+export const sendMesageText = async (req, res) => {
+  const { instanceName, number, text } = req.params;
 
   try {
-    const response = await axios(
-      `${BASE_URL}/chat/findMessages/${instanceName}`,
-      options
-    );
-    res.status(200).json(response.data);
+    const response = await sendText(instanceName, number, text);
+    // console.log(response);
+
+    res.status(200).json(response);
   } catch (error) {
     res.status(404).send(error.response.data);
   }

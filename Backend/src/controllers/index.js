@@ -7,6 +7,7 @@ import * as ticketsControllers from './ticketsControllers.js'
 import * as evolutionControllers from './evolutionControllers.js'
 import * as socketControllers from './socketControllers.js';
 import * as chatControllers from './chatControllers.js';
+import * as evolutionApi from './evolutionApiControllers.js';
 
 import { catchedAsync } from '../utils/catchedAsync.js';
 
@@ -28,6 +29,7 @@ export const sessions = wrapAsyncFunctions(sessionsControllers);
 export const carts = wrapAsyncFunctions(cartsControllers);
 export const views = wrapAsyncFunctions(viewsControllers);
 export const tickets = wrapAsyncFunctions(ticketsControllers);
-export const evolution = wrapAsyncFunctions(evolutionControllers);
+export const evolution = evolutionControllers;
 export const socket = socketControllers;
-export const chat = chatControllers
+export const chat = chatControllers;
+export const evoApi = evolutionApi;

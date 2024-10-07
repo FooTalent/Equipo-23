@@ -22,4 +22,9 @@ chatRouter.post(
   chat.findMessages
 );
 
+chatRouter.post(
+  "/sendMessage/:instanceName/:number/:text",
+  passportCall("jwt"),
+  chat.sendMesageText
+)
 export default chatRouter;
