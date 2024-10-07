@@ -59,7 +59,6 @@ async function sendCodeConfirmationRegister(userData) {
     attachments: [],
   });
 
-  console.log('result ', result);
   return result;
 }
 
@@ -100,8 +99,6 @@ export async function checkCodeRegister(req, res) {
   const document = await verificationRegisterUserModel.findOne({
     code: code,
   });
-
-  console.log(document);
 
   if (!document) {
     return res
