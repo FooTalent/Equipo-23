@@ -1,12 +1,13 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ChatListComponent } from "./components/chat-list/chat-list.component";
-import { ChatDetailComponent } from "./components/chat-detail/chat-detail.component";
+import { QrCodeComponent } from "./components/qr-code/qr-code.component";
+import { ChatWindowComponent } from "./components/chat-window/chat-window.component";
 
 export const routes: Routes = [
-	{ path: "chats", component: ChatListComponent },
-	{ path: "chat/:chatId", component: ChatDetailComponent }, // Ruta dinámica para el detalle del chat
-	{ path: "", redirectTo: "/chats", pathMatch: "full" }
+	{ path: "whatsapp-qr", component: QrCodeComponent },
+	{ path: "whatsapp-chat", component: ChatWindowComponent },
+	{ path: "", redirectTo: "/whatsapp-qr", pathMatch: "full" }, // Redirige al QR por defecto
+	{ path: "**", redirectTo: "/whatsapp-qr" } // Redirige a la página QR si no existe la ruta
 ];
 
 @NgModule({

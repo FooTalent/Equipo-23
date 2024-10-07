@@ -1,39 +1,30 @@
 import { Injectable } from "@angular/core";
-import { webSocket, WebSocketSubject } from "rxjs/webSocket";
-import { Subject } from "rxjs";
+import { WebSocketSubject } from "rxjs/webSocket";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
 	providedIn: "root"
 })
-export class WebSocketService {
-	private socket$: WebSocketSubject<any>;
-	private chats = new Subject<any>(); // Emite nuevos chats con mensajes
+export class WebsocketService {
+	private socket$!: WebSocketSubject<any>;
+	private messagesSubject = new BehaviorSubject<string>("");
+	public messages$ = this.messagesSubject.asObservable();
 
 	constructor() {
-		// Conectar al WebSocket en la URL que estés usando
-		this.socket$ = webSocket("wss://tu-url-de-websocket");
-
-		// Escuchar los mensajes entrantes
-		this.socket$.subscribe((message) => {
-			const chatId = message.chatId; // Suponiendo que cada mensaje tiene un 'chatId'
-
-			// Emitir un evento de nuevo chat o mensaje recibido
-			this.chats.next({ chatId, message });
-		});
+		this.connect();
 	}
 
-	// Observable para obtener los chats activos
-	getChats() {
-		return this.chats.asObservable();
+	connect() {
+		this.socket$ = new WebSocketSubject("ws://localhost:3000"); // Cambia esto con la URL de tu servidor WebSocket
+
+		this.socket$.subscribe(
+			(message) => this.messagesSubject.next(message.content),
+			(err) => console.error("Error: ", err),
+			() => console.warn("Completed!")
+		);
 	}
 
-	// Método para enviar un mensaje
-	sendMessage(chatId: string, content: string) {
-		this.socket$.next({ chatId, content });
-	}
-
-	// Cerrar la conexión WebSocket
-	closeConnection() {
-		this.socket$.complete();
+	sendMessage(message: string) {
+		this.socket$.next({ content: message });
 	}
 }
