@@ -4,19 +4,9 @@ const userCollection = "users";
 
 const userSchema = new mongoose.Schema(
   {
-    first_name: {
+    name: {
       type: String,
       minLength: 3,
-      required: true,
-    },
-    last_name: {
-      type: String,
-      minLength: 3,
-      required: true,
-    },
-    age: {
-      type: Number,
-      min: 18,
       required: true,
     },
     email: {
@@ -28,44 +18,22 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       minLength: 4,
-      required: true,
+      required: false,
     },
     cartId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "carts",
       required: true,
     },
+    isGoogle: {
+      type: Boolean,
+      default: false,
+    },
     role: {
       type: String,
-      enum: ["user", "admin", "premium"],
+      enum: ["user", "admin", "vendor"],
       default: "user",
       required: true,
-    },
-    profilePhoto: {
-      name: {
-        type: String,
-        default: "Sin foto de perfil",
-      },
-      reference: {
-        type: String,
-        default: "Sin foto de perfil",
-      },
-    },
-    documents: {
-      type: [
-        {
-          name: {
-            type: String,
-            default: "name",
-          },
-          reference: {
-            type: String,
-            default: "reference",
-          },
-          _id: false,
-        },
-      ],
-      default: [],
     },
     last_connection: {
       type: Date,
@@ -74,7 +42,7 @@ const userSchema = new mongoose.Schema(
     isOnline: {
       type: Boolean,
       default: false,
-    },
+    }
   },
   {
     timestamps: true,

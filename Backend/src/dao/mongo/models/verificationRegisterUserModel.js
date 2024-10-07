@@ -12,8 +12,7 @@ const verificationRegisterUserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  first_name: String,
-  last_name: String,
+  name: String,
   age: Number,
   password: String,
   createdAt: {

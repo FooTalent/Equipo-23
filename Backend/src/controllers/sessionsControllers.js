@@ -6,32 +6,44 @@ import { cartsRepository, usersRepository } from "../repositories/index.js";
 import userModel from "../dao/mongo/models/userModel.js";
 import { transport } from "../utils/nodemailer.js";
 import verificationRegisterUserModel from "../dao/mongo/models/verificationRegisterUserModel.js";
+import '../utils/passport.js'
+import passport from "passport";
+
+import { OAuth2Client } from "google-auth-library";
 
 async function sendCodeConfirmationRegister(userData) {
   const verificationCode = Math.floor(
     100000 + Math.random() * 900000
   ).toString();
 
+  console.log(verificationCode)
+
   const checkVerifyIfExists = await verificationRegisterUserModel.findOne({
     email: userData.email,
   });
 
+  console.log(checkVerifyIfExists);
+
   if (checkVerifyIfExists) {
+    console.log("entra al if data -", userData);
     await verificationRegisterUserModel.deleteOne({ email: userData.email });
   }
 
   const passwordHash = createHash(userData.password);
 
+  console.log('passwordHash ', passwordHash);
+
   //create check user in db
-  await verificationRegisterUserModel.create({
+  const data = await verificationRegisterUserModel.create({
     email: userData.email,
     code: verificationCode,
-    first_name: userData.first_name,
-    last_name: userData.last_name,
+    name: userData.name,
     age: userData.age,
     password: passwordHash,
     createdAt: new Date(),
   });
+
+  console.log('data   ', data)
 
   //send email to user
   const result = await transport.sendMail({
@@ -46,14 +58,18 @@ async function sendCodeConfirmationRegister(userData) {
           `,
     attachments: [],
   });
+
+  console.log('result ', result);
   return result;
 }
 
 export async function register(req, res) {
-  const { first_name, last_name, age, email, password } = req.body;
+  const { name, age, email, password, rol = '' } = req.body;
+  console.log(req.body);
 
   // Verify if exists user with email by body
   let user = await usersRepository.getUserBy({ email: email });
+  console.log(user);
   if (user) {
     return res
       .status(404)
@@ -61,11 +77,11 @@ export async function register(req, res) {
   }
 
   await sendCodeConfirmationRegister({
-    first_name,
-    last_name,
+    name,
     age,
     email,
     password,
+    rol,
   });
 
   res.status(200).json({
@@ -84,6 +100,8 @@ export async function checkCodeRegister(req, res) {
   const document = await verificationRegisterUserModel.findOne({
     code: code,
   });
+
+  console.log(document);
 
   if (!document) {
     return res
@@ -105,8 +123,7 @@ export async function checkCodeRegister(req, res) {
   const cartId = cartObject[0]._id;
 
   const newUser = {
-    first_name: document.first_name,
-    last_name: document.last_name,
+    name: document.name,
     age: document.age,
     email: document.email,
     password: document.password,
@@ -135,7 +152,7 @@ export async function login(req, res) {
   if (!user) {
     return res
       .status(404)
-      .json({ succes: false, message: "Credentials invalids" });
+      .json({ succes: false, message: "Invalid mail " });
   }
 
   if (!isValidPassword(user, password)) {
@@ -175,6 +192,65 @@ export async function logout(req, res) {
 
   res.clearCookie(config.tokenCookie);
   res.status(200).json({ success: true, message: "Logout correct" });
+}
+
+export async function loginGoogle(req, res) {
+  const tokenGoogle = req.body.token
+  const rol = req.body.rol
+
+  const client = new OAuth2Client(config.clientIdGoogle);
+  const ticket = await client.verifyIdToken({
+    idToken: tokenGoogle,
+    audience: config.clientIdGoogle,
+  });
+
+  const payload = ticket.getPayload();
+
+  const userExist = await usersRepository.getUserBy({ email: payload.email });
+
+  if (userExist && userExist.isGoogle) {
+    await usersRepository.updateUserBy(
+      { _id: userExist._id },
+      { isOnline: true }
+    );
+
+    const token = generateAuthToken(userExist);
+    res.cookie(config.tokenCookie, token, {
+      maxAge: 60 * 60 * 1000,
+      httpOnly: true,
+    });
+
+    return res.status(200).json({ success: true, message: "Login correct" });
+  }
+
+  if (userExist && !userExist.isGoogle) {
+    return res
+      .status(404)
+      .json({ succes: false, message: "User already exists" });
+  }
+
+  const cartObject = await cartsRepository.createCart();
+  const cartId = cartObject[0]._id;
+
+  const newUser = {
+    name: payload.name,
+    email: payload.email,
+    cartId: cartId,
+    isGoogle: true,
+    rol: rol
+  };
+
+  await usersRepository.createUser(newUser);
+  const user = await usersRepository.getUserBy({ email: payload.email });
+  await usersRepository.updateUserBy({ _id: user._id }, { isOnline: true });
+
+  const token = generateAuthToken(user);
+  res.cookie(config.tokenCookie, token, {
+    maxAge: 60 * 60 * 1000,
+    httpOnly: true,
+  });
+
+  return res.status(200).json({ success: true, message: "Login correct" });
 }
 
 // --- RESPONSE USER'S DATA

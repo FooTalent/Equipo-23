@@ -32,7 +32,6 @@ export const viewProfile = (req, res) => {
   res.render("profile", {
     userFirstName: userData.data.first_name,
     userLastName: userData.data.last_name,
-    userAge: userData.data.age,
     userEmail: userData.data.email,
     userProfilePhoto: userData.data.profilePhoto.reference,
     sinFoto: sinFoto,

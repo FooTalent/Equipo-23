@@ -10,6 +10,7 @@ import initializatePassport from "./utils/passport.js";
 import { addLogger } from "./utils/logger.js";
 import routes from "./routes/index.js";
 import tokenExpirationMiddleware from "./middlewares/tokenExpirationMiddleware.js";
+import session from "express-session";
 
 import { Server } from "socket.io";
 import { createServer } from "node:http";
@@ -25,11 +26,18 @@ const PORT = config.port;
 const allowedOrigins =
   config.environment === "production" ? "*" : "http://localhost:8080";
 
+app.use(session({
+  secret: config.tokenKey,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
+  }
+}))
 const corsOptions = {
   origin: allowedOrigins,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders:
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   credentials: true,
 };
 

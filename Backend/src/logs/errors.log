@@ -1,1 +1,3 @@
 {"level":"error","message":"soy error de prueba"}
+2024-10-04 15:07:01 [31merror[39m: [31mPOST http://localhost:8080/api/sessions/auth/google 500[39m
+2024-10-04 15:07:24 [31merror[39m: [31mPOST http://localhost:8080/api/sessions/auth/google 500[39m

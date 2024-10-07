@@ -15,7 +15,7 @@ viewsRouter.get("/carts/:cid", passportCallView('jwt'),viewCartById);
 viewsRouter.get("/resetPassword",resetPassword);
 viewsRouter.get("/sendEmailForgetPassword",sendEmailForgetPassword);
 viewsRouter.get("/not-available",notAvailable);
-viewsRouter.get("/createProduct",passportCallView('jwt'),authorizationViewCreateProduct('admin','premium'),createProduct);
+viewsRouter.get("/createProduct",passportCallView('jwt'),authorizationViewCreateProduct('admin','vendor'),createProduct);
 viewsRouter.get("/changeRole",changeRole);
 viewsRouter.get("/userRegistrationCode",userRegistrationCode);
 
