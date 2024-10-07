@@ -1,22 +1,27 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import axios from "axios";
 
 @Component({
 	selector: "app-qr-code",
 	standalone: true,
-	imports: [],
+	imports: [CommonModule],
 	templateUrl: "./qr-code.component.html",
 	styleUrl: "./qr-code.component.css"
 })
 export class QrCodeComponent implements OnInit {
-	qrCodeData = "ws://localhost:3000"; // Cambia esto con la URL de tu servidor WebSocket
+	qrCodeUrl: string | null = null;
 
-	constructor(private router: Router) {}
+	ngOnInit(): void {
+		this.getQrCode();
+	}
 
-	ngOnInit() {
-		// Simula un evento después de 5 segundos o puedes agregar lógica para escuchar el escaneo
-		setTimeout(() => {
-			this.router.navigate(["/whatsapp-chat"]);
-		}, 50000); // Redirigir tras 5 segundos
+	async getQrCode() {
+		try {
+			const response = await axios.get("https://equipo-23-develop-backend.onrender.com/instance/create"); // Cambia esto a tu endpoint para obtener el QR
+			this.qrCodeUrl = response.data.url; // Asegúrate de que la estructura de la respuesta sea correcta
+		} catch (error) {
+			console.error("Error al obtener el código QR", error);
+		}
 	}
 }
