@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { environment } from '../../environments/environment';
 import { LoginValues } from '../models/loginValues.model';
 import { HttpClient } from '@angular/common/http';
 
