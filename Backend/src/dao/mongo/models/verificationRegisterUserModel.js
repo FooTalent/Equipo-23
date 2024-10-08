@@ -15,6 +15,12 @@ const verificationRegisterUserSchema = new mongoose.Schema({
   name: String,
   age: Number,
   password: String,
+  role: {
+    type: String,
+    enum: ["user", "admin", "vendor"],
+    default: "user",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
