@@ -5,7 +5,7 @@ import {
   passportCallOptional,
 } from "../../middlewares/passportMiddleware.js";
 authorization;
-import { uploader } from "../../utils/multer.js";
+import uploader from "../../utils/multer.js";
 import { authorization } from "../../middlewares/authMiddleware.js";
 
 const userRouter = Router();
