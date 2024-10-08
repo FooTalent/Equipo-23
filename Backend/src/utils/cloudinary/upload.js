@@ -1,13 +1,19 @@
-import cloudinary from "../cloudinary";
+import cloudinary from "../cloudinary.js";
 
-export default uploadFile = (files, folder, options) => {
-  return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload(files, { folder, ...options }, (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result);
-      }
+const uploadFile = (files, folder, options) => {
+  const uplaodFiles = files.map((file) => {
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream({ folder, ...options }, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      }).end(file.buffer);
     });
   });
+
+  return Promise.all(uplaodFiles);
 }
+
+export default uploadFile;
