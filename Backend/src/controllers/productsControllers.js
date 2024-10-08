@@ -3,7 +3,7 @@ import ProductDTO from "../dao/dto/ProductDto.js";
 import config from "../config/config.js";
 import { transport } from "../utils/nodemailer.js";
 import { removeEmptyObjectFields } from "../utils/removeEmptyObjectFields.js";
-
+import uploadFile from "../utils/cloudinary/upload.js";
 /**
  *
  * PERMISSIONS endpoint ¡¡create!!:
@@ -17,16 +17,11 @@ export const createProduct = async (req, res) => {
   /**
    * IMAGES PRODUCT !!
    */
-  const imagesReferences = req.files;
   if (req.files.length == 0)
     return res.status(400).json({
       success: false,
       message: "Product image/images need to be uploaded",
     });
-  const thumbnails = imagesReferences.map((image) => ({
-    name: image.originalname,
-    reference: `/img/products/${image.filename}`,
-  }));
 
   /**
    * Verify if code exists
@@ -35,19 +30,32 @@ export const createProduct = async (req, res) => {
   // Verificación si el código ya existe
   const query = { code, owner: email };
   const existingProduct = await productsRepository.getProductBy(query);
-  
-  
 
   if (existingProduct && existingProduct.owner == req.user.data.email) {
     return res
       .status(404)
       .json({ success: false, message: "Product with code already exists" });
   }
+  const uploadedImages = await uploadFile(req.files, `minegocio/${req.user.data._id}/products`, {})
+
+  if (uploadedImages.length == 0) {
+    return res.status(400).json({
+      success: false,
+      message: "Product image/images need to be uploaded",
+    });
+  }
+
+  const thumbnailsSerialize = uploadedImages.map((img) => {
+    return {
+      name: img.display_name,
+      reference: img.url
+    }
+  })
 
   // IF CODE NOT EXISTS
   let owner = "admin";
   if (role == "vendor") owner = email;
-
+  console.log('products images ', thumbnailsSerialize)
   const result = await productsRepository.createProduct({
     title,
     description,
@@ -56,7 +64,7 @@ export const createProduct = async (req, res) => {
     stock,
     category,
     owner,
-    thumbnails,
+    thumbnails: thumbnailsSerialize,
   });
   const productDto = ProductDTO.getProductResponseForRole(result[0], "admin");
 
@@ -70,7 +78,7 @@ export const getProducts = async (req, res) => {
   const role = req.user?.data?.role;
   const email = req.user?.data?.email;
 
-  let result = await productsRepository.getProducts(email,limit, page, sort, query);
+  let result = await productsRepository.getProducts(email, limit, page, sort, query);
   const products = result.data.map((prod) =>
     ProductDTO.getProductResponseForRole(prod, role, email)
   );
@@ -203,7 +211,7 @@ export const updateProductById = async (req, res) => {
    * */
   const query = { code, _id: { $ne: id } };
   const exists = await productsRepository.getProductBy(query);
-  
+
 
   if (exists) {
     return res

@@ -2,6 +2,7 @@ import { cartsRepository, productsRepository } from "../repositories/index.js";
 import CartDTO from "../dao/dto/CartDto.js";
 import purchaseService from "../services/PurchaseService.js";
 import productModel from "../dao/mongo/models/productModel.js";
+import { transport } from "../utils/nodemailer.js";
 
 export const getCarts = async (req, res) => {
   let carts = await cartsRepository.getCarts();
@@ -315,5 +316,27 @@ export const createPurchase = async (req, res) => {
     });
   }
   const result = await purchaseService.createPurchase(cartId);
+
+  await transport.sendMail({
+    from: `E-commerce Coder <${config.correoGmail}>`,
+    to: result.user.email,
+    subject: "Purchase confirmation",
+    html: `<div>
+            <h1>Tu campra se enviara a tu direccion</h1>
+            <h2>Gracias por tu compra}</h2>
+            <p>Order number: ${result._id}</p>
+            <p>Total: $${result.amount}</p>
+            <p>Products:</p>
+            <ul>
+              ${result.products
+        .map(
+          (product) =>
+            `<li>${product.prodId.title} - Quantity: ${product.quantity}</li>`
+        )
+        .join("")}
+            </ul>
+          </div>`,
+  });
+
   res.status(200).json({ success: true, data: result });
 };

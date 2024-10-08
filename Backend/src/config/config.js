@@ -24,5 +24,8 @@ export default {
     tokenCookie: process.env.TOKEN_COOKIE,
     googleClient: process.env.GOOGLE_CLIENT,
     googleSecret: process.env.GOOGLE_SECRET,
-    googleCallBackUrl: process.env.GOOGLE_CALLBACK_URL
+    googleCallBackUrl: process.env.GOOGLE_CALLBACK_URL,
+    cloudinaryName: process.env.CLOUDINARY_NAME,
+    cloudinaryKey: process.env.CLOUDINARY_KEY,
+    cloudinarySecret: process.env.CLOUDINARY_SECRET
 }

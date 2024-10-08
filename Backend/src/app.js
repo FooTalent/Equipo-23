@@ -23,8 +23,7 @@ export const io = new Server(server);
 const __dirname = path.resolve();
 const PORT = config.port;
 
-const allowedOrigins =
-  config.environment === "production" ? "*" : "http://localhost:8080";
+const allowedOrigins = config.environment == 'production' ? ['https://prod-minegocio.netlify.app'] : ['https://beta-minegocio.netlify.app', 'http://localhost:8080'];
 
 app.use(session({
   secret: config.tokenKey,

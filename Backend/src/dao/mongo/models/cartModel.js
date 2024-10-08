@@ -14,12 +14,16 @@ const cartSchema = new mongoose.Schema({
       },
       price: {
         type: Number,
-      },
+      }
     },
-    
   ],
-  totalPrice:{
-    type:Number
+  totalPrice: {
+    type: Number
+  },
+  status: {
+    type: String,
+    enum: ['abandoned', 'process', 'empty', 'full'],
+    default: 'empty'
   }
 });
 
