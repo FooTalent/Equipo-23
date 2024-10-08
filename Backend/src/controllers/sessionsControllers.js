@@ -16,8 +16,6 @@ async function sendCodeConfirmationRegister(userData) {
     100000 + Math.random() * 900000
   ).toString();
 
-  console.log(verificationCode)
-
   const checkVerifyIfExists = await verificationRegisterUserModel.findOne({
     email: userData.email,
   });
@@ -25,7 +23,6 @@ async function sendCodeConfirmationRegister(userData) {
   console.log(checkVerifyIfExists);
 
   if (checkVerifyIfExists) {
-    console.log("entra al if data -", userData);
     await verificationRegisterUserModel.deleteOne({ email: userData.email });
   }
 
@@ -40,10 +37,9 @@ async function sendCodeConfirmationRegister(userData) {
     name: userData.name,
     age: userData.age,
     password: passwordHash,
+    role: userData.role,
     createdAt: new Date(),
   });
-
-  console.log('data   ', data)
 
   //send email to user
   const result = await transport.sendMail({
@@ -63,8 +59,7 @@ async function sendCodeConfirmationRegister(userData) {
 }
 
 export async function register(req, res) {
-  const { name, age, email, password, rol = '' } = req.body;
-  console.log(req.body);
+  const { name, age, email, password, role } = req.body;
 
   // Verify if exists user with email by body
   let user = await usersRepository.getUserBy({ email: email });
@@ -80,7 +75,7 @@ export async function register(req, res) {
     age,
     email,
     password,
-    rol,
+    role,
   });
 
   res.status(200).json({
@@ -125,6 +120,7 @@ export async function checkCodeRegister(req, res) {
     email: document.email,
     password: document.password,
     cartId: cartId,
+    role: document.role
   };
 
   // Crear el usuario en la base de datos
