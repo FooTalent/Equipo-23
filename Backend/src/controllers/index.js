@@ -4,6 +4,10 @@ import * as sessionsControllers from './sessionsControllers.js';
 import * as cartsControllers from './cartsControllers.js';
 import * as viewsControllers from './viewsControllers.js';
 import * as ticketsControllers from './ticketsControllers.js'
+import * as evolutionControllers from './evolutionControllers.js'
+import * as socketControllers from './socketControllers.js';
+import * as chatControllers from './chatControllers.js';
+import * as evolutionApi from './evolutionApiControllers.js';
 
 import { catchedAsync } from '../utils/catchedAsync.js';
 
@@ -25,3 +29,7 @@ export const sessions = wrapAsyncFunctions(sessionsControllers);
 export const carts = wrapAsyncFunctions(cartsControllers);
 export const views = wrapAsyncFunctions(viewsControllers);
 export const tickets = wrapAsyncFunctions(ticketsControllers);
+export const evolution = evolutionControllers;
+export const socket = socketControllers;
+export const chat = chatControllers;
+export const evoApi = evolutionApi;
