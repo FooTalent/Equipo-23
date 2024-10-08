@@ -17,7 +17,7 @@ export const socketEvolution = async (instanceName) => {
   });
 
   socket.on("chats.update", (data) => {
-    console.log("Actualización de chats:", data);
+    // console.log("Actualización de chats:", data);
 
     const newData = {
       event: data.event,
@@ -31,11 +31,28 @@ export const socketEvolution = async (instanceName) => {
         io.emit("chats.update", newData);
   });
 
+  socket.on("messages.upsert", (data) => {
+    // console.log("Envio de mensaje:", data);
+    const newData = {
+      event: data.event,
+      instance: data.instance,
+      remoteJid: data.data.key.remoteJid,
+      fromMe: data.data.key.fromMe,
+      pushName: data.data.pushName,
+      message: data.data.message.conversation,
+      date_time: data.date_time,
+    }
+    console.log(newData)
+
+    io.emit("messages.upsert", newData);
+  });
+
   socket.on("send.message", (data) => {
     console.log("Envio de mensaje:", data);
 
     io.emit("send.message", data);
   });
+
 
   socket.on("disconnect", () => {
     console.log("Desconectado del WebSocket de la API Evolution");

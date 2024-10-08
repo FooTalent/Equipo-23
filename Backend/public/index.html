@@ -41,15 +41,23 @@
             logMessage("Conectado al servidor WebSocket");
         });
 
+        
         // Actualización de chats
-        socket.on("chats.update", (data) => {
+        socket.on("messages.upsert", (data) => {
             logMessage("Actualización de chats: " + JSON.stringify(data));
         });
 
-        // Envío de mensajes
-        socket.on("send.message", (data) => {
-            logMessage("Envio de mensaje: " + JSON.stringify(data));
-        });
+        
+
+        // // Actualización de chats
+        // socket.on("chats.update", (data) => {
+        //     logMessage("Actualización de chats: " + JSON.stringify(data));
+        // });
+
+        // // Envío de mensajes
+        // socket.on("send.message", (data) => {
+        //     logMessage("Envio de mensaje: " + JSON.stringify(data));
+        // });
 
         // Desconexión del servidor WebSocket
         socket.on("disconnect", () => {
