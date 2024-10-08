@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class UserService {
 
   private http = inject(HttpClient);
-  private apiUrl = environment.apiUrl;
+  apiUrl = import.meta.env['NG_APP_API_URL']
 
   registerUser(registerValues: RegisterValues) {
     return this.http.post(`${this.apiUrl}/register`, {

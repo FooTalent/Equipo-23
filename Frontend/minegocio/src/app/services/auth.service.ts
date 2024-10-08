@@ -1,17 +1,18 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { LoginValues } from '../models/loginValues.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  googleClientId = import.meta.env['NG_APP_GOOGLE_CLIENT_ID']
   private http = inject(HttpClient);
-  private apiUrl = environment.apiUrl;
+
+  apiUrl = import.meta.env['NG_APP_API_URL']
 
   constructor(private oAuthService: OAuthService,) { 
     if (typeof window !== 'undefined') {
@@ -28,11 +29,17 @@ export class AuthService {
     });
   }
 
+  checkUserToken() {
+    return this.http.get(`${this.apiUrl}/current`, {
+      withCredentials: true
+    },)
+  }
+
   startGoogleLogin() {
     const config: AuthConfig = {
       issuer: 'https://accounts.google.com',
       strictDiscoveryDocumentValidation: false,
-      clientId: environment.googleClientId,
+      clientId: this.googleClientId,
       redirectUri: typeof window !== 'undefined' ? window.location.origin + '' : '',
       scope: 'openid profile email',
     }
