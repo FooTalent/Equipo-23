@@ -10,9 +10,11 @@ export default {
     clientIdGitHub: process.env.CLIENT_ID_GITHUB,
     clienteSecretsGitHub: process.env.CLIENT_SECRETS_GITHUB,
     environment: process.env.ENVIRONMENT,
+
     passwordGmail: process.env.PASSWORD_APP_GMAIL,
-    userGmail: process.env.GMAIL_APP_USER,
-    correoGmail: process.env.CORREO_GMAIL,
+    userGmail: process.env.correoGmail,
+    correoGmail: process.env.correoGmail,
+
     mailtrap_host: process.env.MAILTRAP_HOST,
     mailtrap_port: process.env.MAILTRAP_PORT,
     mailtrap_user: process.env.MAILTRAP_USER,
