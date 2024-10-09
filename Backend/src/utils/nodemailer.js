@@ -6,7 +6,7 @@ console.log(config.userGmail)
 
 const configMail = {}
 
-if (config.environment === 'production' && config.environment === 'development') {
+if (config.environment === 'production' || config.environment === 'development') {
     configMail.service = 'gmail'
     configMail.port = 465 // 25 or 465 or 587
     configMail.secure = true
