@@ -12,8 +12,8 @@ export class UserService {
 
   registerUser(registerValues: RegisterValues) {
     return this.http.post(`${this.apiUrl}/register`, {
-      first_name: registerValues.firstName,
-      last_name: registerValues.lastName,
+      name: registerValues.name,
+      age: registerValues.age,
       email: registerValues.email,
       password: registerValues.password,
       rol: registerValues.role

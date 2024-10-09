@@ -19,21 +19,20 @@
           <div class="relative">
             <label for="nombre" class="block text-base font-medium text-gray-100">Nombre</label>
             <img src="/icons/name-icon.svg" class="absolute left-2 top-[2.15rem] w-7 h-7 text-gray-400" alt="Ícono de usuario">
-            <input id="nombre" name="nombre" type="text" placeholder="Ingresa tu nombre" class="w-full p-2 pl-11 mt-1 rounded bg-gray-700 text-white" formControlName="firstName">
+            <input id="nombre" name="nombre" type="text" placeholder="Ingresa tu nombre" class="w-full p-2 pl-11 mt-1 rounded bg-gray-700 text-white" formControlName="name">
             <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
                 <span *ngIf="registerForm.get('firstName')?.hasError('required')">Este campo es obligatorio</span>
                 <span *ngIf="registerForm.get('firstName')?.hasError('pattern')">Solo se permiten letras</span>
             </small>
           </div>
-  
+
           <div class="relative">
-            <label for="apellido" class="block text-base font-medium text-gray-100">Apellido</label>
+            <label for="age" class="block text-base font-medium text-gray-100">Edad</label>
             <img src="/icons/name-icon.svg" class="absolute left-2 top-[2.15rem] w-7 h-7 text-gray-400" alt="Ícono de usuario">
-            <input id="apellido" name="apellido" type="text" placeholder="Ingresa tu apellido" class="w-full p-2 pl-11 mt-1 rounded bg-gray-700
-             text-white" formControlName="lastName">
-            <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
-                <span *ngIf="registerForm.get('lastName')?.hasError('required')">Este campo es obligatorio</span>
-                <span *ngIf="registerForm.get('lastName')?.hasError('pattern')">Solo se permiten letras</span>
+            <input type="number" id="age" name="age" placeholder="Ingresa tu edad" min="19" class="no-arrows w-full p-2 pl-11 mt-1 rounded bg-gray-700 text-white" formControlName="age">
+            <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('age')?.invalid && registerForm.get('age')?.touched">
+                <span *ngIf="registerForm.get('age')?.hasError('required')">Este campo es obligatorio</span>
+                <span *ngIf="registerForm.get('age')?.hasError('min')">Debes ingresar una edad mayor o igual a 19 años</span>
             </small>
           </div>
 

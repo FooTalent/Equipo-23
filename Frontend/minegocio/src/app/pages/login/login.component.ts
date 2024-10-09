@@ -24,6 +24,7 @@ export class LoginComponent {
 
   errorMessage: string = '';
   onLoginSubmit(event: Event) {
+    event.preventDefault()
 
     if(this.userForm.valid) {
 
@@ -36,11 +37,10 @@ export class LoginComponent {
 
         next: (response: any) => {
           this.Router.navigate([ "" ])
-          console.log(response);
         },
         error: (error) => {
           if (error.status === 404) {
-            this.errorMessage = 'Invalid credentials. Please try again.';
+            this.errorMessage = 'El email o la contraseña no son correctos';
           } else {
             this.errorMessage = 'An Server error occurred. Please try again later.';
           }
