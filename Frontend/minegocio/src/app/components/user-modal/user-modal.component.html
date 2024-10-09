@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Crear Instancia de WhatsApp</h2>
+<div mat-dialog-content>
+	<mat-form-field>
+		<mat-label>Ingresa el nombre de usuario o ID</mat-label>
+		<input matInput [(ngModel)]="instanceName" />
+	</mat-form-field>
+
+	<div *ngIf="qrCode">
+		<h3>Código QR</h3>
+		<img [src]="qrCode" alt="Código QR" />
+	</div>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancelar</button>
+	<button mat-button (click)="createInstance()">Crear Instancia</button>
+</div>

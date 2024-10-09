@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { QrCodeComponent } from "./components/qr-code/qr-code.component";
-import { ChatComponent } from "./components/chat-window/chat-window.component";
+import { CreateInstanceComponent } from "./components/create-instance/create-instance.component";
 
 export const routes: Routes = [
-	{ path: "qr-code", component: QrCodeComponent },
-	{ path: "chat/:instanceName/:remoteJid", component: ChatComponent }
+	{ path: "", redirectTo: "/create-instance", pathMatch: "full" }, // Redirige a create-instance por defecto
+	{ path: "create-instance", component: CreateInstanceComponent } // Ruta para el componente
+	// Aquí puedes agregar más rutas en el futuro
 ];
 
 @NgModule({
