@@ -22,8 +22,8 @@ export class SignUpComponent {
   private meta = inject(Meta);
 
   registerForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
-    lastName: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
+    name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
+    age: new FormControl(null, [Validators.required, Validators.minLength(19)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     role: new FormControl('', [Validators.required]),
@@ -39,8 +39,8 @@ export class SignUpComponent {
     if(this.registerForm.valid) {
 
       const registerValues: RegisterValues = {
-        firstName: this.registerForm.value.firstName ?? '',
-        lastName: this.registerForm.value.lastName ?? '',
+        name: this.registerForm.value.name ?? '',
+        age: this.registerForm.value.age ?? 0,
         email: this.registerForm.value.email ?? '',
         password: this.registerForm.value.password ?? '',
         role: this.registerForm.value.role ?? ''
