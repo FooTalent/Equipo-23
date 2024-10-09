@@ -1,9 +1,6 @@
 import nodemailer from 'nodemailer'
 import config from '../config/config.js'
 
-console.log(config.passwordGmail)
-console.log(config.userGmail)
-
 const configMail = {}
 
 if (config.environment === 'production' || config.environment === 'development') {
