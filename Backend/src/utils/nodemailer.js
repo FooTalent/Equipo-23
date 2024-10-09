@@ -6,7 +6,7 @@ console.log(config.userGmail)
 
 const configMail = {}
 
-if (config.environment === 'production') {
+if (config.environment === 'production' || config.environment === 'development') {
     configMail.service = 'gmail'
     configMail.port = 465 // 25 or 465 or 587
     configMail.secure = true
@@ -17,13 +17,13 @@ if (config.environment === 'production') {
     configMail.tls = {
         rejectUnauthorized: false
     }
-} else {
-    configMail.host = config.mailtrap_host
-    configMail.port = 2525
-    configMail.auth = {
-        user: config.mailtrap_user,
-        pass: config.mailtrap_pass
-    }
-}
+} // else {
+//     configMail.host = config.mailtrap_host
+//     configMail.port = 2525
+//     configMail.auth = {
+//         user: config.mailtrap_user,
+//         pass: config.mailtrap_pass
+//     }
+// }
 
 export const transport = nodemailer.createTransport(configMail)
