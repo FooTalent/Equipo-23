@@ -237,6 +237,12 @@ export const updateProductById = async (req, res) => {
   res.status(200).json({ succes: true, data: result });
 };
 
+export const searchProducts = async (req, res) => {
+  const { search, limit, page, sort } = req.query;
+  const result = await productsRepository.getProductBy({ title: search })
+  res.status(200).json({ succes: true, data: result });
+}
+
 export const uploadProductImages = async (req, res) => {
   const productId = req.params.pid;
   const images = req.files || [];

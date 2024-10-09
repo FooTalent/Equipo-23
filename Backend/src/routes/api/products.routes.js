@@ -9,7 +9,9 @@ const productRouter = Router();
 
 productRouter.post('/', passportCall('jwt'), authorization('admin', 'vendor'), upload.any('thumbnails', 5), validateCreateProduct, products.createProduct);
 productRouter.get('/', passportCallOptional('jwt'), products.getProducts);
+productRouter.get('/search/prod', products.searchProducts)
 productRouter.get('/:pid', passportCallOptional('jwt'), products.getProductById);
+
 productRouter.put('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), products.updateProductById);
 productRouter.delete('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), products.deleteProductById);
 productRouter.post('/:pid/images', passportCall('jwt'), authorization('vendor', 'admin'), upload.array('thumbnails', 5), products.uploadProductImages);
