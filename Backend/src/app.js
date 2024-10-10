@@ -1,7 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import passport from "passport";
-import path from "path";
 import cors from "cors";
 import config from "./config/config.js";
 import initializatePassport from "./utils/passport.js";
