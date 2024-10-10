@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce_coder",
+  "name": "mi_negocio",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -34,8 +34,6 @@
     "passport-jwt": "^4.0.1",
     "socket.io": "^4.8.0",
     "socket.io-client": "^4.8.0",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
     "uuid": "^9.0.1",
     "winston": "^3.13.0",
     "ws": "^8.18.0"
