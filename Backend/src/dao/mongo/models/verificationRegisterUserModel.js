@@ -13,7 +13,10 @@ const verificationRegisterUserSchema = new mongoose.Schema({
     unique: true,
   },
   name: String,
-  age: Number,
+  age: {
+    type: Number,
+    required: false,
+  },
   password: String,
   role: {
     type: String,

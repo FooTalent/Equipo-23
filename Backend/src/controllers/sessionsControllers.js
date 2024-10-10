@@ -20,15 +20,11 @@ async function sendCodeConfirmationRegister(userData) {
     email: userData.email,
   });
 
-  console.log(checkVerifyIfExists);
-
   if (checkVerifyIfExists) {
     await verificationRegisterUserModel.deleteOne({ email: userData.email });
   }
 
   const passwordHash = createHash(userData.password);
-
-  console.log('passwordHash ', passwordHash);
 
   //create check user in db
   const data = await verificationRegisterUserModel.create({
