@@ -23,6 +23,8 @@ export class LoginComponent {
   });
 
   errorMessage: string = '';
+  isLoading = signal(false);
+
   onLoginSubmit(event: Event) {
     event.preventDefault()
 
@@ -33,12 +35,16 @@ export class LoginComponent {
         password: this.userForm.value.password ?? ''
       };
 
+      this.isLoading.update(value => !value);
+
       this.authService.loginUser(loginValues).subscribe({
 
         next: (response: any) => {
           this.Router.navigate([ "" ])
+          this.isLoading.update(value => !value);
         },
         error: (error) => {
+          this.isLoading.update(value => !value);
           if (error.status === 404) {
             this.errorMessage = 'El email o la contraseña no son correctos';
           } else {

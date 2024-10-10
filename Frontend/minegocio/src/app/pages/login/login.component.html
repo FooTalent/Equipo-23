@@ -39,8 +39,9 @@
           <a href="#" class="text-purple-600 text-xs text-right">¿Olvidaste tu contraseña?</a>
         </div>
 
-        <button type="submit" class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded-2xl transition duration-300 ease-in-out hover:bg-purple-500">
-          Iniciar sesión
+        <button type="submit" [disabled]="isLoading()" class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded-2xl transition duration-300 ease-in-out 
+        hover:bg-purple-500 disabled:bg-purple-400 disabled:opacity-50">
+          {{ isLoading() ? 'Loading...' : 'Iniciar sesión' }}
         </button>
       </form>
 

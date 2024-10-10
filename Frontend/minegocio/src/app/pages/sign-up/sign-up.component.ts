@@ -32,6 +32,7 @@ export class SignUpComponent {
 
 
   errorMessage: string = '';
+  isLoading = signal(false);
 
   onRegisterSubmit(event: Event) {
     event.preventDefault()
@@ -46,12 +47,16 @@ export class SignUpComponent {
         role: this.registerForm.value.role ?? ''
       };
 
+      this.isLoading.update(value => !value);
+
       this.userService.registerUser(registerValues).subscribe({
 
         next: (response: any) => {
           this.Router.navigate([ "/verify-code" ])
+          this.isLoading.update(value => !value);
         },
         error: (error) => {
+          this.isLoading.update(value => !value);
           if (error.status === 404) {
             this.errorMessage = 'El email ya está en uso';
           } else {
