@@ -12,8 +12,8 @@ export default {
     environment: process.env.ENVIRONMENT,
 
     passwordGmail: process.env.PASSWORD_APP_GMAIL,
-    userGmail: process.env.correoGmail,
-    correoGmail: process.env.correoGmail,
+    userGmail: process.env.CORREO_GMAIL,
+    correoGmail: process.env.CORREO_GMAIL,
 
     mailtrap_host: process.env.MAILTRAP_HOST,
     mailtrap_port: process.env.MAILTRAP_PORT,
