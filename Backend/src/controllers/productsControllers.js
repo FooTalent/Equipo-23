@@ -36,7 +36,11 @@ export const createProduct = async (req, res) => {
       .status(404)
       .json({ success: false, message: "Product with code already exists" });
   }
-  const uploadedImages = await uploadFile(req.files, `minegocio/${req.user.data._id}/products`, {})
+  const uploadedImages = await uploadFile(
+    req.files,
+    `minegocio/${req.user.data._id}/products`,
+    {}
+  );
 
   if (uploadedImages.length == 0) {
     return res.status(400).json({
@@ -48,14 +52,14 @@ export const createProduct = async (req, res) => {
   const thumbnailsSerialize = uploadedImages.map((img) => {
     return {
       name: img.display_name,
-      reference: img.url
-    }
-  })
+      reference: img.url,
+    };
+  });
 
   // IF CODE NOT EXISTS
   let owner = "admin";
   if (role == "vendor") owner = email;
-  console.log('products images ', thumbnailsSerialize)
+  console.log("products images ", thumbnailsSerialize);
   const result = await productsRepository.createProduct({
     title,
     description,
@@ -78,7 +82,13 @@ export const getProducts = async (req, res) => {
   const role = req.user?.data?.role;
   const email = req.user?.data?.email;
 
-  let result = await productsRepository.getProducts(email, limit, page, sort, query);
+  let result = await productsRepository.getProducts(
+    email,
+    limit,
+    page,
+    sort,
+    query
+  );
   const products = result.data.map((prod) =>
     ProductDTO.getProductResponseForRole(prod, role, email)
   );
@@ -212,7 +222,6 @@ export const updateProductById = async (req, res) => {
   const query = { code, _id: { $ne: id } };
   const exists = await productsRepository.getProductBy(query);
 
-
   if (exists) {
     return res
       .status(404)
@@ -239,9 +248,9 @@ export const updateProductById = async (req, res) => {
 
 export const searchProducts = async (req, res) => {
   const { search, limit, page, sort } = req.query;
-  const result = await productsRepository.getProductBy({ title: search })
+  const result = await productsRepository.getProductBy({ title: search });
   res.status(200).json({ succes: true, data: result });
-}
+};
 
 export const uploadProductImages = async (req, res) => {
   const productId = req.params.pid;
