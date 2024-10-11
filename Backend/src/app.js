@@ -19,15 +19,6 @@ const PORT = config.port;
 
 const allowedOrigins = config.environment == 'production' ? ['https://prod-minegocio.netlify.app'] : ['https://beta-minegocio.netlify.app', 'http://localhost:8080'];
 
-app.use(session({
-  secret: config.tokenKey,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
-  }
-}));
-
 const corsOptions = {
   origin: allowedOrigins,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -42,7 +33,7 @@ server.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  
+
   res.sendFile(process.cwd() + "/public/index.html")
 })
 
