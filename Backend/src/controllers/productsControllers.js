@@ -76,26 +76,44 @@ export const createProduct = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
-  let { limit, page, sort, query } = req.query;
+  try {
+    let { limit, page, sort, query, stock } = req.query;
 
-  // Optional chaining is used because the user may not be authenticated !!
-  const role = req.user?.data?.role;
-  const email = req.user?.data?.email;
+    const email = req.user?.data?.email;
 
-  let result = await productsRepository.getProducts(
-    email,
-    limit,
-    page,
-    sort,
-    query
-  );
-  const products = result.data.map((prod) =>
-    ProductDTO.getProductResponseForRole(prod, role, email)
-  );
-  result.data = products;
+    let result = await productsRepository.getProducts(
+      email,
+      limit,
+      page,
+      sort,
+      query
+    );
 
-  res.status(200).json({ succes: true, data: result });
+    let products = result.data;
+    if (stock) {
+      const stockValue = parseInt(stock, 10);
+      products = products.filter((prod) => prod.stock <= stockValue);
+
+      result.totalDocs = products.length;
+
+      products = products.map((prod) => {
+        const productData = prod._doc; 
+        return {
+          ...productData,
+          state: productData.stock === 0, 
+        };
+      });
+    }
+
+    result.data = products;
+
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ success: false, message: "Error fetching products" });
+  }
 };
+
 
 export const getProductById = async (req, res) => {
   const id = req.params.pid;
