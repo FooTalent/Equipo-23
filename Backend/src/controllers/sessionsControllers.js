@@ -163,8 +163,9 @@ export async function login(req, res) {
 
   const token = generateAuthToken(user);
   res.cookie(config.tokenCookie, token, {
-    maxAgre: 60 * 60 * 1000,
     httpOnly: true,
+    expires: new Date(Date.now() + 60 * 60 * 1000 * 24),
+
   });
   res.status(200).json({ success: true, message: "Login correct" });
 }
