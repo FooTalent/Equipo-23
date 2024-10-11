@@ -5,22 +5,25 @@ import { Observable } from 'rxjs';
 export interface Product {
   id: string;
   name: string;
+  code: string;
+  title: string;
   stock: number;
   price: number;
   status: string;
-  createdAt: string;
+  created_data: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'https://equipo-23-develop-backend.onrender.com/api/products';
+  private apiUrl =
+    'https://equipo-23-develop-backend.onrender.com/api/products';
 
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiUrl);
+    return this.http.get<any>(this.apiUrl,  { withCredentials: true });
   }
 
   // Aquí puedes agregar más métodos para otras operaciones CRUD si es necesario
