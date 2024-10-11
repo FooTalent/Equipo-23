@@ -1,0 +1,160 @@
+<aside
+  class="w-64 h-screen bg-[#2B2738] text-white flex flex-col py-4 justify-center items-center"
+  role="navigation"
+  aria-label="Menú principal"
+>
+  <div
+    class="text-2xl mb-6 bg-[#3B364C] rounded-[1rem] w-[80%] flex justify-center py-[12px]"
+    role="banner"
+  >
+    Logo
+  </div>
+  <nav>
+    <ul class="space-y-1 px-2 font-bold">
+      <li class="pb-8">
+        <a
+          routerLink="/home"
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex py-[12px] pl-[1.3rem]  px-7 rounded-[16px] bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+          aria-label="Ir a la página de inicio"
+        >
+          <img src="/icons/home.svg" alt="Icono de inicio" class="w-6 h-6 mr-4"/>
+          Home
+        </a>
+      </li>
+      <ul class="pb-8" role="list" aria-label="Notificaciones y mensajes">
+        <li>
+          <a
+            routerLink="/notifications"
+            routerLinkActive="bg-[#5D3CBA] text-white"
+            class="flex py-[12px] pl-[1.3rem] px-7 rounded-t-[16px] bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+            aria-label="Ver notificaciones"
+          >
+            <img src="/icons/bell.svg" alt="Icono de notificaciones" class="w-6 h-6 mr-4" />
+            Notificaciones
+            <!-- <span class="ml-auto w-2 h-2 bg-yellow-400 rounded-full" aria-label="Tienes notificaciones nuevas"></span> -->
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/messages"
+            routerLinkActive="bg-[#5D3CBA] text-white"
+            class="flex py-[12px] pl-[1.3rem]  px-7 rounded-b-[16px] bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+            aria-label="Ver mensajes"
+          >
+            <img src="/icons/chats.svg" alt="Icono de mensajes" class="w-6 h-6 mr-4"/>
+            Mensajes
+            <!-- <span class="ml-auto bg-purple-600 text-xs rounded-full px-2" aria-label="1 mensaje nuevo">1</span> -->
+          </a>
+        </li>
+      </ul>
+      <li class="pb-8">
+        <a
+          routerLink="/myshop"
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex items-center pl-[1.3rem]  py-[12px] px-7 rounded-[16px] bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+          aria-label="Ir a mi tienda"
+        >
+          <img src="/icons/shop.svg" alt="Icono de tienda" class="w-6 h-6 mr-4"/>
+          Mi Tienda
+        </a>
+      </li>
+      <ul class="mt-1 pb-8" role="list" aria-label="Gestión de tienda">
+        <li>
+          <a
+            routerLink="/clients"
+            routerLinkActive="bg-[#5D3CBA] text-white"
+            class="flex items-center pl-[1.3rem]  py-[12px] px-7 rounded-t-[16px] bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+            aria-label="Ver clientes"
+          >
+            <img src="/icons/clients.svg" alt="Icono de clientes" class="w-6 h-6 mr-4"/>
+            Clientes
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/statistics"
+            routerLinkActive="bg-[#5D3CBA] text-white"
+            class="flex items-center pl-[1.3rem]  py-[12px] px-7 bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+            aria-label="Ver estadísticas"
+          >
+            <img src="/icons/metrics.svg" alt="Icono de estadísticas" class="w-6 h-6 mr-4"/>
+            Estadísticas
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/billing"
+            routerLinkActive="bg-[#5D3CBA] text-white"
+            class="flex items-center pl-[1.3rem] py-[12px] px-7 bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+            aria-label="Ver facturación"
+          >
+            <img src="/icons/billing.svg" alt="Icono de facturación" class="w-6 h-6 mr-4" />
+            Facturación
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/orders"
+            routerLinkActive="bg-[#5D3CBA] text-white"
+            class="flex items-center pl-[1.3rem] py-[12px] px-7 bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+            aria-label="Ver pedidos"
+          >
+            <img src="/icons/orders.svg" alt="Icono de pedidos" class="w-6 h-6 mr-4"/>
+            Pedidos
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/shipping"
+            routerLinkActive="bg-[#5D3CBA] text-white"
+            class="flex items-center pl-[1.3rem] py-[12px] px-7 rounded-b-[16px] bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+            aria-label="Ver envíos"
+          >
+            <img src="/icons/shipping.svg" alt="Icono de envíos" class="w-6 h-6 mr-4"/>
+             Envíos
+          </a>
+        </li>
+      </ul>
+    </ul>
+  </nav>
+  <div class="px-2">
+    <a
+      routerLink="/settings"
+      routerLinkActive="bg-[#5D3CBA] text-white"
+      class="flex items-center pl-[1.3rem] py-[12px] px-7 rounded-t-[16px] bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+      aria-label="Ir a configuración"
+    >
+      <img src="/icons/config.svg" alt="Icono de configuración" class="w-6 h-6 mr-4"/>
+      Configuración
+    </a>
+    <a
+      routerLink="/help"
+      routerLinkActive="bg-[#5D3CBA] text-white"
+      class="flex items-center pl-[1.3rem] py-[12px] px-7 bg-[#3B364C] hover:bg-[#5D3CBA] transition-colors max-w-[200px]"
+      aria-label="Obtener ayuda"
+    >
+      <img src="/icons/support.svg" alt="Icono de ayuda" class="w-6 h-6 mr-4"/>
+      Ayuda
+    </a>
+    <div
+      class="flex items-center pl-[1.3rem] py-[12px] px-7 bg-[#3B364C] rounded-b-[16px] mb-2 max-w-[200px]"
+      role="status"
+      aria-label="Perfil de usuario"
+    >
+      <img
+        src="/icons/profile-image.png"
+        alt="Foto de perfil de Josefina Martinez"
+        class="w-8 h-8 rounded-md mr-3"
+      />
+      <span class="text-md whitespace-nowrap">Josefina Martinez</span>
+    </div>
+    <button
+      class="mt-8 w-full pl-[1.3rem] py-[12px] px-7 bg-[#3B364C] rounded-[16px] hover:bg-[#5D3CBA] transition-colors text-md font-bold max-w-[200px]"
+      aria-label="Cerrar sesión"
+    >
+      <img src="/icons/logout.svg" alt="Icono de cerrar sesión" class="w-8 h-8 inline mr-2"/>
+      Cerrar sesión
+    </button>
+  </div>
+</aside>

@@ -1,0 +1,65 @@
+/* Estilos para el contenedor de la tabla en MyShop */
+.myshop-table-container {
+  /* Estilos para Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #7c798a #2b2738;
+}
+
+/* Estilos para WebKit/Blink (Chrome, Safari, nuevas versiones de Opera y Edge) */
+.myshop-table-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.myshop-table-container::-webkit-scrollbar-track {
+  background: #2b2738;
+  border: 3px solid #2b2738;
+  border-radius: 5px;
+}
+
+.myshop-table-container::-webkit-scrollbar-thumb {
+  background: #7c798a;
+  border-radius: 8px;
+}
+
+.myshop-table-container::-webkit-scrollbar-thumb:hover {
+  background: #5d3cba;
+}
+
+/* Ocultar completamente los botones del scrollbar */
+.myshop-table-container::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Ocultar flechas en IE y Edge antiguos */
+.myshop-table-container {
+  -ms-overflow-style: none;
+}
+
+/* Asegurar que no haya espacio para los botones */
+.myshop-table-container::-webkit-scrollbar-button:vertical:start:decrement,
+.myshop-table-container::-webkit-scrollbar-button:vertical:end:increment,
+.myshop-table-container::-webkit-scrollbar-button:horizontal:start:decrement,
+.myshop-table-container::-webkit-scrollbar-button:horizontal:end:increment {
+  display: none;
+}
+
+/* Estilo para el spinner */
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #5D3CBA;
+  animation: spin 1s ease infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

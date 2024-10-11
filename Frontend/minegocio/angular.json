@@ -70,7 +70,10 @@
               "buildTarget": "minegocio:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 8080
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
@@ -99,6 +102,6 @@
     }
   },
   "cli": {
-    "analytics": "e74b67b7-399b-4827-b5d9-98d8f2e3b8f4"
+    "analytics": false
   }
 }
