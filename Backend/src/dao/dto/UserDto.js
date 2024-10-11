@@ -24,20 +24,24 @@ export default class UserDTO {
       case "authorized":
         return {
           id: user._id,
-          name: `${user.first_name} ${user.last_name}`,
+          name: user.name,
+          suername: user.suername,
           age: user.age,
+          phone: user.phone,
           email: user.email,
-          profilePhoto: user.profilePhoto.reference,
+          country: user.country,
+          locality: user.locality,
+          photo: user.photo,
           role: user.role,
           cart: cart,
           last_connection: formatDate(user.last_connection),
           isOnline: user.isOnline,
           documents:
-            user.documents.length > 0
+            user?.documents?.length > 0
               ? user.documents.map((doc) => ({
-                  name: doc.name,
-                  reference: doc.reference,
-                }))
+                name: doc.name,
+                reference: doc.reference,
+              }))
               : "No hay documentos",
           created_data: formatDate(user.createdAt),
           updated_data: formatDate(user.updatedAt),
@@ -45,32 +49,68 @@ export default class UserDTO {
       case "vendor":
         return {
           id: user._id,
-          name: `${user.first_name} ${user.last_name}`,
+          name: user.name,
+          suername: user.suername,
+          age: user.age,
+          phone: user.phone,
           email: user.email,
-          profilePhoto: user.profilePhoto.reference,
+          country: user.country,
+          locality: user.locality,
+          photo: user.photo,
+          role: user.role,
           last_connection: formatDate(user.last_connection),
           isOnline: user.isOnline,
-          role: user.role,
-          created_data: formatDate(user.createdAt),
+          documents:
+            user?.documents?.length > 0
+              ? user.documents.map((doc) => ({
+                name: doc.name,
+                reference: doc.reference,
+              }))
+              : "No hay documentos",
         };
       case "user":
         return {
           id: user._id,
-          name: `${user.first_name} ${user.last_name}`,
+          name: user.name,
+          suername: user.suername,
+          age: user.age,
+          phone: user.phone,
           email: user.email,
-          profilePhoto: user.profilePhoto.reference,
+          country: user.country,
+          locality: user.locality,
+          photo: user.photo,
+          role: user.role,
           last_connection: formatDate(user.last_connection),
           isOnline: user.isOnline,
-          created_data: formatDate(user.createdAt),
+          documents:
+            user?.documents?.length > 0
+              ? user.documents.map((doc) => ({
+                name: doc.name,
+                reference: doc.reference,
+              }))
+              : "No hay documentos",
         };
       default:
         return {
           id: user._id,
-          name: `${user.first_name} ${user.last_name}`,
+          name: user.name,
+          suername: user.suername,
+          age: user.age,
+          phone: user.phone,
           email: user.email,
-          profilePhoto: user.profilePhoto.reference,
+          country: user.country,
+          locality: user.locality,
+          photo: user.photo,
           role: user.role,
-          created_data: formatDate(user.createdAt),
+          last_connection: formatDate(user.last_connection),
+          isOnline: user.isOnline,
+          documents:
+            user?.documents?.length > 0
+              ? user.documents.map((doc) => ({
+                name: doc.name,
+                reference: doc.reference,
+              }))
+              : "No hay documentos",
         };
     }
   };
@@ -90,9 +130,9 @@ export default class UserDTO {
       documents:
         user.documents.length > 0
           ? user.documents.map((doc) => ({
-              name: doc.name,
-              reference: doc.reference,
-            }))
+            name: doc.name,
+            reference: doc.reference,
+          }))
           : "No hay documentos",
       created_data: formatDate(user.createdAt),
       updated_data: formatDate(user.updatedAt),
