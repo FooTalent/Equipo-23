@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
     photo: {
       type: String,
       required: false,
-      default: ""
+      default: "https://res.cloudinary.com/dfc9prlp9/image/upload/v1728673265/minegocio/system/users/avatar/fc45tqkoolar0tofmbzu.png"
     },
     email: {
       type: String,
