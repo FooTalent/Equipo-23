@@ -8,7 +8,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent, CommonModule, SideBarComponent],
+  imports: [RouterOutlet,HeaderComponent, CommonModule, SidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
