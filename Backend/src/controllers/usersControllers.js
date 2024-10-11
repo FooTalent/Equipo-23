@@ -24,11 +24,24 @@ export const getUser = async (req, res) => {
   const email = req.user?.data?.email;
 
   let user = await usersRepository.getUserBy({ _id: id });
+
   if (!user) {
     return res.status(404).json({ succes: false, message: "User not found" });
   }
 
   const userDto = await UserDTO.getUserResponseForRole(user, role, email);
+  res.status(201).json({ succes: true, data: userDto });
+};
+
+export const getUserCurrent = async (req, res) => {
+  const userData = req.user.data
+
+  const user = await usersRepository.getUserBy({ _id: userData._id });
+  if (!user) {
+    return res.status(404).json({ succes: false, message: "User not found" });
+  }
+
+  const userDto = await UserDTO.getUserResponseForCurrent(userData);
   res.status(201).json({ succes: true, data: userDto });
 };
 
@@ -85,7 +98,7 @@ export const deleteUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const id = req.params.uid;
-  const { first_name, last_name,  email } = req.body;
+  const { first_name, last_name, email } = req.body;
   const role = req.user.data.role;
   const eCurrent = req.user.data.email;
 
@@ -179,7 +192,7 @@ export const uploadProfilePhoto = async (req, res) => {
     },
   };
 
-  const result = await usersRepository.updateUserBy({ _id: userId}, updateData);
+  const result = await usersRepository.updateUserBy({ _id: userId }, updateData);
   const userDto = await UserDTO.getUserResponseForRole(result, null, user.email);
   res.status(200).json({
     success: true,
@@ -193,7 +206,7 @@ export const uploadDocuments = async (req, res) => {
   const files = req.files;
   const email = req.user.data.email;
   const role = req.user.data.role;
-  const idUserCurrent = req.user.data._id; 
+  const idUserCurrent = req.user.data._id;
 
   if (idUserCurrent != userId) {
     return res.status(403).json({
@@ -205,7 +218,7 @@ export const uploadDocuments = async (req, res) => {
   if (!files || Object.keys(files).length === 0) {
     return res.status(400).send({ message: "No files were uploaded." });
   }
-  
+
   const user = await usersRepository.getUserBy({ _id: userId });
 
   if (!user) {
@@ -263,7 +276,7 @@ export const uploadDocuments = async (req, res) => {
 const environment = config.environment;
 
 export async function sendEmailToResetPassword(req, res) {
-  const appUrl = environment === 'development'? `${config.AppUrl}:${config.port}`:`${config.AppUrl}`
+  const appUrl = environment === 'development' ? `${config.AppUrl}:${config.port}` : `${config.AppUrl}`
 
   const { email } = req.body;
   const user = await usersRepository.getUserBy({ email: email });
