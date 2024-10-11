@@ -96,6 +96,41 @@ export const deleteUser = async (req, res) => {
   }
 };
 
+export const updateUserCurrent = async (req, res) => {
+  const userData = req.user.data
+  const {
+    name,
+    surname,
+    age,
+    phone,
+    country,
+    locality
+  } = req.body
+
+  const user = await usersRepository.getUserBy({ _id: userData._id });
+  if (!user) {
+    return res.status(404).json({ succes: false, message: "User not found" });
+  }
+
+  const removeFieldsEmpty = removeEmptyObjectFields({
+    name,
+    surname,
+    age,
+    phone,
+    country,
+    locality
+  })
+
+  const updateUser = await usersRepository.updateUserBy(
+    { _id: userData._id },
+    removeFieldsEmpty
+  );
+
+  const result = await UserDTO.getUserResponseForCurrent(updateUser);
+  res.status(200).json({ success: true, data: result });
+
+}
+
 export const updateUser = async (req, res) => {
   const id = req.params.uid;
   const { first_name, last_name, email } = req.body;

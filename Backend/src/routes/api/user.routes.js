@@ -19,6 +19,7 @@ userRouter.delete(
   authorization("admin"),
   users.deleteUser
 );
+userRouter.put("/current/update", passportCall("jwt"), users.updateUserCurrent);
 userRouter.put("/:uid", passportCall("jwt"), users.updateUser);
 userRouter.get(
   "/vendor/:uid",
