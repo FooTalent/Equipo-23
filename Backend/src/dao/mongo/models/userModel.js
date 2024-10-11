@@ -9,6 +9,31 @@ const userSchema = new mongoose.Schema(
       minLength: 3,
       required: true,
     },
+    surnames: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    phone: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    country: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    locality: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    photo: {
+      type: String,
+      required: false,
+      default: ""
+    },
     email: {
       type: String,
       minLength: 3,
