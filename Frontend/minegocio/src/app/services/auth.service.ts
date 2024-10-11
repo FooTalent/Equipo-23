@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   loginUser(loginValues: LoginValues) {
-    return this.http.post(`${this.apiUrl}/login`, {	
+    return this.http.post(`${this.apiUrl}/api/sessions/login`, {	
       email: loginValues.email,
       password: loginValues.password
     },{
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   checkUserToken() {
-    return this.http.get(`${this.apiUrl}/current`, {
+    return this.http.get(`${this.apiUrl}/api/sessions/current`, {
       withCredentials: true
     },)
   }
