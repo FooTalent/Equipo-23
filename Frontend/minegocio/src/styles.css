@@ -7,38 +7,32 @@
 
 body {
   font-family: "Nunito", sans-serif;
+  background-color: #2B2738  ;
 }
 
 /* Estilos personalizados para el scrollbar */
 
+/* Estilos globales para ocultar las flechas del scrollbar en todos los navegadores */
+
+
+/* Para Chrome, Edge, y otros navegadores basados en WebKit/Blink */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
 ::-webkit-scrollbar-track {
   background: #2b2738;
+  border: 3px solid #2b2738;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #7c798a;
-  border-radius: 18px;
-  border: 4px solid #2b2738;
+  border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #5d3cba;
 }
 
-/* Ocultar completamente los botones del scrollbar */
-
-/* Para Firefox */
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #7c798a #2b2738;
-  ::-webkit-scrollbar-button {
-    width: 0;
-    height: 0;
-    opacity: 0 !important;
-    display: none !important;
-  }
-}
-
-*:hover {
-  scrollbar-color: #5d3cba #2b2738;
-}
