@@ -118,17 +118,20 @@ export default class UserDTO {
   static getUserResponseForCurrent = async (user) => {
     const cart = await cartsRepository.getCartById(user.cartId);
     return {
-      id: user._id,
-      name: `${user.first_name} ${user.last_name}`,
+      d: user._id,
+      name: user.name,
+      suername: user.suername,
+      age: user.age,
+      phone: user.phone,
       email: user.email,
-      profilePhoto:
-        user.profilePhoto.reference || user.profilePhoto[0].reference,
+      country: user.country,
+      locality: user.locality,
+      photo: user.photo,
       role: user.role,
       last_connection: formatDate(user.last_connection),
       isOnline: user.isOnline,
-      cart: CartDTO.getCartResponseForRole(cart, user.role),
       documents:
-        user.documents.length > 0
+        user?.documents?.length > 0
           ? user.documents.map((doc) => ({
             name: doc.name,
             reference: doc.reference,

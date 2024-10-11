@@ -11,6 +11,7 @@ import { authorization } from "../../middlewares/authMiddleware.js";
 const userRouter = Router();
 
 userRouter.get("/", passportCallOptional("jwt"), users.getUsers);
+userRouter.get('/current', passportCall("jwt"), users.getUserCurrent)
 userRouter.get("/:uid", passportCallOptional("jwt"), users.getUser);
 userRouter.delete(
   "/:uid",
