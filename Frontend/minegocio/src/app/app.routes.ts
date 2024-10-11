@@ -9,4 +9,5 @@ export const routes: Routes = [
     {path: "login", component: LoginComponent},
     {path: "verify-code", component: VerifyCodeComponent},
     {path: "sign-up", component: SignUpComponent},
+  { path: 'myshop', component: MyShopComponent },
 ];

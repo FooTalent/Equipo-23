@@ -1,3 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,3 +15,34 @@
   -moz-appearance: textfield;
   appearance: textfield;
 }
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: #2B2738  ;
+}
+
+/* Estilos personalizados para el scrollbar */
+
+/* Estilos globales para ocultar las flechas del scrollbar en todos los navegadores */
+
+
+/* Para Chrome, Edge, y otros navegadores basados en WebKit/Blink */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2b2738;
+  border: 3px solid #2b2738;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7c798a;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5d3cba;
+}
+
