@@ -17,13 +17,21 @@ const cookieExtractor = (req) => {
   return token;
 };
 
+const headerExtractor = (req) => {
+  let token = null;
+  if (req && req.headers) {
+    token = req.headers['auth'];
+  }
+  return token;
+};
+
 
 const initializatePassport = () => {
   passport.use(
     "jwt",
     new JWTStrategy(
       {
-        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+        jwtFromRequest: ExtractJWT.fromExtractors([headerExtractor]),
         secretOrKey: config.tokenKey,
       },
       async (jwt_payload, done) => {
