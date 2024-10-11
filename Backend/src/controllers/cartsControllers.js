@@ -3,6 +3,7 @@ import CartDTO from "../dao/dto/CartDto.js";
 import purchaseService from "../services/PurchaseService.js";
 import productModel from "../dao/mongo/models/productModel.js";
 import { transport } from "../utils/nodemailer.js";
+import config from "../config/config.js";
 
 export const getCarts = async (req, res) => {
   let carts = await cartsRepository.getCarts();
@@ -53,7 +54,6 @@ export const addProductFromCart = async (req, res) => {
       message: "As an administrator you cannot make operations in the cart",
     });
   }
-
   if (idCart != userCartId) {
     return res.status(403).json({
       succes: false,
@@ -318,8 +318,8 @@ export const createPurchase = async (req, res) => {
   const result = await purchaseService.createPurchase(cartId);
 
   await transport.sendMail({
-    from: `E-commerce Coder <${config.correoGmail}>`,
-    to: result.user.email,
+    from: `Mi negocio Coder <${config.correoGmail}>`,
+    to: req.user.data.email,
     subject: "Purchase confirmation",
     html: `<div>
             <h1>Tu campra se enviara a tu direccion</h1>
@@ -328,7 +328,7 @@ export const createPurchase = async (req, res) => {
             <p>Total: $${result.amount}</p>
             <p>Products:</p>
             <ul>
-              ${result.products
+              ${cart.products
         .map(
           (product) =>
             `<li>${product.prodId.title} - Quantity: ${product.quantity}</li>`
