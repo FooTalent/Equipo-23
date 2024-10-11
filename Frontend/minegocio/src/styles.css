@@ -1,4 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Nunito", sans-serif;
+}
+
+/* Estilos personalizados para el scrollbar */
+
+::-webkit-scrollbar-track {
+  background: #2b2738;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7c798a;
+  border-radius: 18px;
+  border: 4px solid #2b2738;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5d3cba;
+}
+
+/* Ocultar completamente los botones del scrollbar */
+
+/* Para Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #7c798a #2b2738;
+  ::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    opacity: 0 !important;
+    display: none !important;
+  }
+}
+
+*:hover {
+  scrollbar-color: #5d3cba #2b2738;
+}
