@@ -26,7 +26,7 @@
           <button class="bg-[#2B2738] p-5 rounded-lg relative">
             <img src="/icons/add.svg" class="absolute top-[10px] left-[10px]"  />
           </button>
-          <button class="bg-purple-600 p-5 rounded-lg relative">
+          <button class="bg-[#5D3CBA] p-5 rounded-lg relative">
             <img src="/icons/options.svg" class="absolute top-[8px] left-[8px]"  />
           </button>
         </div>
@@ -38,7 +38,7 @@
     id="products"
     class="myshop-table-container bg-[#3B364C] rounded-[1rem] m-4 pr-3 h-[680px] overflow-y-auto max-w-[1360px]"
   >
-    <div class="bg-[#1E1E2D] rounded-[1rem]">
+    <div class="bg-[#1E1E2D] rounded-[1rem] h-[680px]">
       <table class="w-full">
         <thead>
           <tr class="bg-[#5D3CBA] text-left">
@@ -52,30 +52,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-            class="border-b border-[#2B2738]"
-          >
-            <td class="p-3 py-6">123456</td>
-            <td class="p-3 py-6">Campera de cuero</td>
-            <td class="p-3 py-6">20</td>
-            <td class="p-3 py-6">$ 200.000</td>
-            <td class="p-3 py-6">
-              <span class="inline-flex items-center">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                En venta
-              </span>
-            </td>
-            <td class="p-3">02/10/2024</td>
-            <td class="p-3">
-              <button class="text-purple-500 mr-2">
-                <i class="fas fa-eye"></i>
-              </button>
-              <button class="text-purple-500">
-                <i class="fas fa-search"></i>
-              </button>
-            </td>
-          </tr>
+          <ng-container *ngIf="!isLoading; else loadingSpinner">
+            <ng-container *ngIf="products.length > 0; else noProducts">
+              <tr *ngFor="let product of products" class="border-b border-[#2B2738]">
+                <td class="p-3 py-6">{{ product.id }}</td>
+                <td class="p-3 py-6">{{ product.name }}</td>
+                <td class="p-3 py-6">{{ product.stock }}</td>
+                <td class="p-3 py-6">$ {{ product.price }}</td>
+                <td class="p-3 py-6">
+                  <span class="inline-flex items-center">
+                    <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    {{ product.status }}
+                  </span>
+                </td>
+                <td class="p-3">{{ product.createdAt | date:'dd/MM/yyyy' }}</td>
+                <td class="p-3">
+                  <button class="text-purple-500 mr-2">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <button class="text-purple-500">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
         </tbody>
       </table>
     </div>
@@ -89,12 +90,12 @@
       Anterior
     </button>
     <div class="flex space-x-2">
-      <button class="bg-[#5D3CBA] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">1</button>
-      <button class="bg-[#7C798A] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">2</button>
-      <button class="bg-[#7C798A] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">3</button>
-      <button class="bg-[#7C798A] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">4</button>
-      <button class="bg-[#7C798A] w-8 h-8 rounded-lg ">...</button>
-      <button class="bg-[#7C798A] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">10</button>
+      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">1</button>
+      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">2</button>
+      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">3</button>
+      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">4</button>
+      <button class="border-[#7C798A] border-[1px] w-8 h-8 rounded-lg ">...</button>
+      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">10</button>
     </div>
     <button class="flex items-center">
       Siguiente
@@ -102,3 +103,19 @@
     </button>
   </div>
 </div>
+
+<ng-template #loadingSpinner>
+  <tr>
+    <td colspan="7" class="text-center py-8">
+      <div class="spinner"></div>
+    </td>
+  </tr>
+</ng-template>
+
+<ng-template #noProducts>
+  <tr>
+    <td colspan="7" class="text-center py-8">
+      No se encontraron productos.
+    </td>
+  </tr>
+</ng-template>
