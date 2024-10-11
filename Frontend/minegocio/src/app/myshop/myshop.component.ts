@@ -24,9 +24,8 @@ export class MyShopComponent implements OnInit {
     this.isLoading = true;
     this.error = null;
     this.productService.getProducts().subscribe({
-      next: (data) => {
-        console.log('Productos recibidos:', data);
-        this.products = data;
+      next: (response: any) => {
+        this.products = response.data.data;
         this.isLoading = false;
       },
       error: (error) => {

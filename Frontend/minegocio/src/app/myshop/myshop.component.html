@@ -55,8 +55,8 @@
           <ng-container *ngIf="!isLoading; else loadingSpinner">
             <ng-container *ngIf="products.length > 0; else noProducts">
               <tr *ngFor="let product of products" class="border-b border-[#2B2738]">
-                <td class="p-3 py-6">{{ product.id }}</td>
-                <td class="p-3 py-6">{{ product.name }}</td>
+                <td class="p-3 py-6">{{ product.code }}</td>
+                <td class="p-3 py-6">{{ product.title }}</td>
                 <td class="p-3 py-6">{{ product.stock }}</td>
                 <td class="p-3 py-6">$ {{ product.price }}</td>
                 <td class="p-3 py-6">
@@ -65,7 +65,7 @@
                     {{ product.status }}
                   </span>
                 </td>
-                <td class="p-3">{{ product.createdAt | date:'dd/MM/yyyy' }}</td>
+                <td class="p-3">{{ product.created_data | date:'dd/MM/yyyy' }}</td>
                 <td class="p-3">
                   <button class="text-purple-500 mr-2">
                     <i class="fas fa-eye"></i>
