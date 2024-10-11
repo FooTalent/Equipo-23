@@ -160,7 +160,7 @@ export async function login(req, res) {
     maxAgre: 60 * 60 * 1000,
     httpOnly: true,
   });
-  res.status(200).json({ success: true, message: "Login correct" });
+  res.status(200).json({ success: true, message: "Login correct", token: token });
 }
 
 export async function logout(req, res) {
