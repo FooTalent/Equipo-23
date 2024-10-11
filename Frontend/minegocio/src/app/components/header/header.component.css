@@ -1,0 +1,12 @@
+nav {
+    background: #5d3cba;
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+@media screen and (max-width: 767px) {
+   
+    .icons {
+        width: 5px;
+        height: 5px;
+    }
+   
+}
