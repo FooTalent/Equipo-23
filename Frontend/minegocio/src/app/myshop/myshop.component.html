@@ -1,24 +1,44 @@
-<div class="bg-[#2B2738] p-6 py-4 text-white bg-[#3B364C] rounded-[24px] h-full flex flex-col justify-between max-w-[1450px] max-h-[1024px] ml-4">
-  <div class="bg-[#1E1E2D] rounded-[1rem] py-4 mb-6 max-w-[97.5%] ml-[13px] px-4">
-    <div class="flex  items-center justify-center">
-      <h1 class="text-xl font-semibold px-10 rounded-[1rem] py-2 bg-[#2B2738]">Catálogo</h1>
-      <div class="flex items-center  w-full ">
+<div
+  class="bg-[#2B2738] p-6 py-4 text-white bg-[#3B364C] rounded-[24px] h-full flex flex-col justify-between max-w-[1450px] max-h-[1024px] ml-4"
+>
+  <div
+    class="bg-[#1E1E2D] rounded-[1rem] py-4 mb-6 max-w-[97.5%] ml-[13px] px-4"
+  >
+    <div class="flex items-center justify-center">
+      <h1 class="text-xl font-semibold px-10 rounded-[1rem] py-2 bg-[#2B2738]">
+        Catálogo
+      </h1>
+      <div class="flex items-center w-full">
         <div class="relative w-full">
-          <input type="text" placeholder="Buscar producto" class="bg-[#2B2738] text-white pl-4 ml-14 py-2 rounded-lg w-[85%]">
-          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <input
+            type="text"
+            placeholder="Buscar producto"
+            class="bg-[#2B2738] text-white pl-4 ml-14 py-2 rounded-lg w-[85%]"
+          />
+          <i
+            class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+          ></i>
         </div>
         <div class="flex gap-4">
-
-            <button class="bg-[#2B2738] p-5 rounded-lg"><i class="fas fa-filter text-purple-500"></i></button>
-            <button class="bg-[#2B2738] p-5 rounded-lg"><i class="fas fa-th text-purple-500"></i></button>
-            <button class="bg-purple-600 p-5 rounded-lg"><i class="fas fa-plus"></i></button>
+          <button class="bg-[#2B2738] p-5 rounded-lg relative">
+            <img src="/icons/filter.svg" class="absolute top-3 left-3"  />
+          </button>
+          <button class="bg-[#2B2738] p-5 rounded-lg relative">
+            <img src="/icons/add.svg" class="absolute top-[10px] left-[10px]"  />
+          </button>
+          <button class="bg-purple-600 p-5 rounded-lg relative">
+            <img src="/icons/options.svg" class="absolute top-[8px] left-[8px]"  />
+          </button>
         </div>
       </div>
     </div>
   </div>
-  
-  <div id="products" class="myshop-table-container bg-[#3B364C] rounded-[1rem] m-4 pr-3 max-h-[680px] overflow-y-auto max-w-[1360px]">
-    <div class="bg-[#1E1E2D] rounded-[1rem] ">
+
+  <div
+    id="products"
+    class="myshop-table-container bg-[#3B364C] rounded-[1rem] m-4 pr-3 max-h-[680px] overflow-y-auto max-w-[1360px]"
+  >
+    <div class="bg-[#1E1E2D] rounded-[1rem]">
       <table class="w-full">
         <thead>
           <tr class="bg-[#5D3CBA] text-left">
@@ -32,7 +52,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="border-b border-[#2B2738]">
+          <tr
+            *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+            class="border-b border-[#2B2738]"
+          >
             <td class="p-3 py-6">123456</td>
             <td class="p-3 py-6">Campera de cuero</td>
             <td class="p-3 py-6">20</td>
@@ -45,18 +68,25 @@
             </td>
             <td class="p-3">02/10/2024</td>
             <td class="p-3">
-              <button class="text-purple-500 mr-2"><i class="fas fa-eye"></i></button>
-              <button class="text-purple-500"><i class="fas fa-search"></i></button>
+              <button class="text-purple-500 mr-2">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="text-purple-500">
+                <i class="fas fa-search"></i>
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  
-  <div class="flex justify-between items-center mt-2 bg-[#2B2738] py-3 px-5 rounded-[1rem] max-w-[1370px] ml-4 ">
-    <button class=" flex items-center">
-      <i class="fas fa-chevron-left mr-2"></i> Anterior
+
+  <div
+    class="flex justify-between items-center mt-2 bg-[#2B2738] py-3 px-5 rounded-[1rem] max-w-[1370px] ml-4"
+  >
+    <button class="flex items-center">
+      <img src="/icons/chevron-left.svg" class="fas fa-chevron-right ml-2" />
+      Anterior
     </button>
     <div class="flex space-x-2">
       <button class="bg-[#5D3CBA] w-8 h-8 rounded-lg">1</button>
@@ -66,8 +96,9 @@
       <button class="bg-[#7C798A] w-8 h-8 rounded-lg">...</button>
       <button class="bg-[#7C798A] w-8 h-8 rounded-lg">10</button>
     </div>
-    <button class=" flex items-center">
-      Siguiente <i class="fas fa-chevron-right ml-2"></i>
+    <button class="flex items-center">
+      Siguiente
+      <img src="/icons/chevron-right.svg" class="fas fa-chevron-right ml-2" />
     </button>
   </div>
 </div>
