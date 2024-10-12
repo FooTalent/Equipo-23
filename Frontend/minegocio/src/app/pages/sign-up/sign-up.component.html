@@ -1,6 +1,6 @@
-<section class="h-screen box-border bg-[#2B2738] shadow-lg flex flex-col justify-center lg:flex-row overflow-hidden py-2 md:p-8 rounded-2xl select-none">
+<section class="h-screen box-border bg-[#2B2738] shadow-lg flex flex-col justify-center lg:flex-row overflow-hidden p-4 -m-4 rounded-2xl select-none">
 
-  <article class="p-6 sm:px-10 flex-1 overflow-auto">
+  <article class="py-6 md:p-6 sm:px-10 flex-1 overflow-auto">
     <header class="text-center mb-6">
       <div class="flex gap-8 sm:gap-10 justify-center">
         <button class="bg-[#5D3CBA] text-white font-bold py-2 px-4 rounded-2xl focus:outline-none block w-full">
@@ -61,8 +61,8 @@
         <label for="password" class="block text-base  m-1 text-gray-100">Contraseña</label>
         <img src="/icons/password-icon.svg" class="absolute left-3 top-[2.6rem] w-6 h-7 text-gray-400" alt="Ícono de llave">
         <input id="password" name="password" [type]="viewPassword() ? 'text' : 'password'" placeholder="Ingresa tu contraseña" class="w-full p-3 pl-12 mt-1 rounded-2xl bg-gray-700 text-white" formControlName="password">
-        <img *ngIf="viewPassword()" src="/icons/show-password.svg" class="absolute top-[70%] right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
-        <img *ngIf="!viewPassword()" src="/icons/hide-password.svg" class="absolute top-[70%] right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
+        <img *ngIf="viewPassword()" src="/icons/show-password.svg" class="absolute top-[70%] right-[4%] md:right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
+        <img *ngIf="!viewPassword()" src="/icons/hide-password.svg" class="absolute top-[70%] right-[4%] md:right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
       </div>
       <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
         <span *ngIf="registerForm.get('password')?.hasError('required')">Este campo es obligatorio</span>
@@ -79,7 +79,7 @@
 
       <button type="submit" [disabled]="isLoading()" class="w-full bg-[#5D3CBA] text-white font-bold py-3 px-4 rounded-2xl transition duration-300 ease-in-out 
       hover:bg-purple-500 disabled:bg-purple-400 disabled:opacity-50">
-        {{ isLoading() ? 'Loading...' : 'Regístrate' }}
+        {{ isLoading() ? 'Cargando...' : 'Regístrate' }}
       </button>
     </form>
 

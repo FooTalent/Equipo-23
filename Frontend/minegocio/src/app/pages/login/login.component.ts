@@ -40,6 +40,7 @@ export class LoginComponent {
       this.authService.loginUser(loginValues).subscribe({
 
         next: (response: any) => {
+          this.authService.setToken(response.token);
           this.Router.navigate([ "" ])
           this.isLoading.update(value => !value);
         },

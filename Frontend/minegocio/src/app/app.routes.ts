@@ -5,12 +5,14 @@ import { VerifyCodeComponent } from './pages/verify-code/verify-code.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MyShopComponent } from './myshop/myshop.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { authGuard } from './guards/auth.guard';
+import { nonAuthGuard } from './guards/non-auth.guard';
 
 export const routes: Routes = [
-    {path: "", component: DashboardComponent},
-    {path: "login", component: LoginComponent},
-    {path: "verify-code", component: VerifyCodeComponent},
-    {path: "sign-up", component: SignUpComponent},
-    {path: 'myshop', component: MyShopComponent},
+    {path: "", component: DashboardComponent, canActivate: [authGuard]},
+    {path: "login", component: LoginComponent, canActivate: [nonAuthGuard]},
+    {path: "verify-code", component: VerifyCodeComponent, canActivate: [nonAuthGuard]},
+    {path: "sign-up", component: SignUpComponent, canActivate: [nonAuthGuard]},
+    {path: 'myshop', component: MyShopComponent, canActivate: [authGuard]},
     {path: "**", component: NotFoundPageComponent},
 ];

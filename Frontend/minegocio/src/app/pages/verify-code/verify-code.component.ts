@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -22,6 +22,7 @@ export class VerifyCodeComponent {
   });
 
   errorMessage: string = '';
+  isLoading = signal(false);
   onVerifySubmit(event: Event) {
     event.preventDefault();
 
@@ -30,7 +31,8 @@ export class VerifyCodeComponent {
 
       this.userService.verifyRegisterCode(verificationCode).subscribe({
         next: (response: any) => {
-          this.Router.navigate(['/']);
+          this.isLoading.update(value => !value);
+          this.Router.navigate(['/login']);
         },
         error: (error) => {
           if (error.status === 400) {

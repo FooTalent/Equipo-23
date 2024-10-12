@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { LoginValues } from '../models/loginValues.model';
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   loginUser(loginValues: LoginValues) {
-    return this.http.post(`${this.apiUrl}/api/sessions/login`, {	
+    return this.http.post(`${this.apiUrl}/login`, {	
       email: loginValues.email,
       password: loginValues.password
     },{
@@ -28,11 +28,31 @@ export class AuthService {
     });
   }
 
-  checkUserToken() {
-    return this.http.get(`${this.apiUrl}/api/sessions/current`, {
-      withCredentials: true
-    },)
+  setToken(token: string) {
+    if(typeof window !== 'undefined') {
+      localStorage.setItem('user_token', token);
+    }
+    
   }
+  
+  removeToken() {
+    if(typeof window !== 'undefined') {
+      localStorage.removeItem('user_token');
+    return;
+    }
+  }
+
+  isLoggedIn() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      if(!!localStorage.getItem('user_token')){
+        this.isLoggedInSignal.update(value => true);
+      } else {
+        this.isLoggedInSignal.update(value => false);
+      }
+    }
+  }
+
+  isLoggedInSignal = signal(false);
 
   startGoogleLogin() {
     const config: AuthConfig = {
