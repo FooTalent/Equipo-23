@@ -69,10 +69,6 @@ export class SignUpComponent {
     }
   }
 
-  loginWithGoogle() {
-    this.authService.loginWithGoogle();
-  }
-
   // Function to toggle password visibility
 
   viewPassword = signal(false);

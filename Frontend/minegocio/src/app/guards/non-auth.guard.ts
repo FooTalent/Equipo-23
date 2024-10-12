@@ -7,7 +7,7 @@ export const nonAuthGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const authService = inject(AuthService);
 
-  if(typeof window !== 'undefined' && localStorage.getItem('user_token')) {
+  if(localStorage.getItem('user_token')) {
     router.navigate(['/']);
     authService.isLoggedIn();
     return false;

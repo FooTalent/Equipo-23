@@ -57,10 +57,6 @@ export class LoginComponent {
       this.errorMessage = 'Por favor, rellena todos los campos requeridos.';
     }
   }
-
-  loginWithGoogle() {
-    this.authService.loginWithGoogle();
-  }
   
   // Function to toggle password visibility
 

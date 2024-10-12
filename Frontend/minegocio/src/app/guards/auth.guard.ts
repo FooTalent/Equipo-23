@@ -6,7 +6,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const authService = inject(AuthService);
 
-  if (typeof window !== 'undefined' && localStorage.getItem('user_token')) {
+  if (localStorage.getItem('user_token')) {
     authService.isLoggedIn();
     return true;
   } else {
