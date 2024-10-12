@@ -26,7 +26,7 @@ export class MyShopComponent implements OnInit {
     this.productService.getProducts().subscribe({
       next: (response: any) => {
         this.products = response.data.data;
-        this.isLoading = false;
+        this.isLoading = false; 
       },
       error: (error) => {
         console.error('Error fetching products:', error);
