@@ -20,7 +20,10 @@ const cookieExtractor = (req) => {
 const headerExtractor = (req) => {
   let token = null;
   if (req && req.headers) {
-    token = req.headers['auth'];
+    const authHeader = req.headers['authorization'];
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.split(' ')[1]; // Extrae el token después de 'Bearer '
+    }
   }
   return token;
 };
