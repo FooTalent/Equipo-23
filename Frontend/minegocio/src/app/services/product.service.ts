@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Product {
@@ -22,15 +22,21 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts() {
+  getProducts(pageNumber: number, limit: number, query: string) : Observable<Product[]? {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + localStorage.getItem('user_token')
     });
 
-    return this.http.get(this.apiUrl, { headers: headers })
-
+return this.http.get<any>(this.apiUrl, { 
+        withCredentials: true,
+        params: { 
+            page: pageNumber.toString(),
+            limit: limit.toString(),
+            query: query 
+        },
+	{headers: headers}
+    });
   }
 
-  // Aquí puedes agregar más métodos para otras operaciones CRUD si es necesario
 }
