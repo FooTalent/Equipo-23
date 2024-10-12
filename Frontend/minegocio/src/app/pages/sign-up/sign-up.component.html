@@ -1,111 +1,107 @@
-<main class="min-h-screen flex flex-col justify-center bg-gray-800 p-4 select-none">
-    <section class="w-full lg:w-3/4 xl:w-2/3 mx-auto my-2 bg-gray-900 rounded-xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
-  
-      <article class="p-6 sm:px-10 flex-1">
-        <header class="text-center mb-6">
-          <div class="flex gap-8 sm:gap-10 justify-center">
-            <button class="bg-cyan-500 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none block w-full">
-              Crear cuenta
-            </button>
-            <button [routerLink]="['/login']" class="bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none transition duration-300 ease-in-out hover:bg-gray-600 block w-full">
-              Iniciar Sesión
-            </button>
-          </div>
-        </header>
-        
-        <h2 class="text-3xl font-bold text-white mb-6">Crear cuenta</h2>
-  
-        <form class="space-y-4" (ngSubmit)="onRegisterSubmit($event)" [formGroup]="registerForm">
-          <div class="relative">
-            <label for="nombre" class="block text-base font-medium text-gray-100">Nombre</label>
-            <img src="/icons/name-icon.svg" class="absolute left-2 top-[2.15rem] w-7 h-7 text-gray-400" alt="Ícono de usuario">
-            <input id="nombre" name="nombre" type="text" placeholder="Ingresa tu nombre" class="w-full p-2 pl-11 mt-1 rounded bg-gray-700 text-white" formControlName="name">
-            <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
-                <span *ngIf="registerForm.get('firstName')?.hasError('required')">Este campo es obligatorio</span>
-                <span *ngIf="registerForm.get('firstName')?.hasError('pattern')">Solo se permiten letras</span>
-            </small>
-          </div>
+<section class="h-screen box-border bg-[#2B2738] shadow-lg flex flex-col justify-center lg:flex-row overflow-hidden py-2 md:p-8 rounded-2xl select-none">
 
-          <div class="relative">
-            <label for="age" class="block text-base font-medium text-gray-100">Edad</label>
-            <img src="/icons/name-icon.svg" class="absolute left-2 top-[2.15rem] w-7 h-7 text-gray-400" alt="Ícono de usuario">
-            <input type="number" id="age" name="age" placeholder="Ingresa tu edad" min="19" class="no-arrows w-full p-2 pl-11 mt-1 rounded bg-gray-700 text-white" formControlName="age">
-            <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('age')?.invalid && registerForm.get('age')?.touched">
-                <span *ngIf="registerForm.get('age')?.hasError('required')">Este campo es obligatorio</span>
-                <span *ngIf="registerForm.get('age')?.hasError('min')">Debes ingresar una edad mayor o igual a 19 años</span>
-            </small>
-          </div>
-
-          <div>
-            <label for="role" class="block text-base font-medium text-gray-100">Rol</label>
-            <select id="role" name="role" placeholder="Ingresa tu rol" class="w-full p-2 mt-1 rounded bg-gray-700 text-white" formControlName="role">
-              <option value="" disabled>Selecciona una opción...</option>
-              <option value="vendor">Vendedor</option>
-              <option value="user">Usuario</option>
-            </select>
-            <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
-                <span *ngIf="registerForm.get('role')?.hasError('required')">Este campo es obligatorio</span>
-            </small>
-          </div>
-  
-          <div class="relative">
-            <label for="email" class="block text-base font-medium text-gray-100">Email</label>
-            <img src="/icons/email-icon.svg" class="absolute left-3 top-9 w-6 h-6 text-gray-400" alt="Ícono de correo">
-            <input id="email" name="email" type="email" placeholder="Ingresa tu Email" class="w-full p-2 pl-11 mt-1 rounded bg-gray-700 text-white" formControlName="email">
-            <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-                <span *ngIf="registerForm.get('email')?.hasError('required')">Este campo es obligatorio</span>
-                <span *ngIf="registerForm.get('email')?.hasError('email')">Debes ingresar un email valido</span>
-            </small>
-          </div>
-  
-          <div class="relative">
-            <label for="password" class="block text-base font-medium text-gray-100">Contraseña</label>
-            <img src="/icons/password-icon.svg" class="absolute left-3 top-[2.15rem] w-6 h-7 text-gray-400" alt="Ícono de llave">
-            <input id="password" name="password" [type]="viewPassword() ? 'text' : 'password'" placeholder="Ingresa tu contraseña" class="w-full p-2 pl-11 mt-1 rounded bg-gray-700 text-white" formControlName="password">
-            <img *ngIf="viewPassword()" src="/icons/show-password.svg" class="absolute top-[70%] right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
-            <img *ngIf="!viewPassword()" src="/icons/hide-password.svg" class="absolute top-[70%] right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
-          </div>
-          <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-            <span *ngIf="registerForm.get('password')?.hasError('required')">Este campo es obligatorio</span>
-            <span *ngIf="registerForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 8 caracteres</span>
-          </small>
-  
-          <div class="flex items-center">
-            <input id="terminos" name="terminos" type="checkbox" class="w-4 h-4 text-cyan-500 focus:ring-cyan-400 rounded">
-            <label for="terminos" class="ml-2 text-sm text-gray-300">Acepto <a href="#" class="text-cyan-400">Términos y Condiciones</a></label>
-            <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched">
-                <span *ngIf="registerForm.get('terms')?.hasError('required')">Debes aceptar los términos y condiciones</span>
-            </small>
-          </div>
-  
-          <button type="submit" [disabled]="isLoading()" class="w-full bg-purple-600 text-white font-bold py-2 px-4 rounded-2xl transition duration-300 ease-in-out 
-          hover:bg-purple-500 disabled:bg-purple-400 disabled:opacity-50">
-            {{ isLoading() ? 'Loading...' : 'Regístrate' }}
-          </button>
-        </form>
-
-        <div *ngIf="errorMessage" class="w-full bg-red-500 text-white font-bold mt-2 text-center py-2 px-4 rounded-2xl">
-            {{errorMessage}}
-        </div>
-  
-        <div class="relative mt-6">
-          <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-600"></div>
-          </div>
-          <div class="relative flex justify-center text-sm">
-            <span class="bg-gray-900 px-2 text-gray-400">o</span>
-          </div>
-        </div>
-  
-        <button (click)="loginWithGoogle()" class="mt-4 w-full bg-white text-black font-bold py-2 px-4 rounded-2xl flex justify-center items-center cursor-pointer">
-          <img src="/icons/google.svg" class="w-6 h-6 mr-2" alt="Google">
-          Continuar con Google
+  <article class="p-6 sm:px-10 flex-1 overflow-auto">
+    <header class="text-center mb-6">
+      <div class="flex gap-8 sm:gap-10 justify-center">
+        <button class="bg-[#5D3CBA] text-white font-bold py-2 px-4 rounded-2xl focus:outline-none block w-full">
+          Crear cuenta
         </button>
-      </article>
-  
-      <aside class="hidden lg:flex flex-1 items-center justify-center bg-purple-50">
-        <img src="/images/sign-up-background.png" alt="Imagen de ejemplo">
-      </aside>
-    </section>
-</main>
-  
+        <button [routerLink]="['/login']" class="bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none transition duration-300 ease-in-out hover:bg-gray-600 block w-full">
+          Iniciar Sesión
+        </button>
+      </div>
+    </header>
+    
+    <h2 class="text-4xl font-bold text-white my-10">Crear cuenta</h2>
+
+    <form class="space-y-4" (ngSubmit)="onRegisterSubmit($event)" [formGroup]="registerForm">
+      <div class="relative">
+        <label for="name" class="block text-base  m-1 text-gray-100">Nombre</label>
+        <img src="/icons/name-icon.svg" class="absolute left-3 top-[2.55rem] w-7 h-7 text-gray-400" alt="Ícono de usuario">
+        <input id="name" name="name" type="text" placeholder="Ingresa tu nombre" class="w-full p-3 pl-12 mt-1 rounded-2xl bg-gray-700 text-white" formControlName="name">
+        <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+            <span *ngIf="registerForm.get('name')?.hasError('required')">Este campo es obligatorio</span>
+            <span *ngIf="registerForm.get('name')?.hasError('pattern')">Solo se permiten letras</span>
+        </small>
+      </div>
+
+      <div class="relative">
+        <label for="age" class="block text-base  m-1 text-gray-100">Edad</label>
+        <img src="/icons/name-icon.svg" class="absolute left-3 top-[2.55rem] w-7 h-7 text-gray-400" alt="Ícono de usuario">
+        <input type="number" id="age" name="age" placeholder="Ingresa tu edad" min="19" class="no-arrows w-full p-3 pl-12 mt-1 rounded-2xl bg-gray-700 text-white" formControlName="age">
+        <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('age')?.invalid && registerForm.get('age')?.touched">
+            <span *ngIf="registerForm.get('age')?.hasError('required')">Este campo es obligatorio</span>
+            <span *ngIf="registerForm.get('age')?.hasError('min')">Debes ingresar una edad mayor o igual a 19 años</span>
+        </small>
+      </div>
+
+      <div>
+        <label for="role" class="block text-base  m-1 text-gray-100">Rol</label>
+        <select id="role" name="role" placeholder="Ingresa tu rol" class="w-full p-3 mt-1pl-12 rounded-2xl bg-gray-700 text-white" formControlName="role">
+          <option value="" disabled>Selecciona una opción...</option>
+          <option value="vendor">Vendedor</option>
+          <option value="user">Usuario</option>
+        </select>
+        <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
+            <span *ngIf="registerForm.get('role')?.hasError('required')">Este campo es obligatorio</span>
+        </small>
+      </div>
+
+      <div class="relative">
+        <label for="email" class="block text-base  m-1 text-gray-100">Email</label>
+        <img src="/icons/email-icon.svg" class="absolute left-3 top-11 w-6 h-6 text-gray-400" alt="Ícono de correo">
+        <input id="email" name="email" type="email" placeholder="Ingresa tu Email" class="w-full p-3 pl-12 mt-1 rounded-2xl bg-gray-700 text-white" formControlName="email">
+        <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            <span *ngIf="registerForm.get('email')?.hasError('required')">Este campo es obligatorio</span>
+            <span *ngIf="registerForm.get('email')?.hasError('email')">Debes ingresar un email valido</span>
+        </small>
+      </div>
+
+      <div class="relative">
+        <label for="password" class="block text-base  m-1 text-gray-100">Contraseña</label>
+        <img src="/icons/password-icon.svg" class="absolute left-3 top-[2.6rem] w-6 h-7 text-gray-400" alt="Ícono de llave">
+        <input id="password" name="password" [type]="viewPassword() ? 'text' : 'password'" placeholder="Ingresa tu contraseña" class="w-full p-3 pl-12 mt-1 rounded-2xl bg-gray-700 text-white" formControlName="password">
+        <img *ngIf="viewPassword()" src="/icons/show-password.svg" class="absolute top-[70%] right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
+        <img *ngIf="!viewPassword()" src="/icons/hide-password.svg" class="absolute top-[70%] right-[2%] transform -translate-y-1/2 w-[1.55rem] cursor-pointer" alt="Mostrar contraseña" (click)="togglePassword()">
+      </div>
+      <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        <span *ngIf="registerForm.get('password')?.hasError('required')">Este campo es obligatorio</span>
+        <span *ngIf="registerForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 8 caracteres</span>
+      </small>
+
+      <div class="flex items-center pl-1">
+        <input id="terminos" name="terminos" type="checkbox" class="w-4 h-4 text-cyan-500 focus:ring-cyan-400 rounded">
+        <label for="terminos" class="ml-2 text-sm self-center text-gray-300">Acepto <a href="#" class="text-cyan-400">Términos y Condiciones</a></label>
+        <small class="text-red-500 text-xs mt-1" *ngIf="registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched">
+            <span *ngIf="registerForm.get('terms')?.hasError('required')">Debes aceptar los términos y condiciones</span>
+        </small>
+      </div>
+
+      <button type="submit" [disabled]="isLoading()" class="w-full bg-[#5D3CBA] text-white font-bold py-3 px-4 rounded-2xl transition duration-300 ease-in-out 
+      hover:bg-purple-500 disabled:bg-purple-400 disabled:opacity-50">
+        {{ isLoading() ? 'Loading...' : 'Regístrate' }}
+      </button>
+    </form>
+
+    <div *ngIf="errorMessage" class="w-full bg-red-500 text-white font-bold mt-2 text-center py-3 px-4 rounded-2xl">
+        {{errorMessage}}
+    </div>
+
+    <div class="relative mt-6">
+      <div class="absolute inset-0 flex items-center">
+        <div class="w-full border-t border-gray-600"></div>
+      </div>
+      <div class="relative flex justify-center text-sm">
+        <span class="bg-[#2B2738] px-2 text-gray-400">o</span>
+      </div>
+    </div>
+
+    <button (click)="loginWithGoogle()" class="mt-4 w-full bg-white text-black font-bold py-3 px-4 rounded-2xl flex justify-center items-center cursor-pointer">
+      <img src="/icons/google.svg" class="w-6 h-6 mr-2" alt="Google">
+      Continuar con Google
+    </button>
+  </article>
+
+  <aside class="hidden rounded-2xl m-3 lg:flex flex-grow-[1.3] bg-[#A58FF7] bg-[url('/images/signup-background.png')] bg-center object-contain bg-no-repeat items-center justify-center">
+  </aside>
+</section>
