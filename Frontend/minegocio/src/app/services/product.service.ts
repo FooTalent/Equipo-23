@@ -28,10 +28,9 @@ export class ProductService {
         params: { 
             page: pageNumber.toString(),
             limit: limit.toString(),
-            query: query // Agregar el parámetro de búsqueda
+            query: query 
         }
     });
   }
 
-  // Aquí puedes agregar más métodos para otras operaciones CRUD si es necesario
 }
