@@ -14,10 +14,14 @@
             type="text"
             placeholder="Buscar producto"
             class="bg-[#2B2738] text-white pl-4 ml-14 py-2 rounded-lg w-[85%]"
+            (keyup.enter)="searchProducts()" 
           />
-          <i
-            class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-          ></i>
+
+          <img
+          src="/icons/search.svg"
+            class="fas fa-search absolute cursor-pointer top-1/2 transform -translate-y-1/2 text-gray-400 absolute right-[12%]"
+            (click)="searchProducts()" 
+         />
         </div>
         <div class="flex gap-4">
           <button class="bg-[#2B2738] p-5 rounded-lg relative">
@@ -85,19 +89,36 @@
   <div
     class="flex justify-between items-center mt-2 bg-[#2B2738] py-3 px-5 rounded-[1rem] max-w-[1370px] ml-4"
   >
-    <button class="flex items-center">
+    <button 
+      class="flex items-center" 
+      (click)="goToPreviousPage()" 
+      *ngIf="totalPages > 2 && currentPage > 1" 
+    >
       <img src="/icons/chevron-left.svg" class="fas fa-chevron-right mr-2" />
       Anterior
     </button>
-    <div class="flex space-x-5">
-      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">1</button>
-      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">2</button>
-      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">3</button>
-      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">4</button>
-      <button class="border-[#7C798A] border-[1px] w-8 h-8 rounded-lg ">...</button>
-      <button class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg">10</button>
+    
+    <div class="flex space-x-5 mx-auto">
+      <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+        <button 
+          class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg" 
+          (click)="goToPage(i + 1)">
+          {{ i + 1 }}
+        </button>
+      </ng-container>
+      
+      <button 
+        *ngIf="totalPages > 4" 
+        class="border-[#7C798A] border-[1px] w-8 h-8 rounded-lg">
+        ...
+      </button>
     </div>
-    <button class="flex items-center">
+    
+    <button 
+      class="flex items-center" 
+      (click)="goToNextPage()" 
+      *ngIf="totalPages > 2 && currentPage < totalPages"
+    >
       Siguiente
       <img src="/icons/chevron-right.svg" class="fas fa-chevron-right ml-2" />
     </button>
