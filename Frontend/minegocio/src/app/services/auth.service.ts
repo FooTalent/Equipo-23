@@ -11,6 +11,7 @@ export class AuthService {
   private http = inject(HttpClient);
 
   apiUrl = import.meta.env['NG_APP_API_URL']
+  
 
   loginUser(loginValues: LoginValues) {
     return this.http.post(`${this.apiUrl}/api/sessions/login`, {	

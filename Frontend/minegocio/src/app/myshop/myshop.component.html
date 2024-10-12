@@ -87,11 +87,11 @@
                   {{ product.created_data | date : "dd/MM/yyyy" }}
                 </td>
                 <td class="p-3">
-                  <button class="text-purple-500 mr-2">
-                    <i class="fas fa-eye"></i>
+                  <button (click)="changeProductStatus(product.id)" >
+                    <img src="/icons/eyes.svg" class="w-6 h-6"/>
                   </button>
-                  <button class="text-purple-500">
-                    <i class="fas fa-search"></i>
+                  <button class="ml-3" (click)="goToProduct(product.id)">
+                    <img src="/icons/search-white.svg" class="w-5 h-5 " />
                   </button>
                 </td>
               </tr>
