@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../services/product.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-myshop',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './myshop.component.html',
   styleUrls: ['./myshop.component.css']
 })
@@ -59,7 +60,6 @@ export class MyShopComponent implements OnInit {
 
   searchProducts() {
     this.currentPage = 1; 
-    this.searchQuery = ''; 
     this.loadProducts(this.currentPage, this.searchQuery); 
   }
 }

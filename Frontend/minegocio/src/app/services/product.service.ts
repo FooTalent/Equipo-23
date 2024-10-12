@@ -22,21 +22,24 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts(pageNumber: number, limit: number, query: string) : Observable<Product[]? {
+  getProducts(
+    pageNumber: number,
+    limit: number,
+    query: string
+  ): Observable<Product[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem('user_token')
+      Authorization: 'Bearer ' + localStorage.getItem('user_token'),
     });
 
-return this.http.get<any>(this.apiUrl, { 
-        withCredentials: true,
-        params: { 
-            page: pageNumber.toString(),
-            limit: limit.toString(),
-            query: query 
-        },
-	{headers: headers}
+    return this.http.get<any>(this.apiUrl, {
+      withCredentials: true,
+      headers: headers,
+      params: {
+        page: pageNumber.toString(),
+        limit: limit.toString(),
+        query: query,
+      },
     });
   }
-
 }

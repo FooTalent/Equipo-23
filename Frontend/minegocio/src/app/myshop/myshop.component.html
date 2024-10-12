@@ -14,14 +14,15 @@
             type="text"
             placeholder="Buscar producto"
             class="bg-[#2B2738] text-white pl-4 ml-14 py-2 rounded-lg w-[85%]"
-            (keyup.enter)="searchProducts()" 
+            [(ngModel)]="searchQuery" 
+            (keyup.enter)="searchProducts()"  
           />
 
           <img
-          src="/icons/search.svg"
+            src="/icons/search.svg"
             class="fas fa-search absolute cursor-pointer top-1/2 transform -translate-y-1/2 text-gray-400 absolute right-[12%]"
-            (click)="searchProducts()" 
-         />
+            (click)="searchProducts()"  
+          />
         </div>
         <div class="flex gap-4">
           <button class="bg-[#2B2738] p-5 rounded-lg relative">
