@@ -38,14 +38,14 @@ export class ProductService {
       params: {
         page: pageNumber.toString(),
         limit: limit.toString(),
-        query: query,
+        ...(query ? { query: query } : {}), 
       },
     });
   }
 
   changeStatus(productId: string, status: string) {
-    const url = `${this.apiUrl}/${productId}`; // Construye la URL con el ID del producto
-    return this.http.put<any>(url, { status }, { // Cambia a PUT y envía el cuerpo con el nuevo estado
+    const url = `${this.apiUrl}/${productId}`; 
+    return this.http.put<any>(url, { status }, { 
       withCredentials: true,
       headers: this.headers,
     });
