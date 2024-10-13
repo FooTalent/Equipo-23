@@ -187,7 +187,7 @@ export const updateProductById = async (req, res) => {
   const id = req.params.pid;
   const email = req.user?.data?.email;
   const role = req.user?.data?.role;
-  const { title, description, code, price, stock, category, thumbnail } =
+  const { title, description, code, price, stock, category, thumbnail, status } =
     req.body;
 
   if (req.body._id || req.body.owner) {
@@ -241,7 +241,7 @@ export const updateProductById = async (req, res) => {
 
   const result = await productsRepository.updateProductBy(
     { _id: id },
-    { title, description, code, price, stock, category, thumbnail }
+    { title, description, code, price, stock, category, thumbnail, status }
   );
   res.status(200).json({ succes: true, data: result });
 };
