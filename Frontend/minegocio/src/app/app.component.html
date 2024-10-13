@@ -3,7 +3,7 @@
 >
   <app-sidebar *ngIf="isLoggedIn()" class="ml-4"></app-sidebar>
   <app-navbar *ngIf="isLoggedIn()" class="lg:hidden w-full"></app-navbar>
-  <main class="flex-grow p-4 overflow-y-auto bg-[#2B2738]">
+  <main class="flex-grow p-4 overflow-y-auto bg-[#2B2738] w-full">
     <router-outlet></router-outlet>
   </main>
 </div>
