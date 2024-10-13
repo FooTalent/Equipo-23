@@ -13,14 +13,18 @@ export class NavbarComponent {
   currentRoute: string;
 
   constructor(private router: Router) {
-    this.currentRoute = this.router.url; 
+    this.currentRoute = this.router.url;
   }
 
   goBack() {
-    this.router.navigate(['..']); 
+    this.router.navigate(['..']);
   }
-  isMenuOpen = false; 
+  isMenuOpen = false;
   toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen; 
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+  logout() {
+    localStorage.removeItem('user_token');
+    this.router.navigate(['/login']);
   }
 }

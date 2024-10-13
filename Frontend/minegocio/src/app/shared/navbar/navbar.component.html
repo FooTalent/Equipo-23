@@ -1,15 +1,14 @@
 <nav
   class="bg-[#5D3CBA] px-2 flex justify-between items-center z-50 lg:hidden w-full"
 >
-
-<div class="navbar-item flex items-center justify-center relative ml-8">
-      <div
-        *ngIf="currentRoute !== '/dashboard'"
-        (click)="goBack()"
-        class="cursor-pointer absolute left-[-15px]"
-      >
-        <img src="/icons/chevron-left.svg" alt="Retroceder" class="w-6 h-6" />
-      </div>
+  <div class="navbar-item flex items-center justify-center relative ml-8">
+    <div
+      *ngIf="currentRoute !== '/dashboard'"
+      (click)="goBack()"
+      class="cursor-pointer absolute left-[-15px]"
+    >
+      <img src="/icons/chevron-left.svg" alt="Retroceder" class="w-6 h-6" />
+    </div>
     <img src="/logos/minegocio-transparent.jpg" class="h-12 w-auto" />
   </div>
 
@@ -38,10 +37,10 @@
   </div>
 
   <div
-    class="fixed top-[50px] right-0 rounded-l-[24px] w-64  bg-[#2B2738]  z-50 p-4 flex flex-col shadow-2xl shadow-[#6A6189] transition-transform duration-300 ease-in-out transform"
+    class="fixed top-[50px] right-0 rounded-l-[24px] w-64 bg-[#2B2738] z-50 p-4 flex flex-col shadow-2xl shadow-[#6A6189] transition-transform duration-300 ease-in-out transform"
     [ngClass]="{ 'translate-x-0': isMenuOpen, 'translate-x-full': !isMenuOpen }"
   >
-    <nav class="flex flex-col space-y-2 font-bold list-none ">
+    <nav class="flex flex-col space-y-2 font-bold list-none">
       <ul class="space-y-1 px-2 font-bold decoration-none"></ul>
       <li class="">
         <a
@@ -179,6 +178,7 @@
       </li>
       <button
         class="mt-8 w-full pl-[1.3rem] py-[12px] px-7 rounded-[16px] transition-colors text-md text-white font-bold max-w-[200px]"
+        (click)="logout()"
         aria-label="Cerrar sesión"
       >
         <img
