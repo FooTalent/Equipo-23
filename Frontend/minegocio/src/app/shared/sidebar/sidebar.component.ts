@@ -1,10 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   standalone: true,
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
+  imports: [CommonModule, RouterLink, RouterLinkActive],
 })
 export class SidebarComponent {
   constructor(private router: Router) {}
