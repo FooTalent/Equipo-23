@@ -27,6 +27,10 @@ const productSchema = new mongoose.Schema(
       default: true,
       required: true,
     },
+    status: {
+      type: Boolean,
+      default: true,
+    },
     category: {
       type: String,
       required: true,
@@ -37,11 +41,11 @@ const productSchema = new mongoose.Schema(
         {
           name: {
             type: String,
-            required:true
+            required: true,
           },
           reference: {
             type: String,
-            required:true
+            required: true,
           },
           _id: false,
         },
