@@ -1,0 +1,206 @@
+<div class=" lg:p-6 lg:bg-[#3B364C] rounded-[16px] flex lg:justify-center w-[208vw] lg:w-auto">
+  <div class="w-full lg:w-[77.5vw] min-w-[360px] h-[90vh] flex flex-row gap-6">
+    <div class="left px-4 bg-[#2B2738] h-full min-w-[360px] w-full lg:w-[35%] rounded-[16px]">
+      <div class="sticky flex flex-col rounded-lg">
+        <div
+          class="upper-nav bg-[#2B2738] flex gap-5 items-center px-3 lg:px-7 py-[2rem] rounded-[16px]"
+        >
+          <div class="dp flex justify-center items-center rounded-l-lg">
+            <img
+              class="rounded-xl bg-[#5D3CBA] p-4"
+              src="/icons/whatsapp.svg"
+            />
+          </div>
+          <div
+            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
+          >
+            <img class="rounded-xl bg-[#3B364C] p-4" src="/icons/tiktok.svg" />
+          </div>
+          <div
+            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
+          >
+            <img
+              class="rounded-xl bg-[#3B364C] p-4"
+              src="/icons/instagram.svg"
+            />
+          </div>
+          <div
+            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
+          >
+            <img
+              class="rounded-xl bg-[#3B364C] p-4"
+              src="/icons/facebook.svg"
+            />
+          </div>
+        </div>
+        <div class="lower-nav lg:px-4 py-2 flex items-center">
+          <div class="flex md:justify-center lg:justify-between items-center w-full relative gap-3 lg:gap-[unset]">
+            <img src="/icons/search.svg" class="absolute left-[5%] md:left-[9%] scale-125" />
+            <input
+              class="outline-none bg-[#3B364C] rounded-xl pl-16 py-3 w-[80%] mr-2 ml-2"
+              placeholder="Buscar un mensaje"
+              type="text"
+              id="search"
+            />
+            <div
+              class="w-[45px] h-[45px] bg-[#3B364C] rounded-xl lg:flex justify-center items-center relative"
+            >
+              <img src="/icons/filter.svg" class="absolute bottom-[15px] left-[14px] "/>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="h-[68vh] overflow-y-scroll flex flex-col items-center gap-4 mt-4"
+        >
+          <div
+            class="chatbox cursor-pointer px-2 py-3 bg-[#3B364C] rounded-[16px] w-[95%] lg:w-[90%] hover:bg-[#5D3CBA] max-w-[700px]"
+          >
+            <div class="flex items-center w-full">
+              <div class="p-3">
+                <img
+                  src="/icons/profile-image.png"
+                  alt=""
+                  class="rounded-lg w-[55px] h-[55px]"
+                />
+              </div>
+              <div class="flex justify-between w-[80%]">
+                <div class="chat-name flex flex-col gap-1">
+                  <h3 class="text-lg text-white font-semibold">
+                    Aditya Bamniya
+                  </h3>
+                  <p
+                    class="text-md text-[#7C798A] font-sans font-normal flex items-center"
+                  >
+                    <span class="inline-block">Aaja Chai peene Chale...</span>
+                  </p>
+                </div>
+                <div class="last-chat mr-2">
+                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
+                    15 min
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right bg-[#2B2738] h-full w-full min-w-[360px] lg:w-[70%] rounded-xl">
+      <div
+        class="right-upper bg-[#5D3CBA] flex justify-between items-center px-4 py-3 lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
+      >
+        <div class="flex justify-between items-center w-full cursor-pointer">
+          <div class="flex justify-between items-center space-x-4">
+            <img
+              src="/icons/profile-image.png"
+              class="w-[55px] h-[55px] rounded-lg"
+              alt=""
+            />
+            <div class="flex flex-col">
+              <p class="text-white font-sans font-medium text-base">Ravindra</p>
+            </div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div
+              class="w-[40px] h-[40px] flex justify-center items-center cursor-not-allowed"
+            >
+              <img
+                src="/icons/search.svg"
+                alt="search-messages"
+                class="scale-150"
+              />
+            </div>
+            <div
+              class="w-[40px] h-[40px] flex justify-center items-center cursor-not-allowed"
+            >
+              <svg viewBox="0 0 24 24" width="28" height="28" class="">
+                <path
+                  fill="#fff"
+                  d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8"
+      >
+        <div
+          class="chatbox px-2 pb-4 bg-[#5D3CBA] rounded-lg w-[fit-content] max-w-[40%] ml-4 relative"
+        >
+          <div class="flex items-center w-full">
+            <div class="flex justify-between w-full flex-col">
+              <div class="flex flex-col gap-1">
+                <p
+                  class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
+                >
+                  Aaja Chai peene Chale... Aaja Chai peene Chale...
+                </p>
+              </div>
+              <div class="last-chat w-full flex mt-2">
+                <p
+                  class="text-[0.80rem] font-sans text-white font-normal ml-auto"
+                >
+                  20:30
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="chatbox px-2 pb-4 bg-[#3B364C] rounded-lg w-[fit-content] max-w-[40%] ml-4 relative ml-auto"
+        >
+          <div class="flex items-center w-full">
+            <div class="flex justify-between w-full flex-col">
+              <div class="flex flex-col gap-1">
+                <p
+                  class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
+                >
+                  Aaja Chai peene Chale... Aaja Chai peene Chale...
+                </p>
+              </div>
+              <div class="last-chat w-full flex mt-2">
+                <p
+                  class="text-[0.80rem] font-sans text-white font-normal ml-auto"
+                >
+                  20:30
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div
+        class="right-bottom w-full top-full sticky flex justify-between items-center px-4 py-4 space-x-2"
+      >
+        <input
+          type="text"
+          placeholder="Escribe un mensaje"
+          class="bg-[#3B364C] rounded-[8px] px-4 py-4 outline-none w-full placeholder:text-[#7C798A]"
+          id=""
+        />
+        <div
+          class="flex justify-center items-center relative w-[53px] h-[53px] bg-[#3B364C] rounded-lg cursor-not-allowed"
+        >
+          <img
+            src="/icons/paper-clip.svg"
+            alt="adjuntar archivo"
+            class="absolute w-[25px] h-[25px]"
+          />
+        </div>
+        <div
+          class="flex justify-center items-center cursor-pointer relative w-[53px] h-[53px] bg-[#3B364C] rounded-lg"
+        >
+          <img
+            src="/icons/send.svg"
+            alt="adjuntar archivo"
+            class="absolute w-[25px] h-[25px]"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
