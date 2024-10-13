@@ -80,8 +80,15 @@
         <div class="bg-[#3B364C] p-3 flex justify-between">
           <span>Estado:</span>
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 bg-green-500 rounded-full"> </span>
-            {{ product.status }}
+            <span
+              [ngClass]="{
+                'bg-green-500': product.status,
+                'bg-yellow-500': !product.status
+              }"
+              class="w-2 h-2 rounded-full"
+            >
+            </span>
+            {{ product.status ? "En venta" : "Inventario" }}
           </div>
         </div>
         <div class="bg-[#3B364C] p-3 flex justify-between">
