@@ -8,6 +8,8 @@ export default class Product {
 
   async get(owner,limit, page, sort, query) {
     console.log(owner);
+    console.log(query);
+    
     
     const appUrl =
       environment === "development"
@@ -16,7 +18,7 @@ export default class Product {
 
     limit = !limit ? 10 : parseInt(limit);
     page = !page ? 1 : parseInt(page);
-    query = !query ? {owner: owner} : { title: query, owner: owner };
+    query = !query ? { owner: owner } : { title: { $regex: query, $options: 'i' }, owner: owner };
 
 
     const options = {
