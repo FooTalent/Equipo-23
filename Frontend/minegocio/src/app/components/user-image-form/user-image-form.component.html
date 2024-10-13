@@ -1,0 +1,23 @@
+<div class="fixed inset-0 z-10 flex items-center justify-center bg-gray-600 text-white bg-opacity-80">
+    <div class="relative bg-gray-900 w-full max-w-2xl lg:max-w-4xl p-8 rounded-2xl shadow-lg mx-1 lg:mx-4 md:mx-0">
+
+        <button (click)="toggleEditImageForm()" class="absolute top-4 right-4 text-gray-500 hover:text-white">
+            &times; 
+        </button>
+
+        <h2 class="text-2xl font-bold mb-6">Gestor de Imagen</h2>
+
+        <form class="space-y-4">
+
+            <div>
+                <label for="imagen" class="block pl-2 font-medium">Subir Imagen</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*"
+                class="bg-gray-800 mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
+            </div>
+
+            <button type="submit" class="w-full bg-purple-600 text-white py-3 px-4 rounded-2xl hover:bg-purple-700">
+                Subir Imagen
+            </button>
+        </form>
+    </div>
+</div>

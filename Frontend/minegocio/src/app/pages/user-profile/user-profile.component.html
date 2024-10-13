@@ -2,7 +2,7 @@
 
     <div class="p-4 box-border bg-gray-900 w-full rounded-2xl">
         <h1 class="hidden lg:block text-white text-2xl pl-2 font-bold">Datos personales</h1>
-        <form class="bg-gray-900 lg:p-6 rounded-lg w-full space-y-6">
+        <div class="bg-gray-900 lg:p-6 rounded-lg w-full space-y-6">
 
             <div class="bg-gray-900 w-full flex my-2 lg:my-0 flex-col lg:flex-row gap-y-4 space-y-4 lg:space-x-8">
 
@@ -10,7 +10,7 @@
                     <div class="relative box-border">
                         <img class="w-36 h-auto lg:w-52 lg:min-w-32 lg:h-auto rounded-2xl object-cover"
                             src="https://via.placeholder.com/150" alt="Profile Picture">
-                        <button
+                        <button (click)="toggleEditImageForm()"
                             class="absolute right-[33%] bottom-[85%] lg:bottom-[5rem] lg:-right-6 border-4 border-gray-900 bg-purple-600 hover:bg-purple-500 p-2 rounded-full">
                             <img src="/icons/edit.svg" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
                         </button>
@@ -82,8 +82,9 @@
                     Editar
                 </button>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 
 <app-user-edit-form *ngIf="editFormOpen()"></app-user-edit-form>
+<app-user-image-form *ngIf="editImageFormOpen()"></app-user-image-form>

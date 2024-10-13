@@ -22,17 +22,7 @@ export class UserEditFormComponent {
     localidad: new FormControl('')
   });
 
-  errorMessage: string = '';
-  isLoading = signal(false);
-
-  onEditSubmit(event: Event) {
-    event.preventDefault()
-
-  }
-
   // Function to toggle form visibility
-
-  editFormOpen = this.userService.editFormOpen;
 
   toggleEditForm() {
     this.userService.toggleEditForm();
