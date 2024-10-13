@@ -78,11 +78,12 @@
                   <td class="p-3 py-6">{{ product.title }}</td>
                   <td class="p-3 py-6">{{ product.stock }}</td>
                   <td class="p-3 py-6">$ {{ product.price }}</td>
-                  <td class="p-3 py-6">
-                    <span class="inline-flex items-center">
-                      <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                      {{ product.status }}
-                    </span>
+                  <td class="p-3 py-6 flex items-center">
+                    <span 
+                      class="w-2 h-2 rounded-full mr-2" 
+                      [ngClass]="{ 'bg-green-500': product.status, 'bg-yellow-500': !product.status }"
+                    ></span>
+                    {{ product.status ? 'En venta' : 'Inventario' }}
                   </td>
                   <td class="p-3">
                     {{ product.created_data | date : "dd/MM/yyyy" }}
