@@ -1,0 +1,198 @@
+<nav
+  class="bg-[#5D3CBA] px-2 flex justify-between items-center z-50 lg:hidden w-full"
+>
+
+<div class="navbar-item flex items-center justify-center relative ml-8">
+      <div
+        *ngIf="currentRoute !== '/dashboard'"
+        (click)="goBack()"
+        class="cursor-pointer absolute left-[-15px]"
+      >
+        <img src="/icons/chevron-left.svg" alt="Retroceder" class="w-6 h-6" />
+      </div>
+    <img src="/logos/minegocio-transparent.jpg" class="h-12 w-auto" />
+  </div>
+
+  <div class="flex gap-4 items-center">
+    <div>
+      <img
+        src="/icons/bell.svg"
+        alt="Icono de notificaciones"
+        class="w-8 h-8 mr-4"
+      />
+    </div>
+    <div>
+      <img
+        src="/icons/profile-image.png"
+        alt="Foto de perfil de Josefina Martinez"
+        class="w-7 h-7 rounded-full mr-3"
+      />
+    </div>
+    <div (click)="toggleMenu()">
+      <img
+        src="/icons/menu.svg"
+        alt="hamburger-menu"
+        class="w-6 h-6 cursor-pointer"
+      />
+    </div>
+  </div>
+
+  <div
+    class="fixed top-[50px] right-0 rounded-l-[24px] w-64 h-full bg-[#2B2738] h-[94%] z-50 p-4 flex flex-col shadow-2xl shadow-[#6A6189] transition-transform duration-300 ease-in-out transform"
+    [ngClass]="{ 'translate-x-0': isMenuOpen, 'translate-x-full': !isMenuOpen }"
+  >
+    <nav class="flex flex-col space-y-2 font-bold list-none gap-6">
+      <ul class="space-y-1 px-2 font-bold decoration-none"></ul>
+      <li class="">
+        <a
+          (click)="toggleMenu()"
+          routerLink="/dashboard"
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex py-[12px] pl-[1.3rem] px-7 rounded-[16px] transition-colors max-w-[200px] text-white"
+          aria-label="Ir a la página de inicio"
+        >
+          <img
+            src="/icons/home.svg"
+            alt="Icono de inicio"
+            class="w-6 h-6 mr-4"
+          />
+          <span class="text-white"> Home </span>
+        </a>
+      </li>
+      <li>
+        <a
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex py-[12px] pl-[1.3rem] px-7 rounded-t-[16px] text-gray-400 cursor-not-allowed transition-colors max-w-[200px]"
+          aria-label="Ver notificaciones"
+        >
+          <img
+            src="/icons/bell.svg"
+            alt="Icono de notificaciones"
+            class="w-6 h-6 mr-4"
+          />
+          Notificaciones
+        </a>
+      </li>
+      <li>
+        <a
+          (click)="toggleMenu()"
+          routerLink="/messages"
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex py-[12px] pl-[1.3rem] px-7 rounded-b-[16px] text-white transition-colors max-w-[200px] text-white"
+          aria-label="Ver mensajes"
+        >
+          <img
+            src="/icons/chats.svg"
+            alt="Icono de mensajes"
+            class="w-6 h-6 mr-4"
+          />
+
+          <span class="text-white"> Mensajes </span>
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/myshop"
+          (click)="toggleMenu()"
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex items-center pl-[1.3rem] py-[12px] px-7 rounded-[16px] text-white transition-colors max-w-[200px]"
+          aria-label="Ir a mi tienda"
+        >
+          <img
+            src="/icons/shop.svg"
+            alt="Icono de tienda"
+            class="w-6 h-6 mr-4"
+          />
+
+          <span class="text-white"> Mi Tienda </span>
+        </a>
+      </li>
+      <li>
+        <a
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 rounded-t-[16px] text-gray-400 transition-colors max-w-[200px]"
+          aria-label="Ver clientes"
+        >
+          <img
+            src="/icons/clients.svg"
+            alt="Icono de clientes"
+            class="w-6 h-6 mr-4"
+          />
+          Clientes
+        </a>
+      </li>
+      <li>
+        <a
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
+          aria-label="Ver estadísticas"
+        >
+          <img
+            src="/icons/metrics.svg"
+            alt="Icono de estadísticas"
+            class="w-6 h-6 mr-4"
+          />
+          Estadísticas
+        </a>
+      </li>
+      <li>
+        <a
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
+          aria-label="Ver facturación"
+        >
+          <img
+            src="/icons/billing.svg"
+            alt="Icono de facturación"
+            class="w-6 h-6 mr-4"
+          />
+          Facturación
+        </a>
+      </li>
+      <li>
+        <a
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex items-center cursor-not-allowed pl-[1.3rem] py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
+          aria-label="Ver pedidos"
+        >
+          <img
+            src="/icons/orders.svg"
+            alt="Icono de pedidos"
+            class="w-6 h-6 mr-4"
+          />
+          Pedidos
+        </a>
+      </li>
+      <li>
+        <a
+          routerLinkActive="bg-[#5D3CBA] text-white"
+          class="flex items-center cursor-not-allowed pl-[1.3rem] py-[12px] px-7 rounded-b-[16px] text-gray-400 transition-colors max-w-[200px]"
+          aria-label="Ver envíos"
+        >
+          <img
+            src="/icons/shipping.svg"
+            alt="Icono de envíos"
+            class="w-6 h-6 mr-4"
+          />
+          Envíos
+        </a>
+      </li>
+      <button
+        class="mt-8 w-full pl-[1.3rem] py-[12px] px-7 rounded-[16px] transition-colors text-md text-white font-bold max-w-[200px]"
+        aria-label="Cerrar sesión"
+      >
+        <img
+          src="/icons/logout.svg"
+          alt="Icono de cerrar sesión"
+          class="w-8 h-8 inline mr-2"
+        />
+        Cerrar sesión
+      </button>
+    </nav>
+  </div>
+  <div
+    *ngIf="isMenuOpen"
+    class="fixed inset-0 bg-black bg-opacity-50 z-40"
+    (click)="toggleMenu()"
+  ></div>
+</nav>

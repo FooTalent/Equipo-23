@@ -1,0 +1,143 @@
+<div class="text-white rounded-2xl w-full px-2">
+  <div class="rounded-[1rem] py-4 mb-1 w-full">
+    <div class="flex items-center gap-4 relative">
+      <img
+        src="/icons/search.svg"
+        class="cursor-pointer text-gray-400 absolute left-[3%]"
+        (click)="searchProducts()"
+      />
+      <input
+        type="text"
+        placeholder="Buscar mensaje"
+        class="bg-[#3B364C] text-white pl-4 py-3 rounded-[16px] w-full placeholder:pl-8"
+        (keyup.enter)="searchProducts()"
+      />
+      <button class="bg-[#3B364C] p-2 rounded-lg p-[0.8rem]">
+        <img src="/icons/filter.svg" class="w-5 h-5" />
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-between items-center py-4 rounded-lg">
+    <h2 class="text-white px-6 py-3 bg-[#3B364C] rounded-[16px] font-bold">
+      Catálogo
+    </h2>
+    <div class="flex bg-[#3B364C] p-1 rounded-lg">
+      <button class="bg-[#E5E504] p-2 rounded-lg">
+        <img src="/icons/table-view.svg" class="w-6 h-6" />
+      </button>
+      <button class="bg-[transparent] p-2 rounded-lg cursor-not-allowed">
+        <img src="/icons/options.svg" class="w-6 h-6" />
+      </button>
+    </div>
+    <button class="bg-[#5D3CBA] p-3 rounded-lg">
+      <img src="/icons/add.svg" class="w-5 h-5" />
+    </button>
+  </div>
+
+  <!-- Sección de Detalles del Producto -->
+  <ng-container *ngIf="!isLoading; else loadingSpinner">
+    <ng-container *ngIf="products.length > 0; else noProducts">
+      <div
+        *ngFor="let product of products"
+        class="rounded-[24px] my-4 flex gap-[2px] flex-col"
+      >
+        <h3
+          class="bg-[#5D3CBA] rounded-t-[16px] p-3 text-lg font-semibold flex justify-between"
+        >
+          Detalles
+          <div class="flex gap-2">
+            <button>
+              <img (click)="changeProductStatus(product.id)" src="/icons/eyes.svg" class="w-6 h-6" />
+            </button>
+            <button class="ml-3">
+              <img (click)="goToProduct(product.id)" src="/icons/search-white.svg" class="w-5 h-5" />
+            </button>
+          </div>
+        </h3>
+        <div class="bg-[#3B364C] p-3 flex justify-between">
+          <span>Producto:</span>
+          <span> {{ product.title }}</span>
+        </div>
+        <div class="bg-[#3B364C] p-3 flex justify-between">
+          <span>Stock:</span>
+          <span>{{ product.stock }}</span>
+        </div>
+        <div class="bg-[#3B364C] p-3 flex justify-between">
+          <span>Precio:</span>
+          <span>$ {{ product.price }}</span>
+        </div>
+        <div class="bg-[#3B364C] p-3 flex justify-between">
+          <span>Estado:</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full"> </span>
+            {{ product.status }}
+          </div>
+        </div>
+        <div class="bg-[#3B364C] p-3 flex justify-between">
+          <span>Ingreso:</span>
+          <span>
+            {{ product.created_data | date : "dd/MM/yyyy" }}
+          </span>
+        </div>
+        <div class="bg-[#3B364C] p-3 flex justify-between rounded-b-[16px]">
+          <span>Cod. Id:</span>
+          <span>{{ product.code }}</span>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div
+    class="flex justify-between items-center mt-auto bg-[#2B2738] py-3 px-5 rounded-[1rem] max-w-[1370px] ml-4"
+  >
+    <button
+      class="flex items-center"
+      (click)="goToPreviousPage()"
+      *ngIf="totalPages > 2 && currentPage > 1"
+    >
+      <img src="/icons/chevron-left.svg" class="fas fa-chevron-right mr-2" />
+      Anterior
+    </button>
+
+    <div class="flex space-x-5 mx-auto">
+      <ng-container
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+      >
+        <button
+          class="border-[#7C798A] border-[1px] hover:bg-[#5D3CBA] w-8 h-8 rounded-lg"
+          (click)="goToPage(i + 1)"
+        >
+          {{ i + 1 }}
+        </button>
+      </ng-container>
+
+      <button
+        *ngIf="totalPages > 4"
+        class="border-[#7C798A] border-[1px] w-8 h-8 rounded-lg"
+      >
+        ...
+      </button>
+    </div>
+
+    <button
+      class="flex items-center"
+      (click)="goToNextPage()"
+      *ngIf="totalPages > 2 && currentPage < totalPages"
+    >
+      Siguiente
+      <img src="/icons/chevron-right.svg" class="fas fa-chevron-right ml-2" />
+    </button>
+  </div>
+
+  <ng-template #loadingSpinner>
+    <div class="text-center py-8 text-white">
+      <div class="spinner"></div>
+      Cargando productos
+    </div>
+  </ng-template>
+
+  <ng-template #noProducts>
+    <div class="text-center py-8">No se encontraron productos.</div>
+  </ng-template>
+</div>

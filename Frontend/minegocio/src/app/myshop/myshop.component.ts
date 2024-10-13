@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MyShopMobileComponent } from './myshop-mobile.component';
 
 @Component({
   selector: 'app-myshop',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MyShopMobileComponent],
   templateUrl: './myshop.component.html',
   styleUrls: ['./myshop.component.css']
 })
@@ -18,10 +19,17 @@ export class MyShopComponent implements OnInit {
   totalPages: number = 1; 
   currentPage: number = 1; 
   searchQuery: string = ''; 
+  isLargeScreen: boolean = true;
 
   constructor(private productService: ProductService, private router: Router) {}
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isLargeScreen = window.innerWidth > 1024;
+  }
+
   ngOnInit() {
+    this.isLargeScreen = window.innerWidth > 1024; // Inicializa la propiedad
     this.loadProducts(this.currentPage);
   }
 
@@ -60,7 +68,6 @@ export class MyShopComponent implements OnInit {
   }
 
   updateProductStatusInList(productId: string, response: any) {
-    // Lógica para actualizar el estado del producto en la lista
     const product = this.products.find(p => p.id === productId);
     if (product) {
       product.status = response.newStatus; // Asumiendo que la respuesta contiene el nuevo estado
@@ -89,7 +96,6 @@ export class MyShopComponent implements OnInit {
     this.loadProducts(this.currentPage, this.searchQuery);
   }
 
-  // Nuevo método para navegar a la página del producto
   goToProduct(productId: string) {
     this.router.navigate([`myshop/${productId}`]); // Navega a la URL del producto
   }
