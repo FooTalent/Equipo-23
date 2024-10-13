@@ -29,7 +29,7 @@ export class MyShopComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLargeScreen = window.innerWidth > 1024; // Inicializa la propiedad
+    this.isLargeScreen = window.innerWidth > 1024; 
     this.loadProducts(this.currentPage);
   }
 
@@ -53,11 +53,11 @@ export class MyShopComponent implements OnInit {
   changeProductStatus(productId: string) {
     const product = this.products.find(p => p.id === productId);
     if (product) {
-      const newStatus = product.status === 'true' ? 'false' : 'true'; // Cambia el estado actual
+      const newStatus = product.status === 'true' ? 'false' : 'true'; 
       this.productService.changeStatus(productId, newStatus).subscribe({
         next: (response) => {
           console.log('Estado del producto actualizado:', response);
-          this.updateProductStatusInList(productId, newStatus); // Actualiza el estado en la lista
+          this.updateProductStatusInList(productId, newStatus);
         },
         error: (error) => {
           console.error('Error al cambiar el estado del producto:', error);
@@ -70,7 +70,7 @@ export class MyShopComponent implements OnInit {
   updateProductStatusInList(productId: string, response: any) {
     const product = this.products.find(p => p.id === productId);
     if (product) {
-      product.status = response.newStatus; // Asumiendo que la respuesta contiene el nuevo estado
+      product.status = response.newStatus; 
     }
   }
 
@@ -97,7 +97,7 @@ export class MyShopComponent implements OnInit {
   }
 
   goToProduct(productId: string) {
-    this.router.navigate([`myshop/${productId}`]); // Navega a la URL del producto
+    this.router.navigate([`myshop/${productId}`]); 
   }
 
   activateProduct(productId: string) { 
