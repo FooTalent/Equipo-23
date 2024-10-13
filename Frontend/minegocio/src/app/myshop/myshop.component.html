@@ -16,6 +16,7 @@
               placeholder="Buscar producto"
               class="bg-[#2B2738] text-white pl-4 ml-14 py-2 rounded-lg w-full"
               (keyup.enter)="searchProducts()"
+              [(ngModel)]="searchQuery" 
             />
 
             <img
