@@ -51,7 +51,7 @@
               <img
                 (click)="changeProductStatus(product.id)"
                 [src]="
-                  !product.status ? '/icons/eyes.svg' : '/icons/hidden-eye.svg'
+                  product.status ? '/icons/eyes.svg' : '/icons/hidden-eye.svg'
                 "
                 class="w-6 h-6"
               />
