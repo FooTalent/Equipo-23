@@ -2,15 +2,17 @@
   <div class="rounded-[1rem] py-4 mb-1 w-full">
     <div class="flex items-center gap-4 relative">
       <img
+        *ngIf="!searchQuery"
         src="/icons/search.svg"
         class="cursor-pointer text-gray-400 absolute left-[3%]"
-        (click)="searchProducts()"
+        (click)="searchProducts(searchQuery)"
       />
       <input
         type="text"
         placeholder="Buscar mensaje"
         class="bg-[#3B364C] text-white pl-4 py-3 rounded-[16px] w-full placeholder:pl-8"
-        (keyup.enter)="searchProducts()"
+        (keyup.enter)="searchProducts(searchQuery)"
+        [(ngModel)]="searchQuery"
       />
       <button class="bg-[#3B364C] p-2 rounded-lg p-[0.8rem]">
         <img src="/icons/filter.svg" class="w-5 h-5" />

@@ -91,9 +91,9 @@ export class MyShopComponent implements OnInit {
     }
   }
 
-  searchProducts() {
+  searchProducts(query?: string) {
     this.currentPage = 1; 
-    this.loadProducts(this.currentPage, this.searchQuery);
+    this.loadProducts(this.currentPage, this.searchQuery || query);
   }
 
   goToProduct(productId: string) {
