@@ -7,6 +7,7 @@ import { MyShopComponent } from './myshop/myshop.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { authGuard } from './guards/auth.guard';
 import { nonAuthGuard } from './guards/non-auth.guard';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
     {path: "", component: DashboardComponent, canActivate: [authGuard]},
@@ -14,5 +15,6 @@ export const routes: Routes = [
     {path: "verify-code", component: VerifyCodeComponent, canActivate: [nonAuthGuard]},
     {path: "sign-up", component: SignUpComponent, canActivate: [nonAuthGuard]},
     {path: 'myshop', component: MyShopComponent, canActivate: [authGuard]},
+    {path: 'user-profile', component: UserProfileComponent, canActivate: [authGuard]},
     {path: "**", component: NotFoundPageComponent},
 ];
