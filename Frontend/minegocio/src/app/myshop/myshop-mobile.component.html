@@ -48,10 +48,20 @@
           Detalles
           <div class="flex gap-2">
             <button>
-              <img (click)="changeProductStatus(product.id)" src="/icons/eyes.svg" class="w-6 h-6" />
+              <img
+                (click)="changeProductStatus(product.id)"
+                [src]="
+                  !product.status ? '/icons/eyes.svg' : '/icons/hidden-eye.svg'
+                "
+                class="w-6 h-6"
+              />
             </button>
             <button class="ml-3">
-              <img (click)="goToProduct(product.id)" src="/icons/search-white.svg" class="w-5 h-5" />
+              <img
+                (click)="goToProduct(product.id)"
+                src="/icons/search-white.svg"
+                class="w-5 h-5"
+              />
             </button>
           </div>
         </h3>

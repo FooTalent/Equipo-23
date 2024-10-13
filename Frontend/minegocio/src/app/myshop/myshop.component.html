@@ -89,7 +89,10 @@
                   </td>
                   <td class="p-3">
                     <button (click)="changeProductStatus(product.id)" >
-                      <img src="/icons/eyes.svg" class="w-6 h-6"/>
+                      <img 
+                        [src]="product.status ? '/icons/eyes.svg' : '/icons/hidden-eye.svg'" 
+                        class="w-6 h-6"
+                      />
                     </button>
                     <button class="ml-3" (click)="goToProduct(product.id)">
                       <img src="/icons/search-white.svg" class="w-5 h-5 " />
