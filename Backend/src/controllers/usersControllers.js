@@ -7,7 +7,7 @@ import config from "../config/config.js";
 import { transport } from "../utils/nodemailer.js";
 import { removeEmptyObjectFields } from "../utils/removeEmptyObjectFields.js";
 import uploadFile from "../utils/cloudinary/upload.js";
-import cloudinary from "../utils/cloudinary.js";
+import { deleteSources } from "../utils/cloudinary/deleteFiles.js";
 
 export const getUsers = async (req, res) => {
   const role = req.user?.data?.role;
@@ -148,23 +148,19 @@ export const updatePhotoUserCurrent = async (req, res) => {
     return res.status(400).json({ succes: false, message: "Error upload photo" });
   }
 
-  console.log('uploadPhoto ', uploadPhoto.url)
-  console.log('userData ', userData)
-
   const user = await usersRepository.updateUserBy(
     { _id: userData._id },
     { photo: uploadPhoto[0].url }
   )
 
   const regex = /v1728673265\/(.+)/
-  console.log('uploadPhoto ', uploadPhoto)
   const match = userData.photo.match(regex)
 
   const result = await UserDTO.getUserResponseForCurrent(user);
+  if (match[1] !== "minegocio/system/users/avatar/fc45tqkoolar0tofmbzu") {
+    await deleteSources(match[1], { type: 'upload', resource_type: 'image' })
+  }
 
-  // const deletePhoto = await cloudinary.api.delete_resources(match[1],
-  //   { type: 'upload', resource_type: 'image' },
-  // )
   res.status(200).json({ succes: true, data: result });
 };
 
