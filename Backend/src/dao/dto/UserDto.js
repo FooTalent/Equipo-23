@@ -117,6 +117,7 @@ export default class UserDTO {
 
   static getUserResponseForCurrent = async (user) => {
     const cart = await cartsRepository.getCartById(user.cartId);
+    console.log("user ", user)
     return {
       d: user._id,
       name: user.name,

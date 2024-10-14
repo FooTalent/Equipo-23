@@ -43,7 +43,7 @@ export const getUserCurrent = async (req, res) => {
     return res.status(404).json({ succes: false, message: "User not found" });
   }
 
-  const userDto = await UserDTO.getUserResponseForCurrent(userData);
+  const userDto = await UserDTO.getUserResponseForCurrent(user);
   res.status(201).json({ succes: true, data: userDto });
 };
 
