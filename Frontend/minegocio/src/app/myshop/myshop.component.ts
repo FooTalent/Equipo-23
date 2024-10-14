@@ -53,7 +53,8 @@ export class MyShopComponent implements OnInit {
   changeProductStatus(productId: string) {
     const product = this.products.find(p => p.id === productId);
     if (product) {
-      const newStatus = product.status === 'true' ? 'false' : 'true'; 
+      const newStatus = product.status === true ? false : true; 
+      
       this.productService.changeStatus(productId, newStatus).subscribe({
         next: (response) => {
           console.log('Estado del producto actualizado:', response);

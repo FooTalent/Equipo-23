@@ -9,7 +9,7 @@ export interface Product {
   title: string;
   stock: number;
   price: number;
-  status: string;
+  status: boolean;
   created_data: string;
 }
 
@@ -43,7 +43,7 @@ export class ProductService {
     });
   }
 
-  changeStatus(productId: string, status: string) {
+  changeStatus(productId: string, status: boolean) {
     const url = `${this.apiUrl}/${productId}`; 
     return this.http.put<any>(url, { status }, { 
       withCredentials: true,
