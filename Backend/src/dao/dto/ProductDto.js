@@ -10,7 +10,6 @@ export default class ProductDTO {
     if (email == product.owner) {
       role = "authorized";
     }
-    const status = product.stock > 0;
     switch (role) {
       case "admin":
       case "authorized":
@@ -20,7 +19,7 @@ export default class ProductDTO {
           description: product.description,
           code: product.code,
           price: product.price,
-          status,
+          status: product.status,
           stock: product.stock,
           category: product.category,
           owner: product.owner,
@@ -36,7 +35,7 @@ export default class ProductDTO {
           title: product.title,
           description: product.description,
           price: product.price,
-          status,
+          status: product.status,
           stock: product.stock,
           category: product.category,
           owner: product.owner,
