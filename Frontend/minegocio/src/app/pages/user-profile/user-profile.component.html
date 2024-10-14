@@ -1,10 +1,10 @@
 <div class="h-full bg-[#3B364C] box-border lg:p-6 lg:mx-4 lg:mr-10 rounded-2xl select-none">
 
-    <div class="p-4 box-border bg-gray-900 w-full rounded-2xl">
+    <div class="p-4 lg:p-8 box-border bg-[#2B2738] w-full rounded-2xl">
         <h1 class="hidden lg:block text-white text-2xl pl-2 font-bold">Datos personales</h1>
-        <div class="bg-gray-900 lg:p-6 rounded-lg w-full space-y-6">
+        <div class="bg-[#2B2738] lg:p-6 rounded-lg w-full space-y-6">
 
-            <div class="bg-gray-900 w-full flex my-2 lg:my-0 flex-col lg:flex-row gap-y-4 space-y-4 lg:space-x-8">
+            <div class="bg-[#2B2738] w-full flex my-2 lg:my-0 flex-col lg:flex-row gap-y-4 space-y-4 lg:space-x-8">
 
                 <div class="flex items-center gap-x-10 mt-4 lg:mt-0 flex-col lg:flex-row">
                     <div class="relative box-border">
@@ -23,7 +23,7 @@
                         <div class="flex flex-col gap-y-2">
                             <label class="ml-2 text-gray-400">Nombre</label>
                             <div
-                                class="w-full bg-gray-800 text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white">
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white">
                                 Josefina
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                         <div class="flex flex-col gap-y-2">
                             <label class="ml-2 text-gray-400">Apellido</label>
                             <div
-                                class="w-full bg-gray-800 text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white">
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white">
                                 Martinez
                             </div>
                         </div>
@@ -42,7 +42,7 @@
             <div>
                 <label for="email" class="ml-2 block text-gray-400 mb-2">Email</label>
                 <div id="email"
-                    class="w-full bg-gray-800 text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
+                    class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
                     readonly>
                     josefina.martinezgmail.com
                 </div>
@@ -51,17 +51,17 @@
             <div>
                 <label for="telefono" class="ml-2 block text-gray-400 mb-2">Teléfono</label>
                 <div id="telefono"
-                    class="w-full bg-gray-800 text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
+                    class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
                     readonly>
                     000000 - 0000000
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 lg:gap-y-0 pb-5 lg:pb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 lg:gap-y-0 pb-5 lg:pb-32">
                 <div>
                     <label for="pais" class="ml-2 block text-gray-400 mb-2">País</label>
                     <div id="pais"
-                        class="w-full bg-gray-800 text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
                         readonly>
                         Argentina
                     </div>
@@ -69,7 +69,7 @@
                 <div>
                     <label for="localidad" class="ml-2 block text-gray-400 mb-2">Localidad</label>
                     <div id="localidad"
-                        class="w-full bg-gray-800 text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
                         readonly>
                         Caballito
                     </div>
@@ -78,7 +78,7 @@
 
             <div class="flex justify-center">
                 <button type="button" (click)="toggleEditForm()"
-                    class="w-full bg-purple-600 text-white py-3 mb-6 rounded-xl hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-500">
+                    class="w-full bg-[#5D3CBA] text-white py-3 mb-5 lg:-mb-2 rounded-xl hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-500">
                     Editar
                 </button>
             </div>
