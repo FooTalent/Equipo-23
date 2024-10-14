@@ -8,6 +8,7 @@ authorization;
 import uploader from "../../utils/multer.js";
 import { authorization } from "../../middlewares/authMiddleware.js";
 import upload from "../../utils/multer.js";
+import { validateUpdateUserCurrent } from "../../utils/validator/updateUserCurrent.js";
 
 const userRouter = Router();
 
@@ -20,7 +21,7 @@ userRouter.delete(
   authorization("admin"),
   users.deleteUser
 );
-userRouter.put("/current/update", passportCall("jwt"), users.updateUserCurrent);
+userRouter.put("/current/update", passportCall("jwt"), validateUpdateUserCurrent, users.updateUserCurrent);
 userRouter.put("/current/update/photo", passportCall("jwt"), upload.any('photo', 1), users.updatePhotoUserCurrent)
 userRouter.put("/:uid", passportCall("jwt"), users.updateUser);
 userRouter.get(
