@@ -153,9 +153,8 @@ export const updatePhotoUserCurrent = async (req, res) => {
     { photo: uploadPhoto[0].url }
   )
 
-  const regex = /v1728673265\/(.+)/
+  const regex = /v\d+\/(.+)/
   const match = userData.photo.match(regex)
-
   const result = await UserDTO.getUserResponseForCurrent(user);
   if (match[1] !== "minegocio/system/users/avatar/fc45tqkoolar0tofmbzu") {
     await deleteSources(match[1], { type: 'upload', resource_type: 'image' })
