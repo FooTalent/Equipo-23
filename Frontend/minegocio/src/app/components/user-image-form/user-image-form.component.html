@@ -1,23 +1,63 @@
-<div class="fixed inset-0 z-10 flex items-center justify-center bg-gray-600 text-white bg-opacity-80">
-    <div class="relative bg-gray-900 w-full max-w-2xl lg:max-w-4xl p-8 rounded-2xl shadow-lg mx-1 lg:mx-4 md:mx-0">
+<div class="fixed inset-0 z-10 flex items-center justify-center bg-gray-600 text-white bg-opacity-80" (click)="toggleEditImageForm()">
+    <div class="relative bg-gray-900 w-full max-w-2xl lg:max-w-4xl p-8 rounded-2xl shadow-lg mx-1 lg:mx-4 md:mx-0 max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
 
-        <button (click)="toggleEditImageForm()" class="absolute top-4 right-4 text-gray-500 hover:text-white">
-            &times; 
+        <button (click)="toggleEditImageForm()" class="absolute top-5 right-5">
+            <img src="/icons/close.svg" alt="Close" class="w-6 h-6">
         </button>
 
-        <h2 class="text-2xl font-bold mb-6">Gestor de Imagen</h2>
+        <h2 class="text-2xl font-bold mb-6">Edita tu foto de perfil</h2>
 
         <form class="space-y-4">
-
             <div>
-                <label for="imagen" class="block pl-2 font-medium">Subir Imagen</label>
-                <input type="file" id="imagen" name="imagen" accept="image/*"
+              <label for="imagen" class="block pl-2 font-medium">Subir Imagen</label>
+              <input type="file" id="imagen" name="imagen" accept="image/*" (change)="fileChangeEvent($event)"
                 class="bg-gray-800 mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
             </div>
+          
+            <div *ngIf="imageChangedEvent && !isCropped">
+              <p class="block pl-2 font-medium mb-2">Recortar Imagen:</p>
+              <image-cropper class="rounded-lg max-h-64 object-contain mx-auto" 
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true" 
+                [aspectRatio]="1 / 1" 
+                format="png" 
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded($event)" 
+                (cropperReady)="cropperReady()" 
+                (loadImageFailed)="loadImageFailed()">
+              </image-cropper>
+            </div>
+          
+            <div *ngIf="croppedImage && isCropped" class="mt-4 pb-6">
+              <p class="block pl-2 font-medium mb-2">Vista previa:</p>
+              <img [src]="croppedImage" alt="Imagen recortada" class="rounded-lg max-h-72 object-contain mx-auto" 
+              style="border: 2px solid white;">
+            </div>
+          
+            <div class="flex flex-col gap-y-4 lg:grid lg:grid-cols-2 lg:gap-x-4">
+            
+                <button *ngIf="imageChangedEvent" type="button" (click)="reCrop()" [disabled]="!isCropped" 
+                    [ngClass]="{
+                        'bg-purple-600 hover:bg-purple-700 text-white': isCropped,
+                        'bg-gray-600 text-gray-400 cursor-not-allowed': !isCropped
+                    }" class="w-full py-2 px-4 rounded-2xl"> Volver a recortar
+                </button>
 
-            <button type="submit" class="w-full bg-purple-600 text-white py-3 px-4 rounded-2xl hover:bg-purple-700">
-                Subir Imagen
+                <button *ngIf="imageChangedEvent" type="button" (click)="cropImage()" [disabled]="isCropped" 
+                    [ngClass]="{
+                        'bg-purple-600 hover:bg-purple-700 text-white': !isCropped,
+                        'bg-gray-600 text-gray-400 cursor-not-allowed': isCropped
+                    }" class="w-full py-2 px-4 rounded-2xl"> Recortar
+                </button>
+            </div>
+          
+            <button type="submit" [disabled]="!isCropped" 
+                [ngClass]="{
+                    'bg-purple-600 hover:bg-purple-700 text-white': isCropped,
+                    'bg-gray-600 text-gray-400 cursor-not-allowed': !isCropped
+                }" class="w-full py-3 px-4 rounded-2xl" class="w-full bg-purple-600 text-white py-3 px-4 rounded-2xl hover:bg-purple-700">
+              Subir Imagen
             </button>
-        </form>
+          </form>
     </div>
 </div>
