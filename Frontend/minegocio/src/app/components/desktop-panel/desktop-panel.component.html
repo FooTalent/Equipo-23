@@ -1,0 +1,230 @@
+<div class="rounded-3xl bg-[#3b364c] text-white">
+  <div class="p-4">
+    <div
+      class="flex items-center justify-between p-2 m-4 rounded-2xl bg-[#2b2738] text-white"
+    >
+      <!-- Saludo-->
+      <div
+        class="bg-[#3b364c] py-2 px-4 ml-4 font-size-16px w-109px h-22px rounded-xl"
+      >
+        <span>¡Hola, Josefina!</span>
+      </div>
+      <div
+        class="relative flex justify-between items-center bg-[#2b2738] rounded-2xl px-4 py-2 w-2/3"
+      >
+        <!-- Icono de lupa -->
+        <svg
+          class="absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#7c798a]"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 30"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+          />
+        </svg>
+        <!-- Campo de búsqueda -->
+        <input
+          type="text"
+          placeholder="Buscar producto"
+          class="bg-[#3b364c] border-[#2b2738] p-2 pl-7 rounded-lg w-2/3"
+        />
+        <!-- Botón de filtro -->
+        <button class="bg-[#3b364c] text-[#7c798a] p-2 rounded-lg">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+            />
+          </svg>
+        </button>
+      </div>
+      <!-- Botón Minegocio -->
+      <button class="bg-[#3b364c] py-2 px-4 mr-5 rounded-xl">
+        <span>Mi negocio</span>
+      </button>
+    </div>
+    <!-- métricas -->
+    <div class="grid grid-cols-2 w-full">
+      <div class="bg-[#2b2738] p-6 rounded-tl-2xl rounded-bl-2xl">
+        <h2 class="text-center">Métricas</h2>
+        <div class="bg-[#3b364c] rounded-lg mb-4">
+          <h3 class="text-lg pt-5 pl-5 mb-4">Historial de ventas semanal</h3>
+        <!-- grafica -->
+        <div
+          class="h-20 bg-[#3b364c] rounded-lg flex gap-10 justify-between p-3 pt-10"
+        >
+          <span>Lunes</span>
+          <span>Martes</span>
+          <span>Miércoles</span>
+          <span>Jueves</span>
+          <span>Viernes</span>
+          <span>Sábado</span>
+        </div>
+    </div>
+      </div>
+      <div
+        class="bg-[#2b2738] p-6 rounded-tr-2xl rounded-br-2xl pt-20 text-center"
+      >
+        <h3 class="text-xl">Texto sobre métricas o tip para mejorarlas</h3>
+      </div>
+    </div>
+    <!-- Tabla de productos -->
+    <div class=" grid grid-cols-2 p-4 rounded-2xl w-full">
+        <div class="bg-[#2b2738] p-4 rounded-2xl">
+      <h3 class="text-lg mb-2">
+        Tienes productos en la tienda que necesitan re-stock
+      </h3>
+      <div class="flex justify-between items-center">
+      <table class=" bg-[#3b364c] rounded-xl w-full">
+        <div class="flex m-3 gap-30">
+        <thead>
+          <tr>
+           <span><th class="p-2">Cód. Id</th></span> 
+            <span><th class="p-2">Producto</th></span>
+            <span><th class="p-2">Stock</th></span>
+            <span><th class="p-2">Estado</th></span>
+            <th class="p-2">Detalles</th>
+          </tr>
+        </thead>
+    </div>
+        <tbody>
+          <tr>
+            <span class="bg-[#2b2738] p-2 m-4 rounded-lg"><td class="p-2">123454</td></span>
+            <span class="bg-[#2b2738] p-2 m-2 rounded-lg"><td class="p-2">Campera de invierno</td></span>
+            <span class="bg-[#2b2738] p-2 m-2 rounded-lg"><td class="p-2">0</td></span>
+            <span><td class="p-2 m-2"><span class=" text-black bg-[#e5e504] p-2 rounded-lg">Sin stock</span></td></span>
+            <td>
+              <button class="bg-[#2b2738] pt-2 pb-2 pl-4 pr-4 rounded-lg">🔍</button>
+            </td>
+          </tr>
+          <tr>
+            <span class="bg-[#2b2738] p-2 m-4 rounded-lg"><td class="p-2">123455</td></span>
+            <span class="bg-[#2b2738] p-2 m-2 rounded-lg"><td class="p-2">Campera de invierno</td></span>
+            <span class="bg-[#2b2738] p-2 m-2 rounded-lg"><td class="p-2">5</td></span>
+            <span><td class="p-4 m-2"><span class="text-white bg-[#7c798a] p-2 rounded-lg">Bajo stock</span></td></span>
+            <td>
+              <button class="bg-[#2b2738] pt-2 pb-2 pl-4 pr-4 rounded-lg">🔍</button>
+            </td>
+          </tr>
+          <tr>
+            <span class="bg-[#2b2738] p-2 m-4 rounded-lg"><td class="p-2">123456</td></span>
+            <span class="bg-[#2b2738] p-2 m-2 rounded-lg"><td class="p-2">Campera de invierno</td></span>
+            <span class="bg-[#2b2738] p-2 m-2 rounded-lg"><td class="p-2">5</td></span>
+            <span><td class="p-4 m-2"><span class="text-white bg-[#7c798a] p-2 rounded-lg">Bajo stock</span></td></span>
+            <td>
+              <button class="bg-[#2b2738] pt-2 pb-2 pl-4 pr-4 rounded-lg">🔍</button>
+            </td>
+          </tr>
+          <tr>
+            <span class="bg-[#2b2738] p-2 m-4 rounded-lg"><td class="p-2">123457</td></span>
+            <span class="bg-[#2b2738] p-2 m-2 rounded-lg"><td class="p-2">Campera de invierno</td></span>
+            <span class="bg-[#2b2738] p-2 m-2 rounded-lg"><td class="p-2">5</td></span>
+            <span><td class="p-4 m-2"><span class="text-white bg-[#7c798a] p-2 rounded-lg">Bajo stock</span></td></span>
+            <td>
+              <button class="bg-[#2b2738] pt-2 pb-2 pl-4 pr-4 rounded-lg">🔍</button>
+            </td>
+          </tr>
+          <!-- Más filas aquí -->
+        </tbody>
+      </table>
+    </div>
+</div>
+    <!-- Nuevos clientes -->
+    <div class="grid grid-cols-1 ml-6 gap-6 rounded-2xl">
+      <div class="bg-[#2b2738] p-6 rounded-2xl">
+        <h3 class="text-lg mb-4 text-center">
+          Nuevos clientes del último mes
+        </h3>
+        <ul class="space-y-4">
+          <div class="bg-[#3b364c] rounded-xl pl-4">
+          <li class="flex items-center space-x-4">
+            <img
+              class="w-10 h-10 rounded-lg"
+              src="https://via.placeholder.com/40"
+              alt="Cliente"
+            />
+            <div>
+              <h4>Nombre o usuario</h4>
+              <span class="text-gray-400 text-sm">#205</span>
+            </div>
+          </li>
+        </div>
+        <div class="bg-[#3b364c] rounded-xl pl-4">
+          <li class="flex items-center space-x-4">
+            <img
+              class="w-10 h-10 rounded-lg"
+              src="https://via.placeholder.com/40"
+              alt="Cliente"
+            />
+            <div>
+              <h4>Nombre o usuario</h4>
+              <span class="text-gray-400 text-sm">#205</span>
+            </div>
+          </li>
+        </div>
+        <div class="bg-[#3b364c] rounded-xl pl-4">
+          <li class="flex items-center space-x-4">
+            <img
+              class="w-10 h-10 rounded-lg"
+              src="https://via.placeholder.com/40"
+              alt="Cliente"
+            />
+            <div>
+              <h4>Nombre o usuario</h4>
+              <span class="text-gray-400 text-sm">#205</span>
+            </div>
+          </li>
+        </div>
+        <div class="bg-[#3b364c] rounded-xl pl-4">
+          <li class="flex items-center space-x-4">
+            <img
+              class="w-10 h-10 rounded-lg"
+              src="https://via.placeholder.com/40"
+              alt="Cliente"
+            />
+            <div>
+              <h4>Nombre o usuario</h4>
+              <span class="text-gray-400 text-sm">#205</span>
+            </div>
+          </li>
+        </div>
+        </ul>
+      </div>
+    </div>
+</div>
+<!-- Calendario -->
+ <div class="grid grid-cols-2 gap-6">
+    <div class="bg-[#2b2738] p-6 rounded-2xl">
+      <h3 class="text-lg mb-4">Calendario</h3>
+      <div class="bg-[#3b364c] p-6 rounded-lg">
+        <span>Octubre 2024</span>
+      </div>
+    </div>
+    <!-- Últimos pedidos -->
+    <div class="p-6 rounded-2xl bg-[#2b2738]">
+        <h3 class="text-lg font-semibold mb-4">Últimos pedidos</h3>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center bg-[#3b364c]">
+            <span>#001</span>
+            <span class="text-gray-400">12/05</span>
+            <span class="font-bold">$200</span>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
