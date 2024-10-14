@@ -1,0 +1,61 @@
+<div class="fixed inset-0 z-10 flex items-center text-white justify-center bg-gray-600 bg-opacity-80">
+
+    <div class="relative bg-gray-900 w-full max-w-2xl lg:max-w-4xl p-8 rounded-2xl shadow-lg mx-1 lg:mx-4 md:mx-0">
+
+        <button  (click)="toggleEditForm()" class="absolute top-5 right-5">
+            <img src="/icons/close.svg" alt="Close" class="w-6 h-6">
+        </button>
+
+        <h2 class="text-2xl font-bold mb-6">Datos personales</h2>
+
+        <form class="space-y-4" [formGroup]="userEditForm">
+            <div>
+                <label for="nombre" class="block pl-2 font-medium">Nombre</label>
+                <input type="text" id="nombre" name="nombre" formControlName="name"
+                class="bg-gray-800 mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
+                <small class="text-red-500 text-xs mt-1" *ngIf="userEditForm.get('name')?.invalid">
+                    <span *ngIf="userEditForm.get('name')?.hasError('pattern')">Solo se permiten letras</span>
+                </small>
+            </div>
+
+            <div>
+                <label for="apellido" class="block pl-2 font-medium">Apellido</label>
+                <input type="text" id="apellido" name="apellido"
+                class="bg-gray-800 mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
+            </div>
+
+            <div>
+                <label for="email" class="block pl-2 font-medium">Email</label>
+                <input type="email" id="email" name="email" formControlName="email"
+                class="bg-gray-800 mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
+                <small class="text-red-500 text-xs mt-1" *ngIf="userEditForm.get('email')?.invalid">
+                    <span *ngIf="userEditForm.get('email')?.hasError('email')">Debes ingresar un email valido</span>
+                </small>
+            </div>
+
+            <div>
+                <label for="telefono" class="block pl-2 font-medium">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono"
+                class="bg-gray-800 mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-x-4 gap-y-4 lg:gap-y-0 pb-5">
+                <div>
+                    <label for="pais" class="block pl-2 font-medium">País</label>
+                    <input type="text" id="pais" name="pais"
+                    class="bg-gray-800 mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
+                </div>
+    
+                <div>
+                    <label for="localidad" class="block pl-2 font-medium">Localidad</label>
+                    <input type="text" id="localidad" name="localidad"
+                    class="bg-gray-800 mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-purple-600 text-white py-3 px-4 rounded-2xl hover:bg-purple-700">
+                Enviar
+            </button>
+        </form>
+    </div>
+</div>

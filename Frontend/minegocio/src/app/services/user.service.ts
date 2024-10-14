@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core';
 import { RegisterValues } from '../models/registerValues.model';
 
 @Injectable({
@@ -23,5 +23,19 @@ export class UserService {
   verifyRegisterCode(code: string) {
     return this.http.post(`${this.apiUrl}/verify-code`, { code });
   }
+
+  // User Profile
+
+  editFormOpen = signal(false);
+  editImageFormOpen = signal(false);
+
+  toggleEditForm() {
+    this.editFormOpen.update(value => !value);
+  }
+
+  toggleEditImageForm() {
+    this.editImageFormOpen.update(value => !value);
+  }
+
 
 }
