@@ -1,9 +1,9 @@
 <div
-  class="flex w-full flex-col lg:flex-row min-h-screen bg-[#2B2738] font-nunito max-w-[1920px] mx-auto items-center"
+  class="flex w-full flex-col lg:flex-row min-h-screen bg-primary-main font-nunito max-w-[1920px] mx-auto items-center"
 >
   <app-sidebar *ngIf="isLoggedIn()" class="ml-4"></app-sidebar>
   <app-navbar *ngIf="isLoggedIn()" class="lg:hidden w-full"></app-navbar>
-  <main class="flex-grow  overflow-y-auto bg-[#2B2738] w-full overflow-x-hidden">
+  <main class="flex-grow  overflow-y-auto bg-primary-main w-full overflow-x-hidden">
     <router-outlet></router-outlet>
   </main>
 </div>

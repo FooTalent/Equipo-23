@@ -1,5 +1,5 @@
 <nav
-  class="bg-[#5D3CBA] px-2 flex justify-between items-center z-50 lg:hidden w-full"
+  class="bg-secondary-main px-2 flex justify-between items-center z-50 lg:hidden w-full"
 >
   <div class="navbar-item flex items-center justify-center relative ml-8">
     <div
@@ -37,7 +37,7 @@
   </div>
 
   <div
-    class="fixed top-[50px] right-0 rounded-l-[24px] w-64 bg-[#2B2738] z-50 p-4 flex flex-col  transition-transform duration-300 ease-in-out transform"
+    class="fixed top-[50px] right-0 rounded-l-[24px] w-64 bg-primary-main z-50 p-4 flex flex-col  transition-transform duration-300 ease-in-out transform"
     [ngClass]="{ 'translate-x-0 shadow-2xl shadow-[#6A6189]': isMenuOpen, 'translate-x-full': !isMenuOpen }"
   >
     <nav class="flex flex-col space-y-2 font-bold list-none">
@@ -46,7 +46,7 @@
         <a
           (click)="toggleMenu()"
           routerLink="/dashboard"
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex py-[12px] pl-[1.3rem] px-7 rounded-[16px] transition-colors max-w-[200px] text-white"
           aria-label="Ir a la página de inicio"
         >
@@ -60,7 +60,7 @@
       </li>
       <li>
         <a
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex py-[12px] pl-[1.3rem] px-7 rounded-t-[16px] text-gray-400 cursor-not-allowed transition-colors max-w-[200px]"
           aria-label="Ver notificaciones"
         >
@@ -76,7 +76,7 @@
         <a
           (click)="toggleMenu()"
           routerLink="/messages"
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex py-[12px] pl-[1.3rem] px-7 rounded-b-[16px] text-white transition-colors max-w-[200px] text-white"
           aria-label="Ver mensajes"
         >
@@ -93,7 +93,7 @@
         <a
           routerLink="/myshop"
           (click)="toggleMenu()"
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex items-center pl-[1.3rem] py-[12px] px-7 rounded-[16px] text-white transition-colors max-w-[200px]"
           aria-label="Ir a mi tienda"
         >
@@ -108,7 +108,7 @@
       </li>
       <li>
         <a
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 rounded-t-[16px] text-gray-400 transition-colors max-w-[200px]"
           aria-label="Ver clientes"
         >
@@ -122,7 +122,7 @@
       </li>
       <li>
         <a
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
           aria-label="Ver estadísticas"
         >
@@ -136,7 +136,7 @@
       </li>
       <li>
         <a
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
           aria-label="Ver facturación"
         >
@@ -150,7 +150,7 @@
       </li>
       <li>
         <a
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex items-center cursor-not-allowed pl-[1.3rem] py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
           aria-label="Ver pedidos"
         >
@@ -164,7 +164,7 @@
       </li>
       <li>
         <a
-          routerLinkActive="bg-[#5D3CBA] text-white"
+          routerLinkActive="bg-secondary-main text-white"
           class="flex items-center cursor-not-allowed pl-[1.3rem] py-[12px] px-7 rounded-b-[16px] text-gray-400 transition-colors max-w-[200px]"
           aria-label="Ver envíos"
         >

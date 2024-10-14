@@ -1,33 +1,33 @@
 <div
   id="messages-box"
-  class="lg:p-6 lg:bg-[#3B364C] rounded-[16px] flex lg:justify-center w-[210vw] lg:w-auto max-h-[1000px] max-w-[1600px]"
+  class="lg:p-6 lg:bg-primary-light rounded-[16px] flex lg:justify-center w-[210vw] lg:w-auto max-h-[1000px] max-w-[1600px]"
 >
   <div
     class="w-full lg:w-[77.5vw] min-w-[360px] h-[90vh] max-h-[920px] flex flex-row gap-6"
   >
     <div
-      class="left px-4 bg-[#2B2738] h-full min-w-[360px] w-full lg:w-[35%] rounded-[16px]"
+      class="left px-4 bg-primary-main h-full min-w-[360px] w-full lg:w-[35%] rounded-[16px]"
     >
       <div class="sticky flex flex-col rounded-lg">
         <div
-          class="upper-nav bg-[#2B2738] flex gap-5 items-center px-3 lg:px-7 py-[2rem] rounded-[16px]"
+          class="upper-nav bg-primary-main flex gap-5 items-center px-3 lg:px-7 py-[2rem] rounded-[16px]"
         >
           <div class="dp flex justify-center items-center rounded-l-lg">
             <img
-              class="rounded-xl bg-[#5D3CBA] p-4"
+              class="rounded-xl bg-secondary-main p-4"
               src="/icons/whatsapp.svg"
             />
           </div>
           <div
             class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
-            <img class="rounded-xl bg-[#3B364C] p-4" src="/icons/tiktok.svg" />
+            <img class="rounded-xl bg-primary-light p-4" src="/icons/tiktok.svg" />
           </div>
           <div
             class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
             <img
-              class="rounded-xl bg-[#3B364C] p-4"
+              class="rounded-xl bg-primary-light p-4"
               src="/icons/instagram.svg"
             />
           </div>
@@ -35,7 +35,7 @@
             class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
             <img
-              class="rounded-xl bg-[#3B364C] p-4"
+              class="rounded-xl bg-primary-light p-4"
               src="/icons/facebook.svg"
             />
           </div>
@@ -49,13 +49,13 @@
               class="absolute left-[5%] md:left-[9%] scale-125"
             />
             <input
-              class="outline-none bg-[#3B364C] rounded-xl pl-16 py-3 w-[80%] mr-2 ml-2 cursor-not-allowed"
+              class="outline-none bg-primary-light rounded-xl pl-16 py-3 w-[80%] mr-2 ml-2 cursor-not-allowed"
               placeholder="Buscar un mensaje"
               type="text"
               id="search"
             />
             <div
-              class="w-[45px] h-[45px] bg-[#3B364C] rounded-xl lg:flex justify-center items-center relative cursor-not-allowed"
+              class="w-[45px] h-[45px] bg-primary-light rounded-xl lg:flex justify-center items-center relative cursor-not-allowed"
             >
               <img
                 src="/icons/filter.svg"
@@ -69,7 +69,7 @@
           class="h-[68vh] overflow-y-scroll flex flex-col items-center gap-4 mt-4"
         >
           <div
-            class="chatbox cursor-pointer px-2 py-3 bg-[#3B364C] rounded-[16px] w-[95%] lg:w-[90%] hover:bg-[#5D3CBA] max-w-[700px]"
+            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
             (click)="scrollToRight()"
           >
             <div class="flex items-center w-full">
@@ -103,10 +103,10 @@
       </div>
     </div>
     <div
-      class="right bg-[#2B2738] h-full w-full min-w-[360px] lg:w-[70%] rounded-xl"
+      class="right bg-primary-main h-full w-full min-w-[360px] lg:w-[70%] rounded-xl"
     >
       <div
-        class="right-upper bg-[#5D3CBA] flex justify-between items-center px-4 py-3 lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
+        class="right-upper bg-secondary-main flex justify-between items-center px-4 py-3 lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
       >
         <div class="flex justify-between items-center w-full cursor-pointer">
           <div class="flex justify-between items-center space-x-4">
@@ -156,7 +156,7 @@
         class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8"
       >
         <div
-          class="chatmessage px-2 pb-4 bg-[#5D3CBA] rounded-lg w-[fit-content] max-w-[40%] ml-4 relative"
+          class="chatmessage px-2 pb-4 bg-secondary-main rounded-lg w-[fit-content] max-w-[40%] ml-4 relative"
         >
           <div class="flex items-center w-full">
             <div class="flex justify-between w-full flex-col">
@@ -178,7 +178,7 @@
           </div>
         </div>
         <div
-          class="chatmessage px-2 pb-4 bg-[#3B364C] rounded-lg w-[fit-content] max-w-[40%] ml-4 relative ml-auto"
+          class="chatmessage px-2 pb-4 bg-primary-light rounded-lg w-[fit-content] max-w-[40%] ml-4 relative ml-auto"
         >
           <div class="flex items-center w-full">
             <div class="flex justify-between w-full flex-col">
@@ -206,11 +206,11 @@
         <input
           type="text"
           placeholder="Escribe un mensaje"
-          class="bg-[#3B364C] rounded-[8px] px-4 py-4 outline-none w-full placeholder:text-[#7C798A]"
+          class="bg-primary-light rounded-[8px] px-4 py-4 outline-none w-full placeholder:text-[#7C798A]"
           id=""
         />
         <div
-          class="flex justify-center items-center relative w-[53px] h-[53px] bg-[#3B364C] rounded-lg cursor-not-allowed"
+          class="flex justify-center items-center relative w-[53px] h-[53px] bg-primary-light rounded-lg cursor-not-allowed"
         >
           <img
             src="/icons/paper-clip.svg"
@@ -219,7 +219,7 @@
           />
         </div>
         <div
-          class="flex justify-center items-center cursor-pointer relative w-[53px] h-[53px] bg-[#3B364C] rounded-lg"
+          class="flex justify-center items-center cursor-pointer relative w-[53px] h-[53px] bg-primary-light rounded-lg"
         >
           <img
             src="/icons/send.svg"

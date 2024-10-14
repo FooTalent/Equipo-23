@@ -1,9 +1,9 @@
-<section class="h-screen box-border bg-[#2B2738] shadow-lg flex flex-col justify-center lg:flex-row overflow-hidden p-4 -m-4 rounded-2xl select-none fade-in">
+<section class="h-screen box-border bg-primary-main shadow-lg flex flex-col justify-center lg:flex-row overflow-hidden p-4 -m-4 rounded-2xl select-none fade-in">
 
   <article class="py-6 md:p-6 sm:px-10 flex-1 overflow-auto">
     <header class="text-center mb-6">
       <div class="flex gap-8 sm:gap-10 justify-center">
-        <button class="bg-[#5D3CBA] text-white font-bold py-2 px-4 rounded-2xl focus:outline-none block w-full">
+        <button class="bg-secondary-main text-white font-bold py-2 px-4 rounded-2xl focus:outline-none block w-full">
           Crear cuenta
         </button>
         <button [routerLink]="['/login']" class="bg-gray-700 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none transition duration-300 ease-in-out hover:bg-gray-600 block w-full">
@@ -77,7 +77,7 @@
         </small>
       </div>
 
-      <button type="submit" [disabled]="isLoading()" class="w-full bg-[#5D3CBA] text-white font-bold py-3 px-4 rounded-2xl transition duration-300 ease-in-out 
+      <button type="submit" [disabled]="isLoading()" class="w-full bg-secondary-main text-white font-bold py-3 px-4 rounded-2xl transition duration-300 ease-in-out 
       hover:bg-purple-500 disabled:bg-purple-400 disabled:opacity-50">
         {{ isLoading() ? 'Cargando...' : 'Regístrate' }}
       </button>
@@ -92,7 +92,7 @@
         <div class="w-full border-t border-gray-600"></div>
       </div>
       <div class="relative flex justify-center text-sm">
-        <span class="bg-[#2B2738] px-2 text-gray-400">o</span>
+        <span class="bg-primary-main px-2 text-gray-400">o</span>
       </div>
     </div>
 
