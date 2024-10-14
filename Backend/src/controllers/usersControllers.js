@@ -6,6 +6,8 @@ import { decodedToken, generateTokenResetPassoword } from "../utils/jwt.js";
 import config from "../config/config.js";
 import { transport } from "../utils/nodemailer.js";
 import { removeEmptyObjectFields } from "../utils/removeEmptyObjectFields.js";
+import uploadFile from "../utils/cloudinary/upload.js";
+import cloudinary from "../utils/cloudinary.js";
 
 export const getUsers = async (req, res) => {
   const role = req.user?.data?.role;
@@ -97,6 +99,7 @@ export const deleteUser = async (req, res) => {
 };
 
 export const updateUserCurrent = async (req, res) => {
+
   const userData = req.user.data
   const {
     name,
@@ -130,6 +133,40 @@ export const updateUserCurrent = async (req, res) => {
   res.status(200).json({ success: true, data: result });
 
 }
+
+export const updatePhotoUserCurrent = async (req, res) => {
+  const files = req.files;
+  const userData = req.user.data
+
+  const uploadPhoto = await uploadFile(
+    files,
+    `minegocio/${userData._id}/photo/avatar/`,
+    {}
+  )
+
+  if (!uploadPhoto) {
+    return res.status(400).json({ succes: false, message: "Error upload photo" });
+  }
+
+  console.log('uploadPhoto ', uploadPhoto.url)
+  console.log('userData ', userData)
+
+  const user = await usersRepository.updateUserBy(
+    { _id: userData._id },
+    { photo: uploadPhoto[0].url }
+  )
+
+  const regex = /v1728673265\/(.+)/
+  console.log('uploadPhoto ', uploadPhoto)
+  const match = userData.photo.match(regex)
+
+  const result = await UserDTO.getUserResponseForCurrent(user);
+
+  // const deletePhoto = await cloudinary.api.delete_resources(match[1],
+  //   { type: 'upload', resource_type: 'image' },
+  // )
+  res.status(200).json({ succes: true, data: result });
+};
 
 export const updateUser = async (req, res) => {
   const id = req.params.uid;
