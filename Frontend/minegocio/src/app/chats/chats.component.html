@@ -1,6 +1,13 @@
-<div class=" lg:p-6 lg:bg-[#3B364C] rounded-[16px] flex lg:justify-center w-[208vw] lg:w-auto max-h-[1000px] max-w-[1600px]">
-  <div class="w-full lg:w-[77.5vw] min-w-[360px] h-[90vh] max-h-[920px] flex flex-row gap-6">
-    <div class="left px-4 bg-[#2B2738] h-full min-w-[360px] w-full lg:w-[35%] rounded-[16px]">
+<div
+  id="messages-box"
+  class="lg:p-6 lg:bg-[#3B364C] rounded-[16px] flex lg:justify-center w-[210vw] lg:w-auto max-h-[1000px] max-w-[1600px]"
+>
+  <div
+    class="w-full lg:w-[77.5vw] min-w-[360px] h-[90vh] max-h-[920px] flex flex-row gap-6"
+  >
+    <div
+      class="left px-4 bg-[#2B2738] h-full min-w-[360px] w-full lg:w-[35%] rounded-[16px]"
+    >
       <div class="sticky flex flex-col rounded-lg">
         <div
           class="upper-nav bg-[#2B2738] flex gap-5 items-center px-3 lg:px-7 py-[2rem] rounded-[16px]"
@@ -34,8 +41,13 @@
           </div>
         </div>
         <div class="lower-nav lg:px-4 py-2 flex items-center">
-          <div class="flex md:justify-center lg:justify-between items-center w-full relative gap-3 lg:gap-[unset]">
-            <img src="/icons/search.svg" class="absolute left-[5%] md:left-[9%] scale-125" />
+          <div
+            class="flex md:justify-center lg:justify-between items-center w-full relative gap-3 lg:gap-[unset]"
+          >
+            <img
+              src="/icons/search.svg"
+              class="absolute left-[5%] md:left-[9%] scale-125"
+            />
             <input
               class="outline-none bg-[#3B364C] rounded-xl pl-16 py-3 w-[80%] mr-2 ml-2 cursor-not-allowed"
               placeholder="Buscar un mensaje"
@@ -45,7 +57,10 @@
             <div
               class="w-[45px] h-[45px] bg-[#3B364C] rounded-xl lg:flex justify-center items-center relative cursor-not-allowed"
             >
-              <img src="/icons/filter.svg" class="absolute bottom-[15px] left-[14px] "/>
+              <img
+                src="/icons/filter.svg"
+                class="absolute bottom-[15px] left-[14px]"
+              />
             </div>
           </div>
         </div>
@@ -55,6 +70,7 @@
         >
           <div
             class="chatbox cursor-pointer px-2 py-3 bg-[#3B364C] rounded-[16px] w-[95%] lg:w-[90%] hover:bg-[#5D3CBA] max-w-[700px]"
+            (click)="scrollToRight()"
           >
             <div class="flex items-center w-full">
               <div class="p-3">
@@ -67,12 +83,12 @@
               <div class="flex justify-between w-[80%]">
                 <div class="chat-name flex flex-col gap-1">
                   <h3 class="text-lg text-white font-semibold">
-                    Aditya Bamniya
+                    Leo Carnaghi Martel
                   </h3>
                   <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center"
+                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
                   >
-                    <span class="inline-block">Aaja Chai peene Chale...</span>
+                    <span class="inline-block max-w-[200px] ">aaaaaaaaaaaaaaaaaaaaaaaaaasddadasdasd</span>
                   </p>
                 </div>
                 <div class="last-chat mr-2">
@@ -86,7 +102,9 @@
         </div>
       </div>
     </div>
-    <div class="right bg-[#2B2738] h-full w-full min-w-[360px] lg:w-[70%] rounded-xl">
+    <div
+      class="right bg-[#2B2738] h-full w-full min-w-[360px] lg:w-[70%] rounded-xl"
+    >
       <div
         class="right-upper bg-[#5D3CBA] flex justify-between items-center px-4 py-3 lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
       >
@@ -98,10 +116,20 @@
               alt=""
             />
             <div class="flex flex-col">
-              <p class="text-white font-sans font-medium text-base">Ravindra</p>
+              <p class="text-white font-sans font-medium text-base">
+                Leo Carnaghi Martel
+              </p>
             </div>
           </div>
           <div class="flex justify-between items-center">
+            <div class="cursor-pointer mr-4">
+              <img
+                (click)="scrollToLeft()"
+                src="/icons/chevron-left.svg"
+                alt="Retroceder"
+                class="w-6 h-6"
+              />
+            </div>
             <div
               class="w-[40px] h-[40px] flex justify-center items-center cursor-not-allowed"
             >
@@ -128,7 +156,7 @@
         class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8"
       >
         <div
-          class="chatbox px-2 pb-4 bg-[#5D3CBA] rounded-lg w-[fit-content] max-w-[40%] ml-4 relative"
+          class="chatmessage px-2 pb-4 bg-[#5D3CBA] rounded-lg w-[fit-content] max-w-[40%] ml-4 relative"
         >
           <div class="flex items-center w-full">
             <div class="flex justify-between w-full flex-col">
@@ -136,7 +164,7 @@
                 <p
                   class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
                 >
-                  Aaja Chai peene Chale... Aaja Chai peene Chale...
+                  Che que onda el navbar, esta raro este de no tener el navbar en una sola seccion
                 </p>
               </div>
               <div class="last-chat w-full flex mt-2">
@@ -150,7 +178,7 @@
           </div>
         </div>
         <div
-          class="chatbox px-2 pb-4 bg-[#3B364C] rounded-lg w-[fit-content] max-w-[40%] ml-4 relative ml-auto"
+          class="chatmessage px-2 pb-4 bg-[#3B364C] rounded-lg w-[fit-content] max-w-[40%] ml-4 relative ml-auto"
         >
           <div class="flex items-center w-full">
             <div class="flex justify-between w-full flex-col">
@@ -158,7 +186,7 @@
                 <p
                   class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
                 >
-                  Aaja Chai peene Chale... Aaja Chai peene Chale...
+                  Mala suerte amigo, anda pa ya bobo
                 </p>
               </div>
               <div class="last-chat w-full flex mt-2">
@@ -171,7 +199,6 @@
             </div>
           </div>
         </div>
-        
       </div>
       <div
         class="right-bottom w-full top-full sticky flex justify-between items-center px-4 py-4 space-x-2"
