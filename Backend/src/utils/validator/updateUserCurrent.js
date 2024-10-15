@@ -6,10 +6,10 @@ export const validateUpdateUserCurrent = [
   check("name", "Name is required")
     .optional()
     .isString("Name muest be of type String"),
-  check("surname", "Surname is required")
+  check("last_name", "Surname is required")
     .optional()
 
-    .isString("Surname muest be of type String"),
+    .isString("Last name muest be of type String"),
   check("phone", "Phone is required")
     .optional()
 
