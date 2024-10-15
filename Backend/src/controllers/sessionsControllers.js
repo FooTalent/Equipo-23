@@ -31,6 +31,7 @@ async function sendCodeConfirmationRegister(userData) {
     email: userData.email,
     code: verificationCode,
     name: userData.name,
+    last_name: userData.last_name,
     age: userData.age,
     password: passwordHash,
     role: userData.role,
@@ -55,7 +56,7 @@ async function sendCodeConfirmationRegister(userData) {
 }
 
 export async function register(req, res) {
-  const { name, age, email, password, role } = req.body;
+  const { name, last_name, age, email, password, role } = req.body;
 
   // Verify if exists user with email by body
   let user = await usersRepository.getUserBy({ email: email });
@@ -68,6 +69,7 @@ export async function register(req, res) {
 
   await sendCodeConfirmationRegister({
     name,
+    last_name,
     age,
     email,
     password,
@@ -112,6 +114,7 @@ export async function checkCodeRegister(req, res) {
 
   const newUser = {
     name: document.name,
+    last_name: document.last_name,
     age: document.age,
     email: document.email,
     password: document.password,
