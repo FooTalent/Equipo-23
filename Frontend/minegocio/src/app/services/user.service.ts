@@ -13,15 +13,14 @@ export class UserService {
   registerUser(registerValues: RegisterValues) {
     return this.http.post(`${this.apiUrl}/api/sessions/register`, {
       name: registerValues.name,
-      age: registerValues.age,
+      last_name: registerValues.lastName,
       email: registerValues.email,
       password: registerValues.password,
-      rol: registerValues.role
     });
   }
 
   verifyRegisterCode(code: string) {
-    return this.http.post(`${this.apiUrl}/verify-code`, { code });
+    return this.http.post(`${this.apiUrl}/api/sessions/verify-code`, { code });
   }
 
   // User Profile

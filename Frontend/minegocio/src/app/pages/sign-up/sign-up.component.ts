@@ -5,7 +5,6 @@ import { Router, RouterLinkWithHref } from '@angular/router';
 import { RegisterValues } from '../../models/registerValues.model';
 import { CommonModule } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,16 +16,14 @@ import { AuthService } from '../../services/auth.service';
 export class SignUpComponent {
 
   private userService = inject(UserService);
-  private authService = inject(AuthService);
   private Router = inject(Router);
   private meta = inject(Meta);
 
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
-    age: new FormControl(null, [Validators.required, Validators.minLength(19)]),
+    lastName: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    role: new FormControl('', [Validators.required]),
     terms: new FormControl(false, [Validators.required])
   });
 
@@ -41,10 +38,9 @@ export class SignUpComponent {
 
       const registerValues: RegisterValues = {
         name: this.registerForm.value.name ?? '',
-        age: this.registerForm.value.age ?? 0,
+        lastName: this.registerForm.value.lastName ?? '',
         email: this.registerForm.value.email ?? '',
         password: this.registerForm.value.password ?? '',
-        role: this.registerForm.value.role ?? ''
       };
 
       this.isLoading.update(value => !value);

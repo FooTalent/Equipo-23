@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  googleClientId = import.meta.env['NG_APP_GOOGLE_CLIENT_ID']
   private http = inject(HttpClient);
 
   apiUrl = import.meta.env['NG_APP_API_URL']

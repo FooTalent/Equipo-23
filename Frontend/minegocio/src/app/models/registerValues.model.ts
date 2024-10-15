@@ -1,7 +1,6 @@
 export interface RegisterValues {
     name: string;
-    age: number;
+    lastName: string;
     email: string;
     password: string;
-    role: string;
 }
