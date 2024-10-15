@@ -1,88 +1,89 @@
 <div class="h-full bg-[#3B364C] box-border lg:p-6 lg:mx-4 lg:mr-10 rounded-2xl select-none">
 
-    <div class="p-4 lg:p-8 box-border bg-[#2B2738] w-full rounded-2xl">
+    <div class="p-4 box-border bg-[#2B2738] w-full rounded-2xl">
         <h1 class="hidden lg:block text-white text-2xl pl-2 font-bold">Datos personales</h1>
-        <div class="bg-[#2B2738] lg:p-6 rounded-lg w-full space-y-6">
+        <div class="bg-[#2B2738] lg:p-6 rounded-lg w-full space-y-6 lg:grid lg:grid-cols-2 lg:gap-x-16">
 
-            <div class="bg-[#2B2738] w-full flex my-2 lg:my-0 flex-col lg:flex-row gap-y-4 space-y-4 lg:space-x-8">
+            <div class="w-full flex my-2 lg:my-0 flex-col space-y-5">
 
-                <div class="flex items-center gap-x-10 mt-4 lg:mt-0 flex-col lg:flex-row">
-                    <div class="relative box-border">
+                <div class="flex flex-col self-center items-center lg:items-start mt-4 lg:mt-0">
+                    <div class="relative box-border w-fit">
                         <img class="w-36 h-auto lg:w-52 lg:min-w-32 lg:h-auto rounded-2xl object-cover"
                             src="https://via.placeholder.com/150" alt="Profile Picture">
                         <button (click)="toggleEditImageForm()"
                             class="absolute right-[33%] bottom-[85%] lg:bottom-[5rem] lg:-right-6 border-4 border-gray-900 bg-purple-600 hover:bg-purple-500 p-2 rounded-full">
-                            <img src="/icons/edit.svg" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
+                            <img src="/icons/edit.svg" loading="lazy" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
                         </button>
                     </div>
-                    <h2 class="text-white text-lg px-4 font-semibold text-center lg:text-left">Josefina Martinez</h2>
+                    <h2 class="text-white text-lg px-8 pt-3 font-semibold text-center w-fit">Josefina Martinez</h2>
                 </div>
 
-                <div class="lg:m-0 flex-grow flex flex-col">
-                    <div class="flex flex-col gap-y-4">
-                        <div class="flex flex-col gap-y-2">
-                            <label class="ml-2 text-gray-400">Nombre</label>
-                            <div
-                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white">
-                                Josefina
-                            </div>
-                        </div>
-
-                        <div class="flex flex-col gap-y-2">
-                            <label class="ml-2 text-gray-400">Apellido</label>
-                            <div
-                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white">
-                                Martinez
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <label for="email" class="ml-2 block text-gray-400 mb-2">Email</label>
-                <div id="email"
-                    class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
-                    readonly>
-                    josefina.martinezgmail.com
-                </div>
-            </div>
-
-            <div>
-                <label for="telefono" class="ml-2 block text-gray-400 mb-2">Teléfono</label>
-                <div id="telefono"
-                    class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
-                    readonly>
-                    000000 - 0000000
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 lg:gap-y-0 pb-5 lg:pb-32">
                 <div>
-                    <label for="pais" class="ml-2 block text-gray-400 mb-2">País</label>
-                    <div id="pais"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
-                        readonly>
-                        Argentina
-                    </div>
+                    <label for="name" class="ml-2 block text-gray-400 mb-2">Nombre</label>
+                    <input id="name"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                        readonly value="josefina.martinezgmail.com">
                 </div>
+
                 <div>
-                    <label for="localidad" class="ml-2 block text-gray-400 mb-2">Localidad</label>
-                    <div id="localidad"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white"
-                        readonly>
-                        Caballito
-                    </div>
+                    <label for="lastName" class="ml-2 block text-gray-400 mb-2">Apellido</label>
+                    <input id="lastName"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                        readonly value="josefina.martinezgmail.com">
                 </div>
+
+                <div>
+                    <label for="email" class="ml-2 block text-gray-400 mb-2">Email</label>
+                    <input id="email"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                        readonly value="josefina.martinezgmail.com">
+                </div>
+
             </div>
 
-            <div class="flex justify-center">
-                <button type="button" (click)="toggleEditForm()"
-                    class="w-full bg-[#5D3CBA] text-white py-3 mb-5 lg:-mb-2 rounded-xl hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-500">
-                    Editar
-                </button>
+            <div class="w-full flex lg:my-0 flex-col space-y-5 lg:pt-7">
+
+                <div>
+                    <label for="country" class="ml-2 block text-gray-400 mb-2">Pais</label>
+                    <input id="country"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                        readonly value="Argentina">
+                </div>
+
+                <div>
+                    <label for="location" class="ml-2 block text-gray-400 mb-2">Localidad</label>
+                    <input id="location"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                        readonly value="Caballito">
+                </div>
+
+                <div>
+                    <label for="zipCode" class="ml-2 block text-gray-400 mb-2">Codigo Postal</label>
+                    <input id="zipCode"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                        readonly value="123456">
+                </div>
+
+                <div>
+                    <label for="phone" class="ml-2 block text-gray-400 mb-2">Telefono</label>
+                    <input id="phone"
+                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                        readonly value="700 786 928">
+                </div>
+
             </div>
+
+
+            
         </div>
+
+        <div class="flex justify-center">
+            <button type="button" (click)="toggleEditForm()"
+                class="w-full bg-[#5D3CBA] text-white py-3 mb-6 rounded-xl hover:bg-[#6b47ce] focus:outline-none focus:ring-4 focus:ring-purple-500">
+                Editar
+            </button>
+        </div>
+
     </div>
 </div>
 
