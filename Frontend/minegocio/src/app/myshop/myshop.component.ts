@@ -1,27 +1,43 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MyShopMobileComponent } from './myshop-mobile.component';
+import { ProductBotComponent } from '../product-bot/product-bot.component';
 
 @Component({
   selector: 'app-myshop',
   standalone: true,
-  imports: [CommonModule, FormsModule, MyShopMobileComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MyShopMobileComponent,
+    ProductBotComponent,
+  ],
   templateUrl: './myshop.component.html',
-  styleUrls: ['./myshop.component.css']
+  styleUrls: ['./myshop.component.css'],
 })
 export class MyShopComponent implements OnInit {
   products: Product[] = [];
   isLoading: boolean = false;
   error: string | null = null;
-  totalPages: number = 1; 
-  currentPage: number = 1; 
-  searchQuery: string = ''; 
+  totalPages: number = 1;
+  currentPage: number = 1;
+  searchQuery: string = '';
   isLargeScreen: boolean = true;
+  showBot: boolean = true;
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -29,7 +45,7 @@ export class MyShopComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLargeScreen = window.innerWidth > 1024; 
+    this.isLargeScreen = window.innerWidth > 1024;
     this.loadProducts(this.currentPage);
   }
 
@@ -39,22 +55,23 @@ export class MyShopComponent implements OnInit {
     this.productService.getProducts(page, 20, query).subscribe({
       next: (response: any) => {
         this.products = response.data.data;
-        this.isLoading = false; 
-        this.totalPages = response.data.totalPages; 
+        this.isLoading = false;
+        this.totalPages = response.data.totalPages;
       },
       error: (error) => {
         console.error('Error fetching products:', error);
-        this.error = 'Error al cargar los productos. Por favor, intente de nuevo.';
-        this.isLoading = false; 
-      }
+        this.error =
+          'Error al cargar los productos. Por favor, intente de nuevo.';
+        this.isLoading = false;
+      },
     });
   }
 
   changeProductStatus(productId: string) {
-    const product = this.products.find(p => p.id === productId);
+    const product = this.products.find((p) => p.id === productId);
     if (product) {
-      const newStatus = product.status === true ? false : true; 
-      
+      const newStatus = product.status === true ? false : true;
+
       this.productService.changeStatus(productId, newStatus).subscribe({
         next: (response) => {
           console.log('Estado del producto actualizado:', response);
@@ -62,22 +79,23 @@ export class MyShopComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al cambiar el estado del producto:', error);
-          this.error = 'Error al cambiar el estado del producto. Por favor, intente de nuevo.';
-        }
+          this.error =
+            'Error al cambiar el estado del producto. Por favor, intente de nuevo.';
+        },
       });
     }
   }
 
   updateProductStatusInList(productId: string, response: any) {
-    const product = this.products.find(p => p.id === productId);
+    const product = this.products.find((p) => p.id === productId);
     if (product) {
-      product.status = response.newStatus; 
+      product.status = response.newStatus;
     }
   }
 
   goToPage(page: number) {
     this.currentPage = page;
-    this.loadProducts(this.currentPage, this.searchQuery); 
+    this.loadProducts(this.currentPage, this.searchQuery);
   }
 
   goToPreviousPage() {
@@ -93,15 +111,20 @@ export class MyShopComponent implements OnInit {
   }
 
   searchProducts(query?: string) {
-    this.currentPage = 1; 
+    this.currentPage = 1;
     this.loadProducts(this.currentPage, this.searchQuery || query);
   }
 
   goToProduct(productId: string) {
-    this.router.navigate([`myshop/${productId}`]); 
+    this.router.navigate([`myshop/${productId}`]);
   }
 
-  activateProduct(productId: string) { 
-    
+  hidePopUp() {
+    this.showBot = false;
+  }
+  activateProduct(productId: string) {}
+
+  showPopUp() {
+    this.showBot = !this.showBot;
   }
 }

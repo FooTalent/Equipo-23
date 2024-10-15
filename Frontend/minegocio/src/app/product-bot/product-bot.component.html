@@ -1,0 +1,108 @@
+<div
+  *ngIf="showBot"
+  class="w-[380px] relative h-[700px] mx-auto bg-gray-100 border-white border-solid border-[1px] bg-primary-main"
+>
+  <div
+    class="w-full h-[60px] bg-secondary-main flex items-center justify-between px-3"
+  >
+    <p class="text-white font-bold">Agregar producto</p>
+    <button (click)="hidePopUp()">
+      <img src="/icons/close-circle.svg" alt="close button" />
+    </button>
+  </div>
+  <div
+    #messagesContainer
+    class="space-y-3 mt-4 px-4 rounded-lg mb-12 max-h-[600px] overflow-y-auto pb-10"
+  >
+    <div
+      *ngFor="let message of messages"
+      class="p-3 rounded-lg"
+      [ngClass]="
+        message.isUser
+          ? 'bg-[#3B364C] text-right w-[fit-content] ml-auto py-1 shadow-[0_2px_#880DDB]'
+          : 'bg-secondary-main mr-5'
+      "
+    >
+      <p class="text-sm" [innerHTML]="message.text"></p>
+      <div *ngIf="message.options" class="mt-2 space-x-2">
+        <button
+          *ngFor="let option of message.options"
+          (click)="selectOption(option)"
+          [disabled]="message.isDisabled"
+          class="px-3 py-1 text-sm bg-[#3B364C] text-white rounded shadow-[0_2px_#880DDB] transition duration-300"
+        >
+          {{ option }}
+        </button>
+      </div>
+      <div
+        *ngIf="message.countRequired"
+        class="mt-2 flex items-center justify-between"
+      >
+        <button
+          (click)="decrementCount()"
+          class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
+        >
+          -
+        </button>
+        <input
+          [(ngModel)]="productCount"
+          (blur)="validateCount()"
+          class="w-20 p-2 text-center border rounded"
+          type="number"
+        />
+        <button
+          (click)="incrementCount()"
+          class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+        >
+          +
+        </button>
+      </div>
+      <div *ngIf="message.isConfirmation" class="mt-2 space-x-2">
+        <button
+          (click)="confirmInfo(true)"
+          class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+        >
+          Confirmar
+        </button>
+        <button
+          (click)="confirmInfo(false)"
+          class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
+        >
+          Editar
+        </button>
+      </div>
+      <div *ngIf="message.isAddAnother" class="mt-2 space-x-2">
+        <button
+          (click)="addAnotherProduct(true)"
+          class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+        >
+          Sí, agregar otro producto
+        </button>
+        <button
+          (click)="addAnotherProduct(false)"
+          class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+        >
+          No, terminar
+        </button>
+      </div>
+    </div>
+  </div>
+  <button
+    *ngIf="isComplete"
+    (click)="sendToBackend()"
+    class="mt-4 w-full py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+  >
+    Enviar respuestas
+  </button>
+  <div
+    class="absolute bottom-0 flex justify-center h-[40px] bg-primary-light w-full"
+  >
+    <button
+      *ngIf="!isComplete && currentStep < questions.length"
+      (click)="advance()"
+      class="w-full text-white rounded hover:bg-blue-600 transition duration-300"
+    >
+      Avanzar
+    </button>
+  </div>
+</div>

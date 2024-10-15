@@ -1,12 +1,15 @@
 <ng-container *ngIf="isLargeScreen; else mobileView">
   <div
-    class="bg-[#2B2738] p-6 py-4 text-white bg-[#3B364C] rounded-[24px] h-full flex flex-col justify-between max-w-[1450px] max-h-[1024px] ml-4" 
+    class="bg-[#2B2738] p-6 py-4 text-white bg-[#3B364C] rounded-[24px] h-full flex flex-col justify-between max-w-[1450px] max-h-[1024px] ml-4"
   >
+    <div class="fixed top-0 z-[999]"></div>
     <div
       class="bg-[#1E1E2D] rounded-[1rem] py-4 mb-6 max-w-[97.5%] ml-[13px] px-4"
     >
       <div class="flex items-center justify-center">
-        <h1 class="text-xl font-semibold px-10 rounded-[1rem] py-2 bg-[#2B2738]">
+        <h1
+          class="text-xl font-semibold px-10 rounded-[1rem] py-2 bg-[#2B2738]"
+        >
           Catálogo
         </h1>
         <div class="flex items-center w-full justify-between">
@@ -16,7 +19,7 @@
               placeholder="Buscar producto"
               class="bg-[#2B2738] text-white pl-4 ml-14 py-2 rounded-lg w-full"
               (keyup.enter)="searchProducts()"
-              [(ngModel)]="searchQuery" 
+              [(ngModel)]="searchQuery"
             />
 
             <img
@@ -36,20 +39,37 @@
                   class="absolute top-[8px] left-[8px]"
                 />
               </button>
-              <button class="bg-[#2B2738] p-5 rounded-r-lg relative cursor-not-allowed">
+              <button
+                class="bg-[#2B2738] p-5 rounded-r-lg relative cursor-not-allowed"
+              >
                 <img
                   src="/icons/options.svg"
                   class="absolute top-[8px] left-[8px]"
                 />
               </button>
             </div>
-            <button class="bg-[#5D3CBA] p-5 rounded-lg relative cursor-not-allowed">
-              <img src="/icons/add.svg" class="absolute top-[10px] left-[10px]" />
+            <button
+              (click)="showPopUp()"
+              class="bg-[#5D3CBA] p-5 rounded-lg relative relative"
+            >
+              <img
+                src="/icons/add.svg"
+                class="absolute top-[10px] left-[10px]"
+              />
             </button>
           </div>
         </div>
       </div>
     </div>
+    <div  class="absolute right-[12%] top-[7%] z-[999]">
+      <app-bot [showBot]="showBot" [hidePopUp]="hidePopUp"></app-bot>
+    </div>
+
+  <div
+    *ngIf="showBot"
+    class="fixed inset-0 backdrop-blur-sm z-40"
+    (click)="hidePopUp()"
+  ></div>
 
     <div
       id="products"
@@ -80,24 +100,31 @@
                   <td class="p-3 py-6">{{ product.stock }}</td>
                   <td class="p-3 py-6">$ {{ product.price }}</td>
                   <td class="p-3 py-6 flex items-center">
-                    <span 
-                      class="w-2 h-2 rounded-full mr-2" 
-                      [ngClass]="{ 'bg-green-500': product.status, 'bg-yellow-500': !product.status }"
+                    <span
+                      class="w-2 h-2 rounded-full mr-2"
+                      [ngClass]="{
+                        'bg-green-500': product.status,
+                        'bg-yellow-500': !product.status
+                      }"
                     ></span>
-                    {{ product.status ? 'En venta' : 'Inventario' }}
+                    {{ product.status ? "En venta" : "Inventario" }}
                   </td>
                   <td class="p-3">
                     {{ product.created_data | date : "dd/MM/yyyy" }}
                   </td>
                   <td class="p-3">
-                    <button (click)="changeProductStatus(product.id)" >
-                      <img 
-                        [src]="product.status ? '/icons/eyes.svg' : '/icons/hidden-eye.svg'" 
+                    <button (click)="changeProductStatus(product.id)">
+                      <img
+                        [src]="
+                          product.status
+                            ? '/icons/eyes.svg'
+                            : '/icons/hidden-eye.svg'
+                        "
                         class="w-6 h-6"
                       />
                     </button>
                     <button class="ml-3" (click)="goToProduct(product.id)">
-                      <img src="/icons/search-white.svg" class="w-5 h-5 " />
+                      <img src="/icons/search-white.svg" class="w-5 h-5" />
                     </button>
                   </td>
                 </tr>
