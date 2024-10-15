@@ -29,30 +29,30 @@
           *ngFor="let option of message.options"
           (click)="selectOption(option)"
           [disabled]="message.isDisabled"
-          class="px-3 py-1 text-sm bg-[#3B364C] text-white rounded shadow-[0_2px_#880DDB] transition duration-300"
+          class="px-3 py-2 m-1 text-sm bg-[#3B364C] text-white rounded shadow-[0_2px_#880DDB] transition duration-300"
         >
           {{ option }}
         </button>
       </div>
       <div
         *ngIf="message.countRequired"
-        class="mt-2 flex items-center justify-between"
+        class="mt-2 flex items-center justify-start gap-4"
       >
         <button
           (click)="decrementCount()"
-          class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition duration-300"
+          class="px-3 py-1 bg-black text-white rounded hover:bg-secondary-main transition duration-300"
         >
           -
         </button>
         <input
           [(ngModel)]="productCount"
           (blur)="validateCount()"
-          class="w-20 p-2 text-center border rounded"
+          class="w-12 p-1 bg-black text-center rounded text-white border-none"
           type="number"
         />
         <button
           (click)="incrementCount()"
-          class="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+          class="px-3 py-1 bg-black text-white rounded hover:bg-secondary-main transition duration-300"
         >
           +
         </button>
@@ -86,23 +86,28 @@
         </button>
       </div>
     </div>
+    <button
+      *ngIf="isComplete"
+      (click)="sendToBackend()"
+      class="mt-4 w-full py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
+    >
+      Enviar respuestas
+    </button>
   </div>
-  <button
-    *ngIf="isComplete"
-    (click)="sendToBackend()"
-    class="mt-4 w-full py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
-  >
-    Enviar respuestas
-  </button>
   <div
-    class="absolute bottom-0 flex justify-center h-[40px] bg-primary-light w-full"
+    class="absolute bottom-0 flex justify-center h-[40px] w-full justify-around"
   >
+    <input
+      type="text"
+      [(ngModel)]="userResponse"
+      class="bg-primary-light mb-3 rounded-md w-[70%]"
+    />
     <button
       *ngIf="!isComplete && currentStep < questions.length"
       (click)="advance()"
-      class="w-full text-white rounded hover:bg-blue-600 transition duration-300"
+      class="w-[fit-content] bg-primary-light text-white rounded hover:bg-blue-600 transition duration-300"
     >
-      Avanzar
+      <img src="/icons/send.svg" alt="send-icon">
     </button>
   </div>
 </div>

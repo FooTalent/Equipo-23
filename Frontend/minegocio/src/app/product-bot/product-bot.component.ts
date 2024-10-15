@@ -10,14 +10,17 @@ interface ChatMessage {
   countRequired?: boolean;
   isConfirmation?: boolean;
   isAddAnother?: boolean;
-  isDisabled?: boolean; // Nueva propiedad
+  isDisabled?: boolean; 
 }
 
 interface ProductInfo {
   type: string;
   market: string;
+  name: string;
   budget: string;
   timeline: string;
+  description: any;
+  price:any;
   quantity: number;
 }
 @Component({
@@ -27,12 +30,16 @@ interface ProductInfo {
   templateUrl: './product-bot.component.html',
   styleUrls: ['./product-bot.component.css'],
 })
+
 export class ProductBotComponent implements OnInit {
   messages: ChatMessage[] = [];
   currentStep = 0;
   productInfo: ProductInfo = {
     type: '',
     market: '',
+    description: '',
+    name: '',
+    price: 0,
     budget: '',
     timeline: '',
     quantity: 1,
@@ -73,11 +80,9 @@ export class ProductBotComponent implements OnInit {
     },
     {
       text: 'Indicá un nombre para el producto',
-      options: ['1-3 meses', '3-6 meses', '6-12 meses'],
     },
     {
       text: 'Añadi una descripción de tu producto',
-      options: ['1-3 meses', '3-6 meses', '6-12 meses'],
     },
     {
       text: '¿Cuál es el precio por unidad de este producto?',
@@ -89,6 +94,8 @@ export class ProductBotComponent implements OnInit {
 
   isOptionDisabled: boolean = false;
   optionsDisabled: boolean[] = []; // Nuevo array para rastrear el estado de los botones
+
+  userResponse: string = '';
 
   startNewChat() {
     this.messages = [];
@@ -132,11 +139,26 @@ export class ProductBotComponent implements OnInit {
   }
 
   advance() {
-    if (this.currentStep < this.questions.length - 1) {
-      this.currentStep++;
-      this.isOptionDisabled = true; // Deshabilitar opciones
-      this.nextQuestion();
-      this.scrollToBottom();
+    if (this.currentStep < this.questions.length) {
+        const currentQuestion = this.questions[this.currentStep];
+
+        // Asignar el valor del input a la propiedad correspondiente solo si no está vacío
+        if (this.userResponse.trim()) {
+            if (currentQuestion.text.includes('nombre')) {
+                this.productInfo.name = this.userResponse;
+            } else if (currentQuestion.text.includes('descripción')) {
+                this.productInfo.description = this.userResponse;
+            } else if (currentQuestion.text.includes('precio')) {
+                this.productInfo.price = parseFloat(this.userResponse);
+            }
+        }
+
+        // Agregar el mensaje del usuario al chat
+        this.messages.push({ text: this.userResponse, isUser: true });
+        this.currentStep++;
+        this.userResponse = ''; // Limpiar el input después de avanzar
+        this.nextQuestion();
+        this.scrollToBottom();
     }
   }
 
@@ -166,6 +188,16 @@ export class ProductBotComponent implements OnInit {
       case 3:
         this.productInfo.timeline = option;
         break;
+      // Asegúrate de que los siguientes casos también se manejen
+      case 4:
+        this.productInfo.name = option; // Suponiendo que has agregado un campo para el nombre
+        break;
+      case 5:
+        this.productInfo.description = option; // Suponiendo que has agregado un campo para la descripción
+        break;
+      case 6:
+        this.productInfo.price = option; // Suponiendo que has agregado un campo para el precio
+        break;
     }
 
     this.advance();
@@ -194,7 +226,10 @@ export class ProductBotComponent implements OnInit {
       <strong>Mercado:</strong> ${this.productInfo.market}<br>
       <strong>Presupuesto:</strong> ${this.productInfo.budget}<br>
       <strong>Tiempo de lanzamiento:</strong> ${this.productInfo.timeline}<br>
-      <strong>Cantidad:</strong> ${this.productInfo.quantity}
+      <strong>Cantidad:</strong> ${this.productInfo.quantity}<br>
+      <strong>Nombre del producto:</strong> ${this.productInfo.name}<br>
+      <strong>Descripción:</strong> ${this.productInfo.description}<br>
+      <strong>Precio por unidad:</strong> ${this.productInfo.price}
     `;
     this.messages.push({
       text: confirmationText,
@@ -246,11 +281,14 @@ export class ProductBotComponent implements OnInit {
       budget: '',
       timeline: '',
       quantity: 1,
+      name: '', // Agregar el campo 'name'
+      description: '', // Agregar el campo 'description'
+      price: 0, // Agregar el campo 'price'
     };
     this.productCount = 1;
   }
 
   sendToBackend() {
-    console.log('enviado al backend');
+    console.log('enviado al backend', this.productInfo);
   }
 }
