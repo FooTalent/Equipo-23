@@ -117,7 +117,7 @@ export const updateUserCurrent = async (req, res) => {
 
   const removeFieldsEmpty = removeEmptyObjectFields({
     name,
-    last_name,
+    lastName: last_name,
     age,
     phone,
     country,
