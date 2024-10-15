@@ -37,23 +37,11 @@ export class UserImageFormComponent {
     }
   }
 
-  imageLoaded(image: LoadedImage) {
-    // Muestra el cropper
-  }
-
-  cropperReady() {
-    // El cropper está listo
-  }
-
-  loadImageFailed() {
-    console.error('Error al cargar la imagen.');
-  }
-
   cropImage(): void {
-    this.isCropped = true;  // Oculta el cropper y muestra la vista previa
+    this.isCropped = true;
   }
 
   reCrop(): void {
-    this.isCropped = false;  // Muestra nuevamente el cropper y oculta la vista previa
+    this.isCropped = false;
   }
 }

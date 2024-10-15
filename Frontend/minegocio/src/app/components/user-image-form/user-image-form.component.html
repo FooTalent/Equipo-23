@@ -2,7 +2,7 @@
     <div class="relative bg-gray-900 w-full max-w-2xl lg:max-w-4xl p-8 rounded-2xl shadow-lg mx-1 lg:mx-4 md:mx-0 max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
 
         <button (click)="toggleEditImageForm()" class="absolute top-5 right-5">
-            <img src="/icons/close.svg" alt="Close" class="w-6 h-6">
+            <img src="/icons/close.svg" loading="lazy" alt="Close" class="w-6 h-6">
         </button>
 
         <h2 class="text-2xl font-bold mb-6">Edita tu foto de perfil</h2>
@@ -21,10 +21,7 @@
                 [maintainAspectRatio]="true" 
                 [aspectRatio]="1 / 1" 
                 format="png" 
-                (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event)" 
-                (cropperReady)="cropperReady()" 
-                (loadImageFailed)="loadImageFailed()">
+                (imageCropped)="imageCropped($event)">
               </image-cropper>
             </div>
           
