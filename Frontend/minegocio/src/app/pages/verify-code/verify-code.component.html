@@ -1,7 +1,7 @@
 <div class="min-h-screen flex items-center justify-center bg-primary-main py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Verificar código</h2>
-      <p class="mt-2 text-center text-sm text-gray-600">
+    <div class="max-w-2xl w-full text-text-light bg-primary-main p-8 py-16 border-8 border-primary-light rounded-2xl shadow-lg">
+      <h2 class="text-center text-3xl lg:text-4xl font-extrabold text-white">Verificar código</h2>
+      <p class="mt-2 text-center">
         Ingresa el código que recibiste en tu correo electrónico
       </p>
       
@@ -14,7 +14,7 @@
               formControlName="code"
               type="text"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              class="appearance-none rounded-2xl relative block w-full px-3 py-3 bg-primary-light placeholder-gray-300 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Código de verificación"
             />
           </div>
@@ -23,7 +23,7 @@
         <div>
           <button 
             type="submit" [disabled]="isLoading()"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-2xl text-white bg-secondary-main hover:bg-[#6d49cf] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             {{ isLoading() ? 'Cargando...' : 'Verificar' }}
           </button>
@@ -34,11 +34,6 @@
           {{ errorMessage }}
         </div>
       </form>
-  
-      <!-- Mensaje de ayuda para reenvío de código -->
-      <div class="mt-6 text-center text-sm text-gray-600">
-        <p>¿No recibiste el código?</p>
-        <a href="#" class="text-indigo-600 hover:text-indigo-500 font-medium">Reenviar código</a>
-      </div>
+
     </div>
   </div>
