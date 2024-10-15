@@ -120,7 +120,7 @@ export default class UserDTO {
     return {
       id: user._id,
       name: user.name,
-      last_name: user.last_name,
+      last_name: user.lastName,
       age: user.age,
       phone: user.phone,
       email: user.email,
