@@ -12,22 +12,22 @@ const userSchema = new mongoose.Schema(
     lastName: {
       type: String,
       required: false,
-      default: ""
+      default: null
     },
     phone: {
       type: String,
       required: false,
-      default: ""
+      default: null
     },
     country: {
       type: String,
       required: false,
-      default: ""
+      default: null
     },
     locality: {
       type: String,
       required: false,
-      default: ""
+      default: null
     },
     photo: {
       type: String,
