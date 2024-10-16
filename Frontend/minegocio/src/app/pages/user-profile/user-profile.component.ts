@@ -26,4 +26,19 @@ export class UserProfileComponent {
     this.userService.toggleEditImageForm();
   }
 
+  isLoading = signal(true);
+  user = signal<any>({});
+
+  ngOnInit() {
+    this.userService.getUser()?.subscribe({
+      next: (user) => {
+        this.user.set(user);
+        this.isLoading.update(value => false);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
 }

@@ -175,11 +175,11 @@
       aria-label="Perfil de usuario"
     >
       <img
-        src="/icons/profile-image.png"
+        [src]="user()?.data?.photo || '/images/default-profile.jpg'"
         alt="Foto de perfil de Josefina Martinez"
         class="w-8 h-8 rounded-md mr-3"
       />
-      <span class="text-md whitespace-nowrap">Josefina Martinez</span>
+      <span class="text-md whitespace-nowrap">{{user()?.data?.name + ' ' + user()?.data?.last_name}}</span>
     </a>
     <button
       class="mt-8 w-full pl-[1.3rem] py-[12px] px-7 bg-primary-light rounded-[16px] hover:bg-secondary-main transition-colors text-md font-bold max-w-[200px]"

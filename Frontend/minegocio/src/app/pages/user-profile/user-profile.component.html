@@ -2,87 +2,95 @@
 
     <div class="p-4 box-border bg-[#2B2738] w-full rounded-2xl">
         <h1 class="hidden lg:block text-white text-2xl pl-2 font-bold">Datos personales</h1>
-        <div class="bg-[#2B2738] lg:p-6 rounded-lg w-full space-y-6 lg:grid lg:grid-cols-2 lg:gap-x-16">
+        @if (isLoading()) {
+            <div class="flex justify-center items-center h-full my-[19.6rem]">
+                <div class="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+            </div>
+        }
+        
+        @if (!isLoading()) {
+            <div class="bg-[#2B2738] lg:p-6 rounded-lg w-full space-y-6 lg:grid lg:grid-cols-2 lg:gap-x-16">
 
-            <div class="w-full flex my-2 lg:my-0 flex-col space-y-5">
+                <div class="w-full flex my-2 lg:my-0 flex-col space-y-5">
 
-                <div class="flex flex-col self-center items-center lg:items-start mt-4 lg:mt-0">
-                    <div class="relative box-border w-fit">
-                        <img class="w-36 h-auto lg:w-52 lg:min-w-32 lg:h-auto rounded-2xl object-cover"
-                            src="https://via.placeholder.com/150" alt="Profile Picture">
-                        <button (click)="toggleEditImageForm()"
-                            class="absolute right-[33%] bottom-[85%] lg:bottom-[5rem] lg:-right-6 border-4 border-gray-900 bg-purple-600 hover:bg-purple-500 p-2 rounded-full">
-                            <img src="/icons/edit.svg" loading="lazy" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
-                        </button>
+                    <div class="flex flex-col self-center items-center lg:items-start mt-4 lg:mt-0">
+                        <div class="relative box-border w-fit">
+                            <img class="w-36 h-auto lg:w-52 lg:h-52 lg:min-w-32 max-w-md rounded-2xl object-contain"
+                            [src]="user()?.data?.photo || '/images/default-profile.jpg'" alt="Profile Picture">
+                            <button (click)="toggleEditImageForm()"
+                                class="absolute right-[33%] bottom-[85%] lg:bottom-[5rem] lg:-right-6 border-4 border-gray-900 bg-purple-600 hover:bg-purple-500 p-2 rounded-full">
+                                <img src="/icons/edit.svg" loading="lazy" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
+                            </button>
+                        </div>
+                        <h2 class="text-white text-lg pt-3 font-semibold self-center w-fit">{{user()?.data?.name + ' ' + user()?.data?.last_name}}</h2>
                     </div>
-                    <h2 class="text-white text-lg px-8 pt-3 font-semibold text-center w-fit">Josefina Martinez</h2>
+    
+                    <div>
+                        <label for="name" class="ml-2 block text-gray-400 mb-2">Nombre</label>
+                        <input id="name"
+                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                            readonly [value]="user()?.data?.name">
+                    </div>
+    
+                    <div>
+                        <label for="lastName" class="ml-2 block text-gray-400 mb-2">Apellido</label>
+                        <input id="lastName"
+                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                            readonly [value]="user()?.data?.last_name">
+                    </div>
+    
+                    <div>
+                        <label for="email" class="ml-2 block text-gray-400 mb-2">Email</label>
+                        <input id="email"
+                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                            readonly [value]="user()?.data?.email">
+                    </div>
+    
                 </div>
-
-                <div>
-                    <label for="name" class="ml-2 block text-gray-400 mb-2">Nombre</label>
-                    <input id="name"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                        readonly value="josefina.martinezgmail.com">
-                </div>
-
-                <div>
-                    <label for="lastName" class="ml-2 block text-gray-400 mb-2">Apellido</label>
-                    <input id="lastName"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                        readonly value="josefina.martinezgmail.com">
-                </div>
-
-                <div>
-                    <label for="email" class="ml-2 block text-gray-400 mb-2">Email</label>
-                    <input id="email"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                        readonly value="josefina.martinezgmail.com">
+    
+                <div class="w-full flex lg:my-0 flex-col space-y-5 lg:pt-7">
+    
+                    <div>
+                        <label for="country" class="ml-2 block text-gray-400 mb-2">Pais</label>
+                        <input id="country"
+                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                            readonly [value]="user()?.data?.country ? user()?.data?.country : 'Sin asignar' ">
+                    </div>
+    
+                    <div>
+                        <label for="location" class="ml-2 block text-gray-400 mb-2">Localidad</label>
+                        <input id="location"
+                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                            readonly [value]="user()?.data?.locality ? user()?.data?.locality : 'Sin asignar' ">
+                    </div>
+    
+                    <div>
+                        <label for="zipCode" class="ml-2 block text-gray-400 mb-2">Codigo Postal</label>
+                        <input id="zipCode"
+                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                            readonly [value]="user()?.data?.zip_code ? user()?.data?.zip_code : 'Sin asignar' ">
+                    </div>
+    
+                    <div>
+                        <label for="phone" class="ml-2 block text-gray-400 mb-2">Telefono</label>
+                        <input id="phone"
+                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
+                            readonly [value]="user()?.data?.phone ? user()?.data?.phone : 'Sin asignar' ">
+                    </div>
+    
                 </div>
 
             </div>
+        }
 
-            <div class="w-full flex lg:my-0 flex-col space-y-5 lg:pt-7">
-
-                <div>
-                    <label for="country" class="ml-2 block text-gray-400 mb-2">Pais</label>
-                    <input id="country"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                        readonly value="Argentina">
-                </div>
-
-                <div>
-                    <label for="location" class="ml-2 block text-gray-400 mb-2">Localidad</label>
-                    <input id="location"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                        readonly value="Caballito">
-                </div>
-
-                <div>
-                    <label for="zipCode" class="ml-2 block text-gray-400 mb-2">Codigo Postal</label>
-                    <input id="zipCode"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                        readonly value="123456">
-                </div>
-
-                <div>
-                    <label for="phone" class="ml-2 block text-gray-400 mb-2">Telefono</label>
-                    <input id="phone"
-                        class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                        readonly value="700 786 928">
-                </div>
-
+        @if (!isLoading()) {
+            <div class="flex justify-center">
+                <button type="button" (click)="toggleEditForm()"
+                    class="w-full lg:mx-6 bg-[#5D3CBA] text-white py-3 mt-6 lg:mt-4 rounded-xl hover:bg-[#6b47ce] focus:outline-none focus:ring-4 focus:ring-purple-500">
+                    Editar
+                </button>
             </div>
-
-
-            
-        </div>
-
-        <div class="flex justify-center">
-            <button type="button" (click)="toggleEditForm()"
-                class="w-full bg-[#5D3CBA] text-white py-3 mb-6 rounded-xl hover:bg-[#6b47ce] focus:outline-none focus:ring-4 focus:ring-purple-500">
-                Editar
-            </button>
-        </div>
+        }
 
     </div>
 </div>
