@@ -7,10 +7,10 @@
 
         <h2 class="text-2xl font-bold mb-6">Edita tu foto de perfil</h2>
 
-        <form class="space-y-4">
+        <form class="space-y-4" enctype="multipart/form-data" (ngSubmit)="onEditPhotoSubmit($event)" [formGroup]="editPhotoForm">
             <div>
               <label for="imagen" class="block pl-2 font-medium">Subir Imagen</label>
-              <input type="file" id="imagen" name="imagen" accept="image/*" (change)="fileChangeEvent($event)"
+              <input type="file" id="imagen" name="imagen" accept="image/*" (change)="fileChangeEvent($event)" formControlName="photo"
                 class="bg-[#3B364C] mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
             </div>
           
@@ -48,12 +48,13 @@
                 </button>
             </div>
           
-            <button type="submit" [disabled]="!isCropped" 
+            <button type="submit" [disabled]="!isCropped || isLoading()" 
                 [ngClass]="{
                     'bg-purple-600 hover:bg-purple-700 text-white': isCropped,
                     'bg-gray-700 text-gray-300 cursor-not-allowed': !isCropped
-                }" class="w-full py-3 px-4 rounded-2xl" class="w-full bg-purple-600 text-white py-3 px-4 rounded-2xl hover:bg-purple-700">
-              Subir Imagen
+                }" class="w-full py-3 px-4 rounded-2xl" class="w-full bg-purple-600 text-white py-3 px-4 rounded-2xl hover:bg-purple-700
+                  disabled:bg-secondary-main disabled:opacity-50">
+              {{isLoading() ? 'Cargando...' : 'Subir Imagen'}}
             </button>
           </form>
     </div>
