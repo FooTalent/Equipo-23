@@ -9,17 +9,10 @@ export const validateUpdateUserCurrent = [
   check("last_name", "Surname is required")
     .optional()
 
-    .isString("Last name muest be of type String"),
+    .isString("Last name muest be of type Number"),
   check("phone", "Phone is required")
     .optional()
-
-    // verificar si el numero telefonico es valido con la funcion validatePhone
-    .custom((value) => {
-      // const phoneRegex = /^\d{10}$/;
-      // return phoneRegex.test(value);
-      return validatePhoneNumber(value)
-    })
-    .withMessage("Phone number is invalid"),
+    .isNumeric(),
   check("country", "Country is required")
     .optional()
     .isString("Country muest be of type String"),
