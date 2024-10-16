@@ -24,8 +24,19 @@ const cartSchema = new mongoose.Schema({
     type: String,
     enum: ['abandoned', 'process', 'empty', 'full'],
     default: 'empty'
+  },
+  buyer: {
+    type: String
+  },
+  seller:{
+    type: String
+    
   }
-});
+},
+{
+  timestamps: true,
+}
+);
 
 cartSchema.pre("find", function () {
   this.populate("products.prodId");

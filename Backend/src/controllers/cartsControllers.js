@@ -4,6 +4,14 @@ import purchaseService from "../services/PurchaseService.js";
 import productModel from "../dao/mongo/models/productModel.js";
 import { transport } from "../utils/nodemailer.js";
 
+export const addProductToCart = async (req, res) => {
+  const email = req.params
+  const { prodId, quantity, price, sellerEmail } = req.body;
+
+  const cartsBySellerAndBuyer = await cartModel.find({ seller: sellerEmail, buyer: email });
+  
+}
+
 export const getCarts = async (req, res) => {
   let carts = await cartsRepository.getCarts();
   const result = carts.map((cart) =>
@@ -318,7 +326,7 @@ export const createPurchase = async (req, res) => {
   const result = await purchaseService.createPurchase(cartId);
 
   await transport.sendMail({
-    from: `E-commerce Coder <${config.correoGmail}>`,
+    from: `Mi Negocio <${config.correoGmail}>`,
     to: result.user.email,
     subject: "Purchase confirmation",
     html: `<div>
@@ -329,11 +337,11 @@ export const createPurchase = async (req, res) => {
             <p>Products:</p>
             <ul>
               ${result.products
-        .map(
-          (product) =>
-            `<li>${product.prodId.title} - Quantity: ${product.quantity}</li>`
-        )
-        .join("")}
+                .map(
+                  (product) =>
+                    `<li>${product.prodId.title} - Quantity: ${product.quantity}</li>`
+                )
+                .join("")}
             </ul>
           </div>`,
   });

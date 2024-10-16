@@ -182,7 +182,7 @@ export const deleteProductById = async (req, res) => {
     // Verify if owners' product
     if (product.owner != "admin") {
       await transport.sendMail({
-        from: `E-commerce Coder<${config.correoGmail}>`,
+        from: `Mi Negocio<${config.correoGmail}>`,
         to: product.owner,
         subject: "producto eliminado",
         html: `

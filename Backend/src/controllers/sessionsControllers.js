@@ -39,7 +39,7 @@ async function sendCodeConfirmationRegister(userData) {
 
   //send email to user
   const result = await transport.sendMail({
-    from: `E-commerce Coder <${config.correoGmail}>`,
+    from: `Mi Negocio <${config.correoGmail}>`,
     to: userData.email,
     subject: "Confirmacion de email",
     html: `
