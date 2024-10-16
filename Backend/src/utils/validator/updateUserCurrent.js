@@ -22,12 +22,10 @@ export const validateUpdateUserCurrent = [
     .withMessage("Phone number is invalid"),
   check("country", "Country is required")
     .optional()
-
     .isString("Country muest be of type String"),
-  check("locality", "City is required")
+  check("locality", "locality muest be of type String")
     .optional()
-
-    .isEmpty(),
+    .isString(),
   (req, res, next) => {
     validateResult(req, res, next);
   },
