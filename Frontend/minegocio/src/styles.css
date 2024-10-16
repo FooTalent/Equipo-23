@@ -17,13 +17,12 @@
 }
 body {
   font-family: "Nunito", sans-serif;
-  background-color: #2B2738  ;
+  background-color: #2b2738;
 }
 
 /* Estilos personalizados para el scrollbar */
 
 /* Estilos globales para ocultar las flechas del scrollbar en todos los navegadores */
-
 
 /* Para Chrome, Edge, y otros navegadores basados en WebKit/Blink */
 *::-webkit-scrollbar {
@@ -58,4 +57,26 @@ body {
 
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
+}
+.animate-glow {
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    background-color: #3b364c;
+  }
+  100% {
+    background-color: #5d3cba;
+  }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

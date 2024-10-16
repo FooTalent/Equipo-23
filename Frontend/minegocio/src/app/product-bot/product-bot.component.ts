@@ -10,17 +10,17 @@ interface ChatMessage {
   countRequired?: boolean;
   isConfirmation?: boolean;
   isAddAnother?: boolean;
-  isDisabled?: boolean; 
+  isDisabled?: boolean;
 }
 
 interface ProductInfo {
   type: string;
-  market: string;
+  status: string;
   name: string;
   budget: string;
-  timeline: string;
+  categories: string;
   description: any;
-  price:any;
+  price: any;
   quantity: number;
 }
 @Component({
@@ -30,26 +30,31 @@ interface ProductInfo {
   templateUrl: './product-bot.component.html',
   styleUrls: ['./product-bot.component.css'],
 })
-
 export class ProductBotComponent implements OnInit {
   messages: ChatMessage[] = [];
   currentStep = 0;
   productInfo: ProductInfo = {
     type: '',
-    market: '',
+    status: '',
     description: '',
     name: '',
     price: 0,
     budget: '',
-    timeline: '',
+    categories: '',
     quantity: 1,
   };
   allProducts: ProductInfo[] = [];
   isComplete = false;
   productCount: number = 1;
+  inputDisabled: boolean = true;
+  glowSendButton: boolean = false;
+  isPriceInput: boolean = false;
+  endOfProcess: boolean = false;
 
   @Input() hidePopUp!: () => void;
   @Input() showBot!: boolean;
+
+  showBackground: boolean = true
 
   constructor(private http: HttpClient) {}
 
@@ -63,16 +68,17 @@ export class ProductBotComponent implements OnInit {
     {
       text: '¡Hola! Vamos a cargar tus productos en el inventario. ¿Cómo querés realizar el proceso?',
       options: ['Carga Manual'],
-      isAnswered: false, // Nueva propiedad
+      isAnswered: false,
     },
     {
       text: '¿Va a estar a la venta inmediatamente?',
       options: ['Si', 'No'],
-      isAnswered: false, // Nueva propiedad
+      isAnswered: false,
     },
     {
       text: 'Bien. Empecemos por lo básico. ¿Cuantas unidades de este nuevo producto vas a agregar?',
       countRequired: true,
+      glowSendButton: true,
     },
     {
       text: '¿En cuál de tus categorías vas a colocar el producto?',
@@ -80,20 +86,26 @@ export class ProductBotComponent implements OnInit {
     },
     {
       text: 'Indicá un nombre para el producto',
+      disableInput: false,
+      glowSendButton: true,
     },
     {
       text: 'Añadi una descripción de tu producto',
+      disableInput: false,
+      glowSendButton: true,
     },
     {
       text: '¿Cuál es el precio por unidad de este producto?',
-      countRequired: true,
+      disableInput: false,
+      glowSendButton: true,
+      priceInput: true,
     },
     { text: '¿Confirmas la siguiente información?', isConfirmation: true },
     { text: '¿Deseas agregar otro producto?', isAddAnother: true },
   ];
 
   isOptionDisabled: boolean = false;
-  optionsDisabled: boolean[] = []; // Nuevo array para rastrear el estado de los botones
+  optionsDisabled: boolean[] = [];
 
   userResponse: string = '';
 
@@ -101,64 +113,94 @@ export class ProductBotComponent implements OnInit {
     this.messages = [];
     this.currentStep = 0;
     this.resetProductInfo();
-    this.isOptionDisabled = false; // Reiniciar el estado
-    this.optionsDisabled = Array(this.questions.length).fill(false); // Inicializar el estado de los botones
+    this.isOptionDisabled = false;
+    this.optionsDisabled = Array(this.questions.length).fill(false);
     this.nextQuestion();
   }
 
   nextQuestion() {
-    this.isOptionDisabled = false; // Restablecer el estado aquí
-    if (this.currentStep < this.questions.length) {
-        const question = this.questions[this.currentStep];
-        this.messages.forEach((message, index) => {
-            message.isDisabled = index !== this.messages.length - 1; // Deshabilitar si no es el último mensaje
-        });
+    this.isOptionDisabled = false;
 
-        if (question.isConfirmation) {
-            this.showConfirmation();
-        } else if (question.isAddAnother) {
-            this.askAddAnother();
-        } else {
-            this.messages.push({
-                text: question.text,
-                isUser: false,
-                options: question.options,
-                countRequired: question.countRequired,
-                isConfirmation: question.isConfirmation,
-                isAddAnother: question.isAddAnother,
-                isDisabled: false, // Habilitar el nuevo mensaje
-            });
+    if (this.currentStep < this.questions.length) {
+      const question = this.questions[this.currentStep];
+
+      if (question.disableInput == false) {
+        this.inputDisabled = false;
+      } else {
+        this.inputDisabled = true;
+      }
+      if (question.priceInput == true) {
+        this.isPriceInput = false;
+      } else {
+        this.isPriceInput = true;
+      }
+
+      if (question.glowSendButton) {
+        {
+          this.glowSendButton = true;
         }
-    } else {
-        this.isComplete = true;
+      } else {
+        this.glowSendButton = false;
+      }
+
+      this.messages.forEach((message, index) => {
+        message.isDisabled = index !== this.messages.length - 1;
+      });
+
+      if (question.isConfirmation) {
+        this.showConfirmation();
+      } else if (question.isAddAnother) {
+        this.askAddAnother();
+      } else {
         this.messages.push({
-            text: '¡Gracias por tu información!',
-            isUser: false,
+          text: question.text,
+          isUser: false,
+          options: question.options,
+          countRequired: question.countRequired,
+          isConfirmation: question.isConfirmation,
+          isAddAnother: question.isAddAnother,
+          isDisabled: false,
         });
+      }
+    } else {
+      this.isComplete = true;
+      this.messages.push({
+        text: '¡Gracias por tu información!',
+        isUser: false,
+      });
     }
   }
 
   advance() {
+    if (this.questions[this.currentStep].countRequired == true) {
+      this.messages.push({
+        text: this.productInfo.quantity.toString(),
+        isUser: true,
+      });
+    }
     if (this.currentStep < this.questions.length) {
-        const currentQuestion = this.questions[this.currentStep];
+      const currentQuestion = this.questions[this.currentStep];
 
-        // Asignar el valor del input a la propiedad correspondiente solo si no está vacío
-        if (this.userResponse.trim()) {
-            if (currentQuestion.text.includes('nombre')) {
-                this.productInfo.name = this.userResponse;
-            } else if (currentQuestion.text.includes('descripción')) {
-                this.productInfo.description = this.userResponse;
-            } else if (currentQuestion.text.includes('precio')) {
-                this.productInfo.price = parseFloat(this.userResponse);
-            }
+      if (this.userResponse.trim()) {
+        if (currentQuestion.text.includes('nombre')) {
+          this.productInfo.name = this.userResponse;
+        } else if (currentQuestion.text.includes('descripción')) {
+          this.productInfo.description = this.userResponse;
+        } else if (currentQuestion.text.includes('precio')) {
+          this.productInfo.price = parseFloat(this.userResponse);
         }
-
-        // Agregar el mensaje del usuario al chat
-        this.messages.push({ text: this.userResponse, isUser: true });
-        this.currentStep++;
-        this.userResponse = ''; // Limpiar el input después de avanzar
-        this.nextQuestion();
+      } else {
         this.scrollToBottom();
+        this.currentStep++;
+        this.nextQuestion();
+        return;
+      }
+
+      this.messages.push({ text: this.userResponse, isUser: true });
+      this.currentStep++;
+      this.userResponse = '';
+      this.scrollToBottom();
+      this.nextQuestion();
     }
   }
 
@@ -166,13 +208,11 @@ export class ProductBotComponent implements OnInit {
     setTimeout(() => {
       this.messagesContainer.nativeElement.scrollTop =
         this.messagesContainer.nativeElement.scrollHeight;
-    }, 0);
+    }, 10);
   }
 
   selectOption(option: string) {
     this.messages.push({ text: option, isUser: true });
-    
-    // Marcar la pregunta actual como respondida
     this.questions[this.currentStep].isAnswered = true;
 
     switch (this.currentStep) {
@@ -180,23 +220,22 @@ export class ProductBotComponent implements OnInit {
         this.productInfo.type = option;
         break;
       case 1:
-        this.productInfo.market = option;
+        this.productInfo.status = option;
         break;
       case 2:
-        this.productInfo.budget = option;
+        this.productInfo.quantity = parseInt(option, 10);
         break;
       case 3:
-        this.productInfo.timeline = option;
+        this.productInfo.categories = option;
         break;
-      // Asegúrate de que los siguientes casos también se manejen
       case 4:
-        this.productInfo.name = option; // Suponiendo que has agregado un campo para el nombre
+        this.productInfo.name = option;
         break;
       case 5:
-        this.productInfo.description = option; // Suponiendo que has agregado un campo para la descripción
+        this.productInfo.description = option;
         break;
       case 6:
-        this.productInfo.price = option; // Suponiendo que has agregado un campo para el precio
+        this.productInfo.price = option;
         break;
     }
 
@@ -222,14 +261,16 @@ export class ProductBotComponent implements OnInit {
 
   showConfirmation() {
     const confirmationText = `
-      <strong>Tipo de producto:</strong> ${this.productInfo.type}<br>
-      <strong>Mercado:</strong> ${this.productInfo.market}<br>
-      <strong>Presupuesto:</strong> ${this.productInfo.budget}<br>
-      <strong>Tiempo de lanzamiento:</strong> ${this.productInfo.timeline}<br>
-      <strong>Cantidad:</strong> ${this.productInfo.quantity}<br>
-      <strong>Nombre del producto:</strong> ${this.productInfo.name}<br>
-      <strong>Descripción:</strong> ${this.productInfo.description}<br>
-      <strong>Precio por unidad:</strong> ${this.productInfo.price}
+    Hemos llegado al final.<br> Controlá que los datos registrados son correctos.<br><br>
+
+     <strong>Nombre</strong>:${this.productInfo.name}<br>
+     <strong>Descripcion:</strong> ${this.productInfo.description}<br>
+     <strong>Cantidad:</strong> ${this.productInfo.quantity}<br>
+     <strong>Categoria:</strong> ${this.productInfo.categories}<br>
+     <strong>Precio por unidad:</strong> ${this.productInfo.price}<br>
+     <strong>¿Esta a la venta:</strong> ${this.productInfo.status}<br>
+     <br>
+  ¿Es correcto?
     `;
     this.messages.push({
       text: confirmationText,
@@ -240,9 +281,17 @@ export class ProductBotComponent implements OnInit {
 
   confirmInfo(confirmed: boolean) {
     if (confirmed) {
-      this.messages.push({ text: 'Información confirmada', isUser: true });
+      this.messages.push({ text: 'Si, es correcto', isUser: true });
+      this.scrollToBottom();
+      this.isComplete = true;
       this.allProducts.push({ ...this.productInfo });
-      this.advance();
+      setTimeout(() => {
+        this.isComplete = false;
+        this.hidePopUp();
+        this.showBot = false;
+        this.showBackground = false
+        this.startNewChat();
+      }, 2000);
     } else {
       this.messages.push({
         text: 'Volviendo al inicio para editar',
@@ -277,13 +326,13 @@ export class ProductBotComponent implements OnInit {
   resetProductInfo() {
     this.productInfo = {
       type: '',
-      market: '',
+      status: '',
       budget: '',
-      timeline: '',
+      categories: '',
       quantity: 1,
-      name: '', // Agregar el campo 'name'
-      description: '', // Agregar el campo 'description'
-      price: 0, // Agregar el campo 'price'
+      name: '',
+      description: '',
+      price: 0,
     };
     this.productCount = 1;
   }
@@ -291,4 +340,10 @@ export class ProductBotComponent implements OnInit {
   sendToBackend() {
     console.log('enviado al backend', this.productInfo);
   }
+
+  ngOnDestroy() {
+    console.log('Componente desmontad');
+  }
 }
+
+

@@ -31,7 +31,7 @@ export class MyShopComponent implements OnInit {
   currentPage: number = 1;
   searchQuery: string = '';
   isLargeScreen: boolean = true;
-  showBot: boolean = true;
+  showBot: boolean = false;
 
   constructor(
     private productService: ProductService,
