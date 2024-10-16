@@ -23,6 +23,7 @@ export class VerifyCodeComponent {
 
   errorMessage: string = '';
   isLoading = signal(false);
+
   onVerifySubmit(event: Event) {
     event.preventDefault();
 
@@ -36,13 +37,19 @@ export class VerifyCodeComponent {
         },
         error: (error) => {
           if (error.status === 400) {
-            this.errorMessage = 'Invalid verification code. Please try again.';
+            this.errorMessage = 'El código de verificación no es correcto. Por favor inténtalo de nuevo.';
           } else {
             this.errorMessage =
-              'An unexpected error occurred. Please try again later.';
+              'Un error inesperado ha ocurrido. Por favor, inténtalo de nuevo más tarde.';
           }
         },
       });
+    } else {
+      this.errorMessage = 'Rellena el codigo de verificación';
     }
+  }
+
+  cancelVerification() {
+    this.Router.navigate(['/sign-up']);
   }
 }
