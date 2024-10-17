@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { RegisterValues } from '../models/registerValues.model';
-import { log } from 'console';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -54,7 +53,7 @@ export class UserService {
       country: user.country,
       phone: user.phone,
       email: user.email,
-      city: user.locality,
+      locality: user.locality,
     }, { headers: this.headers });
   }
 

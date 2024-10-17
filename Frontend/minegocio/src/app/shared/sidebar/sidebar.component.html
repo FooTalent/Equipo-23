@@ -179,7 +179,8 @@
         alt="Foto de perfil de Josefina Martinez"
         class="w-8 h-8 rounded-md mr-3"
       />
-      <span class="text-md whitespace-nowrap">{{user()?.data?.name + ' ' + user()?.data?.last_name}}</span>
+      <span *ngIf="user()?.data?.name" class="text-md whitespace-nowrap">{{user()?.data?.name + ' ' + user()?.data?.last_name || "Usuario"}}</span>
+      <span *ngIf="!user()?.data?.name" class="text-md whitespace-nowrap">Usuario</span>
     </a>
     <button
       class="mt-8 w-full pl-[1.3rem] py-[12px] px-7 bg-primary-light rounded-[16px] hover:bg-secondary-main transition-colors text-md font-bold max-w-[200px]"
