@@ -58,8 +58,26 @@ body {
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
-.animate-glow {
+.animate-glow-fast {
+  animation: glow 0.8s infinite alternate;
+}
+.animate-glow-slow {
   animation: glow 1.5s infinite alternate;
+}
+
+.animate-border-slow {
+  animation: glow-border 1s infinite alternate;
+}
+
+@keyframes glow-border {
+  0% {
+    border-color: #3b364c;
+    border-width: 0;
+  }
+  100% {
+    border-color: #7654d4;
+    border-width: 1.5px;
+  }
 }
 
 @keyframes glow {
@@ -70,6 +88,7 @@ body {
     background-color: #5d3cba;
   }
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -79,4 +98,9 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+.chatbot-container {
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none;
 }

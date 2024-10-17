@@ -22,6 +22,7 @@ interface ProductInfo {
   description: any;
   price: any;
   quantity: number;
+  image?: string; // Agregado para almacenar la imagen del producto
 }
 @Component({
   selector: 'app-bot',
@@ -49,12 +50,13 @@ export class ProductBotComponent implements OnInit {
   inputDisabled: boolean = true;
   glowSendButton: boolean = false;
   isPriceInput: boolean = false;
-  endOfProcess: boolean = false;
+  loadImage: boolean = false;
+  fileInput: any 
 
   @Input() hidePopUp!: () => void;
   @Input() showBot!: boolean;
 
-  showBackground: boolean = true
+  showBackground: boolean = true;
 
   constructor(private http: HttpClient) {}
 
@@ -100,6 +102,12 @@ export class ProductBotComponent implements OnInit {
       glowSendButton: true,
       priceInput: true,
     },
+    {
+      text: 'Por favor, carga una imagen del producto',
+      disableInput: false,
+      loadImage: true,
+      glowSendButton: true,
+    },
     { text: '¿Confirmas la siguiente información?', isConfirmation: true },
     { text: '¿Deseas agregar otro producto?', isAddAnother: true },
   ];
@@ -124,15 +132,24 @@ export class ProductBotComponent implements OnInit {
     if (this.currentStep < this.questions.length) {
       const question = this.questions[this.currentStep];
 
-      if (question.disableInput == false) {
+      if (question.disableInput == false || question.loadImage) {
         this.inputDisabled = false;
       } else {
         this.inputDisabled = true;
       }
+
       if (question.priceInput == true) {
         this.isPriceInput = false;
       } else {
         this.isPriceInput = true;
+      }
+
+      if (question.loadImage) {
+        {
+          this.loadImage = true;
+        }
+      } else {
+        this.loadImage = false;
       }
 
       if (question.glowSendButton) {
@@ -188,6 +205,8 @@ export class ProductBotComponent implements OnInit {
           this.productInfo.description = this.userResponse;
         } else if (currentQuestion.text.includes('precio')) {
           this.productInfo.price = parseFloat(this.userResponse);
+        } else if (currentQuestion.text.includes('imagen')) {
+          this.productInfo.image = this.userResponse; // Almacena la imagen
         }
       } else {
         this.scrollToBottom();
@@ -285,11 +304,13 @@ export class ProductBotComponent implements OnInit {
       this.scrollToBottom();
       this.isComplete = true;
       this.allProducts.push({ ...this.productInfo });
+      this.sendToBackend(); // Llama al método sendToBackend aquí
+      this.resetProductInfo()
       setTimeout(() => {
         this.isComplete = false;
         this.hidePopUp();
         this.showBot = false;
-        this.showBackground = false
+        this.showBackground = false;
         this.startNewChat();
       }, 2000);
     } else {
@@ -334,6 +355,7 @@ export class ProductBotComponent implements OnInit {
       description: '',
       price: 0,
     };
+    this.userResponse = ''
     this.productCount = 1;
   }
 
@@ -341,9 +363,15 @@ export class ProductBotComponent implements OnInit {
     console.log('enviado al backend', this.productInfo);
   }
 
-  ngOnDestroy() {
-    console.log('Componente desmontad');
+  onImageSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.userResponse = e.target?.result as string; // Almacena la imagen como base64 en userResponse
+    };
+    this.advance()
+      reader.readAsDataURL(file);
+    }
   }
 }
-
-

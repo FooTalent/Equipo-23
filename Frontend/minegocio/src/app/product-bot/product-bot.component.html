@@ -12,7 +12,7 @@
   </div>
   <div
     #messagesContainer
-    class="space-y-3 mt-4 px-4 rounded-lg mb-12 max-h-[600px] overflow-y-auto pb-10"
+    class="chatbot-container space-y-3 mt-4 px-4 rounded-lg mb-12 max-h-[600px] overflow-y-auto pb-10"
   >
     <div
       *ngFor="let message of messages"
@@ -76,7 +76,7 @@
     </div>
     <div
       *ngIf="isComplete"
-      class="mt-4 w-full text-[14px] whitespace-nowrap py-2 text-white  transition duration-300 flex flex-col items-center"
+      class="mt-4 w-full text-[14px] whitespace-nowrap py-2 text-white transition duration-300 flex flex-col items-center"
     >
       ¡Listo! Ya cargamos el producto en tu inventario
 
@@ -91,17 +91,34 @@
       [(ngModel)]="userResponse"
       *ngIf="!isComplete && currentStep < questions.length"
       class="bg-primary-light mb-3 rounded-md w-[70%] placeholder:pl-2 pl-2"
+      [ngClass]="{
+        'text-[transparent] placeholder:text-[transparent]': currentStep == 8,
+        'animate-border-slow': !inputDisabled && currentStep !== 7,
+      }"
       placeholder="Mensaje"
       [type]="!isPriceInput ? 'number' : 'text'"
-      [disabled]="inputDisabled"
+      [disabled]="inputDisabled || loadImage"
     />
 
+    <input
+      #fileInput
+      type="file"
+      (change)="onImageSelected($event)"
+      class="hidden"
+      accept="image/*"
+    />
+
+    <!-- Botón personalizado -->
     <button
       *ngIf="!isComplete && currentStep < questions.length"
-      (click)="advance()"
-      class="w-[fit-content] px-2 mb-3 bg-primary-light text-white rounded transition duration-300 cursor-not-allowed"
+      (click)="fileInput.click()"
+      [ngClass]="{
+        'bg-primary-light': !loadImage,
+        'bg-secondary-main animate-glow-fast': loadImage
+      }"
+      class="w-[fit-content] px-2 mb-3 bg-primary-light text-white rounded transition duration-300 hover:bg-primary-dark"
     >
-      <img src="/icons/paper-clip.svg" alt="send-icon" />
+      <img src="/icons/paper-clip.svg" alt="cargar-archivo" />
     </button>
     <button
       *ngIf="!isComplete && currentStep < questions.length"
@@ -114,8 +131,8 @@
   </div>
 </div>
 
-  <div
-    *ngIf="showBackground && showBot"
-    class="fixed inset-0 backdrop-blur-sm z-10"
-    (click)="hidePopUp()"
-  ></div>
+<div
+  *ngIf="showBackground && showBot"
+  class="fixed inset-0 backdrop-blur-sm z-10"
+  (click)="hidePopUp()"
+></div>
