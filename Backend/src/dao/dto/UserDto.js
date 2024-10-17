@@ -125,6 +125,7 @@ export default class UserDTO {
       phone: user.phone,
       email: user.email,
       country: user.country,
+      postal_code: user.postal_Code,
       locality: user.locality,
       photo: user.photo,
       role: user.role,

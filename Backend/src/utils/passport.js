@@ -41,7 +41,6 @@ const initializatePassport = () => {
         try {
           return done(null, jwt_payload);
         } catch (err) {
-          console.log(err);
           return done(err);
         }
       }

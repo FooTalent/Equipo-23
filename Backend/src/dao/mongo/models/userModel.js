@@ -24,6 +24,11 @@ const userSchema = new mongoose.Schema(
       required: false,
       default: null
     },
+    postalCode: {
+      type: Number,
+      required: false,
+      default: null
+    },
     locality: {
       type: String,
       required: false,

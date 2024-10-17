@@ -106,6 +106,7 @@ export const updateUserCurrent = async (req, res) => {
     last_name,
     age,
     phone,
+    postal_code,
     country,
     locality
   } = req.body
@@ -121,6 +122,7 @@ export const updateUserCurrent = async (req, res) => {
     age,
     phone,
     country,
+    postalCode: postal_code,
     locality
   })
 
