@@ -17,7 +17,7 @@ export const io = new Server(server);
 
 const PORT = config.port;
 
-const allowedOrigins = config.environment == 'production' ? ['https://prod-minegocio.netlify.app'] : ['https://beta-minegocio.netlify.app', 'http://localhost:8080'];
+const allowedOrigins = config.environment == 'production' ? ['https://prod-minegocio.netlify.app', 'https://equipo-23-develop-backend.onrender.com'] : ['https://beta-minegocio.netlify.app', 'http://localhost:8080'];
 
 const corsOptions = {
   origin: allowedOrigins,
