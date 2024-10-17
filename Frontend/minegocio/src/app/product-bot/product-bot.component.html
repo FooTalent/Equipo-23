@@ -89,6 +89,7 @@
     <input
       type="text"
       [(ngModel)]="userResponse"
+      (keyup.enter) = "advance()"
       *ngIf="!isComplete && currentStep < questions.length"
       class="bg-primary-light mb-3 rounded-md w-[70%] placeholder:pl-2 pl-2"
       [ngClass]="{
