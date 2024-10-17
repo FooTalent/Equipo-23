@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MyShopMobileComponent } from './myshop-mobile.component';
 import { ProductBotComponent } from '../product-bot/product-bot.component';
 
 @Component({
@@ -17,7 +16,6 @@ import { ProductBotComponent } from '../product-bot/product-bot.component';
   imports: [
     CommonModule,
     FormsModule,
-    MyShopMobileComponent,
     ProductBotComponent,
   ],
   templateUrl: './myshop.component.html',
@@ -125,6 +123,7 @@ export class MyShopComponent implements OnInit {
   activateProduct(productId: string) {}
 
   showPopUp() {
+    console.log("toggling producto bot")
     this.showBot = !this.showBot;
   }
 }
