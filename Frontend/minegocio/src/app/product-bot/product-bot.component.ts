@@ -312,7 +312,7 @@ export class ProductBotComponent implements OnInit {
         this.showBot = false;
         this.showBackground = false;
         this.startNewChat();
-      }, 2000);
+      }, 1200);
     } else {
       this.messages.push({
         text: 'Volviendo al inicio para editar',
