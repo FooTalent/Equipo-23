@@ -1,0 +1,15 @@
+.dp {
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.1s; 
+  }
+  
+  .dp:hover {
+    background-color: rgba(0, 0, 0, 0.1); 
+  }
+  
+  /* Estilo para el efecto de clic */
+  .dp:active {
+    background-color: rgba(0, 0, 0, 0.2); 
+    transform: scale(0.95); 
+  }
+  

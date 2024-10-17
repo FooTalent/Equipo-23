@@ -1,6 +1,6 @@
 <div
   id="messages-box"
-  class=" lg:p-6 lg:bg-primary-light rounded-[16px] flex lg:justify-center w-[210vw] lg:w-auto max-h-[1000px] max-w-[1600px] "
+  class="lg:p-6 lg:bg-primary-light rounded-[16px] flex lg:justify-center w-[210vw] lg:w-auto max-h-[1000px] max-w-[1600px]"
 >
   <div
     class="w-full lg:w-[77.5vw] min-w-[360px] h-[90vh] max-h-[920px] flex flex-row gap-6"
@@ -12,19 +12,27 @@
         <div
           class="upper-nav bg-primary-main flex gap-5 items-center px-3 lg:px-7 py-[2rem] rounded-[16px]"
         >
-          <div class="dp flex justify-center items-center rounded-l-lg">
+          <div
+            class="dp flex justify-center items-center rounded-l-lg"
+            (click)="sendToBackend()"
+          >
             <img
               class="rounded-xl bg-secondary-main p-4"
               src="/icons/whatsapp.svg"
+              alt="WhatsApp"
+            />
+          </div>
+
+          <div
+            class="flex justify-center items-center rounded-l-lg cursor-not-allowed"
+          >
+            <img
+              class="rounded-xl bg-primary-light p-4"
+              src="/icons/tiktok.svg"
             />
           </div>
           <div
-            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
-          >
-            <img class="rounded-xl bg-primary-light p-4" src="/icons/tiktok.svg" />
-          </div>
-          <div
-            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
+            class=" flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
             <img
               class="rounded-xl bg-primary-light p-4"
@@ -32,7 +40,7 @@
             />
           </div>
           <div
-            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
+            class=" flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
             <img
               class="rounded-xl bg-primary-light p-4"
@@ -68,7 +76,7 @@
         <div
           class="h-[68vh] overflow-y-scroll flex flex-col items-center gap-4 mt-4 mr-3"
         >
-<div
+          <div
             class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
             (click)="scrollToRight()"
           >
@@ -88,100 +96,7 @@
                   <p
                     class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
                   >
-                    <span class="inline-block max-w-[200px] ">aasdasd</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-<div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/icons/profile-image.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Carnaghi Martel
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">aaaa</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-<div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/icons/profile-image.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Carnaghi Martel
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">Prueba</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-<div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/icons/profile-image.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Carnaghi Martel
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">test</span>
+                    <span class="inline-block max-w-[200px]">aasdasd</span>
                   </p>
                 </div>
                 <div class="last-chat mr-2">
@@ -212,7 +127,100 @@
                   <p
                     class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
                   >
-                    <span class="inline-block max-w-[200px] ">Testeo</span>
+                    <span class="inline-block max-w-[200px]">aaaa</span>
+                  </p>
+                </div>
+                <div class="last-chat mr-2">
+                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
+                    15 min
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
+            (click)="scrollToRight()"
+          >
+            <div class="flex items-center w-full">
+              <div class="p-3">
+                <img
+                  src="/icons/profile-image.png"
+                  alt=""
+                  class="rounded-lg w-[55px] h-[55px]"
+                />
+              </div>
+              <div class="flex justify-between w-[80%]">
+                <div class="chat-name flex flex-col gap-1">
+                  <h3 class="text-lg text-white font-semibold">
+                    Leo Carnaghi Martel
+                  </h3>
+                  <p
+                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
+                  >
+                    <span class="inline-block max-w-[200px]">Prueba</span>
+                  </p>
+                </div>
+                <div class="last-chat mr-2">
+                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
+                    15 min
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
+            (click)="scrollToRight()"
+          >
+            <div class="flex items-center w-full">
+              <div class="p-3">
+                <img
+                  src="/icons/profile-image.png"
+                  alt=""
+                  class="rounded-lg w-[55px] h-[55px]"
+                />
+              </div>
+              <div class="flex justify-between w-[80%]">
+                <div class="chat-name flex flex-col gap-1">
+                  <h3 class="text-lg text-white font-semibold">
+                    Leo Carnaghi Martel
+                  </h3>
+                  <p
+                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
+                  >
+                    <span class="inline-block max-w-[200px]">test</span>
+                  </p>
+                </div>
+                <div class="last-chat mr-2">
+                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
+                    15 min
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
+            (click)="scrollToRight()"
+          >
+            <div class="flex items-center w-full">
+              <div class="p-3">
+                <img
+                  src="/icons/profile-image.png"
+                  alt=""
+                  class="rounded-lg w-[55px] h-[55px]"
+                />
+              </div>
+              <div class="flex justify-between w-[80%]">
+                <div class="chat-name flex flex-col gap-1">
+                  <h3 class="text-lg text-white font-semibold">
+                    Leo Carnaghi Martel
+                  </h3>
+                  <p
+                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
+                  >
+                    <span class="inline-block max-w-[200px]">Testeo</span>
                   </p>
                 </div>
                 <div class="last-chat mr-2">
@@ -230,7 +238,7 @@
       class="right bg-primary-main h-full w-full min-w-[360px] lg:w-[70%] rounded-xl"
     >
       <div
-        class="right-upper bg-secondary-main flex justify-between items-center px-4 py-3  lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
+        class="right-upper bg-secondary-main flex justify-between items-center px-4 py-3 lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
       >
         <div class="flex justify-between items-center w-full cursor-pointer">
           <div class="flex justify-between items-center space-x-4">
@@ -288,7 +296,8 @@
                 <p
                   class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
                 >
-                  Che que onda el navbar, esta raro este de no tener el navbar en una sola seccion
+                  Che que onda el navbar, esta raro este de no tener el navbar
+                  en una sola seccion
                 </p>
               </div>
               <div class="last-chat w-full flex mt-2">
