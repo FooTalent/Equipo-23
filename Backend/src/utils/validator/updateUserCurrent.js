@@ -16,6 +16,9 @@ export const validateUpdateUserCurrent = [
   check("country", "Country is required")
     .optional()
     .isString("Country muest be of type String"),
+  check("postal_code", "Postal muest be of type Number")
+    .optional()
+    .isNumeric(),
   check("locality", "locality muest be of type String")
     .optional()
     .isString(),
