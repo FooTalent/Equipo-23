@@ -51,8 +51,9 @@ export class UserService {
       name: user.name,
       last_name: user.lastName,
       country: user.country,
-      phone: user.phone ?? 0,
+      phone: user.phone ?? undefined,
       email: user.email,
+      postal_code: user.zipCode ?? undefined,
       locality: user.locality,
     }, { headers: this.headers });
   }

@@ -36,7 +36,7 @@ export class UserProfileComponent {
         this.isLoading.update(value => false);
       },
       error: (error) => {
-        console.log(error);
+        window.location.reload();
       },
     });
   }

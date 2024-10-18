@@ -56,6 +56,11 @@
                   disabled:bg-secondary-main disabled:opacity-50">
               {{isLoading() ? 'Cargando...' : 'Subir Imagen'}}
             </button>
+
+            <div *ngIf="errorMessage" class="w-full bg-red-500 text-white font-bold mt-2 text-center py-3 px-4 rounded-2xl">
+              {{errorMessage}}
+            </div>
+
           </form>
     </div>
 </div>

@@ -24,7 +24,7 @@ export class UserEditFormComponent {
     phone: new FormControl(null,[Validators.minLength(10), Validators.maxLength(10)]),
     country: new FormControl('', [Validators.pattern(/^[a-zA-Z]+$/)]),
     locality: new FormControl('', [Validators.pattern(/^[a-zA-Z]+$/)]),
-    zipCode: new FormControl(''),
+    zipCode: new FormControl(null),
   });
 
   notificationMessage: string = '';
@@ -41,7 +41,7 @@ export class UserEditFormComponent {
       phone: this.userEditForm.value.phone ?? null,
       country: this.userEditForm.value.country ?? '',
       locality: this.userEditForm.value.locality ?? '',
-      zipCode: this.userEditForm.value.zipCode ?? '',
+      zipCode: this.userEditForm.value.zipCode ?? null,
     };
 
     if(this.userEditForm.valid) {
@@ -53,8 +53,6 @@ export class UserEditFormComponent {
           window.location.reload();
         },
         error: (error) => {
-          console.log(error);
-          
           this.isLoading.update(value => !value);
           if (error.status === 404) {
             this.errorMessage = 'Usuario no encontrado';

@@ -60,6 +60,7 @@ export class UserImageFormComponent {
   });
 
   isLoading = signal(false);
+  errorMessage: string = '';
 
   onEditPhotoSubmit(event: Event) {
 
@@ -80,6 +81,13 @@ export class UserImageFormComponent {
         },
         (error) => {
           this.isLoading.update(value => !value);
+          if (error.status === 404) {
+            this.errorMessage = 'Usuario no encontrado';
+          } else if (error.status === 401){
+            this.errorMessage = 'No tienes permisos para editar este usuario';
+          } else {
+            this.errorMessage = 'Un error inesperado ha ocurrido. Por favor, inténtalo de nuevo más tarde.';
+          }
         }
       );
     } else {
