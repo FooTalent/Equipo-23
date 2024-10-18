@@ -31,7 +31,7 @@ async function sendCodeConfirmationRegister(userData) {
     email: userData.email,
     code: verificationCode,
     name: userData.name,
-    last_name: userData.last_name,
+    lastName: userData.last_name,
     age: userData.age,
     password: passwordHash,
     role: userData.role,
