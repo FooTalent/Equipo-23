@@ -22,9 +22,10 @@
     </div>
     <div>
       <img
-        src="/icons/profile-image.png"
-        alt="Foto de perfil de Josefina Martinez"
+        [src]="user()?.data?.photo || '/images/default-profile.jpg'"
+        alt="Foto de perfil"
         class="w-7 h-7 rounded-full mr-3"
+        [routerLink]="['/user-profile']"
       />
     </div>
     <div (click)="toggleMenu()">

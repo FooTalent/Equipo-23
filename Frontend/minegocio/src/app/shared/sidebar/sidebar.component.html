@@ -176,7 +176,7 @@
     >
       <img
         [src]="user()?.data?.photo || '/images/default-profile.jpg'"
-        alt="Foto de perfil de Josefina Martinez"
+        alt="Foto de perfil"
         class="w-8 h-8 rounded-md mr-3"
       />
       <span *ngIf="user()?.data?.name" class="text-md whitespace-nowrap">{{user()?.data?.name + ' ' + user()?.data?.last_name || "Usuario"}}</span>
