@@ -3,11 +3,12 @@ import { Component, inject, signal } from '@angular/core';
 import { UserEditFormComponent } from '../../components/user-edit-form/user-edit-form.component';
 import { UserService } from '../../services/user.service';
 import { UserImageFormComponent } from '../../components/user-image-form/user-image-form.component';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, UserEditFormComponent, UserImageFormComponent],
+  imports: [CommonModule, UserEditFormComponent, UserImageFormComponent, RouterLinkWithHref],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css'
 })

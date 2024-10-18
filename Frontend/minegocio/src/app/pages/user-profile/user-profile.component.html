@@ -1,5 +1,14 @@
 <div class="h-full bg-[#3B364C] box-border lg:p-6 lg:mx-4 lg:mr-10 rounded-2xl select-none">
 
+    <div class="hidden bg-[#2B2738] rounded-2xl w-full p-3 lg:flex gap-x-24 mb-4 items-center">
+        <button [routerLink]="['/']" class="bg-primary-light text-white rounded-2xl w-12 h-12 flex items-center justify-center hover:bg-[#564f6e]">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="6" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <span class="ml-2 bg-primary-light text-white px-16 py-3 rounded-2xl">Perfil</span>
+    </div>
+
     <div class="p-4 box-border bg-[#2B2738] w-full rounded-2xl">
         <h1 class="hidden lg:block text-white text-2xl pl-2 font-bold">Datos personales</h1>
         @if (isLoading()) {
@@ -15,8 +24,8 @@
 
                     <div class="flex flex-col self-center items-center lg:items-start mt-4 lg:mt-0">
                         <div class="relative box-border w-fit">
-                            <img class="w-36 h-auto lg:w-52 lg:h-52 lg:min-w-32 max-w-md rounded-2xl object-contain"
-                            [src]="user()?.data?.photo || '/images/default-profile.jpg'" alt="Profile Picture">
+                            <img class="w-36 h-auto lg:w-52 lg:h-52 lg:min-w-32 max-w-md border-8 border-white rounded-2xl object-contain"
+                            [src]="user()?.data?.photo || '/images/default-profile.jpg'" alt="Foto de perfil">
                             <button (click)="toggleEditImageForm()"
                                 class="absolute right-[33%] bottom-[85%] lg:bottom-[5rem] lg:-right-6 border-4 border-gray-900 bg-purple-600 hover:bg-purple-500 p-2 rounded-full">
                                 <img src="/icons/edit.svg" loading="lazy" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
