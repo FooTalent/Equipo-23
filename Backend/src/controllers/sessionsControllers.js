@@ -114,7 +114,7 @@ export async function checkCodeRegister(req, res) {
 
   const newUser = {
     name: document.name,
-    lastName: document.last_name,
+    lastName: document.lastName,
     age: document.age,
     email: document.email,
     password: document.password,
