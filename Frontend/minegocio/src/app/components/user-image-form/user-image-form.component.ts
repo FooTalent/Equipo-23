@@ -29,10 +29,6 @@ export class UserImageFormComponent {
   croppedBlob: Blob | null = null;
   isCropped = false;
 
-  toggleEditImageForm() {
-    this.userService.toggleEditImageForm();
-  }
-
   fileChangeEvent(event: Event): void {
     this.imageChangedEvent = event;
     this.isCropped = false;
@@ -94,5 +90,11 @@ export class UserImageFormComponent {
       console.log('No se ha recortado ninguna imagen.');
     }
 
+  }
+
+  // Function to toggle image edit form visibility
+
+  toggleEditImageForm() {
+    this.userService.toggleEditImageForm();
   }
 }
