@@ -8,9 +8,10 @@ export interface Product {
   code: string;
   title: string;
   stock: number;
+  thumbnails: string;
   price: number;
-  status: boolean;
-  created_data: string;
+  status?: boolean;
+  created_data?: string;
 }
 
 @Injectable({
@@ -38,7 +39,7 @@ export class ProductService {
       params: {
         page: pageNumber.toString(),
         limit: limit.toString(),
-        ...(query ? { query: query } : {}), 
+        ...(query ? { query: query } : {}),
       },
     });
   }
@@ -49,5 +50,37 @@ export class ProductService {
       withCredentials: true,
       headers: this.headers,
     });
+    const url = `${this.apiUrl}/${productId}`;
+    return this.http.put<any>(
+      url,
+      { status },
+      {
+        withCredentials: true,
+        headers: this.headers,
+      }
+    );
+  }
+
+  createProduct(productInfo: any): Observable<any> {
+    const formData = new FormData();
+
+    formData.append('title', productInfo.title);
+    formData.append('description', productInfo.description);
+    formData.append('code', productInfo.code);
+    formData.append('price', productInfo.price)
+    formData.append('stock', productInfo.stock);
+    formData.append('category', productInfo.category);
+      if (productInfo.thumbnails) {
+      formData.append('thumbnails', productInfo.image);
+    }
+
+    return this.http.post<any>(
+      this.apiUrl,
+      formData,
+      {
+        withCredentials: true,
+        headers:  {'Content-Type': 'multipart/form-data'},
+      }
+    );
   }
 }

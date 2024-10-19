@@ -1,14 +1,23 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MyShopMobileComponent } from './myshop-mobile.component';
+import { ProductBotComponent } from '../product-bot/product-bot.component';
 
 @Component({
   selector: 'app-myshop',
   standalone: true,
-  imports: [CommonModule, FormsModule, MyShopMobileComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ProductBotComponent,
+  ],
   templateUrl: './myshop.component.html',
   styleUrls: ['./myshop.component.css'],
 })
@@ -20,8 +29,13 @@ export class MyShopComponent implements OnInit {
   currentPage: number = 1;
   searchQuery: string = '';
   isLargeScreen: boolean = true;
+  showBot: boolean = false;
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -106,4 +120,13 @@ export class MyShopComponent implements OnInit {
   }
 
   activateProduct(productId: string) {}
+  hidePopUp() {
+    this.showBot = false;
+  }
+  activateProduct(productId: string) {}
+
+  showPopUp() {
+    console.log("toggling producto bot")
+    this.showBot = !this.showBot;
+  }
 }
