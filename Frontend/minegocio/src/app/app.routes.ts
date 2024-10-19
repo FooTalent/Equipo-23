@@ -13,6 +13,7 @@ import { UnderDevelopmentComponent } from './components/under-development/under-
 
 export const routes: Routes = [
     {path: "", component: DashboardComponent, canActivate: [authGuard]},
+    {path: "dashboard", component: DashboardComponent, canActivate: [authGuard]},
     {path: "login", component: LoginComponent, canActivate: [nonAuthGuard]},
     {path: "verify-code", component: VerifyCodeComponent, canActivate: [nonAuthGuard]},
     {path: "sign-up", component: SignUpComponent, canActivate: [nonAuthGuard]},
