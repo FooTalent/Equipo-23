@@ -1,27 +1,72 @@
-# Minegocio
+# Frontend - MI NEGOCIO
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
+**Mi negocio** es una plataforma web diseñada para que los propietarios de negocios puedan gestionar eficientemente diversos aspectos de su emprendimiento desde un solo lugar. La plataforma ofrece una solución integral que incluye:
 
-## Development server
+- **Gestión de redes sociales**: Administra todas las cuentas de redes sociales de tu negocio en un solo espacio.
+- **Inventario**: Lleva un control completo de tu inventario de productos, actualizando el stock en tiempo real.
+- **Historial de compras**: Visualiza y gestiona las compras realizadas por tus clientes, permitiendo un seguimiento detallado.
+- **Catálogo de productos**: Crea y organiza un catálogo de productos de forma sencilla y profesional, haciéndolo accesible para tus clientes.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Con **miNegocio**, los emprendedores pueden centralizar y optimizar las operaciones clave de su negocio, ahorrando tiempo y mejorando la productividad.
 
-## Code scaffolding
+## Equipo de Desarrollo Frontend
+<div>
+   <div style="display: inline-block;">
+    <img src="/public/images/Juanes-Pachon.jpg" width="150" height="150" style="border-radius: 50%;" />
+    <h3 align=center >Juanes Pachon</h3>
+    <p align=center>
+      <a href="https://github.com/JuanesPachon" target="_blank">
+        <img src="https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white" height="30" />
+      </a>
+    </p>
+  </div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  <div style="display: inline-block;">
+    <img src="/public/images/Paola-Chaves.jpg" width="150" height="150" style="border-radius: 50%;" />
+    <h3 align=center >Paola Chaves</h3>
+    <p align=center>
+      <a href="https://github.com/JuanesPachon" target="_blank">
+        <img src="https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white" height="30" />
+      </a>
+    </p>
+  </div>
 
-## Build
+</div>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Tecnologías Utilizadas Frontend
+<img src="https://img.shields.io/badge/Angular-E21212?style=for-the-badge&logo=angular&logoColor=white" />
+<img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
 
-## Running unit tests
+## Instalación
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Requisitos para la instalación:
 
-## Running end-to-end tests
+1. **Node.js** versión 18 o superior
+2. **npm** versión 6 o superior
+3. **Angular CLI** instalado globalmente:
+   ```bash
+   npm install -g @angular/cli
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Paso a paso:
 
-## Further help
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/FooTalent/Equipo-23.git
+   ```
+2. Entrar al directorio del proyecto:
+   ```bash
+   cd Frontend/minegocio
+   ```
+3. Instalar las dependencias:
+   ```bash
+   npm install
+   ```
+4. Crear un archivo `.env` en el directorio `minegocio` basandose en la plantilla `.env.example`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+5. Ejecutar el proyecto:
+   ```bash
+   ng serve
+   ```
+
+6. Abrir el navegador en `http://localhost:8080` para ver el proyecto en acción.
