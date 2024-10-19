@@ -22,7 +22,6 @@ export default class CartManager {
         const carts = JSON.parse(cartsFile);
         return Array.isArray(carts) ? carts : [];
       } else {
-        console.log(`El archivo ${this.path} no existe.`);
         return [];
       }
     } catch (error) {

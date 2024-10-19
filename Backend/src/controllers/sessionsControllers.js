@@ -60,7 +60,6 @@ export async function register(req, res) {
 
   // Verify if exists user with email by body
   let user = await usersRepository.getUserBy({ email: email });
-  console.log(user);
   if (user) {
     return res
       .status(404)

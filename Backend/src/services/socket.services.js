@@ -27,8 +27,8 @@ export const socketEvolution = async (instanceName) => {
 
 
     }
-   
-        io.emit("chats.update", newData);
+
+    io.emit("chats.update", newData);
   });
 
   socket.on("messages.upsert", (data) => {
@@ -42,7 +42,6 @@ export const socketEvolution = async (instanceName) => {
       message: data.data.message.conversation,
       date_time: data.date_time,
     }
-    console.log(newData)
 
     io.emit("messages.upsert", newData);
   });
@@ -60,7 +59,7 @@ export const socketEvolution = async (instanceName) => {
 
   socket.on("error", (error) => {
     console.error("Error en el WebSocket:", error.message);
-  
+
   });
 
 

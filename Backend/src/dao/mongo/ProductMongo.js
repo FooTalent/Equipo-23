@@ -4,13 +4,11 @@ import productModel from "./models/productModel.js";
 const environment = config.environment;
 
 export default class Product {
-  constructor() {}
+  constructor() { }
 
-  async get(owner,limit, page, sort, query) {
-    console.log(owner);
-    console.log(query);
-    
-    
+  async get(owner, limit, page, sort, query) {
+
+
     const appUrl =
       environment === "development"
         ? `${config.AppUrl}:${config.port}`

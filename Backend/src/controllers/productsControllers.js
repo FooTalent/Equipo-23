@@ -59,7 +59,6 @@ export const createProduct = async (req, res) => {
   // IF CODE NOT EXISTS
   let owner = "admin";
   if (role == "vendor") owner = email;
-  console.log("products images ", thumbnailsSerialize);
   const result = await productsRepository.createProduct({
     title,
     description,
