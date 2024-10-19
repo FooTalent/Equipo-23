@@ -1,6 +1,6 @@
 <div
   *ngIf="showBot"
-  class="w-[100vw] lg:w-[380px] relative h-[100vh] lg:h-[700px] mx-auto bg-gray-100 lg:border-white lg:border-solid lg:border-[1px] bg-primary-main z-[999] scale-in-tr"
+  class="w-[100vw] lg:w-[380px] relative h-[100dvh] lg:h-[700px] mx-auto bg-gray-100 lg:border-white lg:border-solid lg:border-[1px] bg-primary-main z-[999] scale-in-tr"
 >
   <div
     class="w-full h-[60px] bg-secondary-main flex items-center justify-between px-3"
@@ -12,7 +12,7 @@
   </div>
   <div
     #messagesContainer
-    class="chatbot-container space-y-3 mt-4 px-4 rounded-lg mb-24 lg:mb-12 max-h-[600px] overflow-y-auto pb-10"
+    class="chatbot-container space-y-3 mt-4 px-4 rounded-lg mb-24 lg:mb-12 max-h-[600px] overflow-y-auto pb-[6rem]"
   >
     <div
       *ngFor="let message of messages"
@@ -134,6 +134,6 @@
 
 <div
   *ngIf="showBackground && showBot"
-  class="fixed inset-0 backdrop-blur-sm z-10"
+  class="fixed inset-0 backdrop-blur-sm z-10 "
   (click)="hidePopUp()"
 ></div>

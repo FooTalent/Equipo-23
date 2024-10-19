@@ -43,7 +43,7 @@ export class MyShopComponent implements OnInit {
     this.loadProducts(this.currentPage);
   }
 
-  loadProducts(page: number, query: string = '') :void {
+  loadProducts(page: number, query: string = ''): void {
     this.isLoading = true;
     this.error = null;
     this.productService.getProducts(page, 20, query).subscribe({
@@ -117,16 +117,22 @@ export class MyShopComponent implements OnInit {
 
   activateProduct(productId: string) {}
 
-  hidePopUp():void {
+  hidePopUp(): void {
     this.showBot = false;
     // this.refreshProducts();
-    this.loadProducts(this.currentPage)
+    this.loadProducts(this.currentPage);
+    const body = document.querySelector('body');
+    if (body) {
+      body.style.overflow = 'auto';
+    }
   }
 
   showPopUp() {
     console.log('toggling producto bot');
     this.showBot = !this.showBot;
+    const body = document.querySelector('body');
+    if (body) {
+      body.style.overflow = 'hidden';
+    }
   }
-
-
 }
