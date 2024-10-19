@@ -48,7 +48,7 @@
         </div>
       </div>
       <!-- Botones -->
-      <div class="grid grid-cols-3 gap-2 ml-6 mt-4 mr-6">
+      <div class="grid grid-cols-3 gap-2 items-center ml-6 mt-4 mr-6">
         <button
           class="bg-[#3b364c] p-2 rounded-2xl text-sm flex flex-col w-[75px] h-[75px] justify-center items-center"
         >
@@ -64,7 +64,7 @@
               fill="white"
             />
           </svg>
-          <span class="font-size-11px">Mi tienda</span>
+          <span class="text-[8.59px]">Mi tienda</span>
         </button>
         <button
           class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
@@ -81,7 +81,7 @@
               fill="white"
             />
           </svg>
-          <span class="font-size-11px">Clientes</span>
+          <span class="text-[8.59px]">Clientes</span>
         </button>
         <button
           class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
@@ -98,7 +98,7 @@
               fill="white"
             />
           </svg>
-          <span class="font-size-11px">Mensajes</span>
+          <span class="text-[8.59px]">Mensajes</span>
         </button>
         <button
           class="bg-[#3b364c] text-white p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
@@ -115,7 +115,7 @@
               fill="white"
             />
           </svg>
-          <span class="font-size-11px">Pedidos</span>
+          <span class="text-[8.59px]">Pedidos</span>
         </button>
         <button
           class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
@@ -132,7 +132,7 @@
               fill="white"
             />
           </svg>
-          <span class="font-size-11px">Estadísticas</span>
+          <span class="text-[8.59px]">Estadísticas</span>
         </button>
         <button
           class="bg-[#3b364c] text-white p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
@@ -149,10 +149,10 @@
               fill="white"
             />
           </svg>
-          <span class="font-size-11px">Facturación</span>
+          <span class="text-[8.59px]">Facturación</span>
         </button>
       </div>
-<!-- cards -->
+      <!-- cards -->
       <div
         class="grid grid-cols-2 gap-2 bg-[#2b2738] p-2 mt-4 w-[328px] h-[330px] rounded-2xl"
       >
@@ -233,14 +233,12 @@
                 d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
               />
             </svg>
-            <p class="text-white text-[10px] ml-1">
-              25% de aumento
-            </p>
+            <p class="text-white text-[10px] ml-1">25% de aumento</p>
           </div>
         </div>
         <!-- Tarjeta 3 -->
         <div
-          class="bg-[#3b364c] p-4 gap-[ 10px] rounded-2xl text-white w-[152px] h-[153px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[152px] h-[153px]"
         >
           <div class="flex items-center mb-4">
             <div class="bg-[#6558e3] p-3 rounded-lg">
@@ -321,10 +319,10 @@
       </div>
       <div class="bg-[#3b364c] w-[328px] h-[258px] p-4 gap-4 mt-4 rounded-2xl">
         <h2 class="text-center text-base">Métricas</h2>
-        <div class="bg-[#2b2738] p-8 w-[304px] h-[200px] gap-4 rounded-2xl">
+        <div class="bg-[#2b2738] w-[300px] h-[200px] gap-4 rounded-2xl">
           <!--  grafica -->
-          <ngx-charts-bar-vertical
-            [view]="mobileView"
+          <!--  <ngx-charts-bar-vertical
+            [view]="view"
             [results]="single"
             [gradient]="gradient"
             [xAxis]="showXAxis"
@@ -337,98 +335,419 @@
             [barPadding]="30"
             (select)="onSelect($event)"
           >
-          </ngx-charts-bar-vertical>
+          </ngx-charts-bar-vertical> -->
+          <a href="#" class="flex items-center space-x-3">
+            <img
+              src="..//..//..//..//public/icons/metricas-movil.png"
+              class="w-[ 304px] h-[200px] rounded-2xl"
+              alt="Foto de métricas"
+            />
+          </a>
         </div>
       </div>
-      <div class="w-[328px] h-[331px]">
-      <div class="bg-[#2b2738] w-[304px] h-[307px] gap-3 p-4 rounded-2xl">
-        <h3 class="text-xl mb-4 text-center text-white">
-          Mensajes de nuevos clientes
-        </h3>
-        <ul class="space-y-4">
-          <!-- Primer cliente -->
-          <div
-            class="bg-[#3b364c] rounded-2xl p-3 gap-3 flex justify-between items-center w-[304px] h-[83px]"
-          >
-            <li class="flex items-center space-x-4">
-              <img
-                class="w-[50px] h-[50px] rounded-2xl"
-                src="https://s3-alpha-sig.figma.com/img/47df/0075/514e7309677b980b07e3ffcf59b64fce?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CXYMV-2yXFFhIjnTtpUxLkC-FBPL-ARVBqT2U8l-K0IP-OHvHscY4SQxSHs~1bNAp3rjCnrdGalCn2uMced8BRdhdkfi3K4CD~71ZnwFj4QdjmO3JRSvWfp~W5Q6fxn5CPtiC1OUxYT0hioerC19eNIHkBC6guc0MndV0EuPbtpAvKHqa~~dTX-h3AX6mWKVMpMHSjvpucqcd28YA59CDGzLSaZz9cajRB~mz-Go93LLMcxRK9lY~P5vIRK2h6lJSmTkfF--FeJiVIEVHKLecExmRA2~Hj8ylq0FC7mO-rsUmxndw3l7rnGm~WjkbE5RFuxdqU96JBg7LDwzi5p~Ww__"
-                alt="Cliente"
-              />
-              <div>
-                <h4 class="text-[14px] text-white">Nombre o usuario</h4>
-                <span class="text-[#7c798a] text-xs"
-                  >Previsualización del mensaje</span
+      <!-- Mensajes de nuevos clientes -->
+      <div class="w-[328px] h-[331px] mt-4 bg-[#3b364c] rounded-2xl">
+        <div class="bg-[#3b364c] w-[304px] h-[307px] gap-3 p-3 rounded-2xl">
+          <h3 class="text-xl text-center text-white">
+            Mensajes de nuevos clientes
+          </h3>
+          <ul class="space-y-3">
+            <!-- Primer cliente -->
+            <div
+              class="bg-[#2b2738] rounded-2xl p-3 gap-3 flex justify-between items-center w-[304px] h-[83px]"
+            >
+              <li class="flex items-center space-x-4">
+                <img
+                  class="w-[50px] h-[50px] rounded-2xl"
+                  src="https://s3-alpha-sig.figma.com/img/47df/0075/514e7309677b980b07e3ffcf59b64fce?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CXYMV-2yXFFhIjnTtpUxLkC-FBPL-ARVBqT2U8l-K0IP-OHvHscY4SQxSHs~1bNAp3rjCnrdGalCn2uMced8BRdhdkfi3K4CD~71ZnwFj4QdjmO3JRSvWfp~W5Q6fxn5CPtiC1OUxYT0hioerC19eNIHkBC6guc0MndV0EuPbtpAvKHqa~~dTX-h3AX6mWKVMpMHSjvpucqcd28YA59CDGzLSaZz9cajRB~mz-Go93LLMcxRK9lY~P5vIRK2h6lJSmTkfF--FeJiVIEVHKLecExmRA2~Hj8ylq0FC7mO-rsUmxndw3l7rnGm~WjkbE5RFuxdqU96JBg7LDwzi5p~Ww__"
+                  alt="Cliente"
+                />
+                <div>
+                  <h4 class="text-[14px] text-white">Nombre o usuario</h4>
+                  <span class="text-[#7c798a] text-xs"
+                    >Previsualización del mensaje</span
+                  >
+                </div>
+              </li>
+              <div class="flex flex-col items-center space-y-2">
+                <div class="text-[#7c798a] text-xs">5 min</div>
+                <div
+                  class="bg-[#e5e504] text-black rounded-full w-6 h-6 flex items-center justify-center"
                 >
-              </div>
-            </li>
-            <div class="flex flex-col items-center space-y-2">
-              <div class="text-[#7c798a] text-xs">5 min</div>
-              <div
-                class="bg-[#e5e504] text-black rounded-full w-6 h-6 flex items-center justify-center"
-              >
-                1
+                  1
+                </div>
               </div>
             </div>
-          </div>
-
-          <!-- Cliente 2 -->
-          <div
-            class="bg-[#3b364c] rounded-2xl p-3 flex justify-between gap-3 items-center w-[304px] h-[83px]"
-          >
-            <li class="flex items-center space-x-4">
-              <img
-                class="w-[50px] h-[50px] rounded-2xl"
-                src="https://s3-alpha-sig.figma.com/img/77df/8f85/a4ef748bf8a7ad31a9255abbc458f060?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SLtgqY2uQhm5IcBR57rfYbBODwc9t99ZvEw4WA3NJGBPPzW6U4-41eqJ1KNR2SDhMTyfQl0IQjjuMDGL4y5qjCMHaxdtoLQmvsxVLtFTHjTnuR9gKVjvfQ6uedmRchtVSlixHFNTDjywobasAtZth4S3eB70sKG~LBOnoAZIZcL8rwfx~mdn7vqdERRRwGBS-7GlMEZN8ixpMfG-o65FMki30LyUImDzcdQYgyTzTs55zxKfOjKLjrP1dQO7w-lS1pLIRud6VEj7ssRuoj1DqI1B8zBLqqOktQlSoIRr8eiclnBjYDcwOdVizh4zmJXqFopukIkmeFvS4dES78v9dw__"
-                alt="Cliente"
-              />
-              <div>
-                <h4 class="text-[14px] text-white">Nombre o usuario</h4>
-                <span class="text-[#7c798a] text-xs"
-                  >Previsualización del mensaje</span
+            <!-- Cliente 2 -->
+            <div
+              class="bg-[#2b2738] rounded-2xl p-3 flex justify-between gap-3 items-center w-[304px] h-[83px]"
+            >
+              <li class="flex items-center space-x-4">
+                <img
+                  class="w-[50px] h-[50px] rounded-2xl"
+                  src="https://s3-alpha-sig.figma.com/img/77df/8f85/a4ef748bf8a7ad31a9255abbc458f060?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SLtgqY2uQhm5IcBR57rfYbBODwc9t99ZvEw4WA3NJGBPPzW6U4-41eqJ1KNR2SDhMTyfQl0IQjjuMDGL4y5qjCMHaxdtoLQmvsxVLtFTHjTnuR9gKVjvfQ6uedmRchtVSlixHFNTDjywobasAtZth4S3eB70sKG~LBOnoAZIZcL8rwfx~mdn7vqdERRRwGBS-7GlMEZN8ixpMfG-o65FMki30LyUImDzcdQYgyTzTs55zxKfOjKLjrP1dQO7w-lS1pLIRud6VEj7ssRuoj1DqI1B8zBLqqOktQlSoIRr8eiclnBjYDcwOdVizh4zmJXqFopukIkmeFvS4dES78v9dw__"
+                  alt="Cliente"
+                />
+                <div>
+                  <h4 class="text-[14px] text-white">Nombre o usuario</h4>
+                  <span class="text-[#7c798a] text-xs"
+                    >Previsualización del mensaje</span
+                  >
+                </div>
+              </li>
+              <div class="flex flex-col items-center space-y-2">
+                <div class="text-[#7c798a] text-xs">15 min</div>
+                <div
+                  class="bg-[#e5e504] text-black rounded-full w-6 h-6 flex items-center justify-center"
                 >
-              </div>
-            </li>
-            <div class="flex flex-col items-center space-y-2">
-              <div class="text-[#7c798a] text-xs">15 min</div>
-              <div
-                class="bg-[#e5e504] text-black rounded-full w-6 h-6 flex items-center justify-center"
-              >
-                8
+                  8
+                </div>
               </div>
             </div>
-          </div>
-
-          <!-- Cliente 3 -->
-          <div
-            class="bg-[#3b364c] rounded-2xl gap-3 space-between flex justify-between items-center w-[304px] h-[83px] p-3"
-          >
-            <li class="flex items-center space-x-4">
-              <img
-                class="w-[50px] h-[50px] rounded-2xl"
-                src="https://s3-alpha-sig.figma.com/img/a6b7/bb13/ee2ff4d18b765a5127de5b08ec3648e2?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZxbwRhvDg1iLB1cJexGEUm9hsh067S3XJdoWDKwyhXCOL7KsZa7YNyi1U3f09iite2xUsSltKPJujhRN8CG-9PC73qrScn6DaZdl3brX-smwm57poVPOik5OEey5PNLnXdNCjubmlnws809m3QCz1z~kNPrIH5KFnjRNNnzQ8Y7OCRg~OIXACwReulRUbNyv5a3KIt-VOgQcLWz~L3rXNyvwOnKUMmxmM5fJ0ISpm8KJ2MdLlOudwv15kIgAsmIBodzSEMzaS74rtJjeyVjpjVVGpDNowLhpyamXCiLXF6DFqhZFTnAUlb4ZnYKFLstNtAGDgX5Nozku2fEL-IchkQ__"
-                alt="Cliente"
-              />
-              <div>
-                <h4 class="text-[14px] text-white">Nombre o usuario</h4>
-                <span class="text-[#7c798a] text-xs"
-                  >Previsualización del mensaje</span
+            <!-- Cliente 3 -->
+            <div
+              class="bg-[#2b2738] rounded-2xl gap-3 space-between flex justify-between items-center w-[304px] h-[83px] p-3"
+            >
+              <li class="flex items-center space-x-4">
+                <img
+                  class="w-[50px] h-[50px] rounded-2xl"
+                  src="https://s3-alpha-sig.figma.com/img/a6b7/bb13/ee2ff4d18b765a5127de5b08ec3648e2?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZxbwRhvDg1iLB1cJexGEUm9hsh067S3XJdoWDKwyhXCOL7KsZa7YNyi1U3f09iite2xUsSltKPJujhRN8CG-9PC73qrScn6DaZdl3brX-smwm57poVPOik5OEey5PNLnXdNCjubmlnws809m3QCz1z~kNPrIH5KFnjRNNnzQ8Y7OCRg~OIXACwReulRUbNyv5a3KIt-VOgQcLWz~L3rXNyvwOnKUMmxmM5fJ0ISpm8KJ2MdLlOudwv15kIgAsmIBodzSEMzaS74rtJjeyVjpjVVGpDNowLhpyamXCiLXF6DFqhZFTnAUlb4ZnYKFLstNtAGDgX5Nozku2fEL-IchkQ__"
+                  alt="Cliente"
+                />
+                <div>
+                  <h4 class="text-[14px] text-white">Nombre o usuario</h4>
+                  <span class="text-[#7c798a] text-xs"
+                    >Previsualización del mensaje</span
+                  >
+                </div>
+              </li>
+              <div class="flex flex-col items-center space-y-2">
+                <div class="text-[#7c798a] text-xs">15 min</div>
+                <div
+                  class="bg-[#e5e504] text-black rounded-full w-6 h-6 flex items-center justify-center"
                 >
-              </div>
-            </li>
-            <div class="flex flex-col items-center space-y-2">
-              <div class="text-[#7c798a] text-xs">15 min</div>
-              <div
-                class="bg-[#e5e504] text-black rounded-full w-6 h-6 flex items-center justify-center"
-              >
-                5
+                  5
+                </div>
               </div>
             </div>
-          </div>
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
+      <!-- Últimos pedidos -->
+      <div
+        class="bg-[#3b364c] p-3 rounded-2xl w-[328px] h-[369px] mt-4 text-white"
+      >
+        <div class="text-center text-xl mb-4">Últimos pedidos</div>
+        <!-- Pedido 1 -->
+        <div class="bg-[#2b2738] p-4 w-[304px] h-[93px] rounded-2xl mb-2">
+          <div class="flex justify-between">
+            <div class="flex justify-center gap-10">
+              <p class="text-sm">#001</p>
+              <p class="text-sm">Nombre y Apellido</p>
+            </div>
+            <div>
+              <p class="text-xs">12/05</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
+          >
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="text-[#e5e504] w-4 h-4 mr-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+              Producto
+            </div>
+            <p class="text-xs text-white">$200</p>
+          </div>
+          <div class="flex gap-4 w-[267.93px] h-[25px]">
+            <div
+              class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[145px] h-[25px]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span>Pago realizado</span>
+            </div>
+            <div
+              class="flex items-center gap-4 bg-[#3b364c] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
+                />
+                <path
+                  d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
+                />
+                <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
+              </svg>
+              <span>Enviado</span>
+            </div>
+          </div>
+        </div>
+        <!-- Pedido 2 -->
+        <div class="bg-[#2b2738] p-4 w-[304px] h-[93px] rounded-2xl mb-2">
+          <div class="flex justify-between">
+            <div class="flex justify-center gap-10">
+              <p class="text-sm">#002</p>
+              <p class="text-sm">Nombre y Apellido</p>
+            </div>
+            <div>
+              <p class="text-xs">12/05</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
+          >
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="text-[#e5e504] w-4 h-4 mr-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+              Producto
+            </div>
+            <p class="text-xs text-white">$200</p>
+          </div>
+
+          <div class="flex gap-4 w-[267.93px] h-[25px]">
+            <div
+              class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[145px] h-[25px]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span>Pago realizado</span>
+            </div>
+            <div
+              class="flex items-center gap-4 bg-[#3b364c] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
+                />
+                <path
+                  d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
+                />
+                <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
+              </svg>
+              <span>Enviado</span>
+            </div>
+          </div>
+        </div>
+        <!-- Pedido 3 -->
+        <div class="bg-[#2b2738] p-4 w-[304px] h-[93px] rounded-2xl mb-4">
+          <div class="flex justify-between">
+            <div class="flex justify-center gap-10">
+              <p class="text-sm">#003</p>
+              <p class="text-sm">Nombre y Apellido</p>
+            </div>
+            <div>
+              <p class="text-xs">12/05</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
+          >
+            <div class="flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="text-[#e5e504] w-4 h-4 mr-2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+              Producto
+            </div>
+            <p class="text-xs text-white">$200</p>
+          </div>
+
+          <div class="flex gap-4 w-[267.93px] h-[25px]">
+            <div
+              class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[145px] h-[25px]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span>Pago realizado</span>
+            </div>
+            <div
+              class="flex items-center gap-4 bg-[#3b364c] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-6"
+              >
+                <path
+                  d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
+                />
+                <path
+                  d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
+                />
+                <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
+              </svg>
+              <span>Enviado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tabla de productos -->
+      <div class="bg-[#3b364c] w-[328px] h-[255.5px] p-1 mt-4 rounded-2xl">
+        <h3 class="text-base mb-1 mt-1 text-center">
+          Productos que necesitan re-stock
+        </h3>
+        <div class="flex justify-between">
+          <table class="rounded-2xl ">
+            <thead class="bg-[#5d3cba]">
+              <tr class="items-center">
+                <th class="w-[304px] h-[35px] flex pl-3 justify-between items-center text-sm rounded-tl-2xl rounded-tr-2xl">
+                  Detalles
+                  <div class="flex pl-3 justify-between items-center text-sm"> 
+                  <button
+                  class="px-2 rounded-xl flex justify-center items-center"
+                >
+                  <svg
+                    class="w-[12.74px] h-[12.74px] text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="text-center bg-[#2b2738] items-center border-t-[1px] border-b-[2px] solid border-[#3b364c] flex justify-between text-sm w-[304px] h-[35px] p-2"
+              >
+                <td class=" px-1 m-1">Producto</td>
+                <td class=" px-1 m-1">Campera de invierno</td>
+  
+              </tr>
+              <tr class="text-center w-[304px] bg-[#2b2738] items-center h-[35px] p-1 text-sm flex justify-between">
+                <td class=" px-1 m-1">Stock</td>
+                <td class=" px-1 m-1">20</td>
+              </tr>
+              <tr
+                class="text-center border-t-[2px] bg-[#2b2738] items-center solid border-[#3b364c] w-[304px] h-[35px] text-sm p-1 flex justify-between"
+              >
+                <td class=" px-1 m-1">Estado</td>
+                <span class="text-white pl-1 flex items-center">
+                  <svg
+                    clip-rule="evenodd"
+                    fill-rule="evenodd"
+                    stroke-linejoin="round"
+                    stroke-miterlimit="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5 mr-1"
+                    fill="#078bbb"
+                  >
+                    <circle
+                      cx="11.998"
+                      cy="11.998"
+                      fill-rule="nonzero"
+                      r="6"
+                    />
+                  </svg>
+                  Pendiente
+                </span>
+              </tr>
+              <tr
+                class="text-center border-t-[2px] bg-[#2b2738] items-center rounded-bl-2xl rounded-br-2xl solid border-[#3b364c] w-[304px] h-[35px] p-1 text-sm flex justify-between"
+              >
+                <td class="px-1 m-1">Cod. Id</td>
+                <td class="px-1 m-1">123456</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
   </div>
 </div>
@@ -444,22 +763,22 @@
 
 <!-- Desktop-->
 <div
-  class="rounded-3xl w-[1,149px] h-[976px] bg-[#3b364c] m-[24px] p-[ 32px] gap-[ 32px] text-white hidden md:block"
+  class="rounded-3xl w-[1,149px] h-[976px] bg-[#3b364c] m-1 p-8 gap-8 text-white max-w-[1200px] max-h-screen hidden md:block"
 >
-  <div class="p-4 w-[1,085px] h-[912px]">
+  <div class="p-2 w-[1,085px] h-[912px]">
     <div
       class="flex items-center justify-between p-2 m-7 rounded-2xl bg-[#2b2738] w-[1,085px] h-[72px] text-white"
     >
       <!-- Saludo-->
       <div
-        class="bg-[#3b364c] py-[ 8px] px-[16px] ml-4 gap-[ 12px] w-[141px] h-[38px] rounded-xl"
+        class="bg-[#3b364c] py-2 px-4 ml-4 gap-3 w-[141px] h-[38px] rounded-xl"
       >
-        <span class="w-[ 109px] h-[ 22px] inline-block align-middle text-sm"
+        <span class="w-[109px] h-[22px] inline-block align-middle text-sm"
           >¡Hola, Josefina!</span
         >
       </div>
       <div
-        class="relative flex justify-between gap-[32px] items-center bg-[#2b2738] rounded-2xl w-[663px] h-[40px]"
+        class="relative flex justify-between gap-8 items-center bg-[#2b2738] rounded-2xl w-[663px] h-[40px]"
       >
         <!-- Icono de lupa -->
         <svg
@@ -481,7 +800,7 @@
         <input
           type="text"
           placeholder="Buscar producto"
-          class="bg-[#3b364c] border-[#2b2738] py-[ 8px] px-[30px] rounded-xl w-[606.96px] h-[40px]"
+          class="bg-[#3b364c] border-[#2b2738] py-2 px-8 rounded-xl w-[606.96px] h-[40px]"
         />
         <!-- Botón de filtro -->
         <button
@@ -505,7 +824,7 @@
       </div>
       <!-- Botón Minegocio -->
       <button
-        class="bg-[#3b364c] py-2 px-4 mr-3 font-size- 16px w-[99px] h-[38px] gap-[12px] rounded-xl"
+        class="bg-[#3b364c] py-2 px-4 mr-3 font-size-16px w-[99px] h-[38px] gap-3 rounded-xl"
       >
         <span>Mi marca</span>
       </button>
@@ -518,7 +837,7 @@
       >
         <!-- Tarjeta 1 -->
         <div
-          class="bg-[#3b364c] p-4 gap-[ 10px] rounded-2xl text-white w-[236.25px] h-[177px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[236.25px] h-[177px]"
         >
           <div class="flex items-center mb-4">
             <!-- Icono -->
@@ -559,10 +878,9 @@
         </div>
         <!-- Tarjeta 2 -->
         <div
-          class="bg-[#3b364c] p-4 gap-[ 10px] rounded-2xl text-white w-[236.25px] h-[177px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[236.25px] h-[177px]"
         >
           <div class="flex items-center mb-4">
-            <!-- Icono -->
             <div class="bg-[#6558e3] p-3 rounded-lg">
               <svg
                 width="24"
@@ -602,10 +920,9 @@
         </div>
         <!-- Tarjeta 3 -->
         <div
-          class="bg-[#3b364c] p-4 gap-[ 10px] rounded-2xl text-white w-[236.25px] h-[177px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[236.25px] h-[177px]"
         >
           <div class="flex items-center mb-4">
-            <!-- Icono -->
             <div class="bg-[#6558e3] p-3 rounded-lg">
               <svg
                 width="30"
@@ -643,10 +960,9 @@
         </div>
         <!-- Tarjeta 4 -->
         <div
-          class="bg-[#3b364c] p-4 gap-[ 10px] rounded-2xl text-white w-[236.25px] h-[177px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[236.25px] h-[177px]"
         >
           <div class="flex items-center mb-4">
-            <!-- Icono -->
             <div class="bg-[#6558e3] p-3 rounded-lg">
               <svg
                 width="16"
@@ -685,13 +1001,12 @@
       </div>
       <!-- métricas -->
       <div
-        class="flex justify-center gap-6 ml-4 w-[1,049px] h-[373px] mr-4 mt-7"
+        class="flex justify-center gap-6 ml-4 w-[1,049px] h-[373px] mr-4 mt-6"
       >
         <div class="bg-[#2b2738] w-[669px] h-[373px] p-4 gap-4 rounded-2xl">
           <h2 class="text-center text-xl">Métricas</h2>
-          <div class="bg-[#3b364c] p-8 w-[637px] h-[302px] gap-4 rounded-2xl">
-            <!--  grafica -->
-            <ngx-charts-bar-vertical
+          <div class="bg-[#3b364c]  w-[637px] h-[302px] gap-4 items-center rounded-2xl">
+            <!-- <ngx-charts-bar-vertical
               [view]="view"
               [results]="single"
               [gradient]="gradient"
@@ -705,11 +1020,18 @@
               [barPadding]="30"
               (select)="onSelect($event)"
             >
-            </ngx-charts-bar-vertical>
+            </ngx-charts-bar-vertical> -->
+            <a href="#" class="flex items-center space-x-3">
+              <img
+                src="..//..//..//..//public/icons/metricas.png"
+                class="w-[637px] h-[302px] rounded-2xl"
+                alt="Foto de métricas"
+              />
+            </a>
           </div>
         </div>
         <!-- Nuevos clientes -->
-        <div class="w-[356px] h-[373px] rounded-2xl">
+        <div class="w-[356px] h-[373px] bg-[#2b2738] rounded-2xl">
           <div class="bg-[#2b2738] gap-3 p-4 rounded-2xl">
             <h3 class="text-xl mb-4 text-center text-white">
               Mensajes de nuevos clientes
@@ -741,7 +1063,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- Cliente 2 -->
               <div
                 class="bg-[#3b364c] rounded-2xl p-3 flex justify-between gap-3 items-center w-[324px] h-[83px]"
@@ -768,7 +1089,6 @@
                   </div>
                 </div>
               </div>
-
               <!-- Cliente 3 -->
               <div
                 class="bg-[#3b364c] rounded-2xl gap-3 space-between flex justify-between items-center w-[324px] h-[83px] p-3"
@@ -801,7 +1121,7 @@
       </div>
       <!-- Últimos pedidos -->
       <div
-        class="flex justify-center flex-col gap-6 mt-5 mr-4 ml-4 w-[1,049px] h-[400px] rounded-2xl"
+        class="flex justify-center flex-row gap-6 mt-5 mr-4 ml-4 w-[1,049px] h-[400px] rounded-2xl"
       >
         <div
           class="bg-[#2b2738] p-4 rounded-2xl w-[381px] h-[400px] text-white"
@@ -1035,292 +1355,292 @@
               </div>
             </div>
           </div>
-          <!-- Tabla de productos -->
-          <div class="bg-[#2b2738] w-[644px] h-[400px] p-2 rounded-2xl">
-            <h3 class="text-xl mb-2 mt-2 text-center">
-              Tienes productos en la tienda que necesitan re-stock
-            </h3>
-            <div class="flex justify-between">
-              <table class="rounded-2xl m-1 w-[612px] h-[41px]">
-                <thead class="bg-[#5d3cba]">
-                  <tr class="items-center">
-                    <th class="p-2 rounded-tl-2xl">
-                      <div class="flex items-center justify-center text-base">
-                        Cód. Id
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          class="w-6 h-6 ml-2"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                    </th>
-                    <th class="p-3">
-                      <div class="flex items-center justify-center text-base">
-                        Producto
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          class="w-6 h-6 ml-2"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                    </th>
-                    <th class="p-3">
-                      <div class="flex items-center justify-center text-base">
-                        Stock
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          class="w-6 h-6 ml-2"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                    </th>
-                    <th class="p-3">
-                      <div class="flex items-center justify-center text-base">
-                        Estado
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          class="w-6 h-6 ml-2"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                    </th>
-                    <th class="p-2 rounded-tr-2xl">
-                      <div class="flex items-center justify-center text-base">
-                        Detalles
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    class="text-center border-t-[1px] border-b-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
-                  >
-                    <td class="bg-[#3b364c] px-4 m-4">123454</td>
-                    <td class="bg-[#3b364c] px-4 m-4">Campera de invierno</td>
-                    <td class="bg-[#3b364c] px-4 m-4">0</td>
-                    <td class="p-3 m-2 bg-[#3b364c]">
-                      <span class="text-white pl-5 flex items-center">
-                        <svg
-                          clip-rule="evenodd"
-                          fill-rule="evenodd"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="2"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="w-5 h-5 mr-1"
-                          fill="#b1120d"
-                        >
-                          <circle
-                            cx="11.998"
-                            cy="11.998"
-                            fill-rule="nonzero"
-                            r="6"
-                          />
-                        </svg>
-                        Reponer
-                      </span>
-                    </td>
-                    <td class="bg-[#3b364c] justify-center">
-                      <button
-                        class="px-4 pl-10 rounded-xl flex justify-center items-center"
+        </div>
+        <!-- Tabla de productos -->
+        <div class="bg-[#2b2738] w-[644px] h-[400px] p-3 rounded-2xl">
+          <h3 class="text-xl mb-2 mt-2 text-center">
+            Tienes productos en la tienda que necesitan re-stock
+          </h3>
+          <div class="flex justify-between">
+            <table class="rounded-2xl m-1 w-[612px] h-[45px]">
+              <thead class="bg-[#5d3cba]">
+                <tr class="items-center">
+                  <th class="p-2 rounded-tl-2xl">
+                    <div class="flex items-center justify-center text-base">
+                      Cód. Id
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="w-6 h-6 ml-2"
                       >
-                        <svg
-                          class="w-5 h-5 text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
-                          />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="text-center w-[612px] h-[72px] p-4">
-                    <td class="bg-[#3b364c] px-4 m-4">123455</td>
-                    <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
-                    <td class="bg-[#3b364c] px-4 m-2">5</td>
-                    <td class="p-3 m-2 bg-[#3b364c]">
-                      <span class="text-white pl-5 flex items-center">
-                        <svg
-                          clip-rule="evenodd"
+                        <path
                           fill-rule="evenodd"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="2"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="w-5 h-5 mr-1"
-                          fill="#078bbb"
-                        >
-                          <circle
-                            cx="11.998"
-                            cy="11.998"
-                            fill-rule="nonzero"
-                            r="6"
-                          />
-                        </svg>
-                        Pendiente
-                      </span>
-                    </td>
-                    <td class="bg-[#3b364c] justify-center">
-                      <button
-                        class="px-4 pl-10 rounded-xl flex justify-center items-center"
-                      >
-                        <svg
-                          class="w-5 h-5 text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
-                          />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr
-                    class="text-center border-t-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
-                  >
-                    <td class="bg-[#3b364c] px-4 m-4">123455</td>
-                    <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
-                    <td class="bg-[#3b364c] px-4 m-2">5</td>
-                    <td class="p-3 m-2 bg-[#3b364c]">
-                      <span class="text-white pl-5 flex items-center">
-                        <svg
+                          d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
                           clip-rule="evenodd"
-                          fill-rule="evenodd"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="2"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="w-5 h-5 mr-1"
-                          fill="#b1120d"
-                        >
-                          <circle
-                            cx="11.998"
-                            cy="11.998"
-                            fill-rule="nonzero"
-                            r="6"
-                          />
-                        </svg>
-                        Reponer
-                      </span>
-                    </td>
-                    <td class="bg-[#3b364c] justify-center">
-                      <button
-                        class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                        />
+                      </svg>
+                    </div>
+                  </th>
+                  <th class="p-2">
+                    <div class="flex items-center justify-center text-base">
+                      Producto
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="w-6 h-6 ml-2"
                       >
-                        <svg
-                          class="w-5 h-5 text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
-                          />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr
-                    class="text-center border-t-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
-                  >
-                    <td class="bg-[#3b364c] px-4 m-4 rounded-bl-2xl">123455</td>
-                    <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
-                    <td class="bg-[#3b364c] px-4 m-2">5</td>
-                    <td class="p-3 m-2 bg-[#3b364c]">
-                      <span class="text-white pl-5 flex items-center">
-                        <svg
+                        <path
+                          fill-rule="evenodd"
+                          d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
                           clip-rule="evenodd"
-                          fill-rule="evenodd"
-                          stroke-linejoin="round"
-                          stroke-miterlimit="2"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="w-5 h-5 mr-1"
-                          fill="#b1120d"
-                        >
-                          <circle
-                            cx="11.998"
-                            cy="11.998"
-                            fill-rule="nonzero"
-                            r="6"
-                          />
-                        </svg>
-                        Reponer
-                      </span>
-                    </td>
-                    <td class="bg-[#3b364c] justify-center rounded-br-2xl">
-                      <button
-                        class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                        />
+                      </svg>
+                    </div>
+                  </th>
+                  <th class="p-2">
+                    <div class="flex items-center justify-center text-base">
+                      Stock
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="w-6 h-6 ml-2"
                       >
-                        <svg
-                          class="w-5 h-5 text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
-                          />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                        <path
+                          fill-rule="evenodd"
+                          d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </th>
+                  <th class="p-2">
+                    <div class="flex items-center justify-center text-base">
+                      Estado
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="w-6 h-6 ml-2"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </th>
+                  <th class="p-2 rounded-tr-2xl">
+                    <div class="flex items-center justify-center text-base">
+                      Detalles
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="text-center border-t-[1px] border-b-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
+                >
+                  <td class="bg-[#3b364c] px-4 m-4">123454</td>
+                  <td class="bg-[#3b364c] px-4 m-4">Campera de invierno</td>
+                  <td class="bg-[#3b364c] px-4 m-4">0</td>
+                  <td class="p-3 m-2 bg-[#3b364c]">
+                    <span class="text-white pl-5 flex items-center">
+                      <svg
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 mr-1"
+                        fill="#b1120d"
+                      >
+                        <circle
+                          cx="11.998"
+                          cy="11.998"
+                          fill-rule="nonzero"
+                          r="6"
+                        />
+                      </svg>
+                      Reponer
+                    </span>
+                  </td>
+                  <td class="bg-[#3b364c] justify-center">
+                    <button
+                      class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="text-center w-[612px] h-[72px] p-4">
+                  <td class="bg-[#3b364c] px-4 m-4">123455</td>
+                  <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
+                  <td class="bg-[#3b364c] px-4 m-2">5</td>
+                  <td class="p-3 m-2 bg-[#3b364c]">
+                    <span class="text-white pl-5 flex items-center">
+                      <svg
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 mr-1"
+                        fill="#078bbb"
+                      >
+                        <circle
+                          cx="11.998"
+                          cy="11.998"
+                          fill-rule="nonzero"
+                          r="6"
+                        />
+                      </svg>
+                      Pendiente
+                    </span>
+                  </td>
+                  <td class="bg-[#3b364c] justify-center">
+                    <button
+                      class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  class="text-center border-t-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
+                >
+                  <td class="bg-[#3b364c] px-4 m-4">123455</td>
+                  <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
+                  <td class="bg-[#3b364c] px-4 m-2">5</td>
+                  <td class="p-3 m-2 bg-[#3b364c]">
+                    <span class="text-white pl-5 flex items-center">
+                      <svg
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 mr-1"
+                        fill="#b1120d"
+                      >
+                        <circle
+                          cx="11.998"
+                          cy="11.998"
+                          fill-rule="nonzero"
+                          r="6"
+                        />
+                      </svg>
+                      Reponer
+                    </span>
+                  </td>
+                  <td class="bg-[#3b364c] justify-center">
+                    <button
+                      class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr
+                  class="text-center border-t-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
+                >
+                  <td class="bg-[#3b364c] px-4 m-4 rounded-bl-2xl">123455</td>
+                  <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
+                  <td class="bg-[#3b364c] px-4 m-2">5</td>
+                  <td class="p-3 m-2 bg-[#3b364c]">
+                    <span class="text-white pl-5 flex items-center">
+                      <svg
+                        clip-rule="evenodd"
+                        fill-rule="evenodd"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 mr-1"
+                        fill="#b1120d"
+                      >
+                        <circle
+                          cx="11.998"
+                          cy="11.998"
+                          fill-rule="nonzero"
+                          r="6"
+                        />
+                      </svg>
+                      Reponer
+                    </span>
+                  </td>
+                  <td class="bg-[#3b364c] justify-center rounded-br-2xl">
+                    <button
+                      class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

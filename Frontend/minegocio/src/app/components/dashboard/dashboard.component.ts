@@ -12,7 +12,7 @@ import { single } from '../../data';
 })
 export class DashboardComponent {
   view: [number, number] = [580, 290];
-  mobileView: [number, number] = [300, 180];
+  
 
   onResize(event:any) {
     this.view = [event.target.innerWidth / 1.35, 400];
