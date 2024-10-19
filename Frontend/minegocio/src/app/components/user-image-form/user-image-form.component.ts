@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ImageCropperComponent } from 'ngx-image-cropper';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -22,7 +21,6 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class UserImageFormComponent {
   private userService = inject(UserService);
   private DomSanitizer = inject(DomSanitizer);
-  private Router = inject(Router);
 
   imageChangedEvent: Event | null = null;
   croppedImage: SafeUrl = '';
@@ -97,4 +95,6 @@ export class UserImageFormComponent {
   toggleEditImageForm() {
     this.userService.toggleEditImageForm();
   }
+
+  
 }
