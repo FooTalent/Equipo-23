@@ -50,15 +50,7 @@ export class ProductService {
       withCredentials: true,
       headers: this.headers,
     });
-    const url = `${this.apiUrl}/${productId}`;
-    return this.http.put<any>(
-      url,
-      { status },
-      {
-        withCredentials: true,
-        headers: this.headers,
-      }
-    );
+    
   }
 
   createProduct(productInfo: any): Observable<any> {

@@ -123,7 +123,6 @@ export class MyShopComponent implements OnInit {
   hidePopUp() {
     this.showBot = false;
   }
-  activateProduct(productId: string) {}
 
   showPopUp() {
     console.log("toggling producto bot")
