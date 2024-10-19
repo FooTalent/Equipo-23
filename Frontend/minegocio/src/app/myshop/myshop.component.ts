@@ -13,11 +13,7 @@ import { ProductBotComponent } from '../product-bot/product-bot.component';
 @Component({
   selector: 'app-myshop',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ProductBotComponent,
-  ],
+  imports: [CommonModule, FormsModule, ProductBotComponent],
   templateUrl: './myshop.component.html',
   styleUrls: ['./myshop.component.css'],
 })
@@ -47,7 +43,7 @@ export class MyShopComponent implements OnInit {
     this.loadProducts(this.currentPage);
   }
 
-  loadProducts(page: number, query: string = '') {
+  loadProducts(page: number, query: string = '') :void {
     this.isLoading = true;
     this.error = null;
     this.productService.getProducts(page, 20, query).subscribe({
@@ -120,12 +116,17 @@ export class MyShopComponent implements OnInit {
   }
 
   activateProduct(productId: string) {}
-  hidePopUp() {
+
+  hidePopUp():void {
     this.showBot = false;
+    // this.refreshProducts();
+    this.loadProducts(this.currentPage)
   }
 
   showPopUp() {
-    console.log("toggling producto bot")
+    console.log('toggling producto bot');
     this.showBot = !this.showBot;
   }
+
+
 }

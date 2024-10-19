@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 
@@ -55,8 +63,13 @@ export class ProductBotComponent implements OnInit {
   loadImage: boolean = false;
   fileInput: any;
 
-  @Input() hidePopUp!: () => void;
   @Input() showBot!: boolean;
+  @Input() loadProducts!: (page: number, query: string) => void;
+  @Output() botClosed = new EventEmitter<void>();
+
+  hidePopUp() {
+    this.botClosed.emit();
+  }
 
   showBackground: boolean = true;
 
@@ -67,6 +80,7 @@ export class ProductBotComponent implements OnInit {
 
   ngOnInit() {
     this.startNewChat();
+    
   }
 
   @ViewChild('messagesContainer') messagesContainer!: ElementRef;
@@ -313,7 +327,6 @@ export class ProductBotComponent implements OnInit {
       this.resetProductInfo();
       setTimeout(() => {
         this.isComplete = false;
-        this.hidePopUp();
         this.showBot = false;
         this.showBackground = false;
         this.startNewChat();
@@ -372,36 +385,36 @@ export class ProductBotComponent implements OnInit {
     return code;
   }
 
-  // Example usage:
 
   sendToBackend() {
-    console.log('enviado al backend', this.productInfo);
-    console.log('enviado al backend', this.productInfo.image);
 
-    this.productService
-      .createProduct({
-        title: this.productInfo.name,
-        description: this.productInfo.description,
-        code: this.generateCode(),
-        price: this.productInfo.price,
-        stock: this.productInfo.quantity,
-        category: this.productInfo.quantity,
-        thumbnails: this.productInfo.image,
-      })
-      .subscribe({
-        next: (response) => {
-          console.log('Estado del producto actualizado:', response);
-        },
-        error: (error) => {
-          console.error('Error al cambiar el estado del producto:', error);
-        },
-      });
+    const product = {
+      title: this.productInfo.name,
+      description: this.productInfo.description,
+      code: this.generateCode(),
+      price: this.productInfo.price,
+      stock: this.productInfo.quantity,
+      category: this.productInfo.quantity,
+      thumbnails: this.productInfo.image,
+    };
+
+    this.productService.createProduct(product).subscribe({
+      next: (response) => {
+        console.log('Estado del producto actualizado:', response);
+        this.hidePopUp();
+        this.productService.getProducts(1, 10, '')
+      },
+      error: (error) => {
+        console.error('Error al cambiar el estado del producto:', error);
+      },
+    });
   }
 
   onImageSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.productInfo.image = file;
+      console.log('archivo seleccionado', file);
       this.advance();
     }
   }

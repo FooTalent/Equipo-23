@@ -20,11 +20,6 @@ body {
   background-color: #2b2738;
 }
 
-/* Estilos personalizados para el scrollbar */
-
-/* Estilos globales para ocultar las flechas del scrollbar en todos los navegadores */
-
-/* Para Chrome, Edge, y otros navegadores basados en WebKit/Blink */
 *::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -45,7 +40,6 @@ body {
   background: #5d3cba;
 }
 
-/* src/app/pages/login/login.component.css */
 @keyframes fadeIn {
   from {
     opacity: 0;

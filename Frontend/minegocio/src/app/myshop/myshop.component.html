@@ -58,14 +58,14 @@
       </div>
     </div>
     <div class="absolute right-[12%] top-[7%] z-[999]">
-      <app-bot [showBot]="showBot" [hidePopUp]="hidePopUp"></app-bot>
+      <app-bot [showBot]="showBot" (botClosed)="hidePopUp()" [loadProducts]="loadProducts"></app-bot>
     </div>
 
     <div
       id="products"
       class="myshop-table-container bg-primary-light rounded-[1rem] m-4 pr-3 h-[680px] overflow-y-auto max-w-[1500px]"
     >
-      <div class="bg-primary-main rounded-[1rem] h-[680px]">
+      <div class="bg-primary-main rounded-[1rem] min-h-[680px]">
         <table class="w-full">
           <thead>
             <tr class="bg-secondary-main text-left">
@@ -210,7 +210,7 @@
     </div>
 
     <div class="absolute right-[0] top-[0%] z-[999]">
-      <app-bot [showBot]="showBot" [hidePopUp]="hidePopUp"></app-bot>
+      <app-bot [showBot]="showBot" (botClosed)="hidePopUp()"></app-bot>
     </div>
     <!-- Sección de Detalles del Producto -->
     <ng-container *ngIf="!isLoading; else loadingSpinner">

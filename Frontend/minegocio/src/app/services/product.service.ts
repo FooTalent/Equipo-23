@@ -59,22 +59,23 @@ export class ProductService {
   createProduct(productInfo: any): Observable<any> {
     const formData = new FormData();
 
+    // Agregar los campos básicos
     formData.append('title', productInfo.title);
     formData.append('description', productInfo.description);
     formData.append('code', productInfo.code);
-    formData.append('price', productInfo.price);
-    formData.append('stock', productInfo.stock);
+    formData.append('price', productInfo.price.toString());
+    formData.append('stock', productInfo.stock.toString());
     formData.append('category', productInfo.category);
-    if (productInfo.thumbnails) {
-      formData.append('thumbnails', productInfo.image);
+
+    if (productInfo.thumbnails instanceof File) {
+        formData.append('thumbnails', productInfo.thumbnails, productInfo.thumbnails.name);
     }
 
     return this.http.post<any>(this.apiUrl, formData, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: 'Bearer ' + localStorage.getItem('user_token'),
-      },
+        withCredentials: true,
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('user_token'),
+        },
     });
-  }
+}
 }
