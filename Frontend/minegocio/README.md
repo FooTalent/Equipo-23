@@ -12,9 +12,9 @@ Con **miNegocio**, los emprendedores pueden centralizar y optimizar las operacio
 ## Equipo de Desarrollo Frontend
 <div>
    <div style="display: inline-block;">
-    <img align=center src="/images/Juanes-Pachon.jpg" width="150" height="150" style="border-radius: 50%;" />
-    <h3 align=center >Juanes Pachon</h3>
-    <p align=center>
+    <img src="https://avatars.githubusercontent.com/u/156712331?v=4" width="150" height="150" style="border-radius: 50%;" />
+    <h3 >Juanes Pachon</h3>
+    <p>
       <a href="https://github.com/JuanesPachon" target="_blank">
         <img src="https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white" height="30" />
       </a>
@@ -22,9 +22,9 @@ Con **miNegocio**, los emprendedores pueden centralizar y optimizar las operacio
   </div>
 
   <div style="display: inline-block;">
-    <img align=center src="/images/Paola-Chaves.jpg" width="150" height="150" style="border-radius: 50%;" />
-    <h3 align=center >Paola Chaves</h3>
-    <p align=center>
+    <img src="https://ca.slack-edge.com/T06K4R8BQR1-U07KJQG7T2A-877da31c7a8d-512" width="150" height="150" style="border-radius: 50%;" />
+    <h3 >Paola Chaves</h3>
+    <p>
       <a href="https://github.com/JuanesPachon" target="_blank">
         <img src="https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white" height="30" />
       </a>
