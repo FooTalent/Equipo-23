@@ -1,8 +1,3 @@
-// import moment from "moment";
-
-// const formatDate = (date) => {
-//   return moment(date).format("DD/MM/YYYY HH:mm:ss");
-// };
 
 export default class ProductDTO {
   constructor() {}
@@ -24,8 +19,6 @@ export default class ProductDTO {
           category: product.category,
           owner: product.owner,
           thumbnails: product.thumbnails,
-          // created_data: formatDate(product.createdAt),
-          // update_data: formatDate(product.updatedAt),
           created_data:product.createdAt,
           update_data: product.updatedAt,
         };
@@ -40,7 +33,6 @@ export default class ProductDTO {
           category: product.category,
           owner: product.owner,
           thumbnails: product.thumbnails,
-          // created_data: formatDate(product.createdAt),
           created_data:product.createdAt,
         };
     }

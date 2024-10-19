@@ -26,7 +26,6 @@ export default class Product {
       page: page,
     };
 
-    // Configure sorting
     if (sort === "desc" || sort === "asc") {
       const sortOrder = sort === "desc" ? -1 : 1;
       options.sort = { price: sortOrder };
