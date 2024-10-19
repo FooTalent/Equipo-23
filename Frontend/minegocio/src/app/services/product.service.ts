@@ -57,6 +57,7 @@ export class ProductService {
   }
 
   createProduct(productInfo: any): Observable<any> {
+    const productStatus = productInfo.status === 'Si' ? true : false 
     const formData = new FormData();
 
     formData.append('title', productInfo.title);
@@ -64,6 +65,7 @@ export class ProductService {
     formData.append('code', productInfo.code);
     formData.append('price', productInfo.price.toString());
     formData.append('stock', productInfo.stock.toString());
+    formData.append('status', productStatus.toString());
     formData.append('category', productInfo.category);
 
     if (productInfo.thumbnails instanceof File) {

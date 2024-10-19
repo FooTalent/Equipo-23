@@ -304,7 +304,7 @@ export class ProductBotComponent implements OnInit {
      <strong>Descripcion:</strong> ${this.productInfo.description}<br>
      <strong>Cantidad:</strong> ${this.productInfo.quantity}<br>
      <strong>Categoria:</strong> ${this.productInfo.categories}<br>
-     <strong>Precio por unidad:</strong> ${this.productInfo.price}<br>
+     <strong>Precio por unidad:</strong>$ ${this.productInfo.price} ARS<br>
      <strong>¿Esta a la venta:</strong> ${this.productInfo.status}<br>
      <br>
   ¿Es correcto?
@@ -384,6 +384,7 @@ export class ProductBotComponent implements OnInit {
       description: this.productInfo.description,
       code: this.generateCode(),
       price: this.productInfo.price,
+      status: this.productInfo.status,
       stock: this.productInfo.quantity,
       category: this.productInfo.quantity,
       thumbnails: this.productInfo.image,
