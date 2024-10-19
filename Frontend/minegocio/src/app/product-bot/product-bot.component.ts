@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ProductService } from '../services/product.service';
 
 interface ChatMessage {
   text: string;
@@ -22,7 +23,7 @@ interface ProductInfo {
   description: any;
   price: any;
   quantity: number;
-  image?: string; // Agregado para almacenar la imagen del producto
+  image?: any;
 }
 @Component({
   selector: 'app-bot',
@@ -33,6 +34,7 @@ interface ProductInfo {
 })
 export class ProductBotComponent implements OnInit {
   messages: ChatMessage[] = [];
+  error: string | null = null;
   currentStep = 0;
   productInfo: ProductInfo = {
     type: '',
@@ -51,14 +53,17 @@ export class ProductBotComponent implements OnInit {
   glowSendButton: boolean = false;
   isPriceInput: boolean = false;
   loadImage: boolean = false;
-  fileInput: any 
+  fileInput: any;
 
   @Input() hidePopUp!: () => void;
   @Input() showBot!: boolean;
 
   showBackground: boolean = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private productService: ProductService
+  ) {}
 
   ngOnInit() {
     this.startNewChat();
@@ -305,7 +310,7 @@ export class ProductBotComponent implements OnInit {
       this.isComplete = true;
       this.allProducts.push({ ...this.productInfo });
       this.sendToBackend(); // Llama al método sendToBackend aquí
-      this.resetProductInfo()
+      this.resetProductInfo();
       setTimeout(() => {
         this.isComplete = false;
         this.hidePopUp();
@@ -355,23 +360,49 @@ export class ProductBotComponent implements OnInit {
       description: '',
       price: 0,
     };
-    this.userResponse = ''
+    this.userResponse = '';
     this.productCount = 1;
   }
+  generateCode() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let code = '';
+    for (let i = 0; i < 5; i++) {
+      code += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return code;
+  }
+
+  // Example usage:
 
   sendToBackend() {
     console.log('enviado al backend', this.productInfo);
+    console.log('enviado al backend', this.productInfo.image);
+
+    this.productService
+      .createProduct({
+        title: this.productInfo.name,
+        description: this.productInfo.description,
+        code: this.generateCode(),
+        price: this.productInfo.price,
+        stock: this.productInfo.quantity,
+        category: this.productInfo.quantity,
+        thumbnails: this.productInfo.image,
+      })
+      .subscribe({
+        next: (response) => {
+          console.log('Estado del producto actualizado:', response);
+        },
+        error: (error) => {
+          console.error('Error al cambiar el estado del producto:', error);
+        },
+      });
   }
 
   onImageSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.userResponse = e.target?.result as string; // Almacena la imagen como base64 en userResponse
-    };
-    this.advance()
-      reader.readAsDataURL(file);
+      this.productInfo.image = file;
+      this.advance();
     }
   }
 }
