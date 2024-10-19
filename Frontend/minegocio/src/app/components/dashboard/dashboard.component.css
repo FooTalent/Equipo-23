@@ -1,4 +1,5 @@
-.body{
-    background: #2b2738;
-    }
-
+::ng-deep .ngx-charts text {
+    fill: #FFFFFF; 
+    font-size: 10px; 
+  }
+  
