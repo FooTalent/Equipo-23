@@ -324,12 +324,6 @@ export class ProductBotComponent implements OnInit {
       this.allProducts.push({ ...this.productInfo });
       this.sendToBackend();
       this.resetProductInfo();
-      setTimeout(() => {
-        this.isComplete = false;
-        this.showBot = false;
-        this.showBackground = false;
-        this.startNewChat();
-      }, 1200);
     } else {
       this.messages.push({
         text: 'Volviendo al inicio para editar',
@@ -397,12 +391,21 @@ export class ProductBotComponent implements OnInit {
 
     this.productService.createProduct(product).subscribe({
       next: (response) => {
+        this.isComplete = false;
+        this.showBot = false;
+        this.showBackground = false;
         console.log('Estado del producto actualizado:', response);
         this.hidePopUp();
+        this.startNewChat();
         this.productService.getProducts(1, 10, '');
       },
       error: (error) => {
         console.error('Error al cambiar el estado del producto:', error);
+        this.isComplete = false;
+        this.showBot = false;
+        this.showBackground = false;
+        this.hidePopUp();
+        this.startNewChat();
       },
     });
   }
