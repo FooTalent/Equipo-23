@@ -80,7 +80,6 @@ export class ProductBotComponent implements OnInit {
 
   ngOnInit() {
     this.startNewChat();
-    
   }
 
   @ViewChild('messagesContainer') messagesContainer!: ElementRef;
@@ -225,7 +224,7 @@ export class ProductBotComponent implements OnInit {
         } else if (currentQuestion.text.includes('precio')) {
           this.productInfo.price = parseFloat(this.userResponse);
         } else if (currentQuestion.text.includes('imagen')) {
-          this.productInfo.image = this.userResponse; // Almacena la imagen
+          this.productInfo.image = this.userResponse;
         }
       } else {
         this.scrollToBottom();
@@ -323,7 +322,7 @@ export class ProductBotComponent implements OnInit {
       this.scrollToBottom();
       this.isComplete = true;
       this.allProducts.push({ ...this.productInfo });
-      this.sendToBackend(); // Llama al método sendToBackend aquí
+      this.sendToBackend();
       this.resetProductInfo();
       setTimeout(() => {
         this.isComplete = false;
@@ -385,9 +384,7 @@ export class ProductBotComponent implements OnInit {
     return code;
   }
 
-
   sendToBackend() {
-
     const product = {
       title: this.productInfo.name,
       description: this.productInfo.description,
@@ -402,7 +399,7 @@ export class ProductBotComponent implements OnInit {
       next: (response) => {
         console.log('Estado del producto actualizado:', response);
         this.hidePopUp();
-        this.productService.getProducts(1, 10, '')
+        this.productService.getProducts(1, 10, '');
       },
       error: (error) => {
         console.error('Error al cambiar el estado del producto:', error);

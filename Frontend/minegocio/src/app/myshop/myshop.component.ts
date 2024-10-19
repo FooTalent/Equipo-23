@@ -119,7 +119,6 @@ export class MyShopComponent implements OnInit {
 
   hidePopUp(): void {
     this.showBot = false;
-    // this.refreshProducts();
     this.loadProducts(this.currentPage);
     const body = document.querySelector('body');
     if (body) {

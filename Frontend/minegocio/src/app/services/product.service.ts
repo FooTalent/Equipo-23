@@ -59,7 +59,6 @@ export class ProductService {
   createProduct(productInfo: any): Observable<any> {
     const formData = new FormData();
 
-    // Agregar los campos básicos
     formData.append('title', productInfo.title);
     formData.append('description', productInfo.description);
     formData.append('code', productInfo.code);
