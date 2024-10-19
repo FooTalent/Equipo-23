@@ -12,7 +12,7 @@ Con **miNegocio**, los emprendedores pueden centralizar y optimizar las operacio
 ## Equipo de Desarrollo Frontend
 <div>
    <div style="display: inline-block;">
-    <img src="/public/images/Juanes-Pachon.jpg" width="150" height="150" style="border-radius: 50%;" />
+    <img align=center src="/images/Juanes-Pachon.jpg" width="150" height="150" style="border-radius: 50%;" />
     <h3 align=center >Juanes Pachon</h3>
     <p align=center>
       <a href="https://github.com/JuanesPachon" target="_blank">
@@ -22,7 +22,7 @@ Con **miNegocio**, los emprendedores pueden centralizar y optimizar las operacio
   </div>
 
   <div style="display: inline-block;">
-    <img src="/public/images/Paola-Chaves.jpg" width="150" height="150" style="border-radius: 50%;" />
+    <img align=center src="/images/Paola-Chaves.jpg" width="150" height="150" style="border-radius: 50%;" />
     <h3 align=center >Paola Chaves</h3>
     <p align=center>
       <a href="https://github.com/JuanesPachon" target="_blank">
@@ -44,6 +44,7 @@ Con **miNegocio**, los emprendedores pueden centralizar y optimizar las operacio
 1. **Node.js** versión 18 o superior
 2. **npm** versión 6 o superior
 3. **Angular CLI** instalado globalmente:
+
    ```bash
    npm install -g @angular/cli
    ```
