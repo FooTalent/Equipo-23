@@ -45,12 +45,15 @@ export class ProductService {
   }
 
   changeStatus(productId: string, status: boolean) {
-    const url = `${this.apiUrl}/${productId}`; 
-    return this.http.put<any>(url, { status }, { 
-      withCredentials: true,
-      headers: this.headers,
-    });
-    
+    const url = `${this.apiUrl}/${productId}`;
+    return this.http.put<any>(
+      url,
+      { status },
+      {
+        withCredentials: true,
+        headers: this.headers,
+      }
+    );
   }
 
   createProduct(productInfo: any): Observable<any> {
@@ -59,20 +62,19 @@ export class ProductService {
     formData.append('title', productInfo.title);
     formData.append('description', productInfo.description);
     formData.append('code', productInfo.code);
-    formData.append('price', productInfo.price)
+    formData.append('price', productInfo.price);
     formData.append('stock', productInfo.stock);
     formData.append('category', productInfo.category);
-      if (productInfo.thumbnails) {
+    if (productInfo.thumbnails) {
       formData.append('thumbnails', productInfo.image);
     }
 
-    return this.http.post<any>(
-      this.apiUrl,
-      formData,
-      {
-        withCredentials: true,
-        headers:  {'Content-Type': 'multipart/form-data'},
-      }
-    );
+    return this.http.post<any>(this.apiUrl, formData, {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: 'Bearer ' + localStorage.getItem('user_token'),
+      },
+    });
   }
 }
