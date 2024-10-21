@@ -9,7 +9,7 @@
         <span class="ml-2 bg-primary-light text-white px-16 py-3 rounded-2xl">Perfil</span>
     </div>
 
-    <div class="p-4 box-border bg-[#2B2738] w-full rounded-2xl">
+    <div class="p-4 lg:py-6 box-border bg-[#2B2738] w-full rounded-2xl">
         <h1 class="hidden lg:block text-white text-2xl pl-2 font-bold">Datos personales</h1>
         @if (isLoading()) {
             <div class="flex justify-center items-center h-full my-[19.6rem]">
@@ -18,91 +18,132 @@
         }
         
         @if (!isLoading()) {
-            <div class="bg-[#2B2738] lg:p-6 rounded-lg w-full space-y-6 lg:grid lg:grid-cols-2 lg:gap-x-16">
+            <form (ngSubmit)="onEditSubmit($event)" [formGroup]="userEditForm">
+                <div class="bg-[#2B2738] lg:p-6 rounded-lg w-full space-y-6 lg:grid lg:grid-cols-2 lg:gap-x-16">
 
-                <div class="w-full flex my-2 lg:my-0 flex-col space-y-5">
+                    <div class="w-full flex my-2 lg:my-0 flex-col space-y-5">
+    
+                        <div class="flex flex-col self-center items-center lg:items-start mt-4 lg:mt-0">
+                            <div class="relative box-border w-fit">
+                                <img class="w-36 h-auto lg:w-52 lg:h-52 lg:min-w-32 max-w-md border-8 border-white rounded-2xl object-contain"
+                                [src]="user()?.data?.photo || '/images/default-profile.jpg'" alt="Foto de perfil">
+                                <button (click)="toggleEditImageForm()"
+                                    class="absolute right-[33%] bottom-[85%] lg:bottom-[5rem] lg:-right-6 border-4 border-gray-900 bg-purple-600 hover:bg-purple-500 p-2 rounded-full">
+                                    <img src="/icons/edit.svg" loading="lazy" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
+                                </button>
+                            </div>
+                            <h2 class="text-white text-lg pt-3 font-semibold self-center w-fit">{{user()?.data?.name + ' ' + user()?.data?.last_name}}</h2>
+                        </div>
+        
+                        <div>
+                            <label for="name" class="ml-2 block text-gray-400 mb-2">Nombre</label>
+                            <input id="name" *ngIf="!editFormOpen()"
+                                class="w-full bg-primary-main text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-[#3B364C]"
+                                readonly [value]="user()?.data?.name">
+                            <input id="name" *ngIf="editFormOpen()"
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
+                                formControlName="name">
+                        </div>
+        
+                        <div>
+                            <label for="lastName" class="ml-2 block text-gray-400 mb-2">Apellido</label>
+                            <input id="lastName" *ngIf="!editFormOpen()"
+                                class="w-full bg-primary-main text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-[#3B364C]"
+                                readonly [value]="user()?.data?.last_name">
+                            <input id="name" *ngIf="editFormOpen()"
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
+                                formControlName="lastName">
+                        </div>
+        
+                        <div>
+                            <label for="email" class="ml-2 block text-gray-400 mb-2">Email</label>
+                            <input id="email" *ngIf="!editFormOpen()"
+                                class="w-full bg-primary-main text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-[#3B364C]"
+                                readonly [value]="user()?.data?.email">
+                            <input id="name" *ngIf="editFormOpen()"
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
+                                formControlName="email">
+                        </div>
+        
+                    </div>
+        
+                    <div class="w-full flex lg:my-0 flex-col space-y-5 lg:pt-[8.2rem]">
+        
+                        <div>
+                            <label for="country" class="ml-2 block text-gray-400 mb-2">Pais</label>
+                            <input id="country" *ngIf="!editFormOpen()"
+                                class="w-full bg-primary-main text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-[#3B364C]"
+                                readonly [value]="user()?.data?.country ? user()?.data?.country : 'Sin asignar' ">
+                            <input id="name" *ngIf="editFormOpen()"
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
+                                formControlName="country">
+                        </div>
+        
+                        <div>
+                            <label for="location" class="ml-2 block text-gray-400 mb-2">Localidad</label>
+                            <input id="location" *ngIf="!editFormOpen()"
+                                class="w-full bg-primary-main text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-[#3B364C]"
+                                readonly [value]="user()?.data?.locality ? user()?.data?.locality : 'Sin asignar' ">
+                            <input id="name" *ngIf="editFormOpen()"
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
+                                formControlName="locality">
+                        </div>
+        
+                        <div>
+                            <label for="zipCode" class="ml-2 block text-gray-400 mb-2">Codigo Postal</label>
+                            <input id="zipCode" *ngIf="!editFormOpen()"
+                                class="w-full bg-primary-main text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-[#3B364C]"
+                                readonly [value]="user()?.data?.postal_code ? user()?.data?.postal_code : 'Sin asignar' ">
+                            <input id="name" *ngIf="editFormOpen()"
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
+                                formControlName="zipCode">
+                        </div>
+        
+                        <div>
+                            <label for="phone" class="ml-2 block text-gray-400 mb-2">Telefono</label>
+                            <input id="phone" *ngIf="!editFormOpen()"
+                                class="w-full bg-primary-main text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-[#3B364C]"
+                                readonly [value]="user()?.data?.phone ? user()?.data?.phone : 'Sin asignar' ">
+                            <input id="name" *ngIf="editFormOpen()"
+                                class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
+                                formControlName="phone">
+                        </div>
+        
+                    </div>
+    
+                </div>
 
-                    <div class="flex flex-col self-center items-center lg:items-start mt-4 lg:mt-0">
-                        <div class="relative box-border w-fit">
-                            <img class="w-36 h-auto lg:w-52 lg:h-52 lg:min-w-32 max-w-md border-8 border-white rounded-2xl object-contain"
-                            [src]="user()?.data?.photo || '/images/default-profile.jpg'" alt="Foto de perfil">
-                            <button (click)="toggleEditImageForm()"
-                                class="absolute right-[33%] bottom-[85%] lg:bottom-[5rem] lg:-right-6 border-4 border-gray-900 bg-purple-600 hover:bg-purple-500 p-2 rounded-full">
-                                <img src="/icons/edit.svg" loading="lazy" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
+                @if (!isLoading()) {
+                    @if (!editFormOpen()) {
+                        <div class="flex justify-center">
+                            <button type="button" (click)="toggleEditForm()"
+                                class="w-full lg:mx-6 bg-[#5D3CBA] text-white py-3 mt-6 lg:mt-4 rounded-2xl hover:bg-[#6b47ce] focus:outline-none focus:ring-4 focus:ring-purple-500">
+                                Editar
                             </button>
                         </div>
-                        <h2 class="text-white text-lg pt-3 font-semibold self-center w-fit">{{user()?.data?.name + ' ' + user()?.data?.last_name}}</h2>
-                    </div>
-    
-                    <div>
-                        <label for="name" class="ml-2 block text-gray-400 mb-2">Nombre</label>
-                        <input id="name"
-                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                            readonly [value]="user()?.data?.name">
-                    </div>
-    
-                    <div>
-                        <label for="lastName" class="ml-2 block text-gray-400 mb-2">Apellido</label>
-                        <input id="lastName"
-                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                            readonly [value]="user()?.data?.last_name">
-                    </div>
-    
-                    <div>
-                        <label for="email" class="ml-2 block text-gray-400 mb-2">Email</label>
-                        <input id="email"
-                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                            readonly [value]="user()?.data?.email">
-                    </div>
-    
-                </div>
-    
-                <div class="w-full flex lg:my-0 flex-col space-y-5 lg:pt-[8.5rem]">
-    
-                    <div>
-                        <label for="country" class="ml-2 block text-gray-400 mb-2">Pais</label>
-                        <input id="country"
-                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                            readonly [value]="user()?.data?.country ? user()?.data?.country : 'Sin asignar' ">
-                    </div>
-    
-                    <div>
-                        <label for="location" class="ml-2 block text-gray-400 mb-2">Localidad</label>
-                        <input id="location"
-                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                            readonly [value]="user()?.data?.locality ? user()?.data?.locality : 'Sin asignar' ">
-                    </div>
-    
-                    <div>
-                        <label for="zipCode" class="ml-2 block text-gray-400 mb-2">Codigo Postal</label>
-                        <input id="zipCode"
-                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                            readonly [value]="user()?.data?.postal_code ? user()?.data?.postal_code : 'Sin asignar' ">
-                    </div>
-    
-                    <div>
-                        <label for="phone" class="ml-2 block text-gray-400 mb-2">Telefono</label>
-                        <input id="phone"
-                            class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2"
-                            readonly [value]="user()?.data?.phone ? user()?.data?.phone : 'Sin asignar' ">
-                    </div>
-    
-                </div>
+                    } @else {
+                        <div class="flex gap-x-3">
+                            <button type="button" (click)="toggleEditForm()"
+                                class="w-full lg:mx-6 bg-[#3B364C] text-white py-3 mt-6 lg:mt-4 rounded-2xl hover:bg-[#514a68] focus:outline-none focus:ring-4 focus:ring-purple-500">
+                                Cancelar edición
+                            </button>
+                            <button type="submit" [disabled]="isLoadingForm()"
+                                class="w-full lg:mx-6 bg-[#5D3CBA] text-white py-3 mt-6 lg:mt-4 rounded-2xl hover:bg-[#6b47ce] focus:outline-none focus:ring-4 focus:ring-purple-500">
+                                {{ isLoading() ? 'Cargando...' : 'Guardar edición' }}
+                            </button>
+                        </div>
+                        <div class="flex justify-center">
+                            <div *ngIf="errorMessage" class="w-full lg:mx-6 bg-red-500 text-center text-white  py-3 mt-6 lg:mt-4 rounded-2xl">
+                                {{errorMessage}}
+                            </div>
+                        </div>
+                    }
+                    
+                }
 
-            </div>
+            </form>            
         }
-
-        @if (!isLoading()) {
-            <div class="flex justify-center">
-                <button type="button" (click)="toggleEditForm()"
-                    class="w-full lg:mx-6 bg-[#5D3CBA] text-white py-3 mt-6 lg:mt-4 rounded-xl hover:bg-[#6b47ce] focus:outline-none focus:ring-4 focus:ring-purple-500">
-                    Editar
-                </button>
-            </div>
-        }
-
     </div>
 </div>
 
-<app-user-edit-form *ngIf="editFormOpen()"></app-user-edit-form>
 <app-user-image-form *ngIf="editImageFormOpen()"></app-user-image-form>
