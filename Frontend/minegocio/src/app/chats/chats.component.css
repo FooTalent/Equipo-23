@@ -13,3 +13,41 @@
     transform: scale(0.95); 
   }
   
+  .modal {
+    display: flex; /* Usar flex para centrar el contenido */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    position: fixed; /* Fijar el modal en la pantalla */
+    top: 0; /* Posicionar en la parte superior */
+    left: 0; /* Posicionar a la izquierda */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente más oscuro */
+    z-index: 9999; /* Asegurarse de que el modal esté encima de otros elementos */
+  }
+  
+  .modal-content {
+    background-color: white; /* Fondo blanco para el contenido */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+    display: flex; /* Usar flex para centrar el contenido */
+    flex-direction: column; /* Alinear elementos en columna */
+    align-items: center; /* Centrar elementos en la columna */
+  }
+  
+  .qr-image {
+    max-width: 100%; /* Asegurarse de que la imagen no exceda el ancho del modal */
+    max-height: 400px; /* Establecer una altura máxima para la imagen */
+  }
+  
+  .close-button {
+    margin-top: 20px; /* Espacio arriba del botón de cerrar */
+    padding: 10px 20px; /* Espaciado del botón */
+    background-color: #ff4757; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  }
+  

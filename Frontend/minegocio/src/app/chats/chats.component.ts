@@ -1,15 +1,31 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ChatService } from '../services/chat.service';
+import { CommonModule } from '@angular/common'
+
+
+// Define una interfaz para la respuesta de la API
+interface ApiResponse {
+  instanceName: string;
+  qrcode: {
+    base64: string;
+  };
+}
+
+
 
 @Component({
   selector: 'app-chats',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './chats.component.html',
   styleUrls: ['./chats.component.css'],
 })
 export class ChatsComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  private chatService = inject(ChatService);
+
+
+  showModal: boolean = false; // Controlar la visibilidad del modal
+  qrImage: string = ''; 
 
   ngOnInit(): void {}
 
@@ -34,17 +50,24 @@ export class ChatsComponent implements OnInit {
     }
   }
 
-  sendToBackend() {
-    const pacoId = 'valorReal'; 
-    const url = `https://equipo-23-develop-backend.onrender.com/api/evolution/instance/create/${pacoId}`;
-    this.http.get(url).subscribe({
+  createInstance() {
+    let instanceName = 'OtraVez';
+    this.chatService.postInstance(instanceName).subscribe({
       next: (response) => {
-        console.log('Respuesta del backend:', response);
+        const apiResponse = response as { instanceName: string; qrcode: { base64: string } }; // Assertion
+        console.log('Instancia creada exitosamente:', apiResponse);
+        console.log(apiResponse.qrcode.base64)
+        this.qrImage = apiResponse.qrcode.base64; // Acceder a la propiedad base64 del QR
+        this.showModal = true; // Abrir el modal
       },
       error: (error) => {
-        console.error('Error al realizar la petición:', error);
+        console.error('Error al crear instancia:', error);
       },
     });
   }
   
+
+  closeModal() {
+    this.showModal = false; // Cerrar el modal
+  }
 }

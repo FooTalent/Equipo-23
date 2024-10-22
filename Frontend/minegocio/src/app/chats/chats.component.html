@@ -14,13 +14,26 @@
         >
           <div
             class="dp flex justify-center items-center rounded-l-lg"
-            (click)="sendToBackend()"
+            (click)="createInstance()"
           >
             <img
               class="rounded-xl bg-secondary-main p-4"
               src="/icons/whatsapp.svg"
               alt="WhatsApp"
+    
             />
+          </div>
+
+          <!-- Modal para mostrar el QR -->
+          <div *ngIf="showModal" class="modal">
+            <div class="modal-content z-100">
+              <span (click)="closeModal()" class="close">&times;</span>
+              <img
+                *ngIf="qrImage"
+                [src]="qrImage"
+                alt="QR Code"
+              />
+            </div>
           </div>
 
           <div
@@ -32,7 +45,7 @@
             />
           </div>
           <div
-            class=" flex justify-center items-center rounded-l-lg cursor-not-allowed"
+            class="flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
             <img
               class="rounded-xl bg-primary-light p-4"
@@ -40,7 +53,7 @@
             />
           </div>
           <div
-            class=" flex justify-center items-center rounded-l-lg cursor-not-allowed"
+            class="flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
             <img
               class="rounded-xl bg-primary-light p-4"
@@ -285,16 +298,16 @@
         </div>
       </div>
       <div
-        class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8"
+        class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8 z-0"
       >
         <div
-          class="chatmessage px-2 pb-4 bg-secondary-main rounded-lg w-[fit-content] max-w-[40%] ml-4 relative"
+          class="chatmessage px-2 pb-4 bg-secondary-main rounded-lg w-[fit-content] max-w-[40%] ml-4  "
         >
           <div class="flex items-center w-full">
             <div class="flex justify-between w-full flex-col">
               <div class="flex flex-col gap-1">
                 <p
-                  class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
+                  class="text-md text-white flex items-center mt-2 ml-2 font-[400] text-wrap"
                 >
                   Che que onda el navbar, esta raro este de no tener el navbar
                   en una sola seccion
@@ -311,7 +324,7 @@
           </div>
         </div>
         <div
-          class="chatmessage px-2 pb-4 bg-primary-light rounded-lg w-[fit-content] max-w-[40%] ml-4 relative ml-auto"
+          class="chatmessage px-2 pb-4 bg-primary-light rounded-lg w-[fit-content] max-w-[40%] ml-4  ml-auto"
         >
           <div class="flex items-center w-full">
             <div class="flex justify-between w-full flex-col">
