@@ -11,11 +11,10 @@ import { UserService } from '../../services/user.service';
   imports: [CommonModule, RouterLink, RouterLinkActive],
 })
 export class SidebarComponent {
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService, private authService: AuthService) {}
 
   logout() {
-    localStorage.removeItem('user_token');
-    this.router.navigate(['/login']); 
+    this.authService.handleLogout()
   }
 
   user = signal<any>({});

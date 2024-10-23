@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BaseApiService } from './baseApi.service';
 
 export interface Product {
   id: string;
@@ -17,25 +18,24 @@ export interface Product {
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class ProductService extends BaseApiService {
   private apiUrl =
     'https://equipo-23-develop-backend.onrender.com/api/products';
 
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + localStorage.getItem('user_token'),
-  });
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super()
+  }
 
   getProducts(
     pageNumber: number,
     limit: number,
     query: string
   ): Observable<Product[]> {
+    console.log(this.getHeaders())
     return this.http.get<any>(this.apiUrl, {
       withCredentials: true,
-      headers: this.headers,
+      headers: this.getHeaders(),
       params: {
         page: pageNumber.toString(),
         limit: limit.toString(),
@@ -51,7 +51,7 @@ export class ProductService {
       { status },
       {
         withCredentials: true,
-        headers: this.headers,
+        headers: this.getHeaders(),
       }
     );
   }
@@ -74,9 +74,7 @@ export class ProductService {
 
     return this.http.post<any>(this.apiUrl, formData, {
         withCredentials: true,
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem('user_token'),
-        },
+        headers: this.getFileHeaders()
     });
 }
 }
