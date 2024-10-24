@@ -20,4 +20,14 @@ export class ChatService {
       { headers: this.headers }
     );
   }
+
+  postSocket(instanceName: string) {
+    return this.http.post(
+      `${this.apiUrl}/api/evolutionApi/socket/create/${instanceName}`,
+      {},
+      { headers: this.headers }
+
+    )
+    
+  }
 }

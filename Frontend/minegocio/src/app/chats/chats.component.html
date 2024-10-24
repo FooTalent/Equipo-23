@@ -20,19 +20,14 @@
               class="rounded-xl bg-secondary-main p-4"
               src="/icons/whatsapp.svg"
               alt="WhatsApp"
-    
             />
           </div>
 
           <!-- Modal para mostrar el QR -->
           <div *ngIf="showModal" class="modal">
             <div class="modal-content z-100">
-              <span (click)="closeModal()" class="close">&times;</span>
-              <img
-                *ngIf="qrImage"
-                [src]="qrImage"
-                alt="QR Code"
-              />
+              <span (click)="closeModal()" class="close">x</span>
+              <img *ngIf="qrImage" [src]="qrImage" alt="QR Code" />
             </div>
           </div>
 
@@ -90,157 +85,44 @@
           class="h-[68vh] overflow-y-scroll flex flex-col items-center gap-4 mt-4 mr-3"
         >
           <div
+            *ngFor="let chat of chats"
             class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
             (click)="scrollToRight()"
           >
             <div class="flex items-center w-full">
               <div class="p-3">
                 <img
-                  src="/icons/profile-image.png"
+                  [src]="
+                    chat.profilePicUrl
+                      ? chat.profilePicUrl
+                      : '/icons/whatsapp.svg'
+                  "
                   alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
+                  [ngClass]="
+                    chat.profilePicUrl
+                      ? 'rounded-lg w-[50px]'
+                      : 'rounded-xl bg-secondary-main p-4'
+                  "
                 />
               </div>
               <div class="flex justify-between w-[80%]">
                 <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Carnaghi Martel
+                  <h3 class="text-base text-white font-semibold">
+                    {{ chat.pushName }}
                   </h3>
                   <p
                     class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
                   >
-                    <span class="inline-block max-w-[200px]">aasdasd</span>
+                    <span class="inline-block max-w-[200px] text-xs">{{
+                      chat.remoteJid
+                    }}</span>
                   </p>
                 </div>
-                <div class="last-chat mr-2">
+                <!-- <div class="last-chat mr-2">
                   <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
+                    {{ chat.time }}
                   </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/icons/profile-image.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Carnaghi Martel
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px]">aaaa</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/icons/profile-image.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Carnaghi Martel
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px]">Prueba</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/icons/profile-image.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Carnaghi Martel
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px]">test</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/icons/profile-image.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Carnaghi Martel
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px]">Testeo</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -300,8 +182,8 @@
       <div
         class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8 z-0"
       >
-        <div
-          class="chatmessage px-2 pb-4 bg-secondary-main rounded-lg w-[fit-content] max-w-[40%] ml-4  "
+        <!-- <div
+          class="chatmessage px-2 pb-4 bg-secondary-main rounded-lg w-[fit-content] max-w-[40%] ml-4"
         >
           <div class="flex items-center w-full">
             <div class="flex justify-between w-full flex-col">
@@ -324,13 +206,13 @@
           </div>
         </div>
         <div
-          class="chatmessage px-2 pb-4 bg-primary-light rounded-lg w-[fit-content] max-w-[40%] ml-4  ml-auto"
+          class="chatmessage px-2 pb-4 bg-primary-light rounded-lg w-[fit-content] max-w-[40%] ml-auto"
         >
           <div class="flex items-center w-full">
             <div class="flex justify-between w-full flex-col">
               <div class="flex flex-col gap-1">
                 <p
-                  class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
+                  class="text-md text-white  flex items-center mt-2 ml-2 font-[400] text-wrap"
                 >
                   Mala suerte amigo, anda pa ya bobo
                 </p>
@@ -341,6 +223,36 @@
                 >
                   20:30
                 </p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div *ngFor="let message of conversations">
+          <div
+            [ngClass]="{
+              'chatmessage px-2 pb-4 rounded-lg w-[fit-content] max-w-[40%] ml-4 bg-secondary-main':
+                !message.isSender,
+              'chatmessage px-2 pb-4 rounded-lg w-[fit-content] max-w-[40%] ml-auto bg-primary-light':
+                message.isSender
+            }"
+          >
+            <div class="flex items-center w-full">
+              <div class="flex justify-between w-full flex-col">
+                <div class="flex flex-col gap-1">
+                  <p
+                    class="text-md text-white flex items-center mt-2 ml-2 font-[400] text-wrap"
+                  >
+                    {{ message.text }}
+                  </p>
+                </div>
+                <div class="last-chat w-full flex mt-2">
+                  <p
+                    class="text-[0.80rem] font-sans text-white font-normal ml-auto"
+                  >
+                    {{ message.time }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
