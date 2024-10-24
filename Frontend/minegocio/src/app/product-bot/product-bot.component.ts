@@ -61,6 +61,7 @@ export class ProductBotComponent implements OnInit {
   inputDisabled: boolean = true;
   glowSendButton: boolean = false;
   isPriceInput: boolean = false;
+  maxInputLength: number = 0
   loadImage: boolean = false;
   fileInput: any;
   imageUrl?: string;
@@ -110,16 +111,19 @@ export class ProductBotComponent implements OnInit {
       text: 'Indicá un nombre para el producto',
       disableInput: false,
       glowSendButton: true,
+      maxInputLength: 20
     },
     {
       text: 'Añadi una descripción de tu producto',
       disableInput: false,
       glowSendButton: true,
+      maxInputLength: 100
     },
     {
       text: '¿Cuál es el precio por unidad de este producto?',
       disableInput: false,
       glowSendButton: true,
+      maxInputLength: 20,
       priceInput: true,
     },
     {
@@ -151,6 +155,9 @@ export class ProductBotComponent implements OnInit {
 
     if (this.currentStep < this.questions.length) {
       const question = this.questions[this.currentStep];
+
+      if(question.maxInputLength) this.maxInputLength = question.maxInputLength
+
 
       if (question.disableInput == false || question.loadImage) {
         this.inputDisabled = false;

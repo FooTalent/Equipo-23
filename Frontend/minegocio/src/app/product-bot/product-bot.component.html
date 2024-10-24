@@ -101,6 +101,7 @@
       placeholder="Mensaje"
       [type]="!isPriceInput ? 'number' : 'text'"
       [disabled]="inputDisabled || loadImage"
+      [maxlength]="maxInputLength"
     />
 
     <input
