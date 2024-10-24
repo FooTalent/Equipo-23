@@ -59,16 +59,17 @@ export const findMessages = async (req, res) => {
       pages: response.messages.pages,
       currentPage: response.messages.currentPage,
       records: response.messages.records
-        .filter((record) => record.pushName !== "")
         .map((record) => {
           return {
+            fromMe: record.key.fromMe,
             remoteJid: record.key.remoteJid,
-            pushName: record.pushName,
             message: record.message.conversation,
             messageTimestamp: record.messageTimestamp,
           };
         }),
     };
+    
+
 
     res.status(200).json(chat);
   } catch (error) {
@@ -81,7 +82,7 @@ export const sendMesageText = async (req, res) => {
 
   try {
     const response = await sendText(instanceName, number, text);
-    // console.log(response);
+
 
     res.status(200).json(response);
   } catch (error) {
