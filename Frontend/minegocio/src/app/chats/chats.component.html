@@ -81,13 +81,15 @@
           </div>
         </div>
 
+        <!-- carga los contactos -->
+
         <div
           class="h-[68vh] overflow-y-scroll flex flex-col items-center gap-4 mt-4 mr-3"
         >
           <div
             *ngFor="let chat of chats"
             class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
+            (click)="conversation(chat.remoteJid, chat.profilePicUrl, chat.pishName)"
           >
             <div class="flex items-center w-full">
               <div class="p-3">
@@ -132,6 +134,7 @@
     <div
       class="right bg-primary-main h-full w-full min-w-[360px] lg:w-[70%] rounded-xl"
     >
+      <!-- Chat del Contacto -->
       <div
         class="right-upper bg-secondary-main flex justify-between items-center px-4 py-3 lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
       >
@@ -179,62 +182,18 @@
           </div>
         </div>
       </div>
+
       <div
         class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8 z-0"
       >
-        <!-- <div
-          class="chatmessage px-2 pb-4 bg-secondary-main rounded-lg w-[fit-content] max-w-[40%] ml-4"
-        >
-          <div class="flex items-center w-full">
-            <div class="flex justify-between w-full flex-col">
-              <div class="flex flex-col gap-1">
-                <p
-                  class="text-md text-white flex items-center mt-2 ml-2 font-[400] text-wrap"
-                >
-                  Che que onda el navbar, esta raro este de no tener el navbar
-                  en una sola seccion
-                </p>
-              </div>
-              <div class="last-chat w-full flex mt-2">
-                <p
-                  class="text-[0.80rem] font-sans text-white font-normal ml-auto"
-                >
-                  20:30
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="chatmessage px-2 pb-4 bg-primary-light rounded-lg w-[fit-content] max-w-[40%] ml-auto"
-        >
-          <div class="flex items-center w-full">
-            <div class="flex justify-between w-full flex-col">
-              <div class="flex flex-col gap-1">
-                <p
-                  class="text-md text-white  flex items-center mt-2 ml-2 font-[400] text-wrap"
-                >
-                  Mala suerte amigo, anda pa ya bobo
-                </p>
-              </div>
-              <div class="last-chat w-full flex mt-2">
-                <p
-                  class="text-[0.80rem] font-sans text-white font-normal ml-auto"
-                >
-                  20:30
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <div *ngFor="let message of conversations">
+        <div *ngFor="let message of getMessages()">
           <div
+            *ngIf="message.message"
             [ngClass]="{
               'chatmessage px-2 pb-4 rounded-lg w-[fit-content] max-w-[40%] ml-4 bg-secondary-main':
-                !message.isSender,
+                !message.fromMe,
               'chatmessage px-2 pb-4 rounded-lg w-[fit-content] max-w-[40%] ml-auto bg-primary-light':
-                message.isSender
+                message.fromMe
             }"
           >
             <div class="flex items-center w-full">
@@ -243,14 +202,17 @@
                   <p
                     class="text-md text-white flex items-center mt-2 ml-2 font-[400] text-wrap"
                   >
-                    {{ message.text }}
+                    {{ message.message }}
                   </p>
                 </div>
                 <div class="last-chat w-full flex mt-2">
                   <p
                     class="text-[0.80rem] font-sans text-white font-normal ml-auto"
                   >
-                    {{ message.time }}
+                    {{
+                      message.messageTimestamp * 1000
+                        | date : "yyyy-MM-dd HH:mm:ss"
+                    }}
                   </p>
                 </div>
               </div>
@@ -258,13 +220,14 @@
           </div>
         </div>
       </div>
+
       <div
         class="right-bottom w-full top-full sticky flex justify-between items-center px-4 py-4 space-x-2"
       >
         <input
           type="text"
           placeholder="Escribe un mensaje"
-          class="bg-primary-light rounded-[8px] px-4 py-4 outline-none w-full placeholder:text-[#7C798A]"
+          class="bg-primary-light rounded-[8px] px-4 py-4 outline-none w-full placeholder:text-[#7C798A] text-white"
           id=""
         />
         <div
@@ -277,7 +240,7 @@
           />
         </div>
         <div
-          class="flex justify-center items-center cursor-pointer relative w-[53px] h-[53px] bg-primary-light rounded-lg"
+          class="flex justify-center items-center cursor-pointer relative w-[53px] h-[53px] bg-wh rounded-lg"
         >
           <img
             src="/icons/send.svg"
