@@ -13,7 +13,21 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   isLoggedIn = this.authService.isLoggedInSignal;
+
+  ngOnInit() {
+    this.authService.expirationCheck().subscribe({
+      next: () => {
+        
+      },
+      error: () => {
+        this.authService.removeToken();
+        this.router.navigate(['/login']);
+      }
+    });
+  }
 }

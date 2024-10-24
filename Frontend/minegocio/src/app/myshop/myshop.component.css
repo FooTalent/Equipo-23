@@ -1,9 +1,5 @@
 /* Estilos para el contenedor de la tabla en MyShop */
-.myshop-table-container {
-  /* Estilos para Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: #7c798a #2b2738;
-}
+
 
 /* Estilos para WebKit/Blink (Chrome, Safari, nuevas versiones de Opera y Edge) */
 .myshop-table-container::-webkit-scrollbar {

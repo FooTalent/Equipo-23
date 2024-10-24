@@ -22,9 +22,10 @@
     </div>
     <div>
       <img
-        src="/icons/profile-image.png"
-        alt="Foto de perfil de Josefina Martinez"
+        [src]="user()?.data?.photo || '/images/default-profile.jpg'"
+        alt="Foto de perfil"
         class="w-7 h-7 rounded-full mr-3"
+        [routerLink]="['/user-profile']"
       />
     </div>
     <div (click)="toggleMenu()">
@@ -60,8 +61,10 @@
       </li>
       <li>
         <a
+          (click)="toggleMenu()"
+          routerLink="/notifications"
           routerLinkActive="bg-secondary-main text-white"
-          class="flex py-[12px] pl-[1.3rem] px-7 rounded-t-[16px] text-gray-400 cursor-not-allowed transition-colors max-w-[200px]"
+          class="flex py-[12px] pl-[1.3rem] px-7 rounded-t-[16px] transition-colors max-w-[200px] text-white"
           aria-label="Ver notificaciones"
         >
           <img
@@ -69,7 +72,7 @@
             alt="Icono de notificaciones"
             class="w-6 h-6 mr-4"
           />
-          Notificaciones
+          <span class="text-white"> Notificaciones</span>
         </a>
       </li>
       <li>
@@ -77,7 +80,7 @@
           (click)="toggleMenu()"
           routerLink="/messages"
           routerLinkActive="bg-secondary-main text-white"
-          class="flex py-[12px] pl-[1.3rem] px-7 rounded-b-[16px] text-white transition-colors max-w-[200px] text-white"
+          class="flex py-[12px] pl-[1.3rem] px-7 rounded-b-[16px] text-white transition-colors max-w-[200px]"
           aria-label="Ver mensajes"
         >
           <img
@@ -108,8 +111,10 @@
       </li>
       <li>
         <a
+          (click)="toggleMenu()"
+          routerLink="/clients"
           routerLinkActive="bg-secondary-main text-white"
-          class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 rounded-t-[16px] text-gray-400 transition-colors max-w-[200px]"
+          class="flex items-center pl-[1.3rem] py-[12px] px-7 rounded-t-[16px] transition-colors max-w-[200px] text-white"
           aria-label="Ver clientes"
         >
           <img
@@ -117,13 +122,15 @@
             alt="Icono de clientes"
             class="w-6 h-6 mr-4"
           />
-          Clientes
+          <span class="text-white"> Clientes</span>
         </a>
       </li>
       <li>
         <a
+          (click)="toggleMenu()"
+          routerLink="/stadistics"
           routerLinkActive="bg-secondary-main text-white"
-          class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
+          class="flex items-center pl-[1.3rem] py-[12px] px-7 transition-colors max-w-[200px] text-white"
           aria-label="Ver estadísticas"
         >
           <img
@@ -131,13 +138,15 @@
             alt="Icono de estadísticas"
             class="w-6 h-6 mr-4"
           />
-          Estadísticas
+          <span class="text-white"> Estadísticas</span>
         </a>
       </li>
       <li>
         <a
+          (click)="toggleMenu()"
+          routerLink="/billing"
           routerLinkActive="bg-secondary-main text-white"
-          class="flex items-center pl-[1.3rem] cursor-not-allowed py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
+          class="flex items-center pl-[1.3rem] py-[12px] px-7 transition-colors max-w-[200px] text-white"
           aria-label="Ver facturación"
         >
           <img
@@ -145,13 +154,15 @@
             alt="Icono de facturación"
             class="w-6 h-6 mr-4"
           />
-          Facturación
+          <span class="text-white"> Facturación</span>
         </a>
       </li>
       <li>
         <a
+          (click)="toggleMenu()"
+          routerLink="/orders"
           routerLinkActive="bg-secondary-main text-white"
-          class="flex items-center cursor-not-allowed pl-[1.3rem] py-[12px] px-7 text-gray-400 transition-colors max-w-[200px]"
+          class="flex items-center pl-[1.3rem] py-[12px] px-7 transition-colors max-w-[200px] text-white"
           aria-label="Ver pedidos"
         >
           <img
@@ -159,13 +170,15 @@
             alt="Icono de pedidos"
             class="w-6 h-6 mr-4"
           />
-          Pedidos
+          <span class="text-white"> Pedidos</span>
         </a>
       </li>
       <li>
         <a
+          (click)="toggleMenu()"
+          routerLink="/shipments"
           routerLinkActive="bg-secondary-main text-white"
-          class="flex items-center cursor-not-allowed pl-[1.3rem] py-[12px] px-7 rounded-b-[16px] text-gray-400 transition-colors max-w-[200px]"
+          class="flex items-center pl-[1.3rem] py-[12px] px-7 rounded-b-[16px] transition-colors max-w-[200px] text-white"
           aria-label="Ver envíos"
         >
           <img
@@ -173,7 +186,7 @@
             alt="Icono de envíos"
             class="w-6 h-6 mr-4"
           />
-          Envíos
+          <span class="text-white"> Envíos</span>
         </a>
       </li>
       <button
