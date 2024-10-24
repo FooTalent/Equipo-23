@@ -124,7 +124,7 @@ export class ProductBotComponent implements OnInit {
       text: 'Por favor, carga una imagen del producto',
       disableInput: false,
       loadImage: true,
-      glowSendButton: true,
+      glowSendButton: false,
     },
     { text: '¿Confirmas la siguiente información?', isConfirmation: true },
     { text: '¿Deseas agregar otro producto?', isAddAnother: true },

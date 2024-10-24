@@ -78,7 +78,8 @@
       *ngIf="isComplete"
       class="mt-4 w-full text-[14px] whitespace-nowrap py-2 text-white transition duration-300 flex flex-col items-center"
     >
-      ¡Listo! Ya cargamos el producto en tu inventario. <br>¡Aguarda un instante!
+      ¡Listo! Ya cargamos el producto en tu inventario. <br />¡Aguarda un
+      instante!
 
       <img src="/images/success.png" alt="producto-cargado" class="w-32 h-32" />
     </div>
@@ -89,7 +90,7 @@
     <input
       type="text"
       [(ngModel)]="userResponse"
-      (keyup.enter) = "advance()"
+      (keyup.enter)="advance()"
       *ngIf="!isComplete && currentStep < questions.length"
       class="bg-primary-light mb-3 rounded-md w-[70%] placeholder:pl-2 pl-2"
       [ngClass]="{
@@ -109,7 +110,6 @@
       accept="image/*"
     />
 
-    <!-- Botón personalizado -->
     <button
       *ngIf="!isComplete && currentStep < questions.length"
       (click)="fileInput.click()"
@@ -124,6 +124,9 @@
     <button
       *ngIf="!isComplete && currentStep < questions.length"
       (click)="(userResponse.length > 0 || inputDisabled) && advance()"
+      [ngClass]="{
+        'animate-glow-fast ': glowSendButton,
+      }"
       class="w-[fit-content] px-2 mb-3 bg-primary-light text-white rounded hover:bg-secondary-main transition duration-300"
       [disabled]="!glowSendButton"
     >
@@ -134,6 +137,6 @@
 
 <div
   *ngIf="showBackground && showBot"
-  class="fixed inset-0 backdrop-blur-sm z-10 "
+  class="fixed inset-0 backdrop-blur-sm z-10"
   (click)="hidePopUp()"
 ></div>
