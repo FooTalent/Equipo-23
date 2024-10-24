@@ -29,7 +29,7 @@
           <button class="bg-primary-light p-5 rounded-lg relative mr-[10%]">
             <img src="/icons/filter.svg" class="absolute top-3 left-3" />
           </button>
-          <div class="flex gap-4">
+          <div class="flex gap-4 relative">
             <div class="mr-6">
               <button class="bg-accent p-5 rounded-l-lg relative">
                 <img
@@ -53,12 +53,14 @@
                 class="absolute top-[10px] left-[10px]"
               />
             </button>
+
+        <div class="absolute right-[12%] top-[7%] z-[999]">
+          <app-bot [showBot]="showBot" (botClosed)="hidePopUp()" [loadProducts]="loadProducts"></app-bot>
+        </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="absolute right-[12%] top-[7%] z-[999]">
-      <app-bot [showBot]="showBot" (botClosed)="hidePopUp()" [loadProducts]="loadProducts"></app-bot>
+
     </div>
 
     <div
