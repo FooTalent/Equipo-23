@@ -85,7 +85,6 @@ export const sendText = async (instanceName, number, text) => {
     options
   );
 
-  console.log(response.data)
 
   return response.data;
 };

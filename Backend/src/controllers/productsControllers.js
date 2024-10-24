@@ -11,7 +11,7 @@ import uploadFile from "../utils/cloudinary/upload.js";
  *  vendor
  */
 export const createProduct = async (req, res) => {
-  const { title, description, code, price, stock, category } = req.body;
+  const { title, description, code, price, stock, category, status } = req.body;
   const role = req.user.data.role;
   const email = req.user.data.email;
   /**
@@ -59,7 +59,6 @@ export const createProduct = async (req, res) => {
   // IF CODE NOT EXISTS
   let owner = "admin";
   if (role == "vendor") owner = email;
-  console.log("products images ", thumbnailsSerialize);
   const result = await productsRepository.createProduct({
     title,
     description,
@@ -67,6 +66,7 @@ export const createProduct = async (req, res) => {
     price,
     stock,
     category,
+    status,
     owner,
     thumbnails: thumbnailsSerialize,
   });
