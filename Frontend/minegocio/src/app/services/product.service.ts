@@ -76,5 +76,13 @@ export class ProductService extends BaseApiService {
         withCredentials: true,
         headers: this.getFileHeaders()
     });
-}
+  }
+
+  getProduct(productId: string) {
+    return this.http.get(`${this.apiUrl}/${productId}`,{
+      withCredentials: true,
+      headers: this.getFileHeaders()
+    })
+  }
+
 }
