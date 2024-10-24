@@ -1,3 +1,4 @@
+import { allContacts } from "../services/chat.services.js";
 import {
   getConnectionState,
   deleteInstanceName,
@@ -18,10 +19,18 @@ export const evolutionApiControllers = async (req, res) => {
     await setWebSocketName(instanceName);
     await socketEvolution(instanceName);
 
+    const data = await allContacts(instanceName);
 
-    res.status(200).json({ message: "Api de evolucion" });
+    const contacts = data.map((contact) => {
+      return {
+        remoteJid: contact.remoteJid,
+        pushName: contact.pushName,
+        profilePicUrl: contact.profilePicUrl,
+      };
+    });
+
+    res.status(200).json(contacts);
   } catch (error) {
     res.status(404).json(error.response.data);
   }
 };
-
