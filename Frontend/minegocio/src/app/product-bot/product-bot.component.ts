@@ -19,6 +19,7 @@ interface ChatMessage {
   countRequired?: boolean;
   isConfirmation?: boolean;
   isAddAnother?: boolean;
+  img?: any;
   isDisabled?: boolean;
 }
 
@@ -62,6 +63,7 @@ export class ProductBotComponent implements OnInit {
   isPriceInput: boolean = false;
   loadImage: boolean = false;
   fileInput: any;
+  imageUrl?: string;
 
   @Input() showBot!: boolean;
   @Input() loadProducts!: (page: number, query: string) => void;
@@ -213,6 +215,7 @@ export class ProductBotComponent implements OnInit {
         isUser: true,
       });
     }
+
     if (this.currentStep < this.questions.length) {
       const currentQuestion = this.questions[this.currentStep];
 
@@ -223,8 +226,6 @@ export class ProductBotComponent implements OnInit {
           this.productInfo.description = this.userResponse;
         } else if (currentQuestion.text.includes('precio')) {
           this.productInfo.price = parseFloat(this.userResponse);
-        } else if (currentQuestion.text.includes('imagen')) {
-          this.productInfo.image = this.userResponse;
         }
       } else {
         this.scrollToBottom();
@@ -415,8 +416,27 @@ export class ProductBotComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.productInfo.image = file;
-      console.log('archivo seleccionado', file);
-      this.advance();
+      this.createPreview(file);
+      setTimeout(() => {
+        this.messages.push({
+          img: this.imageUrl,
+          text: '',
+          isUser: true,
+        });
+        this.advance();
+      }, 500);
     }
+  }
+
+  createPreview(file: File): void {
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      fetch(e.target.result)
+        .then((res) => res.blob())
+        .then((blob) => {
+          this.imageUrl = URL.createObjectURL(blob);
+        });
+    };
+    reader.readAsDataURL(file);
   }
 }

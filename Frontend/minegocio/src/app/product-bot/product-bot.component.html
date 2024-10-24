@@ -24,6 +24,7 @@
       "
     >
       <p class="text-sm" [innerHTML]="message.text"></p>
+      <img *ngIf="message.img" [src]="message.img" alt="product-image" class="w-[150px] h-[150px]">
       <div *ngIf="message.options" class="mt-2 space-x-2">
         <button
           *ngFor="let option of message.options"
