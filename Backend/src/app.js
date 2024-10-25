@@ -13,15 +13,7 @@ import { createServer } from "node:http";
 
 const app = express();
 const server = createServer(app);
-// export const io = new Server(server);
-
-export const io = new Server(server, {
-    cors: {
-        origin: allowedOrigins,
-        methods: ['GET', 'POST'],
-        credentials: true,
-    },
-});
+export const io = new Server(server);
 
 const PORT = config.port;
 
