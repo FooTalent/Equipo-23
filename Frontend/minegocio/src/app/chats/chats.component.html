@@ -89,7 +89,9 @@
           <div
             *ngFor="let chat of chats"
             class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="conversation(chat.remoteJid, chat.profilePicUrl, chat.pishName)"
+            (click)="
+              conversation(chat.remoteJid, chat.profilePicUrl, chat.pishName)
+            "
           >
             <div class="flex items-center w-full">
               <div class="p-3">
@@ -227,8 +229,8 @@
         <input
           type="text"
           placeholder="Escribe un mensaje"
-          class="bg-primary-light rounded-[8px] px-4 py-4 outline-none w-full placeholder:text-[#7C798A] text-white"
-          id=""
+          class="bg-primary-light rounded-lg px-4 py-4 outline-none w-full placeholder:text-[#7C798A] text-white"
+          #messageInput
         />
         <div
           class="flex justify-center items-center relative w-[53px] h-[53px] bg-primary-light rounded-lg cursor-not-allowed"
@@ -241,10 +243,11 @@
         </div>
         <div
           class="flex justify-center items-center cursor-pointer relative w-[53px] h-[53px] bg-wh rounded-lg"
+          (click)="chat(messageInput.value) ; messageInput.value = '';"
         >
           <img
             src="/icons/send.svg"
-            alt="adjuntar archivo"
+            alt="Enviar mensaje"
             class="absolute w-[25px] h-[25px]"
           />
         </div>

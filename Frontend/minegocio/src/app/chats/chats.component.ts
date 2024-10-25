@@ -30,7 +30,7 @@ export class ChatsComponent implements OnInit {
 
   chats: any[] = [];
   conversations: any[] = [];
-  message: any[] = []
+  message: any = {};
 
   defaultChats = [
     {
@@ -61,7 +61,7 @@ export class ChatsComponent implements OnInit {
     pushName: 'WhatsApp',
     remoteJid: 'aasdasd',
     profilePicUrl: '',
-  }
+  };
 
   loadChats(): void {
     if (this.chats.length === 0) {
@@ -76,10 +76,7 @@ export class ChatsComponent implements OnInit {
   }
 
   getMesage() {
-    return this.message.length > 0
-      ? this.message
-      : this.defaultMessage;
-
+    return this.message.length > 0 ? this.message : this.defaultMessage;
   }
 
   scrollToRight() {
@@ -142,11 +139,11 @@ export class ChatsComponent implements OnInit {
 
   conversation(remoteJid: string, pushName: string, profilePicUrl: string) {
     let instanceName = 'UnaVezMas';
-    this.message.push({
-      remoteJid: remoteJid,
-      pushName: pushName,
-      profilePicUrl: profilePicUrl
-    });
+    this.message = {
+      remoteJid,
+      pushName,
+      profilePicUrl,
+    };
 
     this.chatService.postConversation(instanceName, remoteJid).subscribe({
       next: (response: any) => {
@@ -160,18 +157,18 @@ export class ChatsComponent implements OnInit {
     });
   }
 
-  chat(remoteJid: string, message: string) {
+  chat(message: string) {
     let instanceName = 'UnaVezMas';
+    let remoteJid = this.message.remoteJid;
 
     this.chatService.postChat(instanceName, remoteJid, message).subscribe({
       next: (response: any) => {
+        
         console.log('Mensaje enviado exitosamente:', response);
-        // this.conversation(remoteJid);
       },
       error: (error) => {
         console.error('Error al enviar mensaje:', error);
       },
     });
-
   }
 }
