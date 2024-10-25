@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import { CommonModule } from '@angular/common';
-import { WebsocketService } from '../services/websocket.service';
+// import { WebsocketService } from '../services/websocket.service';
 
 
 interface ApiResponse {
@@ -20,7 +20,7 @@ interface ApiResponse {
 })
 export class ChatsComponent implements OnInit {
   private chatService = inject(ChatService);
-private websocketService = inject(WebsocketService);
+// private websocketService = inject(WebsocketService);
 
   showModal: boolean = false; // Controlar la visibilidad del modal
   qrImage: string = '';
@@ -28,7 +28,7 @@ private websocketService = inject(WebsocketService);
   ngOnInit(): void {
     this.loadChats();
     this.socket();
- this.setupWebSocket()
+//  this.setupWebSocket()
   }
 
   chats: any[] = [];
@@ -176,10 +176,10 @@ private websocketService = inject(WebsocketService);
     });
   }
 
-  setupWebSocket() {
-    this.websocketService.messages$.subscribe((data) => {
-      console.log('Mensaje recibido:', data);
-      this.receivedMessages.push(data); // Agregar el nuevo mensaje a la lista
-    });
-  }
+  // setupWebSocket() {
+  //   this.websocketService.messages$.subscribe((data) => {
+  //     console.log('Mensaje recibido:', data);
+  //     this.receivedMessages.push(data); // Agregar el nuevo mensaje a la lista
+  //   });
+  // }
 }
