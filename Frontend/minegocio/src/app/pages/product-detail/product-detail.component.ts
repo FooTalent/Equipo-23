@@ -1,7 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { ActivatedRoute, RouterLinkWithHref } from '@angular/router';
+import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { skip } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,26 +13,55 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductDetailComponent {
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  constructor(private route: ActivatedRoute, private productService: ProductService, private router: Router) { }
 
-  id: string = "";
+  idProduct: string = "";
   isLoading = signal(true);
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('productId') ?? "";
+    this.idProduct = this.route.snapshot.paramMap.get('productId') ?? "";
 
-    this.getProduct(this.id);
+    this.getProduct(this.idProduct);
   }
 
   product = signal<any>({});
+  statusSignal = signal(false)
 
   getProduct(idProduct: string) {
     this.productService.getProduct(idProduct).subscribe((product:any) => {
       this.product.set(product.data);
+      this.statusSignal.set(this.product().status);
       this.isLoading.update(value => false);
-      console.log(this.product()?.data?.thumbnails[0]?.reference);
-      
     })
+  }
+
+  errorMessage: string = '';
+
+  changeProductStatus(productId: string) {
+    const newStatus = this.product().status === true ? false : true;
+
+    if(this.product()) {
+      this.productService.changeStatus(productId, newStatus).subscribe({
+        next: (response) => {
+          console.log('Estado del producto actualizado:', response);
+          this.statusSignal.set(newStatus);
+          this.reloadComponent();
+        },
+        error: (error) => {
+          console.error('Error al cambiar el estado del producto:', error);
+          this.errorMessage =
+            'Error al cambiar el estado del producto. Por favor, intente de nuevo.';
+        },
+      });
+    }
+    
+  }
+
+  reloadComponent() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 
 }

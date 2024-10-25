@@ -1,6 +1,6 @@
 <div class="min-h-screen xl:min-h-full bg-[#3B364C] box-border md:my-4 lg:my-8 lg:p-6 lg:mx-4 lg:mr-10 md:rounded-2xl select-none overflow-hidden">
     <div class="hidden bg-[#2B2738] rounded-2xl w-full p-3 lg:flex gap-x-12 mb-4 items-center">
-        <button [routerLink]="['/myshop']" class="bg-primary-light text-white rounded-2xl w-12 h-12 flex items-center justify-center hover:bg-[#564f6e]">
+        <button [routerLink]="['/myshop']" class="bg-primary-light text-white rounded-2xl w-12 h-12 flex items-center justify-center hover:bg-secondary-main transition-all">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="6" d="M15 19l-7-7 7-7" />
           </svg>
@@ -23,8 +23,8 @@
                 <h3 class="text-white">{{ product()?.status ? "En venta" : "Inventario" }}</h3>
             </div>
             <div class="flex gap-x-4">
-                <div class="p-1 bg-primary-main rounded-2xl">
-                    <img src="/icons/edit-eye.svg" alt="vista" class="w-8 h-8">
+                <div class="p-1 bg-primary-main rounded-2xl" (click)="changeProductStatus(idProduct)">
+                    <img [src]="statusSignal() ? 'icons/edit-eye.svg' : 'icons/hidden-eye.svg'" alt="vista" class="w-8 h-8">
                 </div>
                 <div class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center">
                     <img src="/icons/edit-icon.svg" alt="edicion" class="w-6 h-6">
@@ -84,8 +84,8 @@
                         <h3>{{ product()?.status ? "En venta" : "Inventario" }}</h3>
                     </div>
                     <div class="flex gap-x-4">
-                        <button class="p-1 bg-primary-light rounded-2xl">
-                            <img src="/icons/edit-eye.svg" alt="vista" class="w-10 h-10">
+                        <button class="p-1 bg-primary-light rounded-2xl hover:bg-secondary-main transition-all">
+                            <img [src]="statusSignal() ? 'icons/edit-eye.svg' : 'icons/hidden-eye.svg'" alt="vista" class="w-10 h-10">
                         </button>
                         <button class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center">
                             <img src="/icons/edit-icon.svg" alt="edicion" class="w-8 h-8">
