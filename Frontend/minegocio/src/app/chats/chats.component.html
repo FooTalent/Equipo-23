@@ -1,6 +1,6 @@
 <div
   id="messages-box"
-  class=" lg:p-6 lg:bg-primary-light rounded-[16px] flex lg:justify-center w-[210vw] lg:w-auto max-h-[1000px] max-w-[1600px] "
+  class="lg:p-6 lg:bg-primary-light rounded-[16px] flex lg:justify-center w-[210vw] lg:w-auto max-h-[1000px] max-w-[1600px]"
 >
   <div
     class="w-full lg:w-[77.5vw] min-w-[360px] h-[90vh] max-h-[920px] flex flex-row gap-6"
@@ -12,19 +12,35 @@
         <div
           class="upper-nav bg-primary-main flex gap-5 items-center px-3 lg:px-7 py-[2rem] rounded-[16px]"
         >
-          <div class="dp flex justify-center items-center rounded-l-lg">
+          <div
+            class="dp flex justify-center items-center rounded-l-lg"
+            (click)="createInstance()"
+          >
             <img
               class="rounded-xl bg-secondary-main p-4"
               src="/icons/whatsapp.svg"
+              alt="WhatsApp"
+            />
+          </div>
+
+          <!-- Modal para mostrar el QR -->
+          <div *ngIf="showModal" class="modal">
+            <div class="modal-content z-100">
+              <span (click)="closeModal()" class="close">x</span>
+              <img *ngIf="qrImage" [src]="qrImage" alt="QR Code" />
+            </div>
+          </div>
+
+          <div
+            class="flex justify-center items-center rounded-l-lg cursor-not-allowed"
+          >
+            <img
+              class="rounded-xl bg-primary-light p-4"
+              src="/icons/tiktok.svg"
             />
           </div>
           <div
-            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
-          >
-            <img class="rounded-xl bg-primary-light p-4" src="/icons/tiktok.svg" />
-          </div>
-          <div
-            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
+            class="flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
             <img
               class="rounded-xl bg-primary-light p-4"
@@ -32,7 +48,7 @@
             />
           </div>
           <div
-            class="dp flex justify-center items-center rounded-l-lg cursor-not-allowed"
+            class="flex justify-center items-center rounded-l-lg cursor-not-allowed"
           >
             <img
               class="rounded-xl bg-primary-light p-4"
@@ -65,312 +81,52 @@
           </div>
         </div>
 
+        <!-- carga los contactos -->
+
         <div
           class="h-[68vh] overflow-y-scroll flex flex-col items-center gap-4 mt-4 mr-3"
         >
-<div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/leo.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Leo Caceres
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">Disenador UX/UI</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-<div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/angel.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Angel Suarez
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">Desarrollador Backend</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-<div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/mikhail.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Mikhail Garcilano
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">QA</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-<div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/paloma.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Paloma Carnaghi
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">Disenadora UX/UI</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
           <div
+            *ngFor="let chat of chats"
             class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
+            (click)="
+              conversation(chat.remoteJid, chat.profilePicUrl, chat.pishName)
+            "
           >
             <div class="flex items-center w-full">
               <div class="p-3">
                 <img
-                  src="/contributors/luis.png"
+                  [src]="
+                    chat.profilePicUrl
+                      ? chat.profilePicUrl
+                      : '/icons/whatsapp.svg'
+                  "
                   alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
+                  [ngClass]="
+                    chat.profilePicUrl
+                      ? 'rounded-lg w-[50px]'
+                      : 'rounded-xl bg-secondary-main p-4'
+                  "
                 />
               </div>
               <div class="flex justify-between w-[80%]">
                 <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Luis Retanan
+                  <h3 class="text-base text-white font-semibold">
+                    {{ chat.pushName }}
                   </h3>
                   <p
                     class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
                   >
-                    <span class="inline-block max-w-[200px] ">Desarrollador Backend</span>
+                    <span class="inline-block max-w-[200px] text-xs">{{
+                      chat.remoteJid
+                    }}</span>
                   </p>
                 </div>
-                <div class="last-chat mr-2">
+                <!-- <div class="last-chat mr-2">
                   <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
+                    {{ chat.time }}
                   </p>
-                </div>
-              </div>
-            </div>
-          </div>
-<div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/aylen.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Aylen Martel
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">Disenadora UX/UI</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div><div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/carlos.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Luis Retanan
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">QA</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div><div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/paola.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Paola Chavez
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">Desarrolladora Frontend</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div><div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/juanes.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    Juanes Pachon
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">Desarrollador Frontend</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div><div
-            class="chatbox cursor-pointer px-2 py-3 bg-primary-light rounded-[16px] w-[95%] lg:w-[90%] hover:bg-secondary-main max-w-[700px]"
-            (click)="scrollToRight()"
-          >
-            <div class="flex items-center w-full">
-              <div class="p-3">
-                <img
-                  src="/contributors/german.png"
-                  alt=""
-                  class="rounded-lg w-[55px] h-[55px]"
-                />
-              </div>
-              <div class="flex justify-between w-[80%]">
-                <div class="chat-name flex flex-col gap-1">
-                  <h3 class="text-lg text-white font-semibold">
-                    German Soto
-                  </h3>
-                  <p
-                    class="text-md text-[#7C798A] font-sans font-normal flex items-center overflow-x-hidden"
-                  >
-                    <span class="inline-block max-w-[200px] ">PM</span>
-                  </p>
-                </div>
-                <div class="last-chat mr-2">
-                  <p class="text-[0.80rem] font-sans text-gray-500 font-light">
-                    15 min
-                  </p>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -380,8 +136,9 @@
     <div
       class="right bg-primary-main h-full w-full min-w-[360px] lg:w-[70%] rounded-xl"
     >
+      <!-- Chat del Contacto -->
       <div
-        class="right-upper bg-secondary-main flex justify-between items-center px-4 py-3  lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
+        class="right-upper bg-secondary-main flex justify-between items-center px-4 py-3 lg:rounded-xl lg:mt-8 w-full lg:w-[94%] lg:ml-4 lg:mr-auto"
       >
         <div class="flex justify-between items-center w-full cursor-pointer">
           <div class="flex justify-between items-center space-x-4">
@@ -427,62 +184,53 @@
           </div>
         </div>
       </div>
+
       <div
-        class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8"
+        class="chat-section overflow-y-scroll max-h-[70%] mt-5 w-[98%] pt-4 flex flex-col gap-8 z-0"
       >
-        <div
-          class="chatmessage px-2 pb-4 bg-secondary-main rounded-lg w-[fit-content] max-w-[40%] ml-4 relative"
-        >
-          <div class="flex items-center w-full">
-            <div class="flex justify-between w-full flex-col">
-              <div class="flex flex-col gap-1">
-                <p
-                  class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
-                >
-                  Hola! Realice una compra ayer, me gustaria saber cuando llega...
-                </p>
-              </div>
-              <div class="last-chat w-full flex mt-2">
-                <p
-                  class="text-[0.80rem] font-sans text-white font-normal ml-auto"
-                >
-                  20:30
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="chatmessage px-2 pb-4 bg-primary-light rounded-lg w-[fit-content] max-w-[40%] ml-4 relative ml-auto"
-        >
-          <div class="flex items-center w-full">
-            <div class="flex justify-between w-full flex-col">
-              <div class="flex flex-col gap-1">
-                <p
-                  class="text-md text-white font-normal flex items-center mt-2 ml-2 font-[400] text-wrap"
-                >
-                  Hola! La recibiras en 3 dias...
-                </p>
-              </div>
-              <div class="last-chat w-full flex mt-2">
-                <p
-                  class="text-[0.80rem] font-sans text-white font-normal ml-auto"
-                >
-                  20:30
-                </p>
+        <div *ngFor="let message of getMessages()">
+          <div
+            *ngIf="message.message"
+            [ngClass]="{
+              'chatmessage px-2 pb-4 rounded-lg w-[fit-content] max-w-[40%] ml-4 bg-secondary-main':
+                !message.fromMe,
+              'chatmessage px-2 pb-4 rounded-lg w-[fit-content] max-w-[40%] ml-auto bg-primary-light':
+                message.fromMe
+            }"
+          >
+            <div class="flex items-center w-full">
+              <div class="flex justify-between w-full flex-col">
+                <div class="flex flex-col gap-1">
+                  <p
+                    class="text-md text-white flex items-center mt-2 ml-2 font-[400] text-wrap"
+                  >
+                    {{ message.message }}
+                  </p>
+                </div>
+                <div class="last-chat w-full flex mt-2">
+                  <p
+                    class="text-[0.80rem] font-sans text-white font-normal ml-auto"
+                  >
+                    {{
+                      message.messageTimestamp * 1000
+                        | date : "yyyy-MM-dd HH:mm:ss"
+                    }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div
         class="right-bottom w-full top-full sticky flex justify-between items-center px-4 py-4 space-x-2"
       >
         <input
           type="text"
           placeholder="Escribe un mensaje"
-          class="bg-primary-light rounded-[8px] px-4 py-4 outline-none w-full placeholder:text-[#7C798A]"
-          id=""
+          class="bg-primary-light rounded-lg px-4 py-4 outline-none w-full placeholder:text-[#7C798A] text-white"
+          #messageInput
         />
         <div
           class="flex justify-center items-center relative w-[53px] h-[53px] bg-primary-light rounded-lg cursor-not-allowed"
@@ -494,11 +242,12 @@
           />
         </div>
         <div
-          class="flex justify-center items-center cursor-pointer relative w-[53px] h-[53px] bg-primary-light rounded-lg"
+          class="flex justify-center items-center cursor-pointer relative w-[53px] h-[53px] bg-wh rounded-lg"
+          (click)="chat(messageInput.value) ; messageInput.value = '';"
         >
           <img
             src="/icons/send.svg"
-            alt="adjuntar archivo"
+            alt="Enviar mensaje"
             class="absolute w-[25px] h-[25px]"
           />
         </div>

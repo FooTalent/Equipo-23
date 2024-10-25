@@ -1,0 +1,7 @@
+<div class="modal" *ngIf="isOpen" (click)="close()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="close()">&times;</span>
+      <img [src]="qrImage" alt="QR Code" />
+    </div>
+  </div>
+  
