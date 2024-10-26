@@ -5,6 +5,7 @@ import { UserImageFormComponent } from '../../components/user-image-form/user-im
 import { RouterLinkWithHref } from '@angular/router';
 import { User } from '../../models/user.model';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import e from 'express';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,9 +30,19 @@ export class UserProfileComponent {
 
   ngOnInit() {
     this.userService.getUser()?.subscribe({
-      next: (user) => {
+      next: (user: any) => {
         this.user.set(user);
         this.isLoading.update(value => false);
+
+        this.userEditForm.patchValue({
+          name: user.data.name,
+          lastName: user.data.last_name,
+          email: user.data.email,
+          phone: user.data.phone ?? '',
+          country: user.data.country,
+          locality: user.data.locality ?? '',
+          zipCode: user.data.postal_code ?? '',
+        })
       },
       error: (error) => {
         window.location.reload();
