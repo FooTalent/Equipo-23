@@ -26,7 +26,7 @@
                 <div class="p-1 bg-primary-main rounded-2xl" (click)="changeProductStatus(idProduct)">
                     <img [src]="statusSignal() ? 'icons/edit-eye.svg' : 'icons/hidden-eye.svg'" alt="vista" class="w-8 h-8">
                 </div>
-                <div class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center">
+                <div (click)="changeEditStatus()" class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center">
                     <img src="/icons/edit-icon.svg" alt="edicion" class="w-6 h-6">
                 </div>
                 <div class="p-2 bg-[#B1120D] rounded-2xl flex items-center justify-center">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="md:mr-16 md:flex flex-col items-center">
-            <!-- Contenedor principal cuadrado -->
+
             <div class="w-full max-w-[475px] mx-auto mb-4 aspect-square overflow-hidden">
                 <img 
                     [src]="!isLoading() ? product()?.thumbnails[0]?.reference : '/images/default-product.png'" 
@@ -44,7 +44,6 @@
                     class="rounded-2xl w-full h-full object-cover">
             </div>
         
-            <!-- Miniaturas con aspecto cuadrado -->
             <div class="flex justify-center md:justify-normal gap-x-3 mt-4 mb-8">
                 <div class="w-1/3 max-w-[105px] lg:max-w-[145px] aspect-square overflow-hidden">
                     <img 
@@ -75,34 +74,55 @@
         }
 
         @if(!isLoading()) {
-            <div class="flex flex-col gap-y-6 bg-primary-main p-4 lg:p-8 rounded-2xl md:text-lg lg:min-h-[620px] text-white">
+            <form class="flex flex-col gap-y-6 bg-primary-main p-4 lg:p-8 rounded-2xl md:text-lg lg:min-h-[620px] text-white" 
+            [formGroup]="productEditForm" (ngSubmit)="onEditSubmit($event)">
 
                 <div class="hidden md:flex justify-between items-center p-1 mb-1 text-lg">
                     <div class="flex items-center gap-x-1">
                         <span class="w-2 h-2 rounded-full mr-2"
-                            [ngClass]="{'bg-green-500': product()?.status,'bg-yellow-500': !product()?.status}">                       </span>
+                            [ngClass]="{'bg-green-500': product()?.status,'bg-yellow-500': !product()?.status}">
+                        </span>
                         <h3>{{ product()?.status ? "En venta" : "Inventario" }}</h3>
                     </div>
-                    <div class="flex gap-x-4">
-                        <button class="p-1 bg-primary-light rounded-2xl hover:bg-secondary-main transition-all">
+                    <div *ngIf="!editStatus()" class="flex gap-x-4">
+                        <button class="p-1 bg-primary-light rounded-2xl hover:bg-secondary-main transition-all" type="button" (click)="changeProductStatus(idProduct)">
                             <img [src]="statusSignal() ? 'icons/edit-eye.svg' : 'icons/hidden-eye.svg'" alt="vista" class="w-10 h-10">
                         </button>
-                        <button class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center">
-                            <img src="/icons/edit-icon.svg" alt="edicion" class="w-8 h-8">
+                        <button (click)="changeEditStatus()" class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center" type="button">
+                            <img src="icons/edit-icon.svg" alt="edicion" class="w-8 h-8">
                         </button>
-                        <button class="p-2 bg-[#B1120D] rounded-2xl flex items-center justify-center">
+                        <button class="p-2 bg-[#B1120D] rounded-2xl flex items-center justify-center" type="button">
                             <img src="/icons/delete-icon.svg" alt="edicion" class="w-8 h-8">
+                        </button>
+                    </div>
+                    <div *ngIf="editStatus()" class="flex gap-x-4">
+                        <button (click)="changeEditStatus()" class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center" type="button">
+                            <img src="icons/close.svg" alt="cerrar edicion" class="w-8 h-8">
                         </button>
                     </div>
                 </div>
     
-                <h2 class="font-bold mb-1 text-xl">{{ product()?.title }}</h2>
+                <div>
+                    <h2 *ngIf="!editStatus()" class="font-bold mb-1 text-xl">{{ product()?.title }}</h2>
+                    <h3 *ngIf="editStatus()" class="font-bold mb-1 text-xl">Nombre del producto:</h3>
+                    <input *ngIf="editStatus()" id="title"
+                        class="w-full md:max-w-lg bg-[#3B364C] text-white px-4 py-2 rounded-2xl focus:outline-none focus:ring-1 focus:ring-secondary-main mb-2 border-2 border-secondary-main"
+                        formControlName="title">
+                </div>
     
-                <h3>Descripción</h3>
-                <p class="text-base">{{ product()?.description }}
-                </p>
+                <div>
+                    <h3 class="font-bold mb-6 text-xl" *ngIf="!editStatus()">Descripción</h3>
+                    <p *ngIf="!editStatus()" class="text-base">{{ product()?.description }}</p>
+                    <h3 *ngIf="editStatus()" class="font-bold mb-1 text-xl">Descripción del producto:</h3>
+                    <textarea *ngIf="editStatus()" id="description"
+                        class="w-full resize-none md:max-w-lg bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-secondary-main mb-2 border-2 border-secondary-main"
+                        formControlName="description"> 
+                    </textarea>
+                </div>
+
+                
     
-                <div class="xl:flex mt-4 items-center gap-x-10 md:gap-x-4 lg:gap-x-20 w-full md:w-auto">
+                <div *ngIf="!editStatus()" class="xl:flex mt-4 items-center gap-x-10 md:gap-x-4 lg:gap-x-20 w-full md:w-auto">
                     <h3 class="mb-4 xl:mb-0">Medida</h3>
                     <div class="flex gap-x-4 lg:justify-center">
                         <p class="py-3 rounded-2xl bg-primary-light min-w-12 text-center">S</p>
@@ -113,7 +133,7 @@
                     </div>
                 </div>
     
-                <div class="xl:flex mt-3 items-center gap-x-10 md:gap-x-4 lg:gap-x-20 w-full md:w-auto">
+                <div *ngIf="!editStatus()" class="xl:flex mt-3 items-center gap-x-10 md:gap-x-4 lg:gap-x-20 w-full md:w-auto">
                     <h3 class="mb-4 xl:mb-0 mr-4">Color</h3>
                     <div class="flex gap-x-4">
                         <div class="py-3 rounded-2xl bg-blue-400 min-w-12 min-h-12 text-center"></div>
@@ -122,17 +142,37 @@
                     </div>
                 </div>
     
-                <div class="flex mt-3 justify-between items-center gap-x-10 md:gap-x-20 w-fit">
-                    <h3 class="mr-4">Stock</h3>
-                    <p>{{ product()?.stock }}</p>
+                <div>
+                    <div *ngIf="!editStatus()" class="flex mt-3 justify-between items-center gap-x-10 md:gap-x-20 w-fit">
+                        <h3 class="mr-4">Stock</h3>
+                        <p>{{ product()?.stock }}</p>
+                    </div>
+                    <h3 *ngIf="editStatus()" class="font-bold mb-1 text-xl">Stock:</h3>
+                    <input *ngIf="editStatus()" id="stock"
+                        class="w-full md:max-w-lg bg-[#3B364C] text-white px-4 py-2 rounded-2xl focus:outline-none focus:ring-1 focus:ring-secondary-main mb-2 border-2 border-secondary-main"
+                        formControlName="stock">
+                </div>
+                
+                <div>
+                    <div *ngIf="!editStatus()" class="flex mt-3 justify-between items-center gap-x-10 md:gap-x-20 w-fit">
+                        <h3 class="mr-3">Precio</h3>
+                        <p>{{ (product()?.price | currency: 'USD':'symbol':'1.0-0')?.replace('$', '$ ') }}</p>
+                    </div>
+                    <h3 *ngIf="editStatus()" class="font-bold mb-1 text-xl">Precio:</h3>
+                    <input *ngIf="editStatus()" id="price"
+                        class="w-full md:max-w-lg bg-[#3B364C] text-white px-4 py-2 rounded-2xl focus:outline-none focus:ring-1 focus:ring-secondary-main mb-2 border-2 border-secondary-main"
+                        formControlName="price">
+                </div>
+
+                <div *ngIf="editStatus()" class="flex justify-center">
+                    <button type="submit" [disabled]="isLoadingForm()"
+                        class="w-full lg:mx-6 bg-[#5D3CBA] text-white disabled:opacity-50 py-3 mt-6 lg:mt-4 rounded-2xl hover:bg-[#6b47ce] focus:outline-none focus:ring-4 focus:ring-purple-500">
+                        {{ isLoadingForm() ? 'Cargando...' : 'Guardar edición' }}
+                    </button>
                 </div>
     
-                <div class="flex mt-3 justify-between items-center gap-x-10 md:gap-x-20 w-fit">
-                    <h3 class="mr-3">Precio</h3>
-                    <p>{{ (product()?.price | currency: 'USD':'symbol':'1.0-0')?.replace('$', '$ ') }}</p>
-                </div>
-    
-            </div>
+            </form>
         }
+
     </div>
 </div>
