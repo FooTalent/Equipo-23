@@ -10,6 +10,7 @@ import { nonAuthGuard } from './guards/non-auth.guard';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { ChatsComponent } from './chats/chats.component';
 import { UnderDevelopmentComponent } from './components/under-development/under-development.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 export const routes: Routes = [
     {path: "", component: DashboardComponent, canActivate: [authGuard]},
@@ -18,6 +19,7 @@ export const routes: Routes = [
     {path: "verify-code", component: VerifyCodeComponent, canActivate: [nonAuthGuard]},
     {path: "sign-up", component: SignUpComponent, canActivate: [nonAuthGuard]},
     {path: 'myshop', component: MyShopComponent, canActivate: [authGuard]},
+    {path: "myshop/:productId", component: ProductDetailComponent, canActivate: [authGuard]},
     {path: 'user-profile', component: UserProfileComponent, canActivate: [authGuard]},
     {path: 'messages', component: ChatsComponent, canActivate: [authGuard]},
     {path: "notifications", component: UnderDevelopmentComponent, canActivate: [authGuard]},
