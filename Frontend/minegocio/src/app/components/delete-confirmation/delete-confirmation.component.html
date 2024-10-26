@@ -1,0 +1,24 @@
+<div class="fixed inset-0 z-10 flex items-center justify-center text-white bg-opacity-80 backdrop-blur-sm select-none" (click)="toggleDeleteConfirmation()">
+    <div class="relative bg-[#2B2738] w-full max-w-2xl lg:max-w-4xl p-8 rounded-2xl shadow-lg mx-1 lg:mx-4 md:mx-0 max-h-[90vh] overflow-y-auto border-2 border-white" (click)="$event.stopPropagation()">
+
+        <button class="absolute top-5 right-5" (click)="toggleDeleteConfirmation()">
+            <img src="/icons/close.svg" loading="lazy" alt="Close" class="w-6 h-6">
+        </button>
+
+        <h2 class="text-2xl font-bold mb-6">¿Estás seguro de que deseas eliminar este producto?</h2>
+
+        <div class="flex gap-x-4 mt-3">
+            <button (click)="toggleDeleteConfirmation()" [disabled]="isloading()" class="w-full py-3 px-4 rounded-2xl bg-gray-600 text-white hover:bg-gray-700 disabled:opacity-50">
+                Cancelar
+            </button>
+            <button (click)="deleteProduct(idProduct)" [disabled]="isloading()" class="w-full py-3 px-4 rounded-2xl bg-purple-600 text-white hover:bg-purple-700 disabled:opacity-50">
+                {{ isloading() ? 'Cargando...' : 'Eliminar' }}
+            </button>
+        </div>
+
+        <div *ngIf="deleteErrorMessage" class="w-full bg-red-500 text-white font-bold mt-2 text-center py-3 px-4 rounded-2xl">
+            {{deleteErrorMessage}}
+        </div>
+
+    </div>
+</div>

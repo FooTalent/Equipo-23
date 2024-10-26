@@ -29,8 +29,8 @@
                 <div (click)="changeEditStatus()" class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center">
                     <img src="/icons/edit-icon.svg" alt="edicion" class="w-6 h-6">
                 </div>
-                <div class="p-2 bg-[#B1120D] rounded-2xl flex items-center justify-center">
-                    <img src="/icons/delete-icon.svg" alt="edicion" class="w-6 h-6">
+                <div (click)="toggleDeleteConfirmation()" class="p-2 bg-[#B1120D] rounded-2xl flex items-center justify-center">
+                    <img src="/icons/delete-icon.svg" alt="eliminar" class="w-6 h-6">
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
                         <button (click)="changeEditStatus()" class="p-2 bg-secondary-main rounded-2xl flex items-center justify-center" type="button">
                             <img src="icons/edit-icon.svg" alt="edicion" class="w-8 h-8">
                         </button>
-                        <button class="p-2 bg-[#B1120D] rounded-2xl flex items-center justify-center" type="button">
+                        <button (click)="toggleDeleteConfirmation()" class="p-2 bg-[#B1120D] rounded-2xl flex items-center justify-center" type="button">
                             <img src="/icons/delete-icon.svg" alt="edicion" class="w-8 h-8">
                         </button>
                     </div>
@@ -103,7 +103,7 @@
                 </div>
     
                 <div>
-                    <h2 *ngIf="!editStatus()" class="font-bold mb-1 text-xl">{{ product()?.title }}</h2>
+                    <h2 *ngIf="!editStatus()" class="font-bold mb-2 -mt-1 text-2xl">{{ product()?.title }}</h2>
                     <h3 *ngIf="editStatus()" class="font-bold mb-1 text-xl">Nombre del producto:</h3>
                     <input *ngIf="editStatus()" id="title"
                         class="w-full md:max-w-lg bg-[#3B364C] text-white px-4 py-2 rounded-2xl focus:outline-none focus:ring-1 focus:ring-secondary-main mb-2 border-2 border-secondary-main"
@@ -111,7 +111,7 @@
                 </div>
     
                 <div>
-                    <h3 class="font-bold mb-6 text-xl" *ngIf="!editStatus()">Descripción</h3>
+                    <h3 class="font-bold mb-5 text-xl" *ngIf="!editStatus()">Descripción</h3>
                     <p *ngIf="!editStatus()" class="text-base">{{ product()?.description }}</p>
                     <h3 *ngIf="editStatus()" class="font-bold mb-1 text-xl">Descripción del producto:</h3>
                     <textarea *ngIf="editStatus()" id="description"
@@ -176,3 +176,5 @@
 
     </div>
 </div>
+
+<app-delete-confirmation *ngIf="openDeleteConfirmation()"></app-delete-confirmation>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseApiService } from './baseApi.service';
@@ -97,6 +97,19 @@ export class ProductService extends BaseApiService {
       withCredentials: true,
       headers: this.getFileHeaders()
     })
+  }
+
+  deleteConfirmation = signal(false);
+
+  toggleDeleteConfirmation() {
+    this.deleteConfirmation.update((value) => !value);
+  }
+
+  deleteProduct(productId: string) {
+    return this.http.delete(`${this.apiUrl}/${productId}`, {
+      withCredentials: true,
+      headers: this.getHeaders(),
+    });
   }
 
 }

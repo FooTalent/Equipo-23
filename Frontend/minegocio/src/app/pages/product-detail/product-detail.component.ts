@@ -1,21 +1,24 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { skip } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { log } from 'console';
+import { DeleteConfirmationComponent } from '../../components/delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [RouterLinkWithHref, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterLinkWithHref, CommonModule, FormsModule, ReactiveFormsModule, DeleteConfirmationComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent {
 
-  constructor(private route: ActivatedRoute, private productService: ProductService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
+
+  private productService = inject(ProductService);
 
   idProduct: string = "";
   isLoading = signal(true);
@@ -43,6 +46,13 @@ export class ProductDetailComponent {
       });
     })
     
+  }
+
+  reloadComponent() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 
   errorMessage: string = '';
@@ -118,11 +128,10 @@ export class ProductDetailComponent {
     }
   }
 
-  reloadComponent() {
-    const currentUrl = this.router.url;
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentUrl]);
-    });
+  openDeleteConfirmation = this.productService.deleteConfirmation;
+
+  toggleDeleteConfirmation() {
+    this.productService.deleteConfirmation.update(value => !value); 
   }
 
 }
