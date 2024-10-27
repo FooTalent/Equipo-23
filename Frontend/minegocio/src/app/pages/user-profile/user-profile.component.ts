@@ -26,6 +26,7 @@ export class UserProfileComponent {
   }
 
   isLoading = signal(true);
+  initialUser: any = {};
   user = signal<any>({});
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class UserProfileComponent {
       next: (user: any) => {
         this.user.set(user);
         this.isLoading.update(value => false);
+        this.initialUser = user.data;
 
         this.userEditForm.patchValue({
           name: user.data.name,
@@ -56,6 +58,15 @@ export class UserProfileComponent {
 
   toggleEditForm() {
     this.editFormOpen.update(value => !value)
+    this.userEditForm.patchValue({
+      name: this.initialUser.name,
+      lastName: this.initialUser.last_name,
+      email: this.initialUser.email,
+      phone: this.initialUser.phone ?? '',
+      country: this.initialUser.country,
+      locality: this.initialUser.locality ?? '',
+      zipCode: this.initialUser.postal_code ?? '',
+    })
   }
 
   userEditForm = new FormGroup({

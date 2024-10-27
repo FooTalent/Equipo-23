@@ -43,7 +43,7 @@
                             <input id="name" *ngIf="editFormOpen()"
                                 class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
                                 formControlName="name">
-                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('name')?.invalid">
+                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('name')?.invalid && editFormOpen()">
                                 <span *ngIf="userEditForm.get('name')?.hasError('pattern')">Solo se permiten letras</span>
                             </small>
                         </div>
@@ -56,7 +56,7 @@
                             <input id="name" *ngIf="editFormOpen()"
                                 class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
                                 formControlName="lastName">
-                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('lastName')?.invalid">
+                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('lastName')?.invalid && editFormOpen()">
                                 <span *ngIf="userEditForm.get('lastName')?.hasError('pattern')">Solo se permiten letras</span>
                             </small>
                         </div>
@@ -69,7 +69,7 @@
                             <input id="name" *ngIf="editFormOpen()"
                                 class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
                                 formControlName="email">
-                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('email')?.invalid">
+                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('email')?.invalid && editFormOpen()">
                                 <span *ngIf="userEditForm.get('email')?.hasError('email')">Debes ingresar un email valido</span>
                             </small>
                         </div>
@@ -86,7 +86,7 @@
                             <input id="name" *ngIf="editFormOpen()"
                                 class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
                                 formControlName="country">
-                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('country')?.invalid">
+                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('country')?.invalid && editFormOpen()">
                                 <span *ngIf="userEditForm.get('country')?.hasError('pattern')">Solo se permiten letras</span>
                             </small>
                         </div>
@@ -99,7 +99,7 @@
                             <input id="name" *ngIf="editFormOpen()"
                                 class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
                                 formControlName="locality">
-                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('locality')?.invalid">
+                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('locality')?.invalid && editFormOpen()">
                                 <span *ngIf="userEditForm.get('locality')?.hasError('pattern')">Solo se permiten letras</span>
                             </small>
                         </div>
@@ -122,7 +122,7 @@
                             <input id="name" *ngIf="editFormOpen()"
                                 class="w-full bg-[#3B364C] text-white px-4 py-3 rounded-2xl focus:outline-none focus:ring-1 focus:ring-white mb-2 border-2 border-secondary-main"
                                 formControlName="phone">
-                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('phone')?.invalid">
+                            <small class="text-red-500 text-xs ml-1" *ngIf="userEditForm.get('phone')?.invalid && editFormOpen()">
                                 <span *ngIf="userEditForm.get('phone')?.hasError('minlength')">El telefono debe tener al menos 10 caracteres</span>
                                 <span *ngIf="userEditForm.get('phone')?.hasError('maxlength')">El telefono debe tener al menos 10 caracteres</span>
                             </small>
