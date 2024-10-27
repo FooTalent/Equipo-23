@@ -2,9 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
-import { skip } from 'rxjs';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { log } from 'console';
 import { DeleteConfirmationComponent } from '../../components/delete-confirmation/delete-confirmation.component';
 
 @Component({
@@ -19,6 +17,10 @@ export class ProductDetailComponent {
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   private productService = inject(ProductService);
+
+  isMobile() {
+    return window.innerWidth < 768;
+  }
 
   idProduct: string = "";
   isLoading = signal(true);
@@ -77,13 +79,6 @@ export class ProductDetailComponent {
     
   }
 
-  productEditForm = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    price: new FormControl(null,),
-    stock: new FormControl(null,),
-  });
-
   isLoadingForm = signal(false);
   editStatus = signal(false);
   editErrorMessage: string = '';
@@ -91,6 +86,29 @@ export class ProductDetailComponent {
   changeEditStatus() {
     this.editStatus.update(value => !value);
   }
+
+  productEditForm = new FormGroup({
+    title: new FormControl(''),
+    description: new FormControl(''),
+    price: new FormControl(null,),
+    stock: new FormControl(null,),
+  });
+
+  selectedFiles: File[] = [];
+  fileErrorMessage: string = "";
+  maxFilesStatus = signal(true);
+
+  onFileSelect(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      this.selectedFiles = Array.from(input.files);
+    }
+
+    if (this.selectedFiles.length > 3) {
+      this.maxFilesStatus.update(value => false);
+    }
+  }
+
 
   onEditSubmit(event: Event) {
     event.preventDefault();
@@ -100,9 +118,10 @@ export class ProductDetailComponent {
       description: this.productEditForm.value.description ?? "",
       price: this.productEditForm.value.price ?? null,
       stock: this.productEditForm.value.stock ?? null,
+      thumbnails: this.selectedFiles ?? [],
     }
 
-    if(this.productEditForm.valid) {
+    if(this.productEditForm.valid && this.maxFilesStatus()) {
       
       this.isLoadingForm.update(value => !value);
 
@@ -123,6 +142,8 @@ export class ProductDetailComponent {
           }
         },
       });
+    } else if (!this.maxFilesStatus()) {
+      this.errorMessage = 'Por favor, selecciona un máximo de 3 imágenes';
     } else {
       this.errorMessage = 'Por favor, rellena todos los campos';
     }

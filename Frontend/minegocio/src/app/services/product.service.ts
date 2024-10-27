@@ -92,7 +92,7 @@ export class ProductService extends BaseApiService {
       description: productData.description,
       price: productData.price ?? undefined,
       stock: productData.stock ?? undefined,
-      thumnails: productData.thumbnails,
+      thumnail: productData.thumbnails,
     }, {
       withCredentials: true,
       headers: this.getFileHeaders()
