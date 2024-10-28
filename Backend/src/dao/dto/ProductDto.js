@@ -1,6 +1,6 @@
 
 export default class ProductDTO {
-  constructor() {}
+  constructor() { }
   static getProductResponseForRole = (product, role, email) => {
     if (email == product.owner) {
       role = "authorized";
@@ -19,8 +19,20 @@ export default class ProductDTO {
           category: product.category,
           owner: product.owner,
           thumbnails: product.thumbnails,
-          created_data:product.createdAt,
+          created_data: product.createdAt,
           update_data: product.updatedAt,
+        };
+      case "vendor":
+        return {
+          id: product._id,
+          title: product.title,
+          description: product.description,
+          price: product.price,
+          status: product.status,
+          stock: product.stock,
+          owner: product.owner,
+          thumbnails: product.thumbnails,
+          created_data: product.createdAt,
         };
       default:
         return {
@@ -33,7 +45,7 @@ export default class ProductDTO {
           category: product.category,
           owner: product.owner,
           thumbnails: product.thumbnails,
-          created_data:product.createdAt,
+          created_data: product.createdAt,
         };
     }
   };
