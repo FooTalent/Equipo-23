@@ -4,10 +4,11 @@ import { authorization } from '../../middlewares/authMiddleware.js';
 import { passportCall, passportCallOptional } from '../../middlewares/passportMiddleware.js';
 import { validateCreateProduct } from '../../utils/validator/product.js'
 import upload from '../../utils/multer.js';
+import { getProductAuth } from '../../middlewares/getProductAuth.js';
 
 const productRouter = Router();
 
-productRouter.post('/', passportCall('jwt'), authorization('admin', 'vendor'), upload.any('thumbnails', 5), validateCreateProduct, products.createProduct);
+productRouter.post('/', passportCall('jwt'), authorization('admin', 'vendor'), getProductAuth('admin', 'vendor', 'user'), upload.any('thumbnails', 5), validateCreateProduct, products.createProduct);
 productRouter.get('/', passportCallOptional('jwt'), products.getProducts);
 productRouter.get('/search/prod', products.searchProducts)
 productRouter.get('/:pid', passportCallOptional('jwt'), products.getProductById);

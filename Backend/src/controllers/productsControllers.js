@@ -104,8 +104,6 @@ export const getProductById = async (req, res) => {
   const role = req.user?.data?.role;
   const email = req.user?.data?.email;
 
-  console.log('get product id')
-
   const product = await productsRepository.getProductBy({ _id: id });
   if (!product) {
     return res
@@ -113,7 +111,22 @@ export const getProductById = async (req, res) => {
       .json({ succes: false, message: "Product not found" });
   }
 
+  // to middleware 
+
   const productDto = ProductDTO.getProductResponseForRole(product, role, email);
+
+
+  if (['user'].includes(role)) {
+
+    const isVisibleProduct = product.status === "sale"
+
+    if (!isVisibleProduct) {
+      return res
+        .status(404)
+        .json({ succes: false, message: "Product not found" });
+    }
+  }
+
   res.status(201).json({ success: true, data: productDto });
 };
 
