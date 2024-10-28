@@ -1,6 +1,5 @@
 import { check } from "express-validator";
 import { validateResult } from "./validateHelper.js";
-import { validatePhoneNumber } from "../validatePhone.js";
 
 export const validateUpdateUserCurrent = [
   check("name", "Name is required")
