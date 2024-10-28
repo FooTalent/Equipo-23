@@ -6,10 +6,11 @@ export const passportCall = (strategy) => {
     passport.authenticate(strategy, function (err, user, info) {
       if (err) return next(err);
       if (!user) {
+        console.log('invalido token');
         try {
           return res.status(401).json({
-            success:false,
-            message:'You are unauthenticated'
+            success: false,
+            message: 'You are unauthenticated'
           })
         } catch (error) {
           return next(error);
@@ -48,7 +49,7 @@ export const passportCallView = (strategy) => {
       if (err) return next(err);
       if (!user) {
         try {
-         return res.render("not-available")
+          return res.render("not-available")
         } catch (error) {
           return next(error);
         }

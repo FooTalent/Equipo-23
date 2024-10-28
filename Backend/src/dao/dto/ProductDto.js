@@ -16,7 +16,6 @@ export default class ProductDTO {
           price: product.price,
           status: product.status,
           stock: product.stock,
-          category: product.category,
           owner: product.owner,
           thumbnails: product.thumbnails,
           created_data: product.createdAt,

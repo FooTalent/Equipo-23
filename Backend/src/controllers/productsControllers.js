@@ -104,6 +104,8 @@ export const getProductById = async (req, res) => {
   const role = req.user?.data?.role;
   const email = req.user?.data?.email;
 
+  console.log('get product id')
+
   const product = await productsRepository.getProductBy({ _id: id });
   if (!product) {
     return res
