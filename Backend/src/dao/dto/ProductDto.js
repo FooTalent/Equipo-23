@@ -23,6 +23,7 @@ export default class ProductDTO {
           update_data: product.updatedAt,
         };
       case "vendor":
+      case "authorized":
         return {
           id: product._id,
           title: product.title,
