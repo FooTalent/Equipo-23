@@ -56,6 +56,11 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: "admin",
     },
+    status: {
+      type: String,
+      default: "sale",
+      enum: ["sale", "restock", "inventario", "pending", "deleted"],
+    },
   },
   {
     timestamps: true,
