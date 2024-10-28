@@ -8,10 +8,10 @@ import { getProductAuth } from '../../middlewares/getProductAuth.js';
 
 const productRouter = Router();
 
-productRouter.post('/', passportCall('jwt'), authorization('admin', 'vendor'), getProductAuth('admin', 'vendor', 'user'), upload.any('thumbnails', 5), validateCreateProduct, products.createProduct);
+productRouter.post('/', passportCall('jwt'), authorization('admin', 'vendor'), upload.any('thumbnails', 5), validateCreateProduct, products.createProduct);
 productRouter.get('/', passportCallOptional('jwt'), products.getProducts);
 productRouter.get('/search/prod', products.searchProducts)
-productRouter.get('/:pid', passportCallOptional('jwt'), products.getProductById);
+productRouter.get('/:pid', passportCallOptional('jwt'), getProductAuth('admin', 'vendor', 'user'), products.getProductById);
 
 productRouter.put('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), products.updateProductById);
 productRouter.delete('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), products.deleteProductById);

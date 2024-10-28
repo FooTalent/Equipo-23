@@ -2,7 +2,8 @@ import { productsRepository } from "../repositories/index.js";
 
 export const getProductAuth = (...roles) => {
   return async (req, res, next) => {
-    const { user } = req;
+    const user = req.user.data;
+
     const { pid } = req.params;
 
     // if (!roles.includes(user.role)) {

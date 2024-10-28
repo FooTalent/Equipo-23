@@ -102,30 +102,20 @@ export const getProductById = async (req, res) => {
 
   // Optional chaining is used because the user may not be authenticated !!
   const role = req.user?.data?.role;
-  const email = req.user?.data?.email;
+  const product = req.product
+  const isVisibleProduct = req.isVisibleProduct
 
-  const product = await productsRepository.getProductBy({ _id: id });
-  if (!product) {
-    return res
-      .status(404)
-      .json({ succes: false, message: "Product not found" });
+  console.log("isVisibleProduct", isVisibleProduct)
+
+  if (!isVisibleProduct) {
+    return res.status(404).json({
+      success: false,
+      message: "Product not found",
+    });
   }
 
-  // to middleware 
+  const productDto = ProductDTO.getProductResponseForRole(product, role);
 
-  const productDto = ProductDTO.getProductResponseForRole(product, role, email);
-
-
-  if (['user'].includes(role)) {
-
-    const isVisibleProduct = product.status === "sale"
-
-    if (!isVisibleProduct) {
-      return res
-        .status(404)
-        .json({ succes: false, message: "Product not found" });
-    }
-  }
 
   res.status(201).json({ success: true, data: productDto });
 };
