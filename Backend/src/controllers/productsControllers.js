@@ -4,6 +4,7 @@ import config from "../config/config.js";
 import { transport } from "../utils/nodemailer.js";
 import { removeEmptyObjectFields } from "../utils/removeEmptyObjectFields.js";
 import uploadFile from "../utils/cloudinary/upload.js";
+import { deleteSources } from "../utils/cloudinary/deleteFiles.js";
 /**
  *
  * PERMISSIONS endpoint ¡¡create!!:
@@ -304,5 +305,82 @@ export const uploadProductImages = async (req, res) => {
     succes: true,
     data: result,
     message: `Se subieron ${images.length} imágenes de producto.`,
+  });
+};
+
+export const updateProductImages = async (req, res) => {
+  const productId = req.params.pid;
+  const user = req.user.data;
+  const imagesNew = req.files || [];
+  const imagesForUpdate = JSON.parse(req.body.imagesForUpdate) || [];
+
+
+  if (imagesNew.length === 0 && imagesForUpdate.length === 0) {
+    return res
+      .status(400)
+      .json({ message: "No se subieron imágenes de producto." });
+  }
+
+  if (imagesNew.length !== imagesForUpdate.length) {
+    return res
+      .status(400)
+      .json({ message: "La cantidad de imágenes no coincide." });
+  }
+
+  const product = await productsRepository.getProductBy({ _id: productId });
+
+  if (!product) {
+    res.status(404).json({ succes: false, message: "Product not found" });
+  }
+
+  if (product.owner !== user.email) {
+    return res.status(403).json({
+      success: false,
+      message: "You do not have permission to upload images to this product",
+    });
+  }
+
+
+
+  // upload and replace images with cloudinary
+  const uploadedImages = await uploadFile(
+    imagesNew,
+    `minegocio/${req.user.data._id}/products`,
+    {}
+  );
+  const regex = /v\d+\/(.+)\.(jpg|svg|png|gif|mp4|webm)$/
+
+  // obtener el id cloudinary de las images del modelo product
+  const imagesIdCloudinary = imagesForUpdate.map((img) => {
+    const match = img.match(regex);
+    return match ? match[1] : null;
+  })
+
+  imagesIdCloudinary.map(async (id) => {
+    await deleteSources(id);
+  });
+
+  const thumbnailsSerialize = uploadedImages.map((img) => {
+    return {
+      name: img.display_name,
+      reference: img.url,
+    };
+  });
+
+  // update images from model product
+  const updateData = {
+    $set: {
+      thumbnails: thumbnailsSerialize,
+    },
+  };
+  const result = await productsRepository.updateProductBy(
+    { _id: productId },
+    updateData
+  );
+
+  return res.status(200).json({
+    succes: true,
+    data: result,
+    message: `Se subieron ${imagesNew.length} imágenes de producto.`,
   });
 };
