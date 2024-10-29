@@ -40,10 +40,10 @@ export class UserProfileComponent {
           name: user.data.name,
           lastName: user.data.last_name,
           email: user.data.email,
-          phone: user.data.phone ?? '',
-          country: user.data.country,
+          phone: user.data.phone ?? null,
+          country: user.data.country ?? '',
           locality: user.data.locality ?? '',
-          zipCode: user.data.postal_code ?? '',
+          zipCode: user.data.postal_code ?? null,
         })
       },
       error: (error) => {

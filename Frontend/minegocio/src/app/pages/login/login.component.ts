@@ -49,7 +49,7 @@ export class LoginComponent {
           if (error.status === 404) {
             this.errorMessage = 'El email o la contraseña no son correctos';
           } else {
-            this.errorMessage = 'An Server error occurred. Please try again later.';
+            this.errorMessage = 'Un error inesperado ha ocurrido. Por favor, inténtalo de nuevo más tarde.';
           }
         }
       })

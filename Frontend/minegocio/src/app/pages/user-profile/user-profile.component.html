@@ -27,7 +27,7 @@
                             <div class="relative box-border w-fit">
                                 <img class="w-36 h-auto lg:w-52 lg:h-52 lg:min-w-32 max-w-md border-8 border-white rounded-2xl object-contain"
                                 [src]="user()?.data?.photo || '/images/default-profile.jpg'" alt="Foto de perfil">
-                                <button (click)="toggleEditImageForm()"
+                                <button (click)="toggleEditImageForm()" type="button"
                                     class="absolute right-[33%] bottom-[85%] lg:bottom-[5rem] lg:-right-6 border-4 border-gray-900 bg-purple-600 hover:bg-purple-500 p-2 rounded-full">
                                     <img src="/icons/edit.svg" loading="lazy" alt="Editar perfil" class="w-5 h-5 p-[2px] text-white">
                                 </button>
@@ -142,13 +142,13 @@
                         </div>
                     } @else {
                         <div class="flex gap-x-3">
-                            <button type="button" (click)="toggleEditForm()"
-                                class="w-full lg:mx-6 bg-[#3B364C] text-white py-3 mt-6 lg:mt-4 rounded-2xl hover:bg-[#514a68] focus:outline-none focus:ring-4 focus:ring-purple-500">
+                            <button type="button" (click)="toggleEditForm()" [disabled]="isLoadingForm()"
+                                class="w-full lg:mx-6 bg-[#3B364C] text-white py-3 mt-6 lg:mt-4 rounded-2xl disabled:opacity-50 hover:bg-[#514a68] focus:outline-none focus:ring-2 focus:ring-purple-500">
                                 Cancelar edición
                             </button>
                             <button type="submit" [disabled]="isLoadingForm()"
-                                class="w-full lg:mx-6 bg-[#5D3CBA] text-white py-3 mt-6 lg:mt-4 rounded-2xl hover:bg-[#6b47ce] focus:outline-none focus:ring-4 focus:ring-purple-500">
-                                {{ isLoading() ? 'Cargando...' : 'Guardar edición' }}
+                                class="w-full lg:mx-6 bg-[#5D3CBA] text-white py-3 mt-6 lg:mt-4 rounded-2xl disabled:opacity-50 hover:bg-[#6b47ce] focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                {{ isLoadingForm() ? 'Cargando...' : 'Guardar edición' }}
                             </button>
                         </div>
                         <div class="flex justify-center">
