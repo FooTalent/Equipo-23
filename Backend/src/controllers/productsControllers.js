@@ -309,7 +309,7 @@ export const uploadProductImages = async (req, res) => {
 };
 
 export const updateProductImages = async (req, res) => {
-  const productId = req.params.pid;
+  const product = req.product;
   const user = req.user.data;
   const imagesNew = req.files || [];
   const imagesForUpdate = JSON.parse(req.body.imagesForUpdate) || [];
@@ -327,25 +327,10 @@ export const updateProductImages = async (req, res) => {
       .json({ message: "La cantidad de imágenes no coincide." });
   }
 
-  const product = await productsRepository.getProductBy({ _id: productId });
-
-  if (!product) {
-    res.status(404).json({ succes: false, message: "Product not found" });
-  }
-
-  if (product.owner !== user.email) {
-    return res.status(403).json({
-      success: false,
-      message: "You do not have permission to upload images to this product",
-    });
-  }
-
-
-
   // upload and replace images with cloudinary
   const uploadedImages = await uploadFile(
     imagesNew,
-    `minegocio/${req.user.data._id}/products`,
+    `minegocio/${user._id}/products`,
     {}
   );
   const regex = /v\d+\/(.+)\.(jpg|svg|png|gif|mp4|webm)$/
@@ -374,7 +359,7 @@ export const updateProductImages = async (req, res) => {
     },
   };
   const result = await productsRepository.updateProductBy(
-    { _id: productId },
+    { _id: product._id },
     updateData
   );
 

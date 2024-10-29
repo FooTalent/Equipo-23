@@ -5,6 +5,7 @@ import { passportCall, passportCallOptional } from '../../middlewares/passportMi
 import { validateCreateProduct } from '../../utils/validator/product.js'
 import upload from '../../utils/multer.js';
 import { getProductAuth } from '../../middlewares/getProductAuth.js';
+import { productIsMine } from '../../middlewares/productIsMine.js';
 
 const productRouter = Router();
 
@@ -16,5 +17,5 @@ productRouter.get('/:pid', passportCallOptional('jwt'), getProductAuth('admin', 
 productRouter.put('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), products.updateProductById);
 productRouter.delete('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), products.deleteProductById);
 productRouter.post('/:pid/images', passportCall('jwt'), authorization('vendor', 'admin'), upload.array('thumbnails', 5), products.uploadProductImages);
-productRouter.put('/:pid/images', passportCall('jwt'), authorization('vendor', 'admin'), upload.array('thumbnails', 5), products.updateProductImages);
+productRouter.put('/:pid/images', passportCall('jwt'), authorization('vendor', 'admin'), productIsMine(), upload.array('thumbnails', 5), products.updateProductImages);
 export default productRouter;
