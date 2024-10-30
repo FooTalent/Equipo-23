@@ -8,7 +8,6 @@ import { validateCreateRegister } from "../../utils/validator/register.js";
 import passport from "passport";
 
 import '../../utils/passport.js'
-import { generateAuthToken } from "../../utils/jwt.js";
 
 const sessionRouter = Router();
 

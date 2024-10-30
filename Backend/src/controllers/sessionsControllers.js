@@ -26,7 +26,6 @@ async function sendCodeConfirmationRegister(userData) {
 
   const passwordHash = createHash(userData.password);
 
-  //create check user in db
   const data = await verificationRegisterUserModel.create({
     email: userData.email,
     code: verificationCode,
@@ -38,7 +37,6 @@ async function sendCodeConfirmationRegister(userData) {
     createdAt: new Date(),
   });
 
-  //send email to user
   const result = await transport.sendMail({
     from: `Mi negocio Coder <${config.correoGmail}>`,
     to: userData.email,
@@ -58,7 +56,6 @@ async function sendCodeConfirmationRegister(userData) {
 export async function register(req, res) {
   const { name, last_name, age, email, password, role } = req.body;
 
-  // Verify if exists user with email by body
   let user = await usersRepository.getUserBy({ email: email });
   if (user) {
     return res
@@ -98,14 +95,12 @@ export async function checkCodeRegister(req, res) {
       .json({ success: false, message: "Verification code not found" });
   }
 
-  // Comparar el código ingresado con el almacenado
   if (document.code !== code) {
     return res
       .status(400)
       .json({ success: false, message: "Invalid verification code" });
   }
 
-  //eliminar el documento de verifiacion
   await verificationRegisterUserModel.deleteOne({ code: code });
 
   const cartObject = await cartsRepository.createCart();
@@ -121,7 +116,6 @@ export async function checkCodeRegister(req, res) {
     role: document.role
   };
 
-  // Crear el usuario en la base de datos
   await usersRepository.createUser(newUser);
   const user = await usersRepository.getUserBy({ email: document.email });
   await usersRepository.updateUserBy({ _id: user._id }, { isOnline: true });
@@ -138,7 +132,6 @@ export async function checkCodeRegister(req, res) {
 export async function login(req, res) {
   const { email, password } = req.body;
 
-  //        ------ Verify credentials ------
   const user = await usersRepository.getUserBy({ email: email });
   if (!user) {
     return res
@@ -152,9 +145,6 @@ export async function login(req, res) {
       .json({ succes: false, message: "Credentials invalids" });
   }
 
-  // --------------------------
-
-  //IF CREDENTIALS VALIDS
 
   await usersRepository.updateUserBy(
     { _id: user._id },
@@ -245,7 +235,6 @@ export async function loginGoogle(req, res) {
   return res.status(200).json({ success: true, message: "Login correct" });
 }
 
-// --- RESPONSE USER'S DATA
 export async function current(req, res) {
   const result = await UserDTO.getUserResponseForCurrent(req.user.data);
   res.status(200).json({ success: true, data: result });

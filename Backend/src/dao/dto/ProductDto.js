@@ -2,9 +2,7 @@
 export default class ProductDTO {
   constructor() { }
   static getProductResponseForRole = (product, role, email) => {
-    // if (email == product.owner) {
-    //   role = "authorized";
-    // }
+
     switch (role) {
       case "admin":
         return {

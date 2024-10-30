@@ -11,7 +11,6 @@ export default class CartManager {
 
   async getCarts() {
     try {
-      // Verificar si el archivo existe antes de intentar leerlo
       const fileExists = await fs
         .access(this.path)
         .then(() => true)
@@ -70,10 +69,8 @@ export default class CartManager {
       const product = await productManager.getProductById(idProduct);
       if (!product) return false;
       if (productIndex !== -1) {
-        // Si el producto ya existe, actualizar la cantidad
         cart.products[productIndex].quantity += 1;
       } else {
-        // Si el producto no existe, agregarlo al carrito
         cart.products.push({
           id: idProduct,
           quantity: 1,

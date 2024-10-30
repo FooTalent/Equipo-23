@@ -6,9 +6,6 @@ export const getProductAuth = (...roles) => {
 
     const { pid } = req.params;
 
-    // if (!roles.includes(user.role)) {
-    //   return res.status(401).json({ message: 'Unauthorized' });
-    // }
     const product = await productsRepository.getProductBy({ _id: pid })
     let isVisibleProduct = false
     if (!product) {

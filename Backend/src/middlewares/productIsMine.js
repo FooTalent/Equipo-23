@@ -1,4 +1,4 @@
-import { productsRepository } from "../repositories";
+import { productsRepository } from "../repositories/index.js";
 
 export const productIsMine = async (req, res, next) => {
   const idProduct = req.params.pid;

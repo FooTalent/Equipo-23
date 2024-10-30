@@ -39,10 +39,6 @@ export const passportCallOptional = (strategy) => {
 
 
 
-/**
- * PASSPORT BY ¡¡ VIEW !!
- */
-
 export const passportCallView = (strategy) => {
   return async (req, res, next) => {
     passport.authenticate(strategy, function (err, user, info) {

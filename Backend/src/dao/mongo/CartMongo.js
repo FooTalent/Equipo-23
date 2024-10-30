@@ -2,7 +2,7 @@ import cartModel from "./models/cartModel.js";
 import productModel from "./models/productModel.js";
 
 export default class Cart {
-  constructor() {}
+  constructor() { }
 
   async get() {
     return await cartModel.find();
@@ -55,7 +55,6 @@ export default class Cart {
         }
       );
     }
-    // Actualiza el precio total del carrito
     await this.updateTotalPrice(cid);
 
     return response;
@@ -102,7 +101,6 @@ export default class Cart {
         },
       }
     );
-    // Actualiza el precio total del carrito
     await this.updateTotalPrice(cid);
     return update;
   }
@@ -119,7 +117,7 @@ export default class Cart {
     const cart = await cartModel.findById(cid).lean();
 
     const totalPrice = cart.products.reduce((total, product) => {
-      return total + product.price; 
+      return total + product.price;
     }, 0);
 
     await cartModel.updateOne(

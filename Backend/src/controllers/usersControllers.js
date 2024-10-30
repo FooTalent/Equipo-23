@@ -55,7 +55,6 @@ export const deleteUser = async (req, res) => {
     return res.status(404).json({ succes: false, message: "User not found" });
   }
 
-  // Delete the cart associated with the user
   await cartsRepository.deleteCartById(user.cartId);
 
   const userDeleted = await usersRepository.deleteUserBy({ _id: id });
@@ -63,7 +62,6 @@ export const deleteUser = async (req, res) => {
     userDeleted,
     "admin"
   );
-  // Send notification email to deleted user
   try {
     await transport.sendMail({
       from: `E-commerce Coder <${config.correoGmail}>`,
@@ -176,7 +174,6 @@ export const updateUser = async (req, res) => {
     return res.status(404).json({ succes: false, message: "User not found" });
   }
 
-  // Check permission for update user
   if (user.email != eCurrent && role != "admin") {
     return res.status(403).json({
       succes: false,
@@ -184,7 +181,6 @@ export const updateUser = async (req, res) => {
     });
   }
 
-  // Remove empty fields
   const updatedFields = removeEmptyObjectFields({
     first_name,
     last_name,
@@ -207,11 +203,6 @@ export const changeVendor = async (req, res) => {
     return res.status(404).json({ succes: false, message: "User not found" });
   }
 
-  /**
-   *
-   *  Verify documents exists in user
-   *
-   */
 
   const requiredDocuments = [
     "identification",
@@ -242,7 +233,6 @@ export const uploadProfilePhoto = async (req, res) => {
   const userId = req.params.uid;
   const photo = req.file;
 
-  //  Verify User and photo if exists
 
   const user = await usersRepository.getUserBy({ _id: userId });
 
@@ -355,8 +345,6 @@ export async function sendEmailToResetPassword(req, res) {
 
   const token = generateTokenResetPassoword({ email: email });
 
-  // Send email !!  ----
-
   const resetLink = `${appUrl}/resetPassword?token=${token}`;
   const result = await transport.sendMail({
     from: `E-commerce Coder <${config.correoGmail}>`,
@@ -370,14 +358,12 @@ export async function sendEmailToResetPassword(req, res) {
     attachments: [],
   });
 
-  // Response
   res.status(200).json({ succes: true, data: result });
 }
 
 export const resetPassword = async (req, res) => {
   const { token, password } = req.body;
 
-  // Decoded data
   const decoded = decodedToken(token);
   const email = decoded.data.email;
   const user = await usersRepository.getUserBy({ email: email });
@@ -388,7 +374,6 @@ export const resetPassword = async (req, res) => {
       .json({ success: false, message: "The password is the same" });
   }
 
-  // Hash password
   const passwordHash = createHash(password);
 
   const result = await usersRepository.updateUserBy(

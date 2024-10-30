@@ -14,13 +14,6 @@ if (config.environment === 'production' || config.environment === 'development')
     configMail.tls = {
         rejectUnauthorized: false
     }
-} // else {
-//     configMail.host = config.mailtrap_host
-//     configMail.port = 2525
-//     configMail.auth = {
-//         user: config.mailtrap_user,
-//         pass: config.mailtrap_pass
-//     }
-// }
+}
 
 export const transport = nodemailer.createTransport(configMail)

@@ -5,30 +5,19 @@ import { transport } from "../utils/nodemailer.js";
 import { removeEmptyObjectFields } from "../utils/removeEmptyObjectFields.js";
 import uploadFile from "../utils/cloudinary/upload.js";
 import { deleteSources } from "../utils/cloudinary/deleteFiles.js";
-/**
- *
- * PERMISSIONS endpoint ¡¡create!!:
- *  admin
- *  vendor
- */
+
 export const createProduct = async (req, res) => {
   const { title, description, code, price, stock, category, status } = req.body;
   const role = req.user.data.role;
   const email = req.user.data.email;
-  /**
-   * IMAGES PRODUCT !!
-   */
+
   if (req.files.length == 0)
     return res.status(400).json({
       success: false,
       message: "Product image/images need to be uploaded",
     });
 
-  /**
-   * Verify if code exists
-   * */
 
-  // Verificación si el código ya existe
   const query = { code, owner: email };
   const existingProduct = await productsRepository.getProductBy(query);
 
@@ -57,7 +46,6 @@ export const createProduct = async (req, res) => {
     };
   });
 
-  // IF CODE NOT EXISTS
   let owner = "admin";
   if (role == "vendor") owner = email;
   const result = await productsRepository.createProduct({
@@ -79,7 +67,6 @@ export const createProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
   let { limit, page, sort, query } = req.query;
 
-  // Optional chaining is used because the user may not be authenticated !!
   const role = req.user?.data?.role;
   const email = req.user?.data?.email;
 
@@ -101,7 +88,6 @@ export const getProducts = async (req, res) => {
 export const getProductById = async (req, res) => {
   const id = req.params.pid;
 
-  // Optional chaining is used because the user may not be authenticated !!
   const role = req.user?.data?.role;
   const product = req.product
   const isVisibleProduct = req.isVisibleProduct
@@ -133,7 +119,6 @@ export const deleteProductById = async (req, res) => {
       .json({ succes: false, message: "Product not found" });
   }
 
-  //verified permission
   if (role == "vendor" && email != product.owner) {
     return res.status(200).json({
       succes: false,
@@ -141,14 +126,8 @@ export const deleteProductById = async (req, res) => {
     });
   }
 
-  // If the product to be deleted is found a cart is DELETED
   await cartsRepository.removeDeletedProductsFromcart(id);
 
-  /**
-   *
-   *  Product removed by the -- OWNER --
-   *  Send email notification about product removal to the owner
-   */
   if (role == "vendor" && email == product.owner) {
     const result = await productsRepository.deleteProductBy({ _id: id });
     return res.status(200).json({
@@ -158,16 +137,9 @@ export const deleteProductById = async (req, res) => {
     });
   }
 
-  /**
-   *
-   *  Product removed by the -- ADMIN --
-   *  Send email notification about product removal to the owner
-   */
-
   if (role == "admin") {
     const result = await productsRepository.deleteProductBy({ _id: id });
 
-    // Verify if owners' product
     if (product.owner != "admin") {
       await transport.sendMail({
         from: `E-commerce Coder<${config.correoGmail}>`,
@@ -209,22 +181,14 @@ export const updateProductById = async (req, res) => {
       .json({ succes: false, message: "Product not found" });
   }
 
-  /**
-   * Check permissions !!
-   * Only the creator of the product can update it
-   *
-   */
+
   if (role === "vendor" && product.owner !== email) {
     return res.status(403).json({
       success: false,
       message: "You do not have permission to update this product",
     });
   }
-  /**
-   *
-   * Check if the product code already exists except yours
-   *
-   * */
+
   const query = { code, _id: { $ne: id } };
   const exists = await productsRepository.getProductBy(query);
 
@@ -234,7 +198,6 @@ export const updateProductById = async (req, res) => {
       .json({ success: false, message: "Product with code already exists" });
   }
 
-  // Removed empty fields
   removeEmptyObjectFields({
     title,
     description,
@@ -262,7 +225,7 @@ export const uploadProductImages = async (req, res) => {
   const productId = req.params.pid;
   const images = req.files || [];
 
-  //Verify if exists products and images in req.
+
   if (images.length === 0) {
     return res
       .status(400)
@@ -274,8 +237,7 @@ export const uploadProductImages = async (req, res) => {
     res.status(404).json({ succes: false, message: "Product not found" });
   }
 
-  // Check permissions
-  // Only the creator of the product can upload images
+
   if (product.owner !== email) {
     return res.status(403).json({
       success: false,
@@ -283,7 +245,6 @@ export const uploadProductImages = async (req, res) => {
     });
   }
 
-  //--------------- UPLOAD -----------------
   const imageReferences = images.map((image) => ({
     name: image.originalname,
     reference: `/img/products/${image.filename}`,
@@ -337,7 +298,6 @@ export const updateProductImages = async (req, res) => {
     }
   }
 
-  // upload and replace images with cloudinary
   const uploadedImages = await uploadFile(
     imagesNew,
     `minegocio/${user._id}/products`,
@@ -345,7 +305,6 @@ export const updateProductImages = async (req, res) => {
   );
   const regex = /v\d+\/(.+)\.(jpg|svg|png|gif|mp4|webm)$/
 
-  // obtener el id cloudinary de las images del modelo product
   const imagesIdCloudinary = imagesForUpdate.map((img) => {
     const match = img.match(regex);
     return match ? match[1] : null;
@@ -362,7 +321,6 @@ export const updateProductImages = async (req, res) => {
     };
   });
 
-  // update images from model product
   const updateData = {
     $set: {
       thumbnails: thumbnailsSerialize,

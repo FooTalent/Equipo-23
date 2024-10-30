@@ -15,7 +15,6 @@ export const getCarts = async (req, res) => {
     .json({ succes: true, data: result, message: "You have all the carts" });
 };
 
-// You must have permission to see the cart!!!
 export const getCartById = async (req, res) => {
   const id = req.params.cid;
   const role = req.user.data.role;
@@ -79,7 +78,6 @@ export const addProductFromCart = async (req, res) => {
     });
   }
 
-  // Check if the product belongs to the user. If not, you can add it.
   if (product.owner === email) {
     return res.status(400).json({
       succes: false,
@@ -166,7 +164,6 @@ export const updateCartById = async (req, res) => {
     });
   }
 
-  // Check Cart
   const cart = await cartsRepository.getCartById(cid);
 
   if (!cart) {
@@ -176,7 +173,6 @@ export const updateCartById = async (req, res) => {
     });
   }
 
-  // VERIFY THAT THE PRODUCTS INTRODUCED WHEN UPDATE THE CART EXIST
   const productIds = products.map((product) => product.prodId);
   const foundProducts = await productModel.find({ _id: { $in: productIds } });
 
@@ -254,11 +250,7 @@ export const updateProductCart = async (req, res) => {
     });
   }
 
-  /**
-   *
-   * find the product in the cart. If the quantity of the bodysuit is the same as the quantity of the product in the cart, the update is not done.
-   *
-   */
+
   const cartProduct = cart.products.find((item) => {
     return item.prodId && item.prodId._id.toString() === pid;
   });
@@ -270,7 +262,6 @@ export const updateProductCart = async (req, res) => {
     });
   }
 
-  // Check if the quantity is greater than the stock of the product
   if (quantity > product.stock) {
     return res.status(200).json({
       success: false,
@@ -308,7 +299,6 @@ export const createPurchase = async (req, res) => {
     });
   }
 
-  //If there are no products in the cart, the operation is not carried out.
   if (cart.products.length == 0) {
     return res.status(400).json({
       succes: false,
