@@ -327,6 +327,16 @@ export const updateProductImages = async (req, res) => {
       .json({ message: "La cantidad de imágenes no coincide." });
   }
 
+  const imagesPrduct = product.map(element => element.thumbnails.reference)
+
+  for (image in imagesForUpdate) {
+    if (!imagesPrduct.includes(image)) {
+      return res
+        .status(400)
+        .json({ message: "La imagen no pertenece al producto." });
+    }
+  }
+
   // upload and replace images with cloudinary
   const uploadedImages = await uploadFile(
     imagesNew,
