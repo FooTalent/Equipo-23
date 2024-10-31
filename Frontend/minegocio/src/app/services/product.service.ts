@@ -56,7 +56,7 @@ export class ProductService extends BaseApiService {
   }
 
   createProduct(productInfo: any): Observable<any> {
-    const productStatus = productInfo.status === 'Si' ? true : false 
+    const productStatus = productInfo.status === 'Si' ? 'sale' : 'inventario' 
     const formData = new FormData();
 
     formData.append('title', productInfo.title);
