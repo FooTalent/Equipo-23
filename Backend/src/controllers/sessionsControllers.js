@@ -126,7 +126,7 @@ export async function checkCodeRegister(req, res) {
     httpOnly: true,
   });
 
-  res.status(200).json({ success: true, message: "Registration complete" });
+  res.status(200).json({ success: true, message: "Registration complete", token });
 }
 
 export async function login(req, res) {
