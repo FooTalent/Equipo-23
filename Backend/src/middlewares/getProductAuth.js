@@ -2,7 +2,7 @@ import { productsRepository } from "../repositories/index.js";
 
 export const getProductAuth = (...roles) => {
   return async (req, res, next) => {
-    const user = req.user.data;
+    const user = req?.user?.data;
 
     const { pid } = req.params;
 
@@ -10,6 +10,13 @@ export const getProductAuth = (...roles) => {
     let isVisibleProduct = false
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
+    }
+
+    if (!user) {
+      isVisibleProduct = product.status === "sale"
+      req.product = product;
+      req.isVisibleProduct = isVisibleProduct;
+      return next()
     }
 
     if (user.role === 'user') {
