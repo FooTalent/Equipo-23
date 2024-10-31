@@ -85,12 +85,10 @@ export class UserImageFormComponent {
         }
       );
     } else {
-      console.log('No se ha recortado ninguna imagen.');
+      this.errorMessage = 'No se ha recortado ninguna imagen.';
     }
 
   }
-
-  // Function to toggle image edit form visibility
 
   toggleEditImageForm() {
     this.userService.toggleEditImageForm();

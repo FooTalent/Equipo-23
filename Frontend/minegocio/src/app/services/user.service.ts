@@ -28,7 +28,7 @@ export class UserService extends BaseApiService {
     return this.http.post(`${this.apiUrl}/api/sessions/verify-code`, { code });
   }
 
-  // User Profile
+  
 
   editFormOpen = signal(false);
   editImageFormOpen = signal(false);

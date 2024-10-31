@@ -43,31 +43,35 @@
 
             <div class="w-full max-w-[475px] mx-auto mb-4 aspect-square overflow-hidden">
                 <img 
-                    [src]="!isLoading() ? product()?.thumbnails[0]?.reference : '/images/default-product.png'" 
+                    [src]="!isLoading() ? getSelectedImage() : '/images/default-product.png'" 
                     alt="Miniatura de producto" 
                     class="rounded-2xl w-full h-full object-cover">
             </div>
         
-            <div class="flex justify-center md:justify-normal gap-x-3 mt-4 mb-8">
-                <div class="w-1/3 max-w-[105px] lg:max-w-[145px] aspect-square overflow-hidden">
+            <div class="flex justify-center md:justify-normal gap-x-3 mt-4 mb-4">
+                <div (click)="selectImage(0)" [ngClass]="{'border-2 border-[#E5E504] rounded-2xl': 0 === selectedImageIndex}" class="w-1/3 max-w-[105px] lg:max-w-[145px] aspect-square overflow-hidden cursor-pointer">
                     <img 
                         [src]="!isLoading() ? product()?.thumbnails[0]?.reference : '/images/default-product.png'" 
                         alt="Miniatura de producto" 
                         class="rounded-2xl w-full h-full object-cover">
                 </div>
-                <div class="w-1/3 max-w-[105px] lg:max-w-[145px] aspect-square overflow-hidden"> 
+                <div (click)="selectImage(1)" [ngClass]="{'border-2 border-[#E5E504] rounded-2xl': 1 === selectedImageIndex}" class="w-1/3 max-w-[105px] lg:max-w-[145px] aspect-square overflow-hidden cursor-pointer"> 
                     <img 
                         [src]="!isLoading() && product()?.thumbnails[1]?.reference ? product()?.thumbnails[1]?.reference : '/images/default-product.png'" 
                         alt="Miniatura de producto" 
                         class="rounded-2xl w-full h-full object-cover">
                 </div>
-                <div class="w-1/3 max-w-[105px] lg:max-w-[145px] aspect-square overflow-hidden">
+                <div (click)="selectImage(2)" [ngClass]="{'border-2 border-[#E5E504] rounded-2xl': 2 === selectedImageIndex}" class="w-1/3 max-w-[105px] lg:max-w-[145px] aspect-square overflow-hidden cursor-pointer">
                     <img 
                         [src]="!isLoading() && product()?.thumbnails[2]?.reference ? product()?.thumbnails[2]?.reference : '/images/default-product.png'" 
                         alt="Miniatura de producto" 
                         class="rounded-2xl w-full h-full object-cover">
                 </div>
             </div>
+            <button type="buton" (click)="toggleEditImagesForm()" [disabled]="isLoadingForm()"
+                class="w-full mb-8 lg:mb-0 lg:mx-6 bg-[#5D3CBA] text-white disabled:opacity-50 py-3 mt-4 lg:mt-4 rounded-2xl hover:bg-[#6b47ce] focus:outline-none focus:ring-2 focus:ring-purple-500">
+                Editar Imagenes
+            </button>
         </div>
         
 
@@ -168,13 +172,6 @@
                         formControlName="price">
                 </div>
 
-                <div *ngIf="editStatus()" class="flex flex-col gap-y-2">
-                    <h3 class="font-bold mb-1 text-xl">Editar imágenes:</h3>
-                    <input id="thumbnails" (change)="onFileSelect($event)" type="file" multiple accept="image/*"
-                        class="w-full md:max-w-lg bg-[#3B364C] text-white px-4 py-2 rounded-2xl focus:outline-none focus:ring-1 focus:ring-secondary-main mb-2 border-2 border-secondary-main">
-                    <small class="text-[#737271] text-sm ">* Máximo de 3 imágenes</small>
-                </div>
-
                 <div *ngIf="editStatus()" class="flex justify-center">
                     <button type="submit" [disabled]="isLoadingForm()"
                         class="w-full lg:mx-6 bg-[#5D3CBA] text-white disabled:opacity-50 py-3 mt-6 lg:mt-4 rounded-2xl hover:bg-[#6b47ce] focus:outline-none focus:ring-2 focus:ring-purple-500">
@@ -195,3 +192,4 @@
 </div>
 
 <app-delete-confirmation *ngIf="openDeleteConfirmation()"></app-delete-confirmation>
+<app-edit-product-images *ngIf="openEditImagesForm()"></app-edit-product-images>

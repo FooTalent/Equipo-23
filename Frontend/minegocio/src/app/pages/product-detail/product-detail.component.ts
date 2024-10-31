@@ -4,11 +4,12 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DeleteConfirmationComponent } from '../../components/delete-confirmation/delete-confirmation.component';
+import { EditProductImagesComponent } from '../../components/edit-product-images/edit-product-images.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [RouterLinkWithHref, CommonModule, FormsModule, ReactiveFormsModule, DeleteConfirmationComponent],
+  imports: [RouterLinkWithHref, CommonModule, FormsModule, ReactiveFormsModule, DeleteConfirmationComponent, EditProductImagesComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
@@ -39,6 +40,7 @@ export class ProductDetailComponent {
       this.product.set(product.data);
       this.statusSignal.set(this.product().status);
       this.isLoading.update(value => false);
+      this.currentImages = product.data.thumbnails;
 
       this.productEditForm.patchValue({
         title: product.data.title,
@@ -55,6 +57,19 @@ export class ProductDetailComponent {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });
+  }
+
+  selectedImageIndex: number = 0;
+
+  selectImage(index: number): void {
+    this.selectedImageIndex = index;
+  }
+
+  getSelectedImage(): string {
+    const thumbnails = this.product()?.thumbnails;
+    return thumbnails && thumbnails[this.selectedImageIndex]?.reference
+      ? thumbnails[this.selectedImageIndex].reference
+      : '/images/default-product.png';
   }
 
   errorMessage: string = '';
@@ -95,20 +110,19 @@ export class ProductDetailComponent {
   });
 
   selectedFiles: File[] = [];
+  currentImages: any[] = [];
   fileErrorMessage: string = "";
   maxFilesStatus = signal(true);
 
-  onFileSelect(event: Event) {
+  onFileChange(event: any) {
     const input = event.target as HTMLInputElement;
     if (input.files) {
       this.selectedFiles = Array.from(input.files);
     }
-
     if (this.selectedFiles.length > 3) {
       this.maxFilesStatus.update(value => false);
     }
   }
-
 
   onEditSubmit(event: Event) {
     event.preventDefault();
@@ -118,7 +132,6 @@ export class ProductDetailComponent {
       description: this.productEditForm.value.description ?? "",
       price: this.productEditForm.value.price ?? null,
       stock: this.productEditForm.value.stock ?? null,
-      thumbnails: this.selectedFiles ?? [],
     }
 
     if(this.productEditForm.valid && this.maxFilesStatus()) {
@@ -130,8 +143,6 @@ export class ProductDetailComponent {
           this.reloadComponent();
         },
         error: (error) => {
-          console.log(error);
-          
           this.isLoadingForm.update(value => !value);
           if (error.status === 404) {
             this.editErrorMessage = 'Usuario no encontrado';
@@ -153,6 +164,12 @@ export class ProductDetailComponent {
 
   toggleDeleteConfirmation() {
     this.productService.deleteConfirmation.update(value => !value); 
+  }
+
+  openEditImagesForm = this.productService.openEditImagesForm;
+
+  toggleEditImagesForm() {
+    this.productService.toggleEditImagesForm();
   }
 
 }

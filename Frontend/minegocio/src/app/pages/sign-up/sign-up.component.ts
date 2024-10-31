@@ -65,15 +65,11 @@ export class SignUpComponent {
     }
   }
 
-  // Function to toggle password visibility
-
   viewPassword = signal(false);
 
   togglePassword() {
     this.viewPassword.update(value => !value);
   }
-
-  // Function to change the theme color
 
   ngOnInit(): void {
     this.meta.updateTag({ name: 'theme-color', content: '#5d3cba' });

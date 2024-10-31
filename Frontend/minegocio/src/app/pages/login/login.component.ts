@@ -57,8 +57,6 @@ export class LoginComponent {
       this.errorMessage = 'Por favor, rellena todos los campos requeridos.';
     }
   }
-  
-  // Function to toggle password visibility
 
   viewPassword = signal(false);
 

@@ -2,7 +2,6 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseApiService } from './baseApi.service';
-import { title } from 'process';
 
 export interface Product {
   id: string;
@@ -22,7 +21,6 @@ export interface Product {
 export class ProductService extends BaseApiService {
   private apiUrl =
     'https://equipo-23-develop-backend.onrender.com/api/products';
-
 
   constructor(private http: HttpClient) {
     super()
@@ -92,11 +90,17 @@ export class ProductService extends BaseApiService {
       description: productData.description,
       price: productData.price ?? undefined,
       stock: productData.stock ?? undefined,
-      thumnail: productData.thumbnails,
     }, {
       withCredentials: true,
       headers: this.getFileHeaders()
     })
+  }
+
+  updateProductImages(productId: string, formData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${productId}/images`, formData, {
+      withCredentials: true,
+      headers: this.getHeaders(),
+    });
   }
 
   deleteConfirmation = signal(false);
@@ -110,6 +114,12 @@ export class ProductService extends BaseApiService {
       withCredentials: true,
       headers: this.getHeaders(),
     });
+  }
+
+  openEditImagesForm = signal(false);
+
+  toggleEditImagesForm() {
+    this.openEditImagesForm.update(value => !value);
   }
 
 }
