@@ -10,7 +10,6 @@ export const createProduct = async (req, res) => {
   const { title, description, code, price, stock, category, status } = req.body;
   const role = req.user.data.role;
   const email = req.user.data.email;
-
   if (req.files.length == 0)
     return res.status(400).json({
       success: false,
@@ -275,7 +274,6 @@ export const updateProductImages = async (req, res) => {
   const imagesNew = req.files || [];
   const imagesForUpdate = JSON.parse(req.body.imagesForUpdate) || [];
 
-
   if (imagesNew.length === 0 && imagesForUpdate.length === 0) {
     return res
       .status(400)
@@ -288,9 +286,9 @@ export const updateProductImages = async (req, res) => {
       .json({ message: "La cantidad de imágenes no coincide." });
   }
 
-  const imagesPrduct = product.map(element => element.thumbnails.reference)
+  const imagesPrduct = product.thumbnails.map(element => element.reference)
 
-  for (image in imagesForUpdate) {
+  for (let i = 1; i < imagesForUpdate.length; i++) {
     if (!imagesPrduct.includes(image)) {
       return res
         .status(400)
