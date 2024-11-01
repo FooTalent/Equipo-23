@@ -26,7 +26,7 @@
           
           <button 
             type="submit" [disabled]="isLoading()"
-            class="w-full py-3 px-4 border border-transparent text-sm font-medium rounded-2xl text-white bg-secondary-main hover:bg-[#6d49cf]"
+            class="w-full py-3 px-4 border border-transparent text-sm font-medium rounded-2xl text-white bg-secondary-main hover:bg-[#6d49cf] disabled:opacity-50"
           >
             {{ isLoading() ? 'Cargando...' : 'Verificar' }}
           </button>

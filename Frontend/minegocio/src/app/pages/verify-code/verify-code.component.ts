@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-verify-code',
@@ -15,6 +16,7 @@ export class VerifyCodeComponent {
 
 
   private userService = inject(UserService);
+  private authService = inject(AuthService);
   private Router = inject(Router);
 
   verificationForm = new FormGroup({
@@ -27,13 +29,15 @@ export class VerifyCodeComponent {
   onVerifySubmit(event: Event) {
     event.preventDefault();
 
+    this.isLoading.update(value => !value);
     if (this.verificationForm.valid) {
       const verificationCode: string = this.verificationForm.value.code ?? '';
 
       this.userService.verifyRegisterCode(verificationCode).subscribe({
         next: (response: any) => {
           this.isLoading.update(value => !value);
-          this.Router.navigate(['/login']);
+          this.authService.setToken(response.token);
+          this.Router.navigate([ "" ])
         },
         error: (error) => {
           if (error.status === 400) {
