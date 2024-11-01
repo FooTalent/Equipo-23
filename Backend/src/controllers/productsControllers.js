@@ -273,6 +273,7 @@ export const updateProductImages = async (req, res) => {
   const user = req.user.data;
   const imagesNew = req.files || [];
   const imagesForUpdate = JSON.parse(req.body.imagesForUpdate) || [];
+  console.log("imagesForUpdate", imagesForUpdate);
 
   if (imagesNew.length === 0 && imagesForUpdate.length === 0) {
     return res
@@ -289,7 +290,7 @@ export const updateProductImages = async (req, res) => {
   const imagesPrduct = product.thumbnails.map(element => element.reference)
 
   for (let i = 1; i < imagesForUpdate.length; i++) {
-    if (!imagesPrduct.includes(image)) {
+    if (!imagesPrduct.includes(imagesForUpdate[i])) {
       return res
         .status(400)
         .json({ message: "La imagen no pertenece al producto." });
@@ -318,6 +319,8 @@ export const updateProductImages = async (req, res) => {
       reference: img.url,
     };
   });
+
+  thumbnailsSerialize.concat(imagesForUpdate.filter(img => !imagesForUpdate.includes(img)))
 
   const updateData = {
     $set: {
