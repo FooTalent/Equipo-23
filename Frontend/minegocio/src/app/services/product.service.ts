@@ -99,7 +99,7 @@ export class ProductService extends BaseApiService {
   updateProductImages(productId: string, formData: FormData): Observable<any> {
     return this.http.put(`${this.apiUrl}/${productId}/images`, formData, {
       withCredentials: true,
-      headers: this.getHeaders(),
+      headers: this.getFileHeaders(),
     });
   }
 
