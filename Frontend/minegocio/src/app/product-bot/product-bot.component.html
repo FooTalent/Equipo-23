@@ -1,6 +1,6 @@
 <div
   *ngIf="showBot"
-  class="w-[100vw] lg:w-[380px] relative h-[100dvh] lg:h-[700px] mx-auto bg-gray-100 lg:border-white lg:border-solid lg:border-[1px] bg-primary-main z-[999] scale-in-tr"
+  class="w-[100vw] lg:w-[380px] relative h-[100dvh] lg:h-[700px] mx-auto bg-gray-100 lg:border-white lg:border-solid lg:border-[1px] bg-primary-main z-[999] animate-scale-in-tr"
 >
   <div
     class="w-full h-[60px] bg-secondary-main flex items-center justify-between px-3"
@@ -16,7 +16,7 @@
   >
     <div
       *ngFor="let message of messages"
-      class="p-3 rounded-lg fade-in"
+      class="p-3 rounded-lg animate-fade-in"
       [ngClass]="
         message.isUser
           ? 'bg-[#3B364C] text-right w-[fit-content] ml-auto py-1 shadow-[0_2px_#880DDB]'
@@ -93,10 +93,10 @@
       [(ngModel)]="userResponse"
       (keyup.enter)="advance()"
       *ngIf="!isComplete && currentStep < questions.length"
-      class="bg-primary-light mb-3 rounded-md w-[70%] placeholder:pl-2 pl-2"
+      class="bg-primary-light mb-3 rounded-md w-[70%] placeholder:pl-2 pl-2 no-arrows"
       [ngClass]="{
         'text-[transparent] placeholder:text-[transparent]': currentStep == 8,
-        'animate-border-slow': !inputDisabled && currentStep !== 7,
+        'animate-glow-border': !inputDisabled && currentStep !== 7,
       }"
       placeholder="Mensaje"
       [type]="!isPriceInput ? 'number' : 'text'"
