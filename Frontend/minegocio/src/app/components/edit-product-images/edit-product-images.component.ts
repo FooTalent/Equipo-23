@@ -37,6 +37,13 @@ export class EditProductImagesComponent {
     }) 
   }
 
+  reloadComponent() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
+
   toggleEditImagesForm() {
     this.productService.toggleEditImagesForm();
   }
@@ -70,9 +77,6 @@ export class EditProductImagesComponent {
     event.preventDefault();
 
     this.toggleEditImageForm();
-
-    console.log(this.selectedFiles)
-    console.log(this.currentImages)
     
 
     if( this.selectedFiles.length > 0) {
@@ -86,16 +90,11 @@ export class EditProductImagesComponent {
 
       this.productService.updateProductImages(this.idProduct, formData)
       .subscribe(response => {
-        console.log('Imágenes actualizadas:', response);
         this.toggleEditImageForm()
-        console.log(formData.get('imagesForUpdate'))
-        console.log(formData.get('thumbnails'))
+        this.toggleEditImagesForm()
+        this.reloadComponent()
       }, error => {
         this.toggleEditImageForm()
-        console.log(error.message)
-        console.log('Error al actualizar imágenes:', error);
-        console.log(formData.get('imagesForUpdate'))
-        console.log(formData.get('thumbnails'))
         this.errorMessage = 'Error al actualizar imágenes. Por favor, inténtalo de nuevo más tarde.';
       });
     

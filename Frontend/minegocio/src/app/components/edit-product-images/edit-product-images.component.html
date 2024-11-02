@@ -10,9 +10,9 @@
         <form class="space-y-4" enctype="multipart/form-data" (ngSubmit)="onEditImagesSubmit($event)" [formGroup]="editImagesForm">
             <div>
               <label for="imagen" class="block pl-2 font-medium">Subir Imagen</label>
-              <input type="file" id="imagenes" name="imagenes" accept="image/*" multiple (change)="onFileChange($event)" formControlName="imagesForUpdate"
+              <input type="file" id="imagenes" name="imagenes" accept="image/*" (change)="onFileChange($event)" formControlName="imagesForUpdate"
                 class="bg-[#3B364C] mt-1 w-full px-4 py-3 rounded-2xl shadow-sm focus:ring-purple-500 focus:border-purple-500">
-                <small class="text-[#737271] text-sm ">* Máximo de 3 imágenes</small>
+                <small class="text-[#737271] text-sm ">* Por ahora, solo puedes subir una imagen. ¡Pronto podrás agregar más!</small>
             </div>
           
             <button type="submit" [disabled]="isLoadingForm()"
