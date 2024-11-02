@@ -14,7 +14,7 @@ productRouter.get('/', passportCallOptional('jwt'), products.getProducts);
 productRouter.get('/search/prod', products.searchProducts)
 productRouter.get('/:pid', passportCallOptional('jwt'), getProductAuth('admin', 'vendor', 'user'), products.getProductById);
 
-productRouter.put('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), products.updateProductById);
+productRouter.put('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), upload.any('thumbnails'), products.updateProductById);
 productRouter.delete('/:pid', passportCall('jwt'), authorization('admin', 'vendor'), products.deleteProductById);
 productRouter.post('/:pid/images', passportCall('jwt'), authorization('vendor', 'admin'), upload.any('thumbnails', 5), products.uploadProductImages);
 productRouter.put('/:pid/images', passportCall('jwt'), authorization('vendor', 'admin'), productIsMine, upload.any('thumbnails', 5), products.updateProductImages);

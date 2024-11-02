@@ -164,8 +164,15 @@ export const updateProductById = async (req, res) => {
   const id = req.params.pid;
   const email = req.user?.data?.email;
   const role = req.user?.data?.role;
-  const { title, description, code, price, stock, category, thumbnail, status } =
+  const { title, description, code, price, thumbnail, stock, category, status } =
     req.body;
+
+  const images = req.files || [];
+  console.log("images", images);
+  console.log("thumbnail", thumbnail);
+  console.log("req.body", req.body);
+  console.log("req.files", req.files);
+  console.log("req.body.thumbnail", req.body.thumbnail);
 
   if (req.body._id || req.body.owner) {
     return res
@@ -190,12 +197,29 @@ export const updateProductById = async (req, res) => {
 
   const query = { code, _id: { $ne: id } };
   const exists = await productsRepository.getProductBy(query);
-
   if (exists) {
     return res
       .status(404)
       .json({ success: false, message: "Product with code already exists" });
   }
+
+  if (images.length > 0) {
+    const uploadedImages = await uploadFile(
+      images,
+      `minegocio/${req.user.data._id}/products`,
+      {}
+    );
+    const thumbnailsSerialize = uploadedImages.map((img) => {
+      return {
+        name: img.display_name,
+        reference: img.url,
+      };
+    });
+    req.body.thumbnails = thumbnailsSerialize;
+  }
+
+  const thumbnailsSerialize = [...product.thumbnails, ...req.body.thumbnails];
+
 
   removeEmptyObjectFields({
     title,
@@ -204,13 +228,14 @@ export const updateProductById = async (req, res) => {
     price,
     stock,
     category,
-    thumbnail,
+    thumbnailsSerialize,
   });
 
   const result = await productsRepository.updateProductBy(
     { _id: id },
     { title, description, code, price, stock, category, thumbnail, status }
   );
+
   res.status(200).json({ succes: true, data: result });
 };
 
@@ -273,7 +298,6 @@ export const updateProductImages = async (req, res) => {
   const user = req.user.data;
   const imagesNew = req.files || [];
   const imagesForUpdate = JSON.parse(req.body.imagesForUpdate) || [];
-  console.log("imagesForUpdate", imagesForUpdate);
 
   if (imagesNew.length === 0 && imagesForUpdate.length === 0) {
     return res
