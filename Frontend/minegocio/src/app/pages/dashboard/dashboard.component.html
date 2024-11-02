@@ -1,13 +1,12 @@
-<div class="bg-[#2b2738] text-white block md:hidden w-[360px] h-[48px]">
+<div class="bg-[#2b2738] text-white block md:hidden w-full">
   <div class="max-w-md mx-auto p-2">
     <main>
-      <div class="justify-between py-2 w-[328.04px] h-[40px] gap-4">
+      <div class="justify-between py-2 w-full gap-4">
         <h2 class="text-xl">¡Hola Josefina!</h2>
       </div>
-      <div class="bg-[#2b2738] rounded-lg w-[328.04px] mt-4 h-[40px] gap-4">
+      <div class="bg-[#2b2738] rounded-lg w-[100%] mt-4 gap-4">
         <div class="flex justify-between items-center mb-4">
           <div class="relative w-full">
-            <!-- Icono de lupa -->
             <svg
               class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#7c798a]"
               aria-hidden="true"
@@ -23,38 +22,25 @@
                 d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
               />
             </svg>
-            <!-- Campo de búsqueda -->
+
             <input
               type="text"
-              placeholder="Buscar mensaje"
-              class="bg-[#3b364c] border-[#2b2738] p-2 pl-10 rounded-lg w-full mr-2"
+              placeholder="Buscar"
+              class="bg-[#3b364c] border-[#2b2738] p-2 pl-10 rounded-lg w-full"
             />
           </div>
-          <!-- Botón de filtro -->
-          <button class="bg-[#3b364c] text-[#7c798a] p-2 rounded-lg ml-4">
-            <svg
-              width="17"
-              height="16"
-              viewBox="0 0 17 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.97762 16C7.69429 16 7.45679 15.9042 7.26512 15.7125C7.07345 15.5208 6.97762 15.2833 6.97762 15V9L1.17762 1.6C0.927619 1.26667 0.890119 0.916667 1.06512 0.55C1.24012 0.183333 1.54429 0 1.97762 0H15.9776C16.411 0 16.7151 0.183333 16.8901 0.55C17.0651 0.916667 17.0276 1.26667 16.7776 1.6L10.9776 9V15C10.9776 15.2833 10.8818 15.5208 10.6901 15.7125C10.4985 15.9042 10.261 16 9.97762 16H7.97762Z"
-                fill="#7c798a"
-              />
-            </svg>
-          </button>
         </div>
       </div>
-      <!-- Botones -->
-      <div class="grid grid-cols-3 gap-2 items-center ml-6 mt-4 mr-6">
+
+      <div
+        class="grid grid-cols-3 gap-4 items-center justify-center mt-4 w-[100%]"
+      >
         <button
-          class="bg-[#3b364c] p-2 rounded-2xl text-sm flex flex-col w-[75px] h-[75px] justify-center items-center"
+          class="bg-[#3b364c] p-2 rounded-2xl text-xs gap-1 flex flex-col w-[80%] h-[100%] text justify-center items-center"
         >
           <svg
-            width="20"
-            height="20"
+            width="25"
+            height="25"
             viewBox="0 0 20 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -67,11 +53,11 @@
           <span class="text-[8.59px]">Mi tienda</span>
         </button>
         <button
-          class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
+          class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-xs gap-1 w-[80%] h-[100%] justify-center items-center"
         >
           <svg
-            width="24"
-            height="15"
+            width="25"
+            height="25"
             viewBox="0 0 24 15"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -84,11 +70,11 @@
           <span class="text-[8.59px]">Clientes</span>
         </button>
         <button
-          class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
+          class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-xs gap-1 w-[80%] h-[100%] justify-center items-center"
         >
           <svg
-            width="24"
-            height="21"
+            width="25"
+            height="25"
             viewBox="0 0 24 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -101,11 +87,11 @@
           <span class="text-[8.59px]">Mensajes</span>
         </button>
         <button
-          class="bg-[#3b364c] text-white p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
+          class="bg-[#3b364c] text-white p-2 rounded-2xl flex flex-col text-xs gap-1 w-[80%] h-[100%] justify-center items-center"
         >
           <svg
-            width="16"
-            height="21"
+            width="25"
+            height="25"
             viewBox="0 0 16 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -118,11 +104,11 @@
           <span class="text-[8.59px]">Pedidos</span>
         </button>
         <button
-          class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
+          class="bg-[#3b364c] p-2 rounded-2xl flex flex-col text-xs gap-1 w-[80%] h-[100%] justify-center items-center"
         >
           <svg
-            width="19"
-            height="21"
+            width="25"
+            height="25"
             viewBox="0 0 19 21"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -135,11 +121,11 @@
           <span class="text-[8.59px]">Estadísticas</span>
         </button>
         <button
-          class="bg-[#3b364c] text-white p-2 rounded-2xl flex flex-col text-sm w-[75px] h-[75px] justify-center items-center"
+          class="bg-[#3b364c] text-white p-2 rounded-2xl flex flex-col text-xs gap-1 w-[80%] h-[100%] justify-center items-center"
         >
           <svg
-            width="11"
-            height="19"
+            width="25"
+            height="25"
             viewBox="0 0 11 19"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -152,19 +138,18 @@
           <span class="text-[8.59px]">Facturación</span>
         </button>
       </div>
-      <!-- cards -->
+
       <div
-        class="grid grid-cols-2 gap-2 bg-[#2b2738] p-2 mt-4 w-[328px] h-[330px] rounded-2xl"
+        class="grid grid-cols-2 gap-4 bg-[#2b2738] mt-4 w-[100%] rounded-2xl"
       >
-        <!-- Tarjeta 1 -->
         <div
-          class="bg-[#3b364c] p-4 gap-2 rounded-2xl text-white w-[152px] h-[153px]"
+          class="bg-[#3b364c] p-3 gap-2 rounded-2xl text-white w-[100%] h-[100%]"
         >
-          <div class="flex items-center mb-4">
-            <div class="bg-[#6558e3] p-3 rounded-xl">
+          <div class="flex items-center mb-1">
+            <div class="bg-[#6558e3] p-2 rounded-lg">
               <svg
-                width="15"
-                height="17"
+                width="12"
+                height="14"
                 viewBox="0 0 19 21"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -176,16 +161,16 @@
               </svg>
             </div>
           </div>
-          <p class="text-xs text-[#797979]">Total de métricas</p>
-          <p class="text-lg">$1.503,989</p>
-          <div class="flex items-center mt-2">
+          <p class="text-[9px] text-[#797979]">Total de métricas</p>
+          <p class="text-lg text-[#e5e504]">$1.503,989</p>
+          <div class="flex items-center mt-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="text-[#07bb6d] size-4"
+              class="text-[#07bb6d] size-3"
             >
               <path
                 stroke-linecap="round"
@@ -193,18 +178,18 @@
                 d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
               />
             </svg>
-            <p class="text-white text-[10px] ml-1">60% de aumento</p>
+            <p class="text-white text-[6.43px] ml-1">60% de aumento</p>
           </div>
         </div>
-        <!-- Tarjeta 2 -->
+
         <div
-          class="bg-[#3b364c] p-4 gap-[ 10px] rounded-2xl text-white w-[152px] h-[153px]"
+          class="bg-[#3b364c] p-3 gap-2 rounded-2xl text-white w-[100%] h-[100%]"
         >
-          <div class="flex items-center mb-4">
-            <div class="bg-[#6558e3] p-3 rounded-lg">
+          <div class="flex items-center mb-1">
+            <div class="bg-[#6558e3] p-2 rounded-lg">
               <svg
-                width="15"
-                height="17"
+                width="12"
+                height="14"
                 viewBox="0 0 24 15"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -216,16 +201,16 @@
               </svg>
             </div>
           </div>
-          <p class="text-xs text-[#797979]">Nuevos clientes</p>
-          <p class="text-lg">+1.500</p>
-          <div class="flex items-center mt-2">
+          <p class="text-[9px] text-[#797979]">Nuevos clientes</p>
+          <p class="text-lg text-[#e5e504]">+1.500</p>
+          <div class="flex items-center mt-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="text-[#07bb6d] size-4"
+              class="text-[#07bb6d] size-3"
             >
               <path
                 stroke-linecap="round"
@@ -233,18 +218,18 @@
                 d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
               />
             </svg>
-            <p class="text-white text-[10px] ml-1">25% de aumento</p>
+            <p class="text-white text-[6.43px] ml-1">25% de aumento</p>
           </div>
         </div>
-        <!-- Tarjeta 3 -->
+
         <div
-          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[152px] h-[153px]"
+          class="bg-[#3b364c] p-3 gap-2 rounded-2xl text-white w-[100%] h-[100%]"
         >
-          <div class="flex items-center mb-4">
-            <div class="bg-[#6558e3] p-3 rounded-lg">
+          <div class="flex items-center mb-1">
+            <div class="bg-[#6558e3] p-2 rounded-lg">
               <svg
-                width="15"
-                height="17"
+                width="12"
+                height="14"
                 viewBox="0 0 30 25"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -256,16 +241,16 @@
               </svg>
             </div>
           </div>
-          <p class="text-xs text-[#797979]">Total de envíos</p>
-          <p class="text-lg">-200.000</p>
-          <div class="flex items-center mt-2">
+          <p class="text-[9px] text-[#797979]">Total de envíos</p>
+          <p class="text-lg text-[#e5e504]">-200.000</p>
+          <div class="flex items-center mt-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="text-[#b1120d] size-4"
+              class="text-[#b1120d] size-3"
             >
               <path
                 stroke-linecap="round"
@@ -273,18 +258,18 @@
                 d="m4.5 4.5 15 15m0 0V8.25m0 11.25H8.25"
               />
             </svg>
-            <p class="text-white text-[10px] ml-1">40% en descenso</p>
+            <p class="text-white text-[6.43px] ml-1">40% en descenso</p>
           </div>
         </div>
-        <!-- Tarjeta 4 -->
+
         <div
-          class="bg-[#3b364c] p-4 gap-[ 10px] rounded-2xl text-white w-[152px] h-[153px]"
+          class="bg-[#3b364c] p-3 gap-2 rounded-2xl text-white w-[100%] h-[100%]"
         >
-          <div class="flex items-center mb-4">
-            <div class="bg-[#6558e3] p-3 rounded-lg">
+          <div class="flex items-center mb-1">
+            <div class="bg-[#6558e3] p-2 rounded-lg">
               <svg
-                width="15"
-                height="17"
+                width="12"
+                height="14"
                 viewBox="0 0 16 21"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -296,16 +281,16 @@
               </svg>
             </div>
           </div>
-          <p class="text-xs text-[#797979]">Total de pedidos</p>
-          <p class="text-lg">$903,989</p>
-          <div class="flex items-center mt-2">
+          <p class="text-[9px] text-[#797979]">Total de pedidos</p>
+          <p class="text-lg text-[#e5e504]">$903,989</p>
+          <div class="flex items-center mt-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="text-[#07bb6d] size-4"
+              class="text-[#07bb6d] size-3"
             >
               <path
                 stroke-linecap="round"
@@ -313,30 +298,39 @@
                 d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
               />
             </svg>
-            <p class="text-white text-[10px] ml-1">45% de aumento</p>
+            <p class="text-white text-[6.43px] ml-1">45% de aumento</p>
           </div>
         </div>
       </div>
-      <div class="bg-[#3b364c] w-[328px] h-[258px] p-4 gap-4 mt-4 rounded-2xl">
-        <h2 class="text-center text-base">Métricas</h2>
-        <div class="bg-[#2b2738] w-[300px] h-[200px] gap-4 rounded-2xl">
+      <div class="bg-[#3b364c] w-[100%] p-4 gap-4 mt-4 rounded-2xl">
+        <div class="flex justify-between items-center px-3">
+          <h2 class="text-sm text-white pb-2">Métricas</h2>
+          <button class="text-sm text-white font-medium underline">
+            Ver más
+          </button>
+        </div>
+        <div class="bg-[#2b2738] w-[100%] p-2 rounded-2xl">
           <a href="#" class="flex items-center space-x-3">
             <img
-              src="/images/metricas-movil.png"
-              class="w-[ 304px] h-[200px] rounded-2xl"
-              alt="Foto de métricas"
+              src="..//..//..//..//public/icons/metricas-movil.png"
+              class="rounded-2xl"
+              alt="Foto de usuario"
             />
           </a>
         </div>
       </div>
-      <div class="w-[328px] h-[331px] mt-4 bg-[#3b364c] rounded-2xl">
-        <div class="bg-[#3b364c] w-[304px] h-[307px] gap-3 p-3 rounded-2xl">
-          <h3 class="text-xl text-center text-white">
-            Mensajes de nuevos clientes
-          </h3>
+
+      <div class="w-[100%] mt-4 bg-[#3b364c] rounded-2xl">
+        <div class="bg-[#3b364c] w-[100%] gap-3 p-3 rounded-2xl">
+          <div class="flex justify-between items-center px-3">
+            <h2 class="text-sm text-white pb-2">Mensajes de clientes</h2>
+            <button class="text-sm text-white font-medium underline">
+              Ver más
+            </button>
+          </div>
           <ul class="space-y-3">
             <div
-              class="bg-[#2b2738] rounded-2xl p-3 gap-3 flex justify-between items-center w-[304px] h-[83px]"
+              class="bg-[#2b2738] rounded-2xl p-3 gap-3 flex justify-between items-center w-[100%]"
             >
               <li class="flex items-center space-x-4">
                 <img
@@ -345,7 +339,7 @@
                   alt="Cliente"
                 />
                 <div>
-                  <h4 class="text-[14px] text-white">Nombre o usuario</h4>
+                  <h4 class="text-[14px] text-white">Dorotea Carnaghi</h4>
                   <span class="text-[#7c798a] text-xs"
                     >Previsualización del mensaje</span
                   >
@@ -360,9 +354,9 @@
                 </div>
               </div>
             </div>
-            <!-- Cliente 2 -->
+
             <div
-              class="bg-[#2b2738] rounded-2xl p-3 flex justify-between gap-3 items-center w-[304px] h-[83px]"
+              class="bg-[#2b2738] rounded-2xl p-3 flex justify-between gap-3 items-center w-[100%]"
             >
               <li class="flex items-center space-x-4">
                 <img
@@ -371,7 +365,7 @@
                   alt="Cliente"
                 />
                 <div>
-                  <h4 class="text-[14px] text-white">Nombre o usuario</h4>
+                  <h4 class="text-[14px] text-white">Marianela Morales</h4>
                   <span class="text-[#7c798a] text-xs"
                     >Previsualización del mensaje</span
                   >
@@ -386,9 +380,9 @@
                 </div>
               </div>
             </div>
-            <!-- Cliente 3 -->
+
             <div
-              class="bg-[#2b2738] rounded-2xl gap-3 space-between flex justify-between items-center w-[304px] h-[83px] p-3"
+              class="bg-[#2b2738] rounded-2xl gap-3 space-between flex justify-between items-center w-[100%] p-3"
             >
               <li class="flex items-center space-x-4">
                 <img
@@ -397,7 +391,7 @@
                   alt="Cliente"
                 />
                 <div>
-                  <h4 class="text-[14px] text-white">Nombre o usuario</h4>
+                  <h4 class="text-[14px] text-white">Juan Esteban García</h4>
                   <span class="text-[#7c798a] text-xs"
                     >Previsualización del mensaje</span
                   >
@@ -415,316 +409,211 @@
           </ul>
         </div>
       </div>
-      <!-- Últimos pedidos -->
-      <div
-        class="bg-[#3b364c] p-3 rounded-2xl w-[328px] h-[369px] mt-4 text-white"
-      >
-        <div class="text-center text-xl mb-4">Últimos pedidos</div>
-        <!-- Pedido 1 -->
-        <div class="bg-[#2b2738] p-4 w-[304px] h-[93px] rounded-2xl mb-2">
+
+      <div class="bg-[#3b364c] p-3 rounded-2xl w-[100%] mt-4 text-white">
+        <div class="text-center text-xl mb-4">
+          <div class="flex justify-between items-center px-3">
+            <h2 class="text-sm text-white">Últimos pedidos</h2>
+            <button class="text-sm text-white font-medium underline">
+              Ver más
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-[#2b2738] p-3 w-[100%] rounded-2xl mb-2">
           <div class="flex justify-between">
             <div class="flex justify-center gap-10">
-              <p class="text-sm">#001</p>
-              <p class="text-sm">Nombre y Apellido</p>
+              <p class="text-sm">037</p>
             </div>
             <div>
-              <p class="text-xs">12/05</p>
+              <p class="text-xs">12/05/24</p>
             </div>
           </div>
           <div
-            class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
+            class="flex items-center justify-between py-1 text-[#e5e504] text-xs w-full"
           >
-            <div class="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="text-[#e5e504] w-4 h-4 mr-2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-              Producto
-            </div>
-            <p class="text-xs text-white">$200</p>
+            <div class="flex items-center">Pollera de cuero dama</div>
+            <p class="text-xs text-white">$ 18.200</p>
           </div>
-          <div class="flex gap-4 w-[267.93px] h-[25px]">
+          <div class="flex gap-4">
             <div
-              class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[145px] h-[25px]"
+              class="flex items-center bg-[#2b2738] gap-4 py-1 px-3 text-xs w-36 h-6"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
-              >
-                <path
-                  d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+              <span class="text-white flex items-center">
+                <svg
                   clip-rule="evenodd"
-                />
-              </svg>
-              <span>Pago realizado</span>
-            </div>
-            <div
-              class="flex items-center gap-4 bg-[#3b364c] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
-              >
-                <path
-                  d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
-                />
-                <path
-                  d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
-                />
-                <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
-              </svg>
-              <span>Enviado</span>
+                  fill-rule="evenodd"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 mr-1"
+                  fill="#07bb6d"
+                >
+                  <circle cx="11.998" cy="11.998" fill-rule="nonzero" r="6" />
+                </svg>
+                Entregado
+              </span>
             </div>
           </div>
         </div>
-        <!-- Pedido 2 -->
-        <div class="bg-[#2b2738] p-4 w-[304px] h-[93px] rounded-2xl mb-2">
+
+        <div class="bg-[#2b2738] p-3 w-[100%] rounded-2xl mb-2">
           <div class="flex justify-between">
             <div class="flex justify-center gap-10">
-              <p class="text-sm">#002</p>
-              <p class="text-sm">Nombre y Apellido</p>
+              <p class="text-sm">036</p>
             </div>
             <div>
-              <p class="text-xs">12/05</p>
+              <p class="text-xs">10/05/24</p>
             </div>
           </div>
           <div
-            class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
+            class="flex items-center justify-between py-1 text-[#e5e504] text-xs w-full"
           >
             <div class="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="text-[#e5e504] w-4 h-4 mr-2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-              Producto
+              Vestido primaveral varios colores
             </div>
-            <p class="text-xs text-white">$200</p>
+            <p class="text-xs text-white">$ 13.500</p>
           </div>
 
-          <div class="flex gap-4 w-[267.93px] h-[25px]">
+          <div class="flex gap-4">
             <div
-              class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[145px] h-[25px]"
+              class="flex items-center bg-[#2b2738] gap-4 py-1 px-3 text-xs w-36 h-6"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
-              >
-                <path
-                  d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+              <span class="text-white flex items-center">
+                <svg
                   clip-rule="evenodd"
-                />
-              </svg>
-              <span>Pago realizado</span>
-            </div>
-            <div
-              class="flex items-center gap-4 bg-[#3b364c] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
-              >
-                <path
-                  d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
-                />
-                <path
-                  d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
-                />
-                <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
-              </svg>
-              <span>Enviado</span>
+                  fill-rule="evenodd"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 mr-1"
+                  fill="#078bbb"
+                >
+                  <circle cx="11.998" cy="11.998" fill-rule="nonzero" r="6" />
+                </svg>
+                En envío
+              </span>
             </div>
           </div>
         </div>
-        <!-- Pedido 3 -->
-        <div class="bg-[#2b2738] p-4 w-[304px] h-[93px] rounded-2xl mb-4">
+
+        <div class="bg-[#2b2738] p-3 w-[100%] rounded-2xl mb-4">
           <div class="flex justify-between">
             <div class="flex justify-center gap-10">
-              <p class="text-sm">#003</p>
-              <p class="text-sm">Nombre y Apellido</p>
+              <p class="text-sm">035</p>
             </div>
             <div>
-              <p class="text-xs">12/05</p>
+              <p class="text-xs">04/05/24</p>
             </div>
           </div>
           <div
-            class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
+            class="flex items-center justify-between py-1 text-[#e5e504] text-xs w-full"
           >
-            <div class="flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="text-[#e5e504] w-4 h-4 mr-2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-              Producto
-            </div>
-            <p class="text-xs text-white">$200</p>
+            <div class="flex items-center">Zapatillas Converse All stars</div>
+            <p class="text-xs text-white">$ 80.000</p>
           </div>
 
-          <div class="flex gap-4 w-[267.93px] h-[25px]">
+          <div class="flex gap-4">
             <div
-              class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[145px] h-[25px]"
+              class="flex items-center bg-[#2b2738] gap-4 py-1 px-3 text-xs rounded-xl w-36 h-6"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
-              >
-                <path
-                  d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+              <span class="text-white flex items-center">
+                <svg
                   clip-rule="evenodd"
-                />
-              </svg>
-              <span>Pago realizado</span>
-            </div>
-            <div
-              class="flex items-center gap-4 bg-[#3b364c] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="size-6"
-              >
-                <path
-                  d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
-                />
-                <path
-                  d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
-                />
-                <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
-              </svg>
-              <span>Enviado</span>
+                  fill-rule="evenodd"
+                  stroke-linejoin="round"
+                  stroke-miterlimit="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 mr-1"
+                  fill="#ae8d07"
+                >
+                  <circle cx="11.998" cy="11.998" fill-rule="nonzero" r="6" />
+                </svg>
+                En preparación
+              </span>
             </div>
           </div>
         </div>
       </div>
-      <!-- Tabla de productos -->
-      <div class="bg-[#3b364c] w-[328px] h-[255.5px] p-1 mt-4 rounded-2xl">
-        <h3 class="text-base mb-1 mt-1 text-center">
-          Productos que necesitan re-stock
-        </h3>
-        <div class="flex justify-between">
-          <table class="rounded-2xl ">
+
+      <div class="bg-[#3b364c] w-full p-1 mt-4 rounded-2xl">
+        <div class="flex justify-between items-center px-3 py-3">
+          <h2 class="text-sm text-white">Productos que necesitan re-stock</h2>
+          <button class="text-sm text-white font-medium underline">
+            Ver más
+          </button>
+        </div>
+        <div class="flex justify-between p-1">
+          <table class="w-full rounded-2xl overflow-hidden">
             <thead class="bg-[#5d3cba]">
               <tr class="items-center">
-                <th class="w-[304px] h-[35px] flex pl-3 justify-between items-center text-sm rounded-tl-2xl rounded-tr-2xl">
-                  Detalles
-                  <div class="flex pl-3 justify-between items-center text-sm"> 
-                  <button
-                  class="px-2 rounded-xl flex justify-center items-center"
+                <th
+                  class="w-full h-full flex pl-3 py-2 justify-between items-center text-sm text-white"
                 >
-                  <svg
-                    class="w-[12.74px] h-[12.74px] text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
-                    />
-                  </svg>
-                </button>
-              </div>
+                  Detalles
+                  <div class="flex pl-3 justify-between items-center text-sm">
+                    <button class="pr-2 flex justify-center items-center">
+                      <svg
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 30 30"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr
-                class="text-center bg-[#2b2738] items-center border-t-[1px] border-b-[2px] solid border-[#3b364c] flex justify-between text-sm w-[304px] h-[35px] p-2"
+                class="text-center bg-[#2b2738] border-t border-b border-[#3b364c] flex justify-between items-center text-sm p-1"
               >
-                <td class=" px-1 m-1">Producto</td>
-                <td class=" px-1 m-1">Campera de invierno</td>
-  
-              </tr>
-              <tr class="text-center w-[304px] bg-[#2b2738] items-center h-[35px] p-1 text-sm flex justify-between">
-                <td class=" px-1 m-1">Stock</td>
-                <td class=" px-1 m-1">20</td>
+                <td class="px-1 m-1">Producto</td>
+                <td class="px-1 m-1 underline">Campera de cuero</td>
               </tr>
               <tr
-                class="text-center border-t-[2px] bg-[#2b2738] items-center solid border-[#3b364c] w-[304px] h-[35px] text-sm p-1 flex justify-between"
+                class="text-center w-full bg-[#2b2738] items-center p-1 text-sm flex justify-between"
               >
-                <td class=" px-1 m-1">Estado</td>
-                <span class="text-white pl-1 flex items-center">
+                <td class="px-1 m-1">Cod. Id</td>
+                <td class="px-1 m-1">123456</td>
+              </tr>
+              <tr
+                class="text-center border-t bg-[#2b2738] border-[#3b364c] w-full p-1 text-sm flex justify-between"
+              >
+                <td class="px-1 m-1">Estado</td>
+                <td class="text-white flex items-center pr-2">
                   <svg
                     clip-rule="evenodd"
                     fill-rule="evenodd"
                     stroke-linejoin="round"
                     stroke-miterlimit="2"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 19 19"
                     xmlns="http://www.w3.org/2000/svg"
                     class="w-5 h-5 mr-1"
-                    fill="#078bbb"
+                    fill="#b1120d"
                   >
-                    <circle
-                      cx="11.998"
-                      cy="11.998"
-                      fill-rule="nonzero"
-                      r="6"
-                    />
+                    <circle cx="11.998" cy="11.998" fill-rule="nonzero" r="4" />
                   </svg>
-                  Pendiente
-                </span>
+                  Reponer
+                </td>
               </tr>
               <tr
-                class="text-center border-t-[2px] bg-[#2b2738] items-center rounded-bl-2xl rounded-br-2xl solid border-[#3b364c] w-[304px] h-[35px] p-1 text-sm flex justify-between"
+                class="text-center border-t bg-[#2b2738] border-[#3b364c] w-full p-1 text-sm flex justify-between rounded-bl-2xl rounded-br-2xl"
               >
-                <td class="px-1 m-1">Cod. Id</td>
-                <td class="px-1 m-1">123456</td>
+                <td class="px-1 m-1">Stock</td>
+                <td class="px-1 m-1">20</td>
               </tr>
             </tbody>
           </table>
@@ -734,26 +623,16 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
 <!-- Desktop-->
 <div
-  class="rounded-3xl w-[1,149px] h-[976px] bg-[#3b364c] m-1 p-8 gap-8 text-white max-w-[1200px] max-h-screen hidden md:block max-h-[854px]"
+  class="rounded-3xl w-[100%] h-[100%] bg-[#3b364c] mb-1 gap-5 text-white max-w-full max-h-screen hidden md:block"
 >
-  <div class="p-2 w-[1,085px] h-[912px]">
+  <div class="p-2 w-[100%]">
     <div
-      class="flex items-center justify-between p-2 m-7 rounded-2xl bg-[#2b2738] w-[1,085px] h-[72px] text-white"
+      class="flex items-center gap-6 justify-between p-2 m-7 rounded-2xl bg-[#2b2738] w-[1,085px] h-[72px] text-white"
     >
-      <!-- Saludo-->
       <div
-        class="bg-[#3b364c] py-2 px-4 ml-4 gap-3 w-[141px] h-[38px] rounded-xl"
+        class="bg-[#3b364c] py-2 px-4 ml-4 mr-8 gap-3 w-[141px] h-[38px] rounded-xl"
       >
         <span class="w-[109px] h-[22px] inline-block align-middle text-sm"
           >¡Hola, Josefina!</span
@@ -762,7 +641,6 @@
       <div
         class="relative flex justify-between gap-8 items-center bg-[#2b2738] rounded-2xl w-[663px] h-[40px]"
       >
-        <!-- Icono de lupa -->
         <svg
           class="absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#7c798a] pl-2"
           aria-hidden="true"
@@ -778,51 +656,31 @@
             d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
           />
         </svg>
-        <!-- Campo de búsqueda -->
+
         <input
           type="text"
-          placeholder="Buscar producto"
-          class="bg-[#3b364c] border-[#2b2738] py-2 px-8 rounded-xl w-[606.96px] h-[40px]"
+          placeholder="Buscar"
+          class="bg-[#3b364c] border-[#2b2738] py-2 px-7 rounded-xl w-[606.96px] h-[40px]"
         />
-        <!-- Botón de filtro -->
-        <button
-          class="bg-[#3b364c] text-[#7c798a] p-2 w-[40.04px] h-[40px] rounded-xl"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-            />
-          </svg>
-        </button>
       </div>
-      <!-- Botón Minegocio -->
+
       <button
-        class="bg-[#3b364c] py-2 px-4 mr-3 font-size-16px w-[99px] h-[38px] gap-3 rounded-xl"
+        class="bg-[#3b364c] py-2 px-1 mr-2 w-[80%] h-9 gap-3 text-sm rounded-xl"
       >
-        <span>Mi marca</span>
+        <span>Ropa femenina</span>
       </button>
     </div>
 
-    <div class="container-son max-h-[70vh] w-[1,085px] h-[808px] overflow-auto">
-      <!-- cards -->
+    <div
+      class="container-son max-h-[70vh] w-[1,085px] h-[808px] overflow-x-hidden"
+    >
       <div
         class="flex justify-center items-center gap-5 bg-[#2b2738] p-6 w-[1,049px] h-[209px] rounded-2xl ml-7 mr-7"
       >
-        <!-- Tarjeta 1 -->
         <div
-          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[236.25px] h-[177px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[25%] h-[177px]"
         >
           <div class="flex items-center mb-4">
-            <!-- Icono -->
             <div class="bg-[#6558e3] p-3 rounded-xl">
               <svg
                 width="19"
@@ -839,7 +697,7 @@
             </div>
           </div>
           <p class="text-sm text-[#797979]">Total del mes</p>
-          <p class="text-2xl">$1.503,989</p>
+          <p class="text-2xl text-[#e5e504]">$1.503,989</p>
           <div class="flex items-center mt-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -858,9 +716,9 @@
             <p class="text-white text-xs ml-1">60% de aumento</p>
           </div>
         </div>
-        <!-- Tarjeta 2 -->
+
         <div
-          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[236.25px] h-[177px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[25%] h-[177px]"
         >
           <div class="flex items-center mb-4">
             <div class="bg-[#6558e3] p-3 rounded-lg">
@@ -879,7 +737,7 @@
             </div>
           </div>
           <p class="text-sm text-[#797979]">Total del mes</p>
-          <p class="text-2xl">+1.500</p>
+          <p class="text-2xl text-[#e5e504]">+1.500</p>
           <div class="flex items-center mt-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -900,9 +758,9 @@
             </p>
           </div>
         </div>
-        <!-- Tarjeta 3 -->
+
         <div
-          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[236.25px] h-[177px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[25%] h-[177px]"
         >
           <div class="flex items-center mb-4">
             <div class="bg-[#6558e3] p-3 rounded-lg">
@@ -921,7 +779,7 @@
             </div>
           </div>
           <p class="text-sm text-[#797979]">Total del mes</p>
-          <p class="text-2xl">-200.000</p>
+          <p class="text-2xl text-[#e5e504]">-200.000</p>
           <div class="flex items-center mt-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -940,9 +798,9 @@
             <p class="text-white text-xs ml-1">40% en descenso en envíos</p>
           </div>
         </div>
-        <!-- Tarjeta 4 -->
+
         <div
-          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[236.25px] h-[177px]"
+          class="bg-[#3b364c] p-4 gap-3 rounded-2xl text-white w-[25%] h-[177px]"
         >
           <div class="flex items-center mb-4">
             <div class="bg-[#6558e3] p-3 rounded-lg">
@@ -961,7 +819,7 @@
             </div>
           </div>
           <p class="text-sm text-[#797979]">Total del mes</p>
-          <p class="text-2xl">$903,989</p>
+          <p class="text-2xl text-[#e5e504]">$903,989</p>
           <div class="flex items-center mt-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -981,32 +839,39 @@
           </div>
         </div>
       </div>
-      <!-- métricas -->
-      <div
-        class="flex justify-center gap-6 ml-4 w-[1,049px] h-[373px] mr-4 mt-6 "
-      >
-        <div class="bg-[#2b2738] w-[669px] h-[373px] p-4 gap-4 rounded-2xl">
-          <h2 class="text-center text-xl">Métricas</h2>
-          <div class="bg-[#3b364c]  w-[637px] h-[302px] gap-4 items-center rounded-2xl">
+
+      <div class="flex justify-center gap-6 ml-6 w-[100%] mr-4 mt-6">
+        <div class="bg-[#2b2738] w-[100%] h-[100%] p-4 gap-4 rounded-2xl">
+          <div class="flex justify-between items-center px-3">
+            <h2 class="text-lg text-white pb-2">Métricas</h2>
+            <button class="text-lg text-white font-medium underline">
+              Ver más
+            </button>
+          </div>
+          <div
+            class="bg-[#3b364c] w-[100%] gap-4 pt-3 items-center rounded-2xl"
+          >
             <a href="#" class="flex items-center space-x-3">
               <img
-                src="/images/metricas.png"
-                class="w-[637px] h-[302px] rounded-2xl"
-                alt="Foto de métricas"
+                src="..//..//..//..//public/icons/metricas.png"
+                class="rounded-2xl"
+                alt="Foto de usuario"
               />
             </a>
           </div>
         </div>
-        <!-- Nuevos clientes -->
-        <div class="w-[356px] h-[373px] bg-[#2b2738] rounded-2xl">
-          <div class="bg-[#2b2738] gap-3 p-4 rounded-2xl">
-            <h3 class="text-xl mb-4 text-center text-white">
-              Mensajes de nuevos clientes
-            </h3>
+
+        <div class="w-[60%] mr-12 bg-[#2b2738] rounded-2xl">
+          <div class="bg-[#2b2738] gap-5 p-4 w-[100%] h-[100%] rounded-2xl">
+            <div class="flex justify-between items-center px-3">
+              <h2 class="text-lg text-white pb-3">Mensajes de clientes</h2>
+              <button class="text-lg text-white font-medium underline">
+                Ver más
+              </button>
+            </div>
             <ul class="space-y-4">
-              <!-- Primer cliente -->
               <div
-                class="bg-[#3b364c] rounded-2xl p-3 gap-3 flex justify-between items-center w-[324px] h-[83px]"
+                class="bg-[#3b364c] rounded-2xl p-3 gap-3 flex justify-between items-center w-[100%]"
               >
                 <li class="flex items-center space-x-4">
                   <img
@@ -1015,9 +880,9 @@
                     alt="Cliente"
                   />
                   <div>
-                    <h4 class="text-[14px] text-white">Nombre o usuario</h4>
-                    <span class="text-[#7c798a] text-xs"
-                      >Previsualización del mensaje</span
+                    <h4 class="text-[14px] text-white">Dorotea Carnaghi</h4>
+                    <span class="text-[#7c798a] text-xs" style="line-height: 1"
+                      >Estoy interesada en comprar una</span
                     >
                   </div>
                 </li>
@@ -1030,9 +895,9 @@
                   </div>
                 </div>
               </div>
-              <!-- Cliente 2 -->
+
               <div
-                class="bg-[#3b364c] rounded-2xl p-3 flex justify-between gap-3 items-center w-[324px] h-[83px]"
+                class="bg-[#3b364c] rounded-2xl p-3 flex justify-between gap-3 items-center w-[100%] h-[83px]"
               >
                 <li class="flex items-center space-x-4">
                   <img
@@ -1041,14 +906,14 @@
                     alt="Cliente"
                   />
                   <div>
-                    <h4 class="text-[14px] text-white">Nombre o usuario</h4>
+                    <h4 class="text-[14px] text-white">Marianela Morales</h4>
                     <span class="text-[#7c798a] text-xs"
-                      >Previsualización del mensaje</span
+                      >Quisiera saber si tienen una pollera</span
                     >
                   </div>
                 </li>
                 <div class="flex flex-col items-center space-y-2">
-                  <div class="text-[#7c798a] text-xs">15 min</div>
+                  <div class="text-[#7c798a] text-xs">7 min</div>
                   <div
                     class="bg-[#e5e504] text-black rounded-full w-6 h-6 flex items-center justify-center"
                   >
@@ -1056,9 +921,9 @@
                   </div>
                 </div>
               </div>
-              <!-- Cliente 3 -->
+
               <div
-                class="bg-[#3b364c] rounded-2xl gap-3 space-between flex justify-between items-center w-[324px] h-[83px] p-3"
+                class="bg-[#3b364c] rounded-2xl gap-3 space-between flex justify-between items-center w-[100%] h-[83px] p-3"
               >
                 <li class="flex items-center space-x-4">
                   <img
@@ -1067,18 +932,18 @@
                     alt="Cliente"
                   />
                   <div>
-                    <h4 class="text-[14px] text-white">Nombre o usuario</h4>
+                    <h4 class="text-[14px] text-white">Juan Esteban García</h4>
                     <span class="text-[#7c798a] text-xs"
-                      >Previsualización del mensaje</span
-                    >
+                      >Hola, quiero comprar un vestido
+                    </span>
                   </div>
                 </li>
                 <div class="flex flex-col items-center space-y-2">
-                  <div class="text-[#7c798a] text-xs">15 min</div>
+                  <div class="text-[#7c798a] text-xs">17 min</div>
                   <div
                     class="bg-[#e5e504] text-black rounded-full w-6 h-6 flex items-center justify-center"
                   >
-                    5
+                    2
                   </div>
                 </div>
               </div>
@@ -1086,255 +951,154 @@
           </div>
         </div>
       </div>
-      <!-- Últimos pedidos -->
+
       <div
-        class="flex justify-center flex-row gap-6 mt-5 mr-4 ml-4 w-[1,049px] h-[400px] rounded-2xl"
+        class="flex justify-center flex-row gap-6 mt-6 ml-5 mr-8 mb-8 w-[100%] rounded-2xl"
       >
-        <div
-          class="bg-[#2b2738] p-4 rounded-2xl w-[381px] h-[400px] text-white"
-        >
-          <div class="text-center text-xl mb-4">Últimos pedidos</div>
-          <!-- Pedido 1 -->
-          <div class="bg-[#3b364c] p-4 w-[349px] h-[93px] rounded-2xl mb-4">
+        <div class="bg-[#2b2738] p-4 rounded-2xl w-[60%] h-[400px] text-white">
+          <div class="flex justify-between items-center px-3">
+            <h2 class="text-lg text-white pb-3">Últimos pedidos</h2>
+            <button class="text-lg text-white pb-3 font-medium underline">
+              Ver más
+            </button>
+          </div>
+
+          <div class="bg-[#3b364c] p-4 w-[100%] h-[93px] rounded-2xl mb-4">
             <div class="flex justify-between">
               <div class="flex justify-center gap-20">
-                <p class="text-sm">#001</p>
-                <p class="text-sm">Nombre y Apellido</p>
+                <p class="text-sm">036</p>
               </div>
               <div>
-                <p class="text-xs">12/05</p>
+                <p class="text-xs">12/05/24</p>
               </div>
             </div>
             <div
               class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
             >
-              <div class="flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="text-[#e5e504] w-4 h-4 mr-2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-                Producto
-              </div>
-              <p class="text-xs text-white">$200</p>
+              <div class="flex items-center">Pollera de cuero dama</div>
+              <p class="text-xs text-white">$ 18.200</p>
             </div>
 
             <div class="flex gap-4 w-[267.93px] h-[25px]">
               <div
-                class="flex items-center bg-[#2b2738] gap-4 py-1 px-3 text-xs rounded-xl w-[160px] h-[25px]"
+                class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[160px] h-[25px]"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+                <span class="text-white flex items-center">
+                  <svg
                     clip-rule="evenodd"
-                  />
-                </svg>
-                <span>Pago realizado</span>
-              </div>
-              <div
-                class="flex items-center gap-4 bg-[#2b2738] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
-                  />
-                  <path
-                    d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
-                  />
-                  <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
-                </svg>
-                <span>Enviado</span>
+                    fill-rule="evenodd"
+                    stroke-linejoin="round"
+                    stroke-miterlimit="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5 mr-1"
+                    fill="#07bb6d"
+                  >
+                    <circle cx="11.998" cy="11.998" fill-rule="nonzero" r="6" />
+                  </svg>
+                  Entregado
+                </span>
               </div>
             </div>
           </div>
-          <!-- Pedido 2 -->
-          <div class="bg-[#3b364c] p-4 w-[349px] h-[93px] rounded-2xl mb-4">
+
+          <div class="bg-[#3b364c] p-4 w-[100%] h-[93px] rounded-2xl mb-4">
             <div class="flex justify-between">
               <div class="flex justify-center gap-20">
-                <p class="text-sm">#002</p>
-                <p class="text-sm">Nombre y Apellido</p>
+                <p class="text-sm">036</p>
               </div>
               <div>
-                <p class="text-xs">12/05</p>
+                <p class="text-xs">10/05/24</p>
               </div>
             </div>
             <div
               class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
             >
               <div class="flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="text-[#e5e504] w-4 h-4 mr-2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-                Producto
+                Vestido primaveral varios colores
               </div>
-              <p class="text-xs text-white">$200</p>
+              <p class="text-xs text-white">$ 13.500</p>
             </div>
 
             <div class="flex gap-4 w-[267.93px] h-[25px]">
               <div
-                class="flex items-center bg-[#2b2738] gap-4 py-1 px-3 text-xs rounded-xl w-[160px] h-[25px]"
+                class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[160px] h-[25px]"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+                <span class="text-white flex items-center">
+                  <svg
                     clip-rule="evenodd"
-                  />
-                </svg>
-                <span>Pago realizado</span>
-              </div>
-              <div
-                class="flex items-center gap-4 bg-[#2b2738] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
-                  />
-                  <path
-                    d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
-                  />
-                  <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
-                </svg>
-                <span>Enviado</span>
+                    fill-rule="evenodd"
+                    stroke-linejoin="round"
+                    stroke-miterlimit="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5 mr-1"
+                    fill="#078bbb"
+                  >
+                    <circle cx="11.998" cy="11.998" fill-rule="nonzero" r="6" />
+                  </svg>
+                  En envío
+                </span>
               </div>
             </div>
           </div>
-          <!-- Pedido 3 -->
-          <div class="bg-[#3b364c] p-4 w-[349px] h-[93px] rounded-2xl mb-4">
+
+          <div class="bg-[#3b364c] p-4 w-[100%] h-[93px] rounded-2xl mb-4">
             <div class="flex justify-between">
               <div class="flex justify-center gap-20">
-                <p class="text-sm">#003</p>
-                <p class="text-sm">Nombre y Apellido</p>
+                <p class="text-sm">035</p>
               </div>
               <div>
-                <p class="text-xs">12/05</p>
+                <p class="text-xs">04/05/24</p>
               </div>
             </div>
             <div
               class="flex items-center justify-between py-1 text-[#e5e504] text-sm w-full"
             >
-              <div class="flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="text-[#e5e504] w-4 h-4 mr-2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-                Producto
-              </div>
-              <p class="text-xs text-white">$200</p>
+              <div class="flex items-center">Zapatillas Converse All stars</div>
+              <p class="text-xs text-white">$ 80.000</p>
             </div>
 
             <div class="flex gap-4 w-[267.93px] h-[25px]">
               <div
-                class="flex items-center bg-[#2b2738] gap-4 py-1 px-3 text-xs rounded-xl w-[160px] h-[25px]"
+                class="flex items-center bg-[#3b364c] gap-4 py-1 px-3 text-xs rounded-xl w-[160px] h-[25px]"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    d="M4.5 3.75a3 3 0 0 0-3 3v.75h21v-.75a3 3 0 0 0-3-3h-15Z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M22.5 9.75h-21v7.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-7.5Zm-18 3.75a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5h-6a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z"
+                <span class="text-white flex items-center">
+                  <svg
                     clip-rule="evenodd"
-                  />
-                </svg>
-                <span>Pago realizado</span>
-              </div>
-              <div
-                class="flex items-center gap-4 bg-[#2b2738] py-1 px-3 w-[109.93px] h-[25px] text-xs rounded-xl"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z"
-                  />
-                  <path
-                    d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z"
-                  />
-                  <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
-                </svg>
-                <span>Enviado</span>
+                    fill-rule="evenodd"
+                    stroke-linejoin="round"
+                    stroke-miterlimit="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5 mr-1"
+                    fill="#ae8d07"
+                  >
+                    <circle cx="11.998" cy="11.998" fill-rule="nonzero" r="6" />
+                  </svg>
+                  En preparación
+                </span>
               </div>
             </div>
           </div>
         </div>
-        <!-- Tabla de productos -->
-        <div class="bg-[#2b2738] w-[644px] h-[400px] p-3 rounded-2xl">
-          <h3 class="text-xl mb-2 mt-2 text-center">
-            Tienes productos en la tienda que necesitan re-stock
-          </h3>
+
+        <div class="bg-[#2b2738] w-[100%] p-3 mr-12 rounded-2xl">
+          <div class="flex justify-between items-center px-3">
+            <h2 class="text-lg text-white pb-2">
+              Productos para reponer stock
+            </h2>
+            <button class="text-lg text-white font-medium underline">
+              Ver más
+            </button>
+          </div>
           <div class="flex justify-between">
-            <table class="rounded-2xl m-1 w-[612px] h-[45px]">
+            <table class="rounded-2xl m-1 w-full">
               <thead class="bg-[#5d3cba]">
                 <tr class="items-center">
                   <th class="p-2 rounded-tl-2xl">
                     <div class="flex items-center justify-center text-base">
-                      Cód. Id
+                      Id
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -1383,23 +1147,7 @@
                       </svg>
                     </div>
                   </th>
-                  <th class="p-2">
-                    <div class="flex items-center justify-center text-base">
-                      Estado
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        class="w-6 h-6 ml-2"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </th>
+                  <th class="p-2"></th>
                   <th class="p-2 rounded-tr-2xl">
                     <div class="flex items-center justify-center text-base">
                       Detalles
@@ -1409,33 +1157,12 @@
               </thead>
               <tbody>
                 <tr
-                  class="text-center border-t-[1px] border-b-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
+                  class="border-t-[1px] border-b-[2px] solid border-[#2b2738] w-80 h-10 p-1"
                 >
-                  <td class="bg-[#3b364c] px-4 m-4">123454</td>
-                  <td class="bg-[#3b364c] px-4 m-4">Campera de invierno</td>
-                  <td class="bg-[#3b364c] px-4 m-4">0</td>
-                  <td class="p-3 m-2 bg-[#3b364c]">
-                    <span class="text-white pl-5 flex items-center">
-                      <svg
-                        clip-rule="evenodd"
-                        fill-rule="evenodd"
-                        stroke-linejoin="round"
-                        stroke-miterlimit="2"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 mr-1"
-                        fill="#b1120d"
-                      >
-                        <circle
-                          cx="11.998"
-                          cy="11.998"
-                          fill-rule="nonzero"
-                          r="6"
-                        />
-                      </svg>
-                      Reponer
-                    </span>
-                  </td>
+                  <td class="bg-[#3b364c] px-3 m-4 text-center">0198</td>
+                  <td class="bg-[#3b364c] pl-10 m-4">Chalina para invierno</td>
+                  <td class="bg-[#3b364c] px-2 m-4 text-center">2</td>
+                  <td class="p-3 m-2 bg-[#3b364c]"></td>
                   <td class="bg-[#3b364c] justify-center">
                     <button
                       class="px-4 pl-10 rounded-xl flex justify-center items-center"
@@ -1458,32 +1185,11 @@
                     </button>
                   </td>
                 </tr>
-                <tr class="text-center w-[612px] h-[72px] p-4">
-                  <td class="bg-[#3b364c] px-4 m-4">123455</td>
-                  <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
-                  <td class="bg-[#3b364c] px-4 m-2">5</td>
-                  <td class="p-3 m-2 bg-[#3b364c]">
-                    <span class="text-white pl-5 flex items-center">
-                      <svg
-                        clip-rule="evenodd"
-                        fill-rule="evenodd"
-                        stroke-linejoin="round"
-                        stroke-miterlimit="2"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 mr-1"
-                        fill="#078bbb"
-                      >
-                        <circle
-                          cx="11.998"
-                          cy="11.998"
-                          fill-rule="nonzero"
-                          r="6"
-                        />
-                      </svg>
-                      Pendiente
-                    </span>
-                  </td>
+                <tr class="w-80 h-10 p-1">
+                  <td class="bg-[#3b364c] px-3 m-4 text-center">0029</td>
+                  <td class="bg-[#3b364c] pl-10 m-2">Buzo deportivo</td>
+                  <td class="bg-[#3b364c] px-3 m-2 text-center">3</td>
+                  <td class="p-3 m-2 bg-[#3b364c]"></td>
                   <td class="bg-[#3b364c] justify-center">
                     <button
                       class="px-4 pl-10 rounded-xl flex justify-center items-center"
@@ -1506,34 +1212,13 @@
                     </button>
                   </td>
                 </tr>
-                <tr
-                  class="text-center border-t-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
-                >
-                  <td class="bg-[#3b364c] px-4 m-4">123455</td>
-                  <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
-                  <td class="bg-[#3b364c] px-4 m-2">5</td>
-                  <td class="p-3 m-2 bg-[#3b364c]">
-                    <span class="text-white pl-5 flex items-center">
-                      <svg
-                        clip-rule="evenodd"
-                        fill-rule="evenodd"
-                        stroke-linejoin="round"
-                        stroke-miterlimit="2"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 mr-1"
-                        fill="#b1120d"
-                      >
-                        <circle
-                          cx="11.998"
-                          cy="11.998"
-                          fill-rule="nonzero"
-                          r="6"
-                        />
-                      </svg>
-                      Reponer
-                    </span>
+                <tr class="border-t-[2px] solid border-[#2b2738] w-80 h-10 p-1">
+                  <td class="bg-[#3b364c] px-3 m-4 text-center">0075</td>
+                  <td class="bg-[#3b364c] pl-10 m-2">
+                    Botitas con ferpudo negra
                   </td>
+                  <td class="bg-[#3b364c] px-3 m-2 text-center">5</td>
+                  <td class="p-3 m-2 bg-[#3b364c]"></td>
                   <td class="bg-[#3b364c] justify-center">
                     <button
                       class="px-4 pl-10 rounded-xl flex justify-center items-center"
@@ -1556,34 +1241,96 @@
                     </button>
                   </td>
                 </tr>
-                <tr
-                  class="text-center border-t-[2px] solid border-[#2b2738] w-[612px] h-[72px] p-4"
-                >
-                  <td class="bg-[#3b364c] px-4 m-4 rounded-bl-2xl">123455</td>
-                  <td class="bg-[#3b364c] px-4 m-2">Campera de invierno</td>
-                  <td class="bg-[#3b364c] px-4 m-2">5</td>
-                  <td class="p-3 m-2 bg-[#3b364c]">
-                    <span class="text-white pl-5 flex items-center">
+                <tr class="border-t-[2px] solid border-[#2b2738] w-80 h-10 p-1">
+                  <td class="bg-[#3b364c] px-3 m-4 text-center">0016</td>
+                  <td class="bg-[#3b364c] pl-10 m-2">
+                    Campera rompeviento gris
+                  </td>
+                  <td class="bg-[#3b364c] px-3 m-2 text-center">6</td>
+                  <td class="p-3 m-2 bg-[#3b364c]"></td>
+                  <td class="bg-[#3b364c] justify-center">
+                    <button
+                      class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                    >
                       <svg
-                        clip-rule="evenodd"
-                        fill-rule="evenodd"
-                        stroke-linejoin="round"
-                        stroke-miterlimit="2"
-                        viewBox="0 0 24 24"
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 mr-1"
-                        fill="#b1120d"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                       >
-                        <circle
-                          cx="11.998"
-                          cy="11.998"
-                          fill-rule="nonzero"
-                          r="6"
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
                         />
                       </svg>
-                      Reponer
-                    </span>
+                    </button>
                   </td>
+                </tr>
+                <tr class="border-t-[2px] solid border-[#2b2738] w-80 h-10 p-1">
+                  <td class="bg-[#3b364c] px-3 m-4 text-center">0023</td>
+                  <td class="bg-[#3b364c] pl-10 m-2">Calza térmica</td>
+                  <td class="bg-[#3b364c] px-3 m-2 text-center">6</td>
+                  <td class="p-3 m-2 bg-[#3b364c]"></td>
+                  <td class="bg-[#3b364c] justify-center">
+                    <button
+                      class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="border-t-[2px] solid border-[#2b2738] w-80 h-10 p-1">
+                  <td class="bg-[#3b364c] px-3 m-4 text-center">0198</td>
+                  <td class="bg-[#3b364c] pl-10 m-2">Chalina para invierno</td>
+                  <td class="bg-[#3b364c] px-3 m-2 text-center">2</td>
+                  <td class="p-3 m-2 bg-[#3b364c]"></td>
+                  <td class="bg-[#3b364c] justify-center">
+                    <button
+                      class="px-4 pl-10 rounded-xl flex justify-center items-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-4.35-4.35m1.15-6.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                <tr class="border-t-[2px] solid border-[#2b2738] w-80 h-10 p-1">
+                  <td class="bg-[#3b364c] px-3 m-4 rounded-bl-2xl text-center">
+                    0114
+                  </td>
+                  <td class="bg-[#3b364c] pl-10 m-2">Pantalón de gabardina</td>
+                  <td class="bg-[#3b364c] px-3 m-2 text-center">7</td>
+                  <td class="p-3 m-2 bg-[#3b364c]"></td>
                   <td class="bg-[#3b364c] justify-center rounded-br-2xl">
                     <button
                       class="px-4 pl-10 rounded-xl flex justify-center items-center"
